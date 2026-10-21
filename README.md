@@ -12,8 +12,10 @@ Open the site in Safari → Share → **Add to Home Screen**. It then opens full
 
 Pick whichever is easiest:
 
-- **In the app:** tap **New**, paste a recipe, tap **Save**, then **Open GitHub** and commit. It's usable on that phone immediately and on every phone after the deploy.
-- **Ask Claude** to add it. Claude opens a commit or PR with the new file.
+- **In the app:** tap **New**, paste a recipe, tap **Save**. The app commits it to this repo and every phone has it about a minute later. Editing and deleting work the same way.
+- **Ask Claude** to add it. Claude commits the new file.
+
+Saving from the app needs a one-time setup per phone (Settings → Saving recipes): a fine-grained GitHub token with access to this repository only and **Contents: Read and write**. It's stored only on that phone. Without it, recipes saved in the app stay on that phone until saving is turned on.
 - **By hand:** add `recipes/<id>.json` in the format below.
 
 ## Recipe format

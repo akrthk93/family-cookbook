@@ -183,7 +183,8 @@ const ICON = {
   clock: svg('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>'),
   edit: svg('<path d="M4 20h4L19 9l-4-4L4 16z"/>'),
   trash: svg('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'),
-  share: svg('<path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v7h14v-7"/>')
+  share: svg('<path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v7h14v-7"/>'),
+  gear: svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>')
 };
 
 /* ---------- storage ---------- */
@@ -193,8 +194,14 @@ const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } ca
 /* ---------- state ---------- */
 const S = {
   ready:false, loadFailed:false,
-  shared:[], local: lsGet("localRecipes", {}),   // local = saved on this phone, not yet on GitHub
-  get recipes(){ return [...this.shared, ...Object.values(this.local).filter(l => !this.shared.some(r => r.id === l.id)).map(l => ({ ...l, _local:true }))]; },
+  shared:[], local: lsGet("localRecipes", {}),   // local = saved on this phone, not yet in the published list
+  deleted: lsGet("deleted", []),                   // deleted here, waiting for the site to rebuild without it
+  token: lsGet("ghToken", ""), settings:false, confirmDel:false, busy:false,
+  get recipes(){
+    const shared = this.shared.filter(r => !this.deleted.includes(r.id)).map(r => { const l = this.local[r.id]; return l ? { ...l, _local: !l._pushed, _pending: !!l._pushed } : r; });
+    const extra = Object.values(this.local).filter(l => !this.shared.some(r => r.id === l.id)).map(l => ({ ...l, _local: !l._pushed, _pending: !!l._pushed }));
+    return [...shared, ...extra];
+  },
   shop: lsGet("shop", []),
   view:"list", tab:"recipes", rid:null,
   q:"", tag:null,
@@ -237,6 +244,8 @@ async function load(){
     // drop local copies that have now landed on GitHub unchanged
     for (const id of Object.keys(S.local)) if (S.shared.some(r => r.id === id && (r.updated || 0) >= (S.local[id].updated || 0))) delete S.local[id];
     lsSet("localRecipes", S.local);
+    S.deleted = S.deleted.filter(id => S.shared.some(r => r.id === id));
+    lsSet("deleted", S.deleted);
   } catch { S.loadFailed = true; }
   S.ready = true;
   const h = decodeURIComponent(location.hash.slice(1));
@@ -394,16 +403,53 @@ function parseMarkdown(md){
 }
 const slug = t => (t || "recipe").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "recipe";
 
-/* ---------- GitHub handoff for saving recipes ---------- */
-const gh = path => `https://github.com/${REPO}/${path}`;
-const recipeJson = r => { const { _local, ...rest } = r; return JSON.stringify(rest, null, 2) + "\n"; };
-function publishLinks(r){
-  const json = recipeJson(r);
-  const isNew = !S.shared.some(x => x.id === r.id);
-  const url = isNew
-    ? gh(`new/main/recipes?filename=${encodeURIComponent(r.id + ".json")}&value=${encodeURIComponent(json)}`)
-    : gh(`edit/main/recipes/${encodeURIComponent(r.id)}.json`);
-  return { json, url, isNew };
+/* ---------- saving: commits straight to the repo with this phone's token ---------- */
+const API = `https://api.github.com/repos/${REPO}`;
+const recipeJson = r => { const { _local, _pending, _pushed, ...rest } = r; return JSON.stringify(rest, null, 2) + "\n"; };
+const b64 = s => { const bytes = new TextEncoder().encode(s); let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b)); return btoa(bin); };
+class SaveError extends Error {}
+async function gh(path, opts = {}){
+  if (!S.token) throw new SaveError("Saving isn't set up on this phone yet");
+  let res;
+  try {
+    res = await fetch(API + path, { ...opts, headers: { Accept: "application/vnd.github+json", Authorization: "Bearer " + S.token, "X-GitHub-Api-Version": "2022-11-28", ...(opts.body ? { "Content-Type": "application/json" } : {}) } });
+  } catch { throw new SaveError("You're offline. It's saved on this phone; tap Save for everyone when you're back online"); }
+  if (res.status === 401) throw new SaveError("The saving key was rejected. It may have expired; add a new one in Settings");
+  if (res.status === 403 || res.status === 404 && !opts.allow404) {
+    if (res.status === 404 && path.startsWith("/contents")) throw new SaveError("The saving key can't see the recipes. Check it has access to family-cookbook with Contents: Read and write");
+    if (res.status === 403) throw new SaveError("The saving key doesn't have permission to change recipes. Give it Contents: Read and write");
+  }
+  return res;
+}
+async function fileSha(id){
+  const res = await gh(`/contents/recipes/${encodeURIComponent(id)}.json?ref=main`, { allow404: true });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new SaveError("Couldn't reach GitHub. Try again in a moment");
+  return (await res.json()).sha;
+}
+async function pushRecipe(r){
+  const sha = await fileSha(r.id);
+  const res = await gh(`/contents/recipes/${encodeURIComponent(r.id)}.json`, { method: "PUT", body: JSON.stringify({
+    message: `${sha ? "Update" : "Add"} recipe: ${r.title}`, content: b64(recipeJson(r)), branch: "main", ...(sha ? { sha } : {})
+  }) });
+  if (res.status === 409 || res.status === 422) throw new SaveError("Someone changed this recipe at the same moment. Reopen it and try again");
+  if (!res.ok) throw new SaveError("Couldn't save to GitHub. Try again in a moment");
+}
+async function deleteRecipe(r){
+  const sha = await fileSha(r.id);
+  if (!sha) return;
+  const res = await gh(`/contents/recipes/${encodeURIComponent(r.id)}.json`, { method: "DELETE", body: JSON.stringify({ message: `Delete recipe: ${r.title}`, sha, branch: "main" }) });
+  if (!res.ok) throw new SaveError("Couldn't delete on GitHub. Try again in a moment");
+}
+async function checkToken(t){
+  const res = await fetch(API, { headers: { Accept: "application/vnd.github+json", Authorization: "Bearer " + t } }).catch(() => null);
+  if (!res) return "You're offline. Try again with a connection";
+  if (res.status === 401) return "GitHub didn't accept that key. Copy it again and paste the whole thing";
+  if (res.status === 404) return "That key can't see family-cookbook. Give it access to that repository";
+  if (!res.ok) return "Couldn't check the key right now. Try again";
+  const j = await res.json();
+  if (j.permissions && !j.permissions.push) return "That key can read but not save. Set Contents to Read and write";
+  return null;
 }
 
 /* ---------- views ---------- */
@@ -424,7 +470,7 @@ function viewList(){
   const list = filtered();
   const tip = !isStandalone() && !S.tipHidden && /iPhone|iPad|iPod/.test(navigator.userAgent);
   return `<header class="top"><div class="wrap">
-    <div class="row between"><h1>Cookbook</h1><button class="btn primary" data-act="new">${ICON.plus} New</button></div>
+    <div class="row between"><h1>Cookbook</h1><div class="row" style="gap:4px"><button class="icon" data-act="settings" aria-label="Settings">${ICON.gear}</button><button class="btn primary" data-act="new">${ICON.plus} New</button></div></div>
     <input class="search" id="q" type="search" placeholder="Search recipes or ingredients" value="${esc(S.q)}" autocomplete="off" aria-label="Search recipes">
     <div class="chips" role="toolbar" aria-label="Filter by tag">
       <button class="chip" data-act="tag" data-tag="" aria-pressed="${!S.tag}">All ${S.recipes.length || ""}</button>
@@ -439,7 +485,7 @@ function viewList(){
       `<div class="list">${list.map(r => `<button class="card" data-act="open" data-id="${esc(r.id)}">
         <div class="t">${esc(r.title)}</div>
         <div class="meta"><span>${esc(r.total || "")}</span><span>Serves ${r.serves || "?"}</span>${r.equip ? `<span>${esc(r.equip.split(",")[0])}</span>` : ""}</div>
-        <div class="tags">${r._local ? `<span class="tag local">This phone only</span>` : ""}${(r.tags||[]).slice(0,5).map(t => `<span class="tag ${t==="Instant Pot"||t==="Air fryer"?"ip":""}">${esc(t)}</span>`).join("")}</div>
+        <div class="tags">${r._local ? `<span class="tag local">This phone only</span>` : r._pending ? `<span class="tag ip">Syncing</span>` : ""}${(r.tags||[]).slice(0,5).map(t => `<span class="tag ${t==="Instant Pot"||t==="Air fryer"?"ip":""}">${esc(t)}</span>`).join("")}</div>
       </button>`).join("")}</div>`}
   </main>`;
 }
@@ -466,7 +512,7 @@ function viewRecipe(){
   <main class="wrap">
     <div class="hero">
       <h1>${esc(r.title)}</h1>
-      ${r._local ? `<div class="notice tip"><span style="flex:1">Saved on this phone only. <button class="btn ghost" style="min-height:36px;margin-top:6px" data-act="republish">Save to the family cookbook</button></span></div>` : ""}
+      ${r._local ? `<div class="notice tip"><span style="flex:1">Saved on this phone only.<br><button class="btn primary" style="min-height:40px;margin-top:8px" data-act="push" ${S.busy?"disabled":""}>${S.busy ? "Saving…" : "Save for everyone"}</button></span></div>` : ""}
       <div class="facts">
         <div class="fact"><b>Prep</b><span>${esc(r.prep || "–")}</span></div>
         <div class="fact"><b>Cook</b><span>${esc(r.cook || "–")}</span></div>
@@ -553,28 +599,12 @@ function viewShop(){
 }
 function viewEdit(){
   const e = S.editing;
-  if (S.published) {
-    const p = S.published;
-    return `<header class="top"><div class="wrap row between">
-        <button class="icon" data-act="pubdone" aria-label="Close">${ICON.close}</button>
-        <h2 style="font-size:20px">Save to the family cookbook</h2><span style="width:44px"></span>
-      </div></header>
-    <main class="wrap">
-      <p>“${esc(p.r.title)}” is saved on this phone and ready to use. To share it with everyone, commit it on GitHub. The site updates about a minute later.</p>
-      <div class="publish">
-        ${p.isNew
-          ? `<a class="btn primary big" href="${esc(p.url)}" target="_blank" rel="noopener">Open GitHub, then tap “Commit changes”</a>`
-          : `<button class="btn" data-act="copyJson">1. Copy recipe</button><a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">2. Open on GitHub, select all, paste, commit</a>`}
-        <button class="btn ghost" data-act="pubdone">Done</button>
-      </div>
-      <p class="equip" style="margin-top:18px">Or skip this and ask Claude to add it to the cookbook.</p>
-    </main>`;
-  }
   return `<header class="top"><div class="wrap row between">
       <button class="icon" data-act="editx" aria-label="Cancel">${ICON.close}</button>
       <h2 style="font-size:20px">${e.id ? "Edit recipe" : "New recipe"}</h2>
-      <button class="btn primary" data-act="save">Save</button>
+      <button class="btn primary" data-act="save" ${S.busy?"disabled":""}>${S.busy ? "Saving…" : "Save"}</button>
     </div></header>
+  ${!S.token ? `<div class="wrap" style="margin-top:12px"><p class="notice">Saving isn't set up on this phone, so this recipe will stay on this phone only. <button class="btn ghost" style="min-height:36px;margin-top:6px" data-act="settings">Set up saving</button></p></div>` : ""}
   <main class="wrap"><form class="form" id="editForm">
     ${!e.id ? `<label for="f-paste">Paste a recipe <small>Paste one Claude wrote and the fields below fill themselves</small></label><textarea id="f-paste" placeholder="# Recipe name&#10;## Ingredients&#10;- 500g chicken&#10;## Method&#10;1. **Sear** …"></textarea><button class="btn" type="button" data-act="parse">Fill from pasted text</button>` : ""}
     <label>Name<input id="f-title" value="${esc(e.title)}" required></label>
@@ -592,9 +622,37 @@ function viewEdit(){
     <label>Method <small>Blank line between steps. First line is the step name. Optional last line “Timer: 8 min”.</small><textarea id="f-steps" rows="12">${esc(stepsToText(e.steps))}</textarea></label>
     <label>Notes <small>One per line</small><textarea id="f-notes" rows="4">${esc((e.notes||[]).join("\n"))}</textarea></label>
     <label>Source link<input id="f-source" value="${esc(e.source)}"></label>
-    ${e.id && !S.local[e.id] ? `<a class="btn danger" href="${esc(gh(`delete/main/recipes/${encodeURIComponent(e.id)}.json`))}" target="_blank" rel="noopener">Delete on GitHub</a>` : ""}
-    ${e.id && S.local[e.id] ? `<button class="btn danger" type="button" data-act="dropLocal">Discard this phone's copy</button>` : ""}
+    ${e.id ? (S.confirmDel
+      ? `<div class="confirm"><p style="margin-top:0">Delete “${esc(e.title)}” from the family cookbook? It disappears from every phone.</p><div class="row"><button class="btn ghost" type="button" data-act="delNo">Keep it</button><button class="btn danger" type="button" data-act="delYes">Delete</button></div></div>`
+      : `<button class="btn danger" type="button" data-act="delAsk">Delete recipe</button>`) : ""}
   </form></main>`;
+}
+function viewSettings(){
+  return `<header class="top"><div class="wrap row between">
+      <button class="icon" data-act="settingsx" aria-label="Close">${ICON.close}</button>
+      <h2 style="font-size:20px">Settings</h2><span style="width:44px"></span>
+    </div></header>
+  <main class="wrap">
+    <section class="block" style="margin-top:8px">
+      <h2>Saving recipes</h2>
+      ${S.token
+        ? `<p class="notice" style="margin-top:10px">Saving is on. New and edited recipes go to every phone about a minute after you tap Save.</p>
+           <button class="btn danger" style="margin-top:10px" data-act="tokenOff">Turn off saving on this phone</button>`
+        : `<p>Do this once on each phone. It lets this app save recipes for the whole family.</p>
+           <ol style="padding-left:20px">
+             <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub's new token page</a> and sign in.</li>
+             <li>Name it <b>Cookbook</b>. Set Expiration to <b>No expiration</b> (or a year).</li>
+             <li>Repository access: <b>Only select repositories</b>, then pick <b>family-cookbook</b>.</li>
+             <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li>
+             <li>Tap <b>Generate token</b>, copy it, and paste it below.</li>
+           </ol>
+           <form class="form" id="tokenForm">
+             <label>Saving key<input id="f-token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…"></label>
+             <button class="btn primary" type="submit" ${S.busy?"disabled":""}>${S.busy ? "Checking…" : "Turn on saving"}</button>
+           </form>
+           <p class="equip">The key only works on the family-cookbook recipes and stays on this phone. You can paste the same key on the other family phone.</p>`}
+    </section>
+  </main>`;
 }
 
 /* ---------- render ---------- */
@@ -602,15 +660,16 @@ function render(){
   const app = $("#app");
   const active = document.activeElement?.id, selStart = document.activeElement?.selectionStart;
   const sameView = S.view === S._lastView && S.rid === S._lastRid && S.tab === S._lastTab;
-  if (S.view === "edit" && sameView && !S._force) { renderTray(); return; }   // don't clobber a form being typed in
+  if (S.view === "edit" && !S.settings && sameView && !S._force) { renderTray(); return; }   // don't clobber a form being typed in
   const keepScroll = sameView ? window.scrollY : 0;
   let html;
-  if (S.view === "edit") html = viewEdit();
+  if (S.settings) html = viewSettings();
+  else if (S.view === "edit") html = viewEdit();
   else if (S.tab === "shop") html = viewShop();
   else if (S.view === "recipe") html = viewRecipe() + (S.cook ? viewCook() : "");
   else html = viewList();
   app.innerHTML = html;
-  $("#tabs").hidden = S.view === "edit" || !!S.cook;
+  $("#tabs").hidden = S.view === "edit" || !!S.cook || S.settings;
   $("#tab-recipes").setAttribute("aria-current", S.tab === "recipes" ? "page" : "false");
   $("#tab-shop").setAttribute("aria-current", S.tab === "shop" ? "page" : "false");
   const open = S.shop.filter(s => !s.done).length, b = $("#shopBadge");
@@ -618,7 +677,7 @@ function render(){
   document.body.style.overflow = S.cook ? "hidden" : "";
   if (active) { const el = document.getElementById(active); if (el) { el.focus({ preventScroll:true }); try { if (selStart != null) el.setSelectionRange(selStart, selStart); } catch {} } }
   window.scrollTo(0, keepScroll);
-  S._lastView = S.view; S._lastRid = S.rid; S._lastTab = S.tab; S._force = false;
+  S._lastView = S.settings ? "settings" : S.view; S._lastRid = S.rid; S._lastTab = S.tab; S._force = false;
   renderTray();
 }
 const go = patch => { Object.assign(S, patch); S._force = true; S._lastView = null; render(); };
@@ -628,7 +687,30 @@ document.addEventListener("input", e => { if (e.target.id === "q") { S.q = e.tar
 document.addEventListener("submit", e => {
   e.preventDefault();
   if (e.target.id === "addForm") { const v = $("#addItem").value.trim(); if (v) { addShop([{ name:v }]); const i = $("#addItem"); if (i) { i.value = ""; i.focus(); } } }
+  if (e.target.id === "tokenForm") turnOnSaving($("#f-token").value.trim());
 });
+async function turnOnSaving(t){
+  if (!t) { toast("Paste the key first"); return; }
+  S.busy = true; S._force = true; render();
+  const problem = await checkToken(t);
+  S.busy = false;
+  if (problem) { S._force = true; render(); toast(problem); return; }
+  S.token = t; lsSet("ghToken", t);
+  S._force = true; render(); toast("Saving is on");
+  // send anything that was waiting on this phone
+  for (const r of Object.values(S.local).filter(l => !l._pushed)) await pushLocal(r, true);
+}
+async function pushLocal(r, quiet){
+  try {
+    await pushRecipe(r);
+    S.local[r.id] = { ...S.local[r.id], _pushed:true }; lsSet("localRecipes", S.local);
+    if (!quiet) toast("Saved for everyone. Other phones get it in about a minute");
+    return true;
+  } catch (err) {
+    toast(err instanceof SaveError ? err.message : "Couldn't save. Try again");
+    return false;
+  }
+}
 $("#tab-recipes").onclick = () => { audio(); go({ tab:"recipes", view: S.view === "edit" ? "list" : S.view }); };
 $("#tab-shop").onclick = () => { audio(); go({ tab:"shop", confirmClear:false }); };
 window.addEventListener("hashchange", () => {
@@ -678,8 +760,8 @@ document.addEventListener("click", async e => {
       location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent(SHORTCUT) + "&input=text&text=" + encodeURIComponent(txt);
       break;
     }
-    case "new": go({ view:"edit", published:null, editing:{ title:"", prep:"", cook:"", total:"", serves:2, equip:"", tags:[], groups:[], steps:[], notes:[], source:"" } }); break;
-    case "edit": go({ view:"edit", published:null, editing: JSON.parse(JSON.stringify(r)) }); break;
+    case "new": go({ view:"edit", confirmDel:false, editing:{ title:"", prep:"", cook:"", total:"", serves:2, equip:"", tags:[], groups:[], steps:[], notes:[], source:"" } }); break;
+    case "edit": { const { _local, _pending, _pushed, ...plain } = r; go({ view:"edit", confirmDel:false, editing: JSON.parse(JSON.stringify(plain)) }); break; }
     case "editx": go({ view: S.editing?.id ? "recipe" : "list" }); break;
     case "parse": {
       const p = parseMarkdown($("#f-paste").value);
@@ -702,15 +784,41 @@ document.addEventListener("click", async e => {
       };
       if (old.servesNote) doc.servesNote = old.servesNote;
       if (!doc.id) { let id = slug(title), n = 2; while (S.recipes.some(x => x.id === id)) id = slug(title) + "-" + n++; doc.id = id; }
-      S.local[doc.id] = doc; lsSet("localRecipes", S.local);
-      S.rid = doc.id;
-      go({ published: { r: doc, ...publishLinks(doc) } });
+      S.local[doc.id] = doc; lsSet("localRecipes", S.local);   // always usable here straight away
+      history.pushState(null, "", "#" + encodeURIComponent(doc.id));
+      if (!S.token) { go({ view:"recipe", rid:doc.id, tab:"recipes" }); toast("Saved on this phone"); break; }
+      S.busy = true; S._force = true; render();
+      await pushLocal(doc);
+      S.busy = false;
+      go({ view:"recipe", rid:doc.id, tab:"recipes" });
       break;
     }
-    case "republish": { const d = S.local[r.id]; go({ view:"edit", editing:d, published:{ r:d, ...publishLinks(d) } }); break; }
-    case "copyJson": copy(S.published.json, "Recipe copied"); break;
-    case "pubdone": history.pushState(null, "", "#" + encodeURIComponent(S.published.r.id)); go({ view:"recipe", rid:S.published.r.id, published:null, tab:"recipes" }); break;
-    case "dropLocal": delete S.local[S.editing.id]; lsSet("localRecipes", S.local); go({ view:"list", rid:null }); toast("Removed from this phone"); break;
+    case "push": {
+      if (!S.token) { go({ settings:true }); break; }
+      S.busy = true; render();
+      await pushLocal(S.local[r.id]);
+      S.busy = false; render();
+      break;
+    }
+    case "settings": go({ settings:true }); break;
+    case "settingsx": go({ settings:false }); break;
+    case "tokenOff": S.token = ""; lsSet("ghToken", ""); go({ settings:true }); toast("Saving is off on this phone"); break;
+    case "delAsk": S.confirmDel = true; S._force = true; render(); break;
+    case "delNo": S.confirmDel = false; S._force = true; render(); break;
+    case "delYes": {
+      const d = S.editing; S.confirmDel = false;
+      const onlyLocal = !S.shared.some(x => x.id === d.id) && !(S.local[d.id] && S.local[d.id]._pushed);
+      if (!onlyLocal) {
+        if (!S.token) { toast("Set up saving first, so the delete reaches every phone"); go({ settings:true }); break; }
+        try { await deleteRecipe(d); }
+        catch (err) { toast(err instanceof SaveError ? err.message : "Couldn't delete. Try again"); S._force = true; render(); break; }
+        if (!S.deleted.includes(d.id)) S.deleted.push(d.id); lsSet("deleted", S.deleted);
+      }
+      delete S.local[d.id]; lsSet("localRecipes", S.local);
+      history.pushState(null, "", location.pathname);
+      go({ view:"list", rid:null }); toast("Recipe deleted");
+      break;
+    }
   }
 });
 /* swipe between steps in cook mode */
