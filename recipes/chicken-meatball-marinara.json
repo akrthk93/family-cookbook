@@ -1,0 +1,175 @@
+{
+  "id": "chicken-meatball-marinara",
+  "no": "13.02.05",
+  "title": "Chicken Meatball Marinara Spaghetti",
+  "tags": [
+    "Italian",
+    "Pasta",
+    "Chicken",
+    "Weekend",
+    "Kid-friendly"
+  ],
+  "prep": "25 min",
+  "cook": "40 min",
+  "total": "1 hr 5 min",
+  "serves": 2,
+  "equip": "Non-stick skillet, deep skillet, pasta pot",
+  "source": null,
+  "groups": [
+    {
+      "g": "Meatballs",
+      "items": [
+        {
+          "q": 500,
+          "u": "g",
+          "n": "ground chicken"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "panko breadcrumbs",
+          "sub": "1 slice white bread soaked in milk"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "Parmesan, grated"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "large egg"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.125,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "olive oil (frying)"
+        }
+      ]
+    },
+    {
+      "g": "Marinara",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "olive oil"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "small onion, finely diced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "small carrot, finely diced"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "sun-dried tomatoes in oil, chopped",
+          "sub": "1 tbsp tomato paste"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "400g can crushed tomatoes"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.125,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "sugar (optional)"
+        }
+      ]
+    },
+    {
+      "g": "To serve",
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "spaghetti"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Extra Parmesan, parsley"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Start the marinara",
+      "x": "Olive oil, medium. Onion and carrot 5–6 min. Sun-dried tomatoes and garlic 30 sec. Add tomatoes and seasoning, simmer low 20–25 min.",
+      "min": 22
+    },
+    {
+      "t": "Mix the meatballs",
+      "x": "Combine everything with wet hands, don't overmix. Form 3cm balls (~30g), 8–10 total.",
+      "min": null
+    },
+    {
+      "t": "Pan-fry the meatballs",
+      "x": "2 tbsp oil, medium. Brown on all sides, 8–10 min total. Not cooked through yet.",
+      "min": 9
+    },
+    {
+      "t": "Finish in sauce",
+      "x": "Into the marinara, cover, simmer 12–15 min, turning once. Done at 74°C.",
+      "min": 13
+    },
+    {
+      "t": "Cook the spaghetti",
+      "x": "While meatballs finish, cook spaghetti al dente. Reserve 125ml water.",
+      "min": 10
+    },
+    {
+      "t": "Combine and serve",
+      "x": "Toss with sauce, loosen with pasta water. Parmesan and parsley.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

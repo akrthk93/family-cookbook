@@ -1,0 +1,126 @@
+{
+  "id": "chicken-enchiladas",
+  "no": "13.02.03",
+  "title": "Chicken Skillet Enchiladas",
+  "tags": [
+    "Mexican",
+    "Chicken",
+    "Leftovers",
+    "Quick"
+  ],
+  "prep": "10 min",
+  "cook": "20 min",
+  "total": "30 min",
+  "serves": 4,
+  "equip": "Large skillet with lid",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 2,
+          "u": "cup",
+          "n": "cooked shredded chicken",
+          "sub": "Rotisserie chicken"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "oil"
+        },
+        {
+          "q": 0.25,
+          "u": "",
+          "n": "yellow onion, minced"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "cloves garlic"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "15oz can tomato sauce",
+          "sub": "400g canned crushed tomatoes, blended"
+        },
+        {
+          "q": 0.33,
+          "u": "cup",
+          "n": "water"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "4oz can mild green chillies",
+          "sub": "2 green chillies + ½ green capsicum, diced"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "chilli powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "oregano"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "cumin"
+        },
+        {
+          "q": 8,
+          "u": "",
+          "n": "taco-sized flour tortillas"
+        },
+        {
+          "q": 225,
+          "u": "g",
+          "n": "cotija cheese",
+          "sub": "Feta, or shredded cheddar/mozzarella"
+        }
+      ]
+    },
+    {
+      "g": "To serve",
+      "items": [
+        {
+          "q": null,
+          "u": "",
+          "n": "Coriander, radishes, sour cream, avocado, jalapeño"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep chicken",
+      "x": "Shred about 2 cups leftover chicken.",
+      "min": null
+    },
+    {
+      "t": "Make sauce",
+      "x": "Sauté onion and garlic in oil. Add tomato sauce, water, chillies and spices. Simmer.",
+      "min": 5
+    },
+    {
+      "t": "Assemble",
+      "x": "Fill tortillas with chicken, cheese and a little sauce. Roll, seam-side down in the pan.",
+      "min": null
+    },
+    {
+      "t": "Top",
+      "x": "Spoon over remaining sauce, sprinkle cheese. Cover, simmer 5 min.",
+      "min": 5
+    },
+    {
+      "t": "Garnish",
+      "x": "Coriander, radish, avocado, jalapeño and sour cream.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

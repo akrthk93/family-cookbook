@@ -1,0 +1,114 @@
+{
+  "id": "roasted-tomato-soup",
+  "no": "13.02.19",
+  "title": "Roasted Tomato Soup",
+  "tags": [
+    "Air fryer",
+    "Soup",
+    "Vegetarian"
+  ],
+  "prep": "10 min",
+  "cook": "35 min",
+  "total": "45 min",
+  "serves": 1,
+  "equip": "Air fryer, saucepan, hand blender",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 4,
+          "u": "",
+          "n": "medium tomatoes, halved"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "small onion, quartered"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves, unpeeled"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "olive or neutral oil"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "sugar"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt to taste"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "cold butter",
+          "sub": "2 tbsp cooking cream"
+        },
+        {
+          "q": 100,
+          "u": "ml",
+          "n": "water",
+          "sub": "Vegetable or chicken stock for more depth"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Dried oregano (optional)",
+          "sub": "Dried basil"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep for roasting",
+      "x": "Halve tomatoes through the equator. Cut side up in the basket with onion and unpeeled garlic. Drizzle with oil and a pinch of salt.",
+      "min": null
+    },
+    {
+      "t": "Roast",
+      "x": "Air fry at 200°C for 18–20 min until tomato edges char and flesh is soft. Garlic should be soft inside the skin.",
+      "min": 19
+    },
+    {
+      "t": "Transfer",
+      "x": "Scrape everything into the saucepan, including juices. Squeeze garlic out of skins, discard skins.",
+      "min": null
+    },
+    {
+      "t": "Simmer",
+      "x": "Add water, sugar, pepper and oregano. Bring to a gentle boil, simmer uncovered 10 min.",
+      "min": 10
+    },
+    {
+      "t": "Blend",
+      "x": "Off the heat, blend with hand blender until completely smooth.",
+      "min": null
+    },
+    {
+      "t": "Finish with butter",
+      "x": "Low heat, add cold butter, stir until incorporated. Adjust salt. Serve immediately.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Cut side up so juice collects in the cavity.",
+    "Don't peel garlic before roasting; the skin stops it burning.",
+    "Fresh tomatoes only; canned will steam and mess up the air fryer.",
+    "Serve with a grilled cheese sandwich."
+  ]
+}

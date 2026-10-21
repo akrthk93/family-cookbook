@@ -1,0 +1,124 @@
+{
+  "id": "orecchiette-salmon",
+  "no": "13.02.22",
+  "title": "Lemon-Lime-Garlic Orecchiette with Air-Fried Salmon and Broccoli",
+  "tags": [
+    "Air fryer",
+    "Italian",
+    "Pasta",
+    "Fish",
+    "Kid-friendly"
+  ],
+  "prep": "15 min",
+  "cook": "25 min",
+  "total": "40 min",
+  "serves": 3,
+  "servesNote": "2 adults + 1 child",
+  "equip": "Air fryer, pasta pot, stainless steel skillet",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 600,
+          "u": "g",
+          "n": "salmon fillet, skin on, cut into 3 portions",
+          "sub": "Barramundi or seabass fillet, air fry 1–2 min less"
+        },
+        {
+          "q": 350,
+          "u": "g",
+          "n": "orecchiette",
+          "sub": "Fusilli, penne or shells"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "broccoli, small florets",
+          "sub": "Broccolini or asparagus"
+        },
+        {
+          "q": 4,
+          "u": "tbsp",
+          "n": "olive oil, divided"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "garlic cloves, finely sliced"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "small limes, zested and juiced",
+          "sub": "1 lemon"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "parsley, chopped",
+          "sub": "Coriander or spring onion"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt, to taste"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Black pepper, to taste"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Chilli flakes, to serve (adults only)"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "parmesan, grated (optional)"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Air-fry the broccoli",
+      "x": "Toss florets with 1 tbsp olive oil, salt and pepper. Air fry at 200°C for 8–9 min, shaking halfway, until edges are charred. Set aside.",
+      "min": 9
+    },
+    {
+      "t": "Air-fry the salmon",
+      "x": "Pat salmon dry, season both sides. Air fry skin-side down at 200°C for 8–10 min, no need to flip, until it just flakes at the thickest part. Set aside.",
+      "min": 9
+    },
+    {
+      "t": "Boil the pasta",
+      "x": "While the air fryer runs, boil well-salted water. Cook orecchiette until al dente, about 10–11 min. Reserve 150ml pasta water before draining.",
+      "min": 10
+    },
+    {
+      "t": "Build the sauce",
+      "x": "Heat 2 tbsp olive oil in the skillet over medium heat. Add garlic and lime zest. Sauté 30–45 sec until fragrant, not browned.",
+      "min": null
+    },
+    {
+      "t": "Combine",
+      "x": "Add drained pasta and broccoli with a splash of pasta water. Toss over low heat 1–2 min, adding more water for a light glossy coating. Stir in lime juice off the heat.",
+      "min": 2
+    },
+    {
+      "t": "Finish and serve",
+      "x": "Stir through parsley. Plate, flake the salmon over and mix through. Chilli flakes and parmesan on adult portions; keep the child's plain.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Salmon doneness: 50–52°C internal for just past translucent.",
+    "Freeze leftover salmon in 200g portions, wrapped tight, up to 3 months.",
+    "Broccoli first, salmon second; salmon is better fresh out of the air fryer.",
+    "If the child dislikes visible garlic, strain it out of the oil before tossing."
+  ]
+}

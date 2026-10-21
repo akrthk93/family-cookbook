@@ -1,0 +1,59 @@
+# Family Cookbook
+
+Our recipes as a phone app: cook mode with big text and timers, serving scaling, ingredient substitutes, and a shopping list that hands off to the family list in Apple Reminders.
+
+It's a static site on GitHub Pages. Recipes are JSON files in `recipes/`. Every push to `main` rebuilds and deploys in about a minute.
+
+## Install on a phone
+
+Open the site in Safari → Share → **Add to Home Screen**. It then opens full-screen, keeps the screen on while cooking, and works offline after the first visit.
+
+## Adding a recipe
+
+Pick whichever is easiest:
+
+- **In the app:** tap **New**, paste a recipe, tap **Save**, then **Open GitHub** and commit. It's usable on that phone immediately and on every phone after the deploy.
+- **Ask Claude** to add it. Claude opens a commit or PR with the new file.
+- **By hand:** add `recipes/<id>.json` in the format below.
+
+## Recipe format
+
+```json
+{
+  "id": "butter-chicken",
+  "no": "13.02.18",
+  "title": "Butter Chicken Curry",
+  "tags": ["Instant Pot", "Indian", "Curry"],
+  "prep": "15 min", "cook": "20 min", "total": "50 min",
+  "serves": 3,
+  "servesNote": "optional, e.g. 2 adults + 1 child",
+  "equip": "Instant Pot",
+  "source": "https://… or a plain-text credit, or null",
+  "groups": [
+    { "g": "Marinade", "items": [
+      { "q": 340, "u": "g", "n": "chicken breast, 2cm pieces", "sub": "Boneless thigh; add 2 min" },
+      { "q": null, "u": "", "n": "Salt, to taste" }
+    ]}
+  ],
+  "steps": [
+    { "t": "Marinate", "x": "Mix chicken with yogurt…", "min": 15 }
+  ],
+  "notes": ["Keeps 3–4 days."]
+}
+```
+
+- `q` is a number so it can scale; use `null` for "to taste". `u` is one of `g`, `kg`, `ml`, `l`, `tsp`, `tbsp`, `cup`, `oz`, or `""` for counts (2 onions).
+- `g` is a group heading, or `null` for none. `sub` is an optional substitute.
+- `min` is the step's timer in minutes, or `null`.
+- The file name must match `id`. The build fails with a clear message if a recipe is malformed, so a bad file never takes the site down.
+
+## Send to Reminders (once per phone)
+
+Create a Shortcut named exactly **Add to Family List**: Split Text (Shortcut Input, by New Lines) → Repeat with Each → Add New Reminder (Repeat Item, list = family shopping list). The app's **Send to Reminders** button runs it.
+
+## Local build
+
+```sh
+node scripts/build.mjs   # writes dist/
+npx serve dist           # or any static server
+```

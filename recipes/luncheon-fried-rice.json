@@ -1,0 +1,110 @@
+{
+  "id": "luncheon-fried-rice",
+  "no": "13.02.06",
+  "title": "Spiced Luncheon Meat Fried Rice",
+  "tags": [
+    "Indian",
+    "Rice",
+    "Quick"
+  ],
+  "prep": "15 min",
+  "cook": "15 min",
+  "total": "30 min",
+  "serves": 4,
+  "servesNote": "4–5",
+  "equip": "Stainless kadai or large skillet",
+  "source": "Adapted from Cook's Illustrated",
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 3,
+          "u": "",
+          "n": "large eggs"
+        },
+        {
+          "q": 1.25,
+          "u": "tsp",
+          "n": "salt, divided"
+        },
+        {
+          "q": 4,
+          "u": "tsp",
+          "n": "sunflower oil, divided"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "medium onion, diced"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "carrot, ¼-inch pieces"
+        },
+        {
+          "q": 175,
+          "u": "g",
+          "n": "Tulip chicken luncheon meat, ½-inch pieces"
+        },
+        {
+          "q": 3,
+          "u": "cup",
+          "n": "cooked ponni rice, room temp",
+          "sub": "Any day-old rice"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "pepper jeera powder",
+          "sub": "¼ tsp each black pepper and cumin powder"
+        },
+        {
+          "q": 0.5,
+          "u": "cup",
+          "n": "frozen peas"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "pieces chicken 65, shredded",
+          "sub": "Leftover fried or roast chicken"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Scramble the eggs",
+      "x": "Beat eggs with ¼ tsp salt. Hot kadai, 1 tsp oil, cook 30–60 sec. To a plate.",
+      "min": null
+    },
+    {
+      "t": "Aromatics and veg",
+      "x": "1 tsp oil, medium. Onion with ¼ tsp salt 2–3 min. Garlic and carrot 2–3 min.",
+      "min": 5
+    },
+    {
+      "t": "Add luncheon meat",
+      "x": "Cook 2–3 min until lightly browned. All to the egg plate.",
+      "min": 3
+    },
+    {
+      "t": "Fry the rice",
+      "x": "Remaining 2 tsp oil. Rice in an even layer, pepper jeera and remaining ¾ tsp salt. Press and stir 3–5 min until grains separate.",
+      "min": 4
+    },
+    {
+      "t": "Finish",
+      "x": "Add peas, eggs, veg mix and chicken 65. Stir 2 min until hot.",
+      "min": 2
+    }
+  ],
+  "notes": []
+}

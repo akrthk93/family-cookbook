@@ -1,0 +1,95 @@
+{
+  "id": "simple-fried-rice",
+  "no": "13.02.13",
+  "title": "Simple Fried Rice",
+  "tags": [
+    "Chinese",
+    "Rice",
+    "Quick",
+    "Kid-friendly"
+  ],
+  "prep": "10 min",
+  "cook": "15 min",
+  "total": "25 min",
+  "serves": 4,
+  "equip": "Wok or 12-inch skillet",
+  "source": "Cook's Illustrated, Mar/Apr 2022",
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 3,
+          "u": "",
+          "n": "large eggs"
+        },
+        {
+          "q": 7,
+          "u": "g",
+          "n": "kosher salt, divided"
+        },
+        {
+          "q": 30,
+          "u": "ml",
+          "n": "vegetable oil, divided"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "carrot, 6mm pieces"
+        },
+        {
+          "q": 115,
+          "u": "g",
+          "n": "luncheon meat, 12mm pieces",
+          "sub": "Chicken sausage or char siu"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "scallions, whites and greens separated"
+        },
+        {
+          "q": 740,
+          "u": "g",
+          "n": "cooked jasmine rice, room temp (4 cups)",
+          "sub": "Day-old ponni or basmati rice"
+        },
+        {
+          "q": 1,
+          "u": "g",
+          "n": "black pepper"
+        },
+        {
+          "q": 75,
+          "u": "g",
+          "n": "frozen peas",
+          "sub": "Frozen mixed vegetables"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Scramble the eggs",
+      "x": "Beat eggs with 1.5g salt. 10ml oil in wok, medium-high, until just smoking. Cook eggs, stirring, 30–60 sec until barely liquid. To a plate.",
+      "min": null
+    },
+    {
+      "t": "Carrot and luncheon meat",
+      "x": "5ml oil, medium heat. Carrot with 1.5g salt 2–4 min until browning. Add luncheon meat 2–3 min. To the egg plate.",
+      "min": 5
+    },
+    {
+      "t": "Fry the rice",
+      "x": "Scallion whites with remaining 15ml oil, 1 min. Add rice, spread in an even layer. Sprinkle pepper and remaining 4g salt. Stir and press to break clumps until grains separate, 2–5 min.",
+      "min": 4
+    },
+    {
+      "t": "Finish and serve",
+      "x": "Add peas, egg mix and scallion greens. Stir, breaking eggs into small pieces, until peas are warm, about 2 min.",
+      "min": 2
+    }
+  ],
+  "notes": []
+}

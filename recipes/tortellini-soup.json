@@ -1,0 +1,124 @@
+{
+  "id": "tortellini-soup",
+  "no": "13.02.23",
+  "title": "Creamy Chicken, Spinach and Tortellini Soup",
+  "tags": [
+    "Instant Pot",
+    "Italian",
+    "Soup",
+    "Chicken",
+    "Quick"
+  ],
+  "prep": "15 min",
+  "cook": "15 min",
+  "total": "30 min",
+  "serves": 4,
+  "equip": "Instant Pot",
+  "source": "https://www.365daysofcrockpot.com/instant-pot-creamy-tortellini-spinach-and-chicken-soup/",
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "olive oil"
+        },
+        {
+          "q": 0.5,
+          "u": "",
+          "n": "medium yellow onion, diced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "clove garlic, minced"
+        },
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "dried basil",
+          "sub": "1 tsp dried oregano or Italian herbs"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "tomato paste",
+          "sub": "2 tbsp ketchup, cut the sugar elsewhere"
+        },
+        {
+          "q": 500,
+          "u": "ml",
+          "n": "chicken broth",
+          "sub": "1 Knorr cube in 500ml hot water"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "400g can diced tomatoes, with juices",
+          "sub": "3 fresh tomatoes, chopped, plus 50ml water"
+        },
+        {
+          "q": 350,
+          "u": "g",
+          "n": "boneless chicken breast or leg"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "pepper"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "dried tortellini ricotta e spinaci (Berruto/Arrighi)",
+          "sub": "Any dried filled pasta; cheese ravioli works"
+        },
+        {
+          "q": 1,
+          "u": "cup",
+          "n": "packed spinach (squeeze dry if round)",
+          "sub": "Baby kale or chye sim leaves"
+        },
+        {
+          "q": 0.33,
+          "u": "cup",
+          "n": "Parmesan cheese",
+          "sub": "Grana Padano or aged cheddar"
+        },
+        {
+          "q": 125,
+          "u": "ml",
+          "n": "evaporated milk, warmed",
+          "sub": "Cooking cream, stirred in off the heat"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Sauté aromatics",
+      "x": "Sauté mode, highest setting. Heat oil, add onion, stir 2 min. Add garlic, stir until translucent, another 1–2 min.",
+      "min": 4
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Add basil, tomato paste, broth, tomatoes, chicken, salt, pepper and the dried tortellini. Stir gently to submerge. Seal lid, valve to sealing. Pressure cook 9 min high if using breast (11 min if leg/thigh). Quick release.",
+      "min": 9
+    },
+    {
+      "t": "Finish",
+      "x": "Remove chicken, cube it, return to pot. Stir gently from here on; tortellini is delicate. Stir in spinach, Parmesan and warmed evaporated milk. Sauté briefly to wilt spinach and heat through. Serve.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Fresh spinach cut back to 1 cup since the tortellini filling already carries spinach flavour.",
+    "Evaporated milk gives body without the split risk of fresh cream in a tomato soup."
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "id": "savory-scrambled-eggs",
+  "no": "13.02.10",
+  "title": "Savory Scrambled Eggs with Cheese and Herbs",
+  "tags": [
+    "Breakfast",
+    "Eggs",
+    "Quick",
+    "Vegetarian",
+    "Kid-friendly"
+  ],
+  "prep": "5 min",
+  "cook": "8 min",
+  "total": "13 min",
+  "serves": 2,
+  "equip": "Non-stick pan, spatula",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 6,
+          "u": "",
+          "n": "large eggs"
+        },
+        {
+          "q": 60,
+          "u": "ml",
+          "n": "whole milk",
+          "sub": "Evaporated milk, 2 tbsp"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "medium onion, finely diced"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "cloves garlic, minced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "medium tomato, diced, seeds removed"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "sharp cheddar, grated"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "parmesan, grated",
+          "sub": "More cheddar"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "smoked paprika"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "dried basil"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt and black pepper"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "butter or olive oil"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep the eggs",
+      "x": "Beat eggs and milk. Season with salt, pepper, paprika and herbs.",
+      "min": null
+    },
+    {
+      "t": "Cook aromatics",
+      "x": "Butter, medium-low. Onion 3–4 min, garlic 30 sec.",
+      "min": 4
+    },
+    {
+      "t": "Add tomatoes",
+      "x": "Tomato 1–2 min, just to warm.",
+      "min": null
+    },
+    {
+      "t": "Scramble",
+      "x": "Pour in eggs. Sit 10 sec, then push edges to centre every 20–30 sec.",
+      "min": null
+    },
+    {
+      "t": "Finish with cheese",
+      "x": "While still slightly wet, off the heat, fold in both cheeses.",
+      "min": null
+    },
+    {
+      "t": "Serve",
+      "x": "Adjust seasoning. Serve with toast.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

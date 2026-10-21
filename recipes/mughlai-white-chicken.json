@@ -1,0 +1,170 @@
+{
+  "id": "mughlai-white-chicken",
+  "no": "13.02.14",
+  "title": "Mughlai White Chicken Curry",
+  "tags": [
+    "Indian",
+    "Curry",
+    "Chicken",
+    "Weekend"
+  ],
+  "prep": "25 min + 30 min marinate",
+  "cook": "35 min",
+  "total": "1 hr 30 min",
+  "serves": 4,
+  "equip": "Large stainless skillet, blender",
+  "source": "AmateurProChef",
+  "groups": [
+    {
+      "g": "Chicken marinade",
+      "items": [
+        {
+          "q": 750,
+          "u": "g",
+          "n": "chicken thighs, cubed"
+        },
+        {
+          "q": 120,
+          "u": "ml",
+          "n": "thick yogurt, whisked",
+          "sub": "Greek yogurt"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "ginger paste"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "garlic paste"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "white pepper",
+          "sub": "Black pepper"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    },
+    {
+      "g": "White gravy",
+      "items": [
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "ghee",
+          "sub": "Neutral oil"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "medium yellow onions, thinly sliced"
+        },
+        {
+          "q": 22,
+          "u": "",
+          "n": "cashews",
+          "sub": "2 tbsp almond meal or 2 tbsp melon seeds (magaz)"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "green chillies, slit"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "ginger paste"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "garlic paste"
+        },
+        {
+          "q": 200,
+          "u": "ml",
+          "n": "cooking cream",
+          "sub": "Evaporated milk; keep heat very low"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "garam masala"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "green cardamom pods"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "small cinnamon stick"
+        },
+        {
+          "q": 5,
+          "u": "",
+          "n": "whole cloves"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "bay leaf"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt to taste"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "sugar"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Marinate the chicken",
+      "x": "Mix chicken with yogurt, ginger, garlic, white pepper and salt. Refrigerate at least 30 min.",
+      "min": 30
+    },
+    {
+      "t": "Make cashew paste",
+      "x": "Soak cashews in warm water 15 min. Drain, grind smooth with 2–3 tbsp water.",
+      "min": 15
+    },
+    {
+      "t": "Aromatics and onions",
+      "x": "Ghee, medium heat. Whole spices 30 sec. Add onions, 8–10 min until soft and pale golden, not brown. Remove onions and spices, set aside.",
+      "min": 9
+    },
+    {
+      "t": "Sear chicken",
+      "x": "Same pan, medium heat. Add chicken, 6–8 min until yogurt coats it and it's half cooked.",
+      "min": 7
+    },
+    {
+      "t": "Build the masala",
+      "x": "Return onions. Add ginger-garlic and chillies, 1 min. Stir in cashew paste, low heat 2–3 min until oil starts to separate.",
+      "min": 3
+    },
+    {
+      "t": "Finish with cream",
+      "x": "Add cream, low heat, simmer 12–15 min until chicken is cooked. Season with salt, sugar and garam masala, 2–3 more min. Never raise the heat after cream goes in.",
+      "min": 13
+    }
+  ],
+  "notes": [
+    "Keep onions pale to keep the gravy white.",
+    "Serve with naan, roti or basmati rice."
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "id": "butter-chicken",
+  "no": "13.02.18",
+  "title": "Butter Chicken Curry",
+  "tags": [
+    "Instant Pot",
+    "Indian",
+    "Curry",
+    "Chicken"
+  ],
+  "prep": "15 min + 15 min marinate",
+  "cook": "20 min",
+  "total": "50 min",
+  "serves": 3,
+  "equip": "Instant Pot, hand blender (optional)",
+  "source": null,
+  "groups": [
+    {
+      "g": "Marinade",
+      "items": [
+        {
+          "q": 340,
+          "u": "g",
+          "n": "chicken breast, 2cm pieces",
+          "sub": "Boneless thigh; add 2 min simmer"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "plain yogurt",
+          "sub": "Greek yogurt thinned with a splash of milk"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "ginger-garlic paste"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Kashmiri chilli powder",
+          "sub": "¾ tsp paprika + ¼ tsp chilli powder"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt, to taste"
+        }
+      ]
+    },
+    {
+      "g": "Gravy",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "butter"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "oil"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "small onion, finely chopped"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "ginger-garlic paste"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "medium tomatoes (~400g), chopped or blitzed",
+          "sub": "250g canned crushed tomatoes; skip the reduce step"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Kashmiri chilli powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "garam masala"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "sugar"
+        },
+        {
+          "q": 80,
+          "u": "ml",
+          "n": "fresh cream",
+          "sub": "Evaporated milk or cashew paste (15 cashews)"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "kasuri methi, crushed (optional)",
+          "sub": "Skip; a pinch of dried oregano is a weak stand-in"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Fresh coriander, chopped"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Marinate the chicken",
+      "x": "Mix chicken with yogurt, 1 tsp ginger-garlic paste, turmeric, chilli and a pinch of salt. At least 15 min while you prep.",
+      "min": 15
+    },
+    {
+      "t": "Build the base",
+      "x": "Sauté mode: melt butter with oil. Cook onion until soft and lightly golden, 4–5 min. Add 1 tbsp ginger-garlic paste, cook 1 min.",
+      "min": 5
+    },
+    {
+      "t": "Tomatoes and pressure cook",
+      "x": "Stir in tomatoes, chilli, turmeric, garam masala, sugar and a pinch of salt. No extra water. Seal, High Pressure 5 min, quick release.",
+      "min": 5
+    },
+    {
+      "t": "Blend (optional)",
+      "x": "Blitz the base smooth with a hand blender for a restaurant-style gravy.",
+      "min": null
+    },
+    {
+      "t": "Reduce the gravy",
+      "x": "Sauté mode, simmer uncovered 3–5 min until thick and jammy, not soupy.",
+      "min": 4
+    },
+    {
+      "t": "Cook the chicken in the gravy",
+      "x": "Add marinated chicken with its marinade. Simmer, stirring occasionally, 8–10 min until cooked through.",
+      "min": 9
+    },
+    {
+      "t": "Finish",
+      "x": "Stir in cream and crushed kasuri methi. Simmer 1–2 min. Adjust salt, sugar or a squeeze of lemon.",
+      "min": 2
+    },
+    {
+      "t": "Serve",
+      "x": "Garnish with coriander. Serve over basmati rice.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Fresh tomatoes need the reduce step; canned don't.",
+    "Kasuri methi is what pushes this toward restaurant-style.",
+    "Keeps 3–4 days; better on day 2."
+  ]
+}

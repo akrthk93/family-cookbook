@@ -1,0 +1,185 @@
+{
+  "id": "mutton-keema",
+  "no": "13.02.21",
+  "title": "Mutton Keema",
+  "tags": [
+    "Indian",
+    "Mutton",
+    "Meal prep"
+  ],
+  "prep": "15 min",
+  "cook": "35 min",
+  "total": "50 min",
+  "serves": 3,
+  "equip": "Stainless steel skillet",
+  "source": null,
+  "groups": [
+    {
+      "g": "Protein",
+      "items": [
+        {
+          "q": 500,
+          "u": "g",
+          "n": "boneless mutton mince (thawed, patted dry)",
+          "sub": "Chicken thigh mince; cut browning to 8 min"
+        }
+      ]
+    },
+    {
+      "g": "Whole spices",
+      "items": [
+        {
+          "q": 2,
+          "u": "",
+          "n": "bay leaves"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "cloves"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "green cardamom pods"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "cinnamon stick"
+        }
+      ]
+    },
+    {
+      "g": "Aromatics",
+      "items": [
+        {
+          "q": 2,
+          "u": "",
+          "n": "medium onions, finely chopped"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "fresh ginger, grated",
+          "sub": "1 tbsp ginger-garlic paste replaces both ginger and garlic"
+        }
+      ]
+    },
+    {
+      "g": "Ground spices",
+      "items": [
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "cumin powder"
+        },
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "coriander powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "Kashmiri chilli powder",
+          "sub": "½ tsp paprika + ¼ tsp regular chilli powder"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "garam masala (added at end)"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt to taste"
+        }
+      ]
+    },
+    {
+      "g": "Other",
+      "items": [
+        {
+          "q": 3,
+          "u": "",
+          "n": "medium tomatoes, finely chopped",
+          "sub": "200g canned crushed tomatoes"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "frozen peas"
+        },
+        {
+          "q": 2.5,
+          "u": "tbsp",
+          "n": "neutral oil",
+          "sub": "Ghee for a richer finish"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Fresh coriander to garnish"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Thaw and dry the mince",
+      "x": "Thaw overnight in fridge. Spread on a plate and pat thoroughly dry with paper towels. Critical for browning frozen mince.",
+      "min": null
+    },
+    {
+      "t": "Bloom whole spices",
+      "x": "Heat oil over medium-high. Add bay leaves, cloves, cardamom and cinnamon. Fry 30–45 sec until fragrant.",
+      "min": null
+    },
+    {
+      "t": "Cook onions",
+      "x": "Add onions and a pinch of salt. Cook 10–12 min, stirring regularly, until deep golden brown. Don't rush; this is the flavour base.",
+      "min": 11
+    },
+    {
+      "t": "Add aromatics",
+      "x": "Add garlic and ginger. Stir fry 1–2 min until the raw smell is gone.",
+      "min": 2
+    },
+    {
+      "t": "Add ground spices",
+      "x": "Add cumin, coriander, turmeric and chilli. Stir constantly 30 sec. Splash 1–2 tbsp water if it sticks.",
+      "min": null
+    },
+    {
+      "t": "Add tomatoes",
+      "x": "Cook 8–10 min until completely broken down and oil visibly separates from the masala.",
+      "min": 9
+    },
+    {
+      "t": "Brown the mince",
+      "x": "Add mince and break up immediately. Medium-high, stirring often, until no pink remains and well browned, 10–12 min. Keep uncovered; moisture must escape.",
+      "min": 11
+    },
+    {
+      "t": "Peas and finish",
+      "x": "Stir through frozen peas 2 min. Add garam masala, taste and adjust salt. Finish with coriander.",
+      "min": 2
+    }
+  ],
+  "notes": [
+    "Weekend dinner: serve dry with pan-fried frozen pratas.",
+    "Work lunch: after the last step add 100–150ml water, simmer 3 min, serve with rice.",
+    "Fridge 3 days, freezer 1 month."
+  ]
+}

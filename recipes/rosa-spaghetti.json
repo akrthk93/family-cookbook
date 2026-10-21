@@ -1,0 +1,157 @@
+{
+  "id": "rosa-spaghetti",
+  "no": "13.02.16",
+  "title": "Rosa Spaghetti with Veggie Balls",
+  "tags": [
+    "Italian",
+    "Pasta",
+    "Vegetarian"
+  ],
+  "prep": "10 min",
+  "cook": "25 min",
+  "total": "35 min",
+  "serves": 2,
+  "equip": "Large pot, large skillet",
+  "source": null,
+  "groups": [
+    {
+      "g": "Pasta",
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "spaghetti"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt (for pasta water)"
+        }
+      ]
+    },
+    {
+      "g": "Sauce",
+      "items": [
+        {
+          "q": 13,
+          "u": "",
+          "n": "IKEA veggie balls, frozen",
+          "sub": "Chicken meatballs or chickpeas, pan-fried"
+        },
+        {
+          "q": 5,
+          "u": "",
+          "n": "cloves garlic, thinly sliced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "medium onion, finely diced"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "tomato paste"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "medium tomatoes, chopped",
+          "sub": "200g canned crushed tomatoes"
+        },
+        {
+          "q": 150,
+          "u": "ml",
+          "n": "Bulla cooking cream",
+          "sub": "Evaporated milk + 1 tbsp butter"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "Parmesan, finely grated"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "olive oil"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "chilli flakes"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "dried basil"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt and black pepper"
+        },
+        {
+          "q": 120,
+          "u": "ml",
+          "n": "reserved pasta water"
+        }
+      ]
+    },
+    {
+      "g": "Optional",
+      "items": [
+        {
+          "q": null,
+          "u": "",
+          "n": "Fresh parsley, chopped"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Cook the veggie balls",
+      "x": "Prepare per packet. Set aside.",
+      "min": null
+    },
+    {
+      "t": "Boil the pasta",
+      "x": "Heavily salted water. Cook spaghetti 1 min less than packet. Reserve 120ml pasta water.",
+      "min": 9
+    },
+    {
+      "t": "Build the tomato base",
+      "x": "Olive oil, medium heat. Onion with a pinch of salt 5–6 min. Add garlic and chilli 1–2 min. Add tomato paste, stir constantly 2 min until brick-coloured.",
+      "min": 9
+    },
+    {
+      "t": "Add fresh tomatoes",
+      "x": "Cook 5–6 min until broken down and jammy. Add oregano and basil.",
+      "min": 6
+    },
+    {
+      "t": "Add the cream",
+      "x": "Stir in cream, simmer 3–4 min until uniform pink and slightly thick. Season.",
+      "min": 4
+    },
+    {
+      "t": "Finish the pasta",
+      "x": "Toss spaghetti in the skillet, adding pasta water until silky. Parmesan off the heat, toss again.",
+      "min": null
+    },
+    {
+      "t": "Serve",
+      "x": "Top with veggie balls, extra Parmesan, chilli flakes and parsley.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Don't rush the 2-min tomato paste fry; it's what gives depth.",
+    "Veggie balls are seasoned; taste before salting."
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "strong-tea",
+  "no": "13.02.02",
+  "title": "Quick Indian-Style Strong Tea",
+  "tags": [
+    "Indian",
+    "Drink",
+    "Quick"
+  ],
+  "prep": "1 min",
+  "cook": "7 min",
+  "total": "8 min",
+  "serves": 2,
+  "equip": "Small saucepan, strainer",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 250,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 3,
+          "u": "tsp",
+          "n": "Taj Mahal tea leaves, heaped",
+          "sub": "Any strong Assam CTC, e.g. Red Label"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "tea masala powder",
+          "sub": "Pinch each of cardamom, ginger powder, cinnamon"
+        },
+        {
+          "q": 3.5,
+          "u": "tsp",
+          "n": "naatu sakkarai",
+          "sub": "Brown sugar or jaggery"
+        },
+        {
+          "q": 100,
+          "u": "ml",
+          "n": "Carnation evaporated milk"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Boil water",
+      "x": "Bring 250ml water to a boil.",
+      "min": null
+    },
+    {
+      "t": "Brew",
+      "x": "Add tea leaves and masala. Simmer 5 min.",
+      "min": 5
+    },
+    {
+      "t": "Sweeten",
+      "x": "Add sugar, simmer 1 more min.",
+      "min": 1
+    },
+    {
+      "t": "Strain and finish",
+      "x": "Strain, stir in evaporated milk. Pull between two cups if you like.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

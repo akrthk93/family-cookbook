@@ -1,0 +1,152 @@
+{
+  "id": "mee-goreng-mamak",
+  "no": "13.02.12",
+  "title": "Mee Goreng Mamak",
+  "tags": [
+    "Malaysian",
+    "Noodles",
+    "Quick"
+  ],
+  "prep": "15 min",
+  "cook": "15 min",
+  "total": "30 min",
+  "serves": 3,
+  "servesNote": "3–4",
+  "equip": "Wok, small pan, blender",
+  "source": "https://nomadette.com/mee-goreng-mamak/",
+  "groups": [
+    {
+      "g": "Noodles and protein",
+      "items": [
+        {
+          "q": 500,
+          "u": "g",
+          "n": "yellow noodles",
+          "sub": "Fresh ramen or cooked spaghetti"
+        },
+        {
+          "q": 85,
+          "u": "g",
+          "n": "protein (tofu, fish cake, chicken, prawns, mutton mince)"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "vegetables (beansprouts, cabbage, bok choy)"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "eggs"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt to taste"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Cooking oil"
+        }
+      ]
+    },
+    {
+      "g": "Red sauce",
+      "items": [
+        {
+          "q": 17,
+          "u": "g",
+          "n": "dried red chillies, soaked in boiling water",
+          "sub": "3 tbsp store-bought chilli boh"
+        },
+        {
+          "q": 50,
+          "u": "g",
+          "n": "shallots",
+          "sub": "¾ medium onion"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves"
+        },
+        {
+          "q": 100,
+          "u": "ml",
+          "n": "water (for blending)"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "kicap manis",
+          "sub": "2 tbsp dark soy + 1 tbsp sugar"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "tomato ketchup"
+        },
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "red food colouring (optional)",
+          "sub": "Beetroot powder, or skip"
+        }
+      ]
+    },
+    {
+      "g": "Cucumber relish (optional)",
+      "items": [
+        {
+          "q": 0.75,
+          "u": "",
+          "n": "cucumber, sliced"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "tomato ketchup"
+        },
+        {
+          "q": 0.33,
+          "u": "",
+          "n": "onion, sliced"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Make the chilli paste",
+      "x": "Blend soaked chillies, shallots and garlic with water until smooth.",
+      "min": null
+    },
+    {
+      "t": "Cook the red sauce",
+      "x": "Plenty of oil, small pan, low heat. Fry the paste until it breaks oil (red oil separates, paste looks drier). Add kicap manis, ketchup and colouring. Set aside.",
+      "min": 8
+    },
+    {
+      "t": "Stir-fry",
+      "x": "Wok, high heat. Cook protein through. Add cabbage, wilt slightly.",
+      "min": 3
+    },
+    {
+      "t": "Egg and noodles",
+      "x": "Push to the side, crack in eggs and scramble. Add noodles, leafy veg and red sauce.",
+      "min": null
+    },
+    {
+      "t": "Finish",
+      "x": "Toss until noodles are hot and evenly coated. Splash of water if dry. Salt to taste.",
+      "min": 2
+    },
+    {
+      "t": "Serve",
+      "x": "With cucumber relish on the side (mix cucumber and onion with ketchup, chill 1 hr).",
+      "min": null
+    }
+  ],
+  "notes": []
+}

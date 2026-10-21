@@ -1,0 +1,130 @@
+{
+  "id": "chicken-tinga",
+  "no": "13.02.09",
+  "title": "Smoky Chicken Tinga",
+  "tags": [
+    "Mexican",
+    "Chicken",
+    "Wraps"
+  ],
+  "prep": "10 min",
+  "cook": "25 min",
+  "total": "35 min",
+  "serves": 2,
+  "servesNote": "8 mini wraps",
+  "equip": "Heavy saucepan, potato masher",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 450,
+          "u": "g",
+          "n": "boneless chicken breast or thigh"
+        },
+        {
+          "q": 15,
+          "u": "ml",
+          "n": "vegetable oil"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "medium onion, thinly sliced"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 15,
+          "u": "ml",
+          "n": "tomato paste"
+        },
+        {
+          "q": 5,
+          "u": "ml",
+          "n": "smoked paprika",
+          "sub": "1 chipotle in adobo, chopped, if you find it"
+        },
+        {
+          "q": 2,
+          "u": "ml",
+          "n": "red pepper flakes"
+        },
+        {
+          "q": 5,
+          "u": "ml",
+          "n": "ground cumin"
+        },
+        {
+          "q": 5,
+          "u": "ml",
+          "n": "dried oregano"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "400g can whole peeled tomatoes",
+          "sub": "4 fresh tomatoes + 2 tbsp tomato paste"
+        },
+        {
+          "q": 250,
+          "u": "ml",
+          "n": "chicken stock or water"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt and black pepper"
+        },
+        {
+          "q": 8,
+          "u": "",
+          "n": "wholemeal mini wraps",
+          "sub": "Small corn tortillas or pita"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Coriander, lime wedges, shredded cheese, diced onion"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Season and sear",
+      "x": "Season chicken. Oil, medium-high, sear 4–5 min per side. Remove.",
+      "min": 5
+    },
+    {
+      "t": "Build flavour base",
+      "x": "Onion 5 min. Add garlic, tomato paste and spices, 1 min until paste darkens.",
+      "min": 6
+    },
+    {
+      "t": "Add tomatoes",
+      "x": "Tomatoes with juice, crush in the pan. Add stock, bring to simmer.",
+      "min": null
+    },
+    {
+      "t": "Braise chicken",
+      "x": "Return chicken, cover, simmer 15–20 min until 75°C and tender.",
+      "min": 18
+    },
+    {
+      "t": "Shred and reduce",
+      "x": "Shred with forks, return, simmer uncovered 5–7 min until thick. Season.",
+      "min": 6
+    },
+    {
+      "t": "Serve",
+      "x": "Warm wraps in a dry pan, fill with tinga and toppings.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

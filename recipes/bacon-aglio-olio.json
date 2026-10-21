@@ -1,0 +1,108 @@
+{
+  "id": "bacon-aglio-olio",
+  "no": "13.02.11",
+  "title": "Bacon Aglio Olio",
+  "tags": [
+    "Italian",
+    "Pasta",
+    "Quick"
+  ],
+  "prep": "5 min",
+  "cook": "15 min",
+  "total": "20 min",
+  "serves": 2,
+  "equip": "Large pot, large skillet",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "spaghetti"
+        },
+        {
+          "q": 90,
+          "u": "g",
+          "n": "streaky bacon, diced small",
+          "sub": "Chicken or turkey bacon; add 1 tbsp oil"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "large garlic cloves, thinly sliced"
+        },
+        {
+          "q": 60,
+          "u": "ml",
+          "n": "extra virgin olive oil"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "red chilli flakes",
+          "sub": "1 chilli padi, sliced"
+        },
+        {
+          "q": 125,
+          "u": "ml",
+          "n": "reserved pasta water"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt for pasta water"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Fresh parsley (optional)"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Parmesan (optional)"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Cook pasta",
+      "x": "Well-salted water. Cook 1–2 min past packet time. Reserve 125ml pasta water.",
+      "min": 11
+    },
+    {
+      "t": "Render bacon",
+      "x": "Bacon into a cold skillet, medium heat, 5–6 min until crisp. Remove, leave 1–2 tbsp fat.",
+      "min": 6
+    },
+    {
+      "t": "Build base",
+      "x": "Add olive oil, drop to low. Garlic 2–3 min until just golden.",
+      "min": 3
+    },
+    {
+      "t": "Add heat",
+      "x": "Chilli flakes 30 sec. Don't let garlic burn.",
+      "min": null
+    },
+    {
+      "t": "Create sauce",
+      "x": "Add pasta water, simmer, reduce by half, 2–3 min.",
+      "min": 3
+    },
+    {
+      "t": "Combine",
+      "x": "Pasta and bacon in, toss vigorously 1–2 min until silky.",
+      "min": 2
+    },
+    {
+      "t": "Finish",
+      "x": "Off heat, parsley, adjust salt. Parmesan on the side.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

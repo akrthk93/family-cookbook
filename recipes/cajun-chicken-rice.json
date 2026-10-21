@@ -1,0 +1,123 @@
+{
+  "id": "cajun-chicken-rice",
+  "no": "13.02.17",
+  "title": "Cajun Chicken and Rice",
+  "tags": [
+    "Instant Pot",
+    "American",
+    "Chicken",
+    "Rice",
+    "Meal prep",
+    "Quick"
+  ],
+  "prep": "10 min",
+  "cook": "20 min",
+  "total": "30 min",
+  "serves": 4,
+  "servesNote": "lunch portions",
+  "equip": "Instant Pot (6-qt)",
+  "source": "https://leelalicious.com/instant-pot-cajun-chicken-rice/",
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 450,
+          "u": "g",
+          "n": "chicken breast (about 2)",
+          "sub": "Boneless thigh, same timing"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "Cajun seasoning, divided",
+          "sub": "1 tsp smoked paprika + ½ tsp each garlic powder, oregano, cayenne, salt"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "oil"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "small onion, diced"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 300,
+          "u": "g",
+          "n": "basmati rice, rinsed until clear",
+          "sub": "Jasmine rice, same quantities"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "bell pepper, diced"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "tomato paste"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "Knorr chicken cube",
+          "sub": "Use 415ml chicken broth instead of cube + water"
+        },
+        {
+          "q": 415,
+          "u": "ml",
+          "n": "hot water"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep rice and chicken",
+      "x": "Rinse basmati until water runs clear. Halve chicken breasts lengthwise, season both sides with about 2 tsp Cajun seasoning.",
+      "min": null
+    },
+    {
+      "t": "Dissolve the stock",
+      "x": "Stir Knorr cube into 415ml hot water.",
+      "min": null
+    },
+    {
+      "t": "Sauté (optional)",
+      "x": "Soften onion, then garlic, in oil. Deglaze with a splash of stock and scrape the bottom completely clean, or you'll get a Burn warning.",
+      "min": 4
+    },
+    {
+      "t": "Build the layers",
+      "x": "Stir in bell pepper, tomato paste and remaining Cajun seasoning. Pour stock over, lay chicken on top, spread rice evenly over everything. Do NOT stir.",
+      "min": null
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Seal, valve to Sealing, High Pressure 7 min.",
+      "min": 7
+    },
+    {
+      "t": "Release and shred",
+      "x": "Natural release 5 min, then quick release. Shred chicken with two forks, stir everything together.",
+      "min": 5
+    },
+    {
+      "t": "Serve",
+      "x": "Finish with coriander and lime if you have them. Cool before portioning.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Stock cube is saltier than broth; taste before adding salt.",
+    "Keeps 4–5 days refrigerated.",
+    "Burn warning fix: deglaze fully, or skip sautéing, and never stir the rice in."
+  ]
+}

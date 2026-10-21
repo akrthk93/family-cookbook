@@ -1,0 +1,16 @@
+{
+  "name": "Family Cookbook",
+  "short_name": "Cookbook",
+  "description": "Our family recipes, cook mode and shopping list.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EFF3F1",
+  "theme_color": "#1B6A50",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

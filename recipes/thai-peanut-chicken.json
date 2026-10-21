@@ -1,0 +1,148 @@
+{
+  "id": "thai-peanut-chicken",
+  "no": "13.02.20",
+  "title": "Thai Peanut Chicken",
+  "tags": [
+    "Instant Pot",
+    "Thai",
+    "Chicken",
+    "Rice",
+    "Meal prep"
+  ],
+  "prep": "15 min",
+  "cook": "25 min",
+  "total": "40 min",
+  "serves": 3,
+  "equip": "Instant Pot, saucepan (for rice)",
+  "source": null,
+  "groups": [
+    {
+      "g": "Chicken",
+      "items": [
+        {
+          "q": 500,
+          "u": "g",
+          "n": "boneless chicken leg, bite-sized pieces"
+        }
+      ]
+    },
+    {
+      "g": "Sauce",
+      "items": [
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "smooth peanut butter",
+          "sub": "Crunchy works; sauce will be textured"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "soy sauce"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "fish sauce",
+          "sub": "Extra 1 tbsp soy sauce + pinch of salt"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lime juice (about half a lime)",
+          "sub": "Calamansi juice or rice vinegar"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "brown sugar or honey",
+          "sub": "Gula melaka"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "sesame oil"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "Sriracha or sambal oelek",
+          "sub": "Chilli padi, chopped, or sambal belacan"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves, minced"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "fresh ginger, grated"
+        },
+        {
+          "q": 100,
+          "u": "ml",
+          "n": "coconut milk",
+          "sub": "Evaporated milk"
+        },
+        {
+          "q": 50,
+          "u": "ml",
+          "n": "water"
+        }
+      ]
+    },
+    {
+      "g": "To serve",
+      "items": [
+        {
+          "q": 300,
+          "u": "g",
+          "n": "jasmine rice, cooked"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Spring onion and crushed peanuts"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Lime wedge"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Mix sauce (minus peanut butter)",
+      "x": "Combine soy, fish sauce, lime juice, sugar, sesame oil, Sriracha, garlic, ginger, coconut milk and water. Keep peanut butter aside.",
+      "min": null
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Chicken into the pot, pour sauce over, stir to coat. Seal, Pressure Cook High 8 min. Natural release 5 min, then quick release.",
+      "min": 8
+    },
+    {
+      "t": "Add peanut butter",
+      "x": "Open lid, add peanut butter, stir vigorously until dissolved. Taste: more lime for brightness, soy for salt, Sriracha for heat.",
+      "min": null
+    },
+    {
+      "t": "Reduce if needed",
+      "x": "Too thin? Sauté mode, simmer 3–4 min, stirring, until it coats the chicken.",
+      "min": 4
+    },
+    {
+      "t": "Serve",
+      "x": "Over rice with spring onion, crushed peanuts and a lime wedge.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Peanut butter goes in after pressure cooking; it scorches and turns grainy under pressure.",
+    "Leg meat only; breast dries out.",
+    "Meal prep: store chicken and rice separately. Fridge 3 days."
+  ]
+}

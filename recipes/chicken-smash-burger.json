@@ -1,0 +1,162 @@
+{
+  "id": "chicken-smash-burger",
+  "no": "13.02.15",
+  "title": "Chicken Smash Burger",
+  "tags": [
+    "Air fryer",
+    "American",
+    "Chicken",
+    "Weekend"
+  ],
+  "prep": "20 min",
+  "cook": "25 min",
+  "total": "45 min",
+  "serves": 2,
+  "equip": "Non-stick pan or cast iron, air fryer, small pan",
+  "source": "https://www.thecookingguy.com/recipes/chicken-smash-burger",
+  "groups": [
+    {
+      "g": "Burgers",
+      "items": [
+        {
+          "q": 450,
+          "u": "g",
+          "n": "minced chicken (thigh preferred)"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "green chilli, diced small",
+          "sub": "½ jalapeño"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "garlic powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "kosher salt"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": 0.5,
+          "u": "",
+          "n": "red capsicum, thin strips"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "slices Monterey Jack",
+          "sub": "Gouda or cheddar slices"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "brioche burger buns",
+          "sub": "Potato buns"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "Kewpie mayo",
+          "sub": "Regular mayo + squeeze of lemon + pinch of sugar"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Neutral oil or ghee (for pan)"
+        }
+      ]
+    },
+    {
+      "g": "Air-fried onion strips",
+      "items": [
+        {
+          "q": 1,
+          "u": "",
+          "n": "large yellow onion, thin half-moons"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "egg, beaten"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "plain yogurt + 1 tbsp milk",
+          "sub": "4 tbsp buttermilk"
+        },
+        {
+          "q": 80,
+          "u": "g",
+          "n": "plain flour"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "panko breadcrumbs",
+          "sub": "Crushed cornflakes"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "smoked paprika"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Cooking spray"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep the onion strips",
+      "x": "Mix egg and thinned yogurt. Separately mix flour, panko, paprika and salt. Dip onions in egg wash, then dredge. Single layer in the basket, spray generously.",
+      "min": null
+    },
+    {
+      "t": "Air fry the onions",
+      "x": "200°C for 10–12 min, shaking halfway. Work in batches. Keep warm in oven at 100°C.",
+      "min": 11
+    },
+    {
+      "t": "Cook the peppers",
+      "x": "Small pan, medium-high, drizzle of oil. Capsicum strips 8–10 min until softened and charred. Season.",
+      "min": 9
+    },
+    {
+      "t": "Mix and form the chicken",
+      "x": "Combine chicken, chilli, garlic powder, salt and pepper. Divide into 4 balls (~110g each).",
+      "min": null
+    },
+    {
+      "t": "Smash and cook",
+      "x": "Medium-high, thin film of oil. Two balls in, press flat to 1cm immediately. 3 min, flip, add cheese, 2 more min. Repeat.",
+      "min": 3
+    },
+    {
+      "t": "Toast and assemble",
+      "x": "Toast buns cut-side down 1 min. Mayo on both halves. Two patties per bun, capsicum, then onion strips. Eat right away.",
+      "min": null
+    }
+  ],
+  "notes": [
+    "Very wet mince: pat dry so patties hold when smashed.",
+    "Monterey Jack at Cold Storage or Jason's.",
+    "Onion strips soften fast once assembled."
+  ]
+}

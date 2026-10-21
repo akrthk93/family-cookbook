@@ -1,0 +1,108 @@
+{
+  "id": "sausage-arrabbiata",
+  "no": "13.02.08",
+  "title": "Italian Sausage Arrabbiata",
+  "tags": [
+    "Italian",
+    "Pasta",
+    "Quick"
+  ],
+  "prep": "5 min",
+  "cook": "15 min",
+  "total": "20 min",
+  "serves": 2,
+  "equip": "Large pot, deep frying pan",
+  "source": "https://tastesbetterfromscratch.com/penne-arrabbiata/",
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 250,
+          "u": "g",
+          "n": "orecchiette",
+          "sub": "Penne or rigatoni"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "olive oil"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "cloves garlic, crushed"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "dried chilli flakes"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "400g can whole tomatoes"
+        },
+        {
+          "q": 250,
+          "u": "g",
+          "n": "Italian sausage, casings removed",
+          "sub": "Chicken sausage + ½ tsp fennel seeds"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "dried basil"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Sea salt"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Parmesan, to serve"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Cook pasta",
+      "x": "Salted water, al dente. Taste 2 min before packet time.",
+      "min": 11
+    },
+    {
+      "t": "Heat oil and garlic",
+      "x": "Medium heat, garlic with a pinch of salt 3–4 min until just colouring.",
+      "min": 4
+    },
+    {
+      "t": "Add sausage",
+      "x": "Push garlic aside, brown sausage 5–6 min, breaking up. Mix together.",
+      "min": 6
+    },
+    {
+      "t": "Add chilli",
+      "x": "Chilli flakes, 1 min.",
+      "min": 1
+    },
+    {
+      "t": "Add tomatoes",
+      "x": "Crush tomatoes by hand, add to pan, simmer with a pinch of salt 4–5 min.",
+      "min": 5
+    },
+    {
+      "t": "Combine pasta",
+      "x": "Reserve ½ cup pasta water. Toss pasta in sauce, loosening with water.",
+      "min": null
+    },
+    {
+      "t": "Finish",
+      "x": "Stir in basil. Serve with Parmesan and a drizzle of olive oil.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

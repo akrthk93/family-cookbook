@@ -1,0 +1,114 @@
+{
+  "id": "tuscan-chicken",
+  "no": "13.02.04",
+  "title": "Marry Me Tuscan Chicken",
+  "tags": [
+    "Italian",
+    "Chicken",
+    "Pasta"
+  ],
+  "prep": "10 min",
+  "cook": "25 min",
+  "total": "35 min",
+  "serves": 4,
+  "equip": "Large skillet with lid",
+  "source": "https://youtu.be/R_4__jt854o",
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 4,
+          "u": "",
+          "n": "chicken breasts"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt and pepper"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "olive oil"
+        },
+        {
+          "q": 50,
+          "u": "g",
+          "n": "butter"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "plain flour (for dusting; you'll use a fraction)"
+        },
+        {
+          "q": 6,
+          "u": "",
+          "n": "cloves garlic, crushed"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "sun-dried tomatoes, strips",
+          "sub": "Roasted capsicum + 1 tbsp tomato paste"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "oregano"
+        },
+        {
+          "q": 500,
+          "u": "ml",
+          "n": "chicken stock"
+        },
+        {
+          "q": 220,
+          "u": "ml",
+          "n": "cream",
+          "sub": "Evaporated milk, low heat only"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Pasta of choice"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Fresh basil",
+          "sub": "Spinach wilted into the sauce"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prepare the chicken",
+      "x": "Season both sides, dust lightly with flour.",
+      "min": null
+    },
+    {
+      "t": "Sear the chicken",
+      "x": "Oil and butter until foaming. Sear until golden both sides. Remove.",
+      "min": 8
+    },
+    {
+      "t": "Make the sauce",
+      "x": "Garlic 1 min. Sun-dried tomatoes and oregano 1 min.",
+      "min": 2
+    },
+    {
+      "t": "Deglaze and simmer",
+      "x": "Stock in, reduce by half. Add cream. Return chicken, cover, simmer low 8–10 min until cooked.",
+      "min": 9
+    },
+    {
+      "t": "Serve",
+      "x": "Over pasta with plenty of sauce. Garnish with basil.",
+      "min": null
+    }
+  ],
+  "notes": []
+}

@@ -1,0 +1,89 @@
+{
+  "id": "luncheon-carbonara",
+  "no": "13.02.07",
+  "title": "Chicken Luncheon Meat Carbonara",
+  "tags": [
+    "Italian",
+    "Pasta",
+    "Quick",
+    "Kid-friendly"
+  ],
+  "prep": "5 min",
+  "cook": "12 min",
+  "total": "17 min",
+  "serves": 2,
+  "equip": "Large pot, large skillet",
+  "source": null,
+  "groups": [
+    {
+      "g": null,
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "spaghetti"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "Tulip chicken luncheon meat, diced",
+          "sub": "Chicken ham or turkey bacon"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "large eggs, plus 1 yolk"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "Parmesan, finely grated",
+          "sub": "Pecorino, or half Parmesan half cheddar"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "freshly cracked black pepper"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "olive oil"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Salt for pasta water"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep the sauce base",
+      "x": "Whisk eggs, yolk, Parmesan and pepper. Dice luncheon meat.",
+      "min": null
+    },
+    {
+      "t": "Cook the pasta",
+      "x": "Salted water, 1–2 min under packet time. Reserve 1 cup pasta water.",
+      "min": 9
+    },
+    {
+      "t": "Warm the meat",
+      "x": "Olive oil, medium-low, luncheon meat 1–2 min.",
+      "min": 2
+    },
+    {
+      "t": "Make the carbonara",
+      "x": "Hot pasta into the skillet, OFF the heat. Pour egg mix over while tossing hard. Add pasta water 2–3 tbsp at a time until creamy.",
+      "min": null
+    },
+    {
+      "t": "Serve",
+      "x": "Taste (probably no salt needed). Extra Parmesan and pepper.",
+      "min": null
+    }
+  ],
+  "notes": []
+}
