@@ -1,0 +1,62 @@
+{
+  "id": "south-indian-chicken-curry",
+  "no": "13.02.24",
+  "title": "South Indian Chicken Curry (Instant Pot)",
+  "tags": ["Instant Pot", "Indian", "Curry", "Chicken"],
+  "prep": "15 min",
+  "cook": "30 min",
+  "total": "45 min",
+  "serves": 2,
+  "equip": "Instant Pot",
+  "source": null,
+  "groups": [
+    {
+      "g": "Whole spices",
+      "items": [
+        { "q": 15, "u": "ml", "n": "neutral oil" },
+        { "q": 1, "u": "", "n": "cinnamon stick (3cm)" },
+        { "q": 2, "u": "", "n": "cloves" },
+        { "q": 2, "u": "", "n": "green cardamom pods" },
+        { "q": 3, "u": "g", "n": "fennel seeds" },
+        { "q": 1, "u": "", "n": "sprig curry leaves" }
+      ]
+    },
+    {
+      "g": "Masala",
+      "items": [
+        { "q": 150, "u": "g", "n": "onion, finely sliced" },
+        { "q": 20, "u": "g", "n": "ginger-garlic paste" },
+        { "q": 2, "u": "", "n": "green chillies, slit", "sub": "Skip for a milder curry" },
+        { "q": 120, "u": "g", "n": "tomato, chopped" },
+        { "q": 6, "u": "g", "n": "Kashmiri chilli powder", "sub": "Halve for a milder curry" },
+        { "q": 6, "u": "g", "n": "coriander powder" },
+        { "q": 2, "u": "g", "n": "turmeric powder" },
+        { "q": 4, "u": "g", "n": "salt" }
+      ]
+    },
+    {
+      "g": "Chicken and finish",
+      "items": [
+        { "q": 350, "u": "g", "n": "boneless chicken leg, skin and large fat trimmed, 3cm pieces, patted dry", "sub": "Bone-in thigh; pressure cook 10 min" },
+        { "q": 60, "u": "ml", "n": "water" },
+        { "q": 3, "u": "g", "n": "garam masala" },
+        { "q": 5, "u": "g", "n": "fresh coriander, chopped" }
+      ]
+    }
+  ],
+  "steps": [
+    { "t": "Temper the spices", "x": "Set the Instant Pot to Sauté (Normal). Heat the oil, add cinnamon, cloves, cardamom and fennel. Stir 30 seconds until fragrant. Add curry leaves.", "min": null },
+    { "t": "Brown the onion", "x": "Add the onion and cook, stirring, until golden brown. This builds the base flavour, so don't rush it.", "min": 7 },
+    { "t": "Add aromatics and tomato", "x": "Add ginger-garlic paste and green chillies, stir 1 minute. Add tomato and cook, mashing with the spoon, until soft and jammy.", "min": 4 },
+    { "t": "Toast the powders", "x": "Add chilli, coriander and turmeric powder. Stir 30 seconds, adding a splash of the water if it sticks.", "min": null },
+    { "t": "Coat the chicken", "x": "Add the chicken and salt. Stir 1-2 minutes to coat in the masala.", "min": 2 },
+    { "t": "Deglaze", "x": "Pour in the water and scrape the bottom well. This prevents the Burn warning.", "min": null },
+    { "t": "Pressure cook", "x": "Lock the lid, valve to Sealing. Pressure Cook on High for 6 minutes. Natural release 5 minutes, then quick release.", "min": 6 },
+    { "t": "Reduce and finish", "x": "Set to Sauté. Simmer uncovered until the gravy thickens. Stir in garam masala and coriander. Turn off.", "min": 4 }
+  ],
+  "notes": [
+    "Thawed chicken holds water. Pat it dry, and simmer the gravy 2 minutes longer if it's watery.",
+    "Storage: cool within 2 hours, refrigerate airtight. Good for 3 days.",
+    "Reheat until steaming hot throughout. Add 1 tbsp water if the gravy has thickened."
+  ]
+}
