@@ -87,27 +87,44 @@
     {
       "t": "Prepare the chicken",
       "x": "Season both sides, dust lightly with flour.",
-      "min": null
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.4"
+      ]
     },
     {
       "t": "Sear the chicken",
-      "x": "Oil and butter until foaming. Sear until golden both sides. Remove.",
-      "min": 8
+      "x": "Oil and butter until foaming. Sear 3–4 min per side until golden. Remove.",
+      "uses": [
+        "0.2",
+        "0.3"
+      ]
     },
     {
       "t": "Make the sauce",
       "x": "Garlic 1 min. Sun-dried tomatoes and oregano 1 min.",
-      "min": 2
+      "uses": [
+        "0.5",
+        "0.6",
+        "0.7"
+      ]
     },
     {
       "t": "Deglaze and simmer",
       "x": "Stock in, reduce by half. Add cream. Return chicken, cover, simmer low 8–10 min until cooked.",
-      "min": 9
+      "uses": [
+        "0.8",
+        "0.9"
+      ]
     },
     {
       "t": "Serve",
       "x": "Over pasta with plenty of sauce. Garnish with basil.",
-      "min": null
+      "uses": [
+        "0.10",
+        "0.11"
+      ]
     }
   ],
   "notes": []

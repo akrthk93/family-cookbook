@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <title>Family Cookbook</title>
 <meta name="description" content="Our family recipes, cook mode and shopping list.">
 <meta name="theme-color" content="#EFF3F1" media="(prefers-color-scheme: light)">
@@ -31,7 +31,9 @@
   --bg:#101614; --surface:#18201D; --sunk:#222C28; --ink:#E7EEEA; --muted:#9AACA4; --line:#2D3833;
   --accent:#5CC29A; --accent-ink:#06261A; --accent-soft:#1D3A2F;
   --turmeric:#F2B93A; --turmeric-ink:#231800; --chilli:#F07A62; color-scheme:dark}}
-html,body{background:var(--bg);margin:0}
+html,body{background:var(--bg);margin:0;touch-action:manipulation}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+button,a,input,textarea,label,summary{touch-action:manipulation}
 body{color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.45;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -68,7 +70,7 @@ main{padding-block:14px calc(120px + env(safe-area-inset-bottom,0px))}
 .btn.big{min-height:58px;font-size:19px;width:100%}
 .btn.ghost{background:transparent;border:1px solid var(--line)}
 .btn.danger{color:var(--chilli);background:transparent;border:1px solid var(--line)}
-.btn svg,.icon svg,.mini svg,.tbtn svg,nav.tabs svg,.timer svg{stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn svg,.icon svg,.mini svg,nav.tabs svg,.timer svg{stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn svg{width:20px;height:20px}
 .icon{width:44px;height:44px;display:inline-grid;place-items:center;border-radius:12px}
 .icon svg{width:24px;height:24px}
@@ -103,9 +105,10 @@ section.block{margin-top:22px}
 .steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:22px;color:var(--accent);line-height:1.1}
 .steps .st{font-weight:700}
 .steps p{margin:2px 0 0;grid-column:2}
-.steps .tbtn{grid-column:2;justify-self:start;margin-top:8px}
-.tbtn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;background:var(--turmeric);color:var(--turmeric-ink);font-weight:700;font-variant-numeric:tabular-nums}
-.tbtn svg{width:18px;height:18px;stroke-width:2.2}
+.tchip{display:inline-flex;align-items:center;gap:4px;padding:1px 9px 1px 6px;margin:1px 0;border-radius:99px;background:var(--turmeric);color:var(--turmeric-ink);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.5;vertical-align:baseline;white-space:nowrap}
+.tchip svg{width:.95em;height:.95em;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nobr{white-space:nowrap}
+.hint{margin:14px 0 0;color:var(--muted);font-size:15px}
 .notes{margin:8px 0 0;padding-left:20px}
 .notes li{margin-bottom:6px}
 .src{font-size:15px;color:var(--muted);word-break:break-word}
@@ -125,7 +128,10 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 @keyframes pulse{50%{transform:scale(1.02)}}
 @media (prefers-reduced-motion:reduce){.timer.ring{animation:none}}
 .cook{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.cook > .wrap{width:100%;min-width:0}
 .cook .bar{padding-block:10px}
+.cook .bar .row{min-width:0}
+.cook .ttl{flex:1;min-width:0;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .prog{display:flex;gap:4px;margin-top:8px}
 .prog i{flex:1;height:5px;border-radius:3px;background:var(--line)}
 .prog i.on{background:var(--accent)}
@@ -133,9 +139,8 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 .cook .num{font-family:var(--display);font-weight:800;color:var(--accent);font-size:15px;text-transform:uppercase;letter-spacing:.08em}
 .cook h2{font-size:32px;margin:6px 0 14px}
 .cook .text{font-size:24px;line-height:1.45;max-width:34ch}
-.cook .tbtn{font-size:20px;padding:14px 20px;margin-top:22px}
-.cook .tbtn svg{width:22px;height:22px}
-.cook .used{margin-top:22px;padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:17px}
+.cook .tchip{padding:2px 12px 2px 8px}
+.cook .used{margin:0 0 18px;padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:17px}
 .cook .nav{display:grid;grid-template-columns:1fr 2fr;gap:10px;padding-block:10px 12px}
 .cook .tray{position:static;padding:0;margin-top:10px}
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:30}
@@ -146,12 +151,12 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 .help{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:4px 16px}
 .help summary{padding:12px 0;font-weight:700;cursor:pointer}
 .help ol{padding-left:20px;margin:0 0 12px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(14px + env(safe-area-inset-top,0px));z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;max-width:90%}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));text-align:center;z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;max-width:90%}
 .form{display:flex;flex-direction:column;gap:14px;margin-top:12px}
 .form label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:15px}
 .form label small{font-weight:400;color:var(--muted)}
 .form input,.form textarea{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:16px;font-weight:400;width:100%;-webkit-appearance:none}
-.form textarea{min-height:120px;font-family:ui-monospace,Menlo,monospace;font-size:14px;line-height:1.5}
+.form textarea{min-height:120px;font-family:ui-monospace,Menlo,monospace;font-size:16px;line-height:1.5}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .grid3 label{min-width:0}
 .confirm{background:var(--surface);border:1px solid var(--chilli);border-radius:12px;padding:12px;margin-top:8px}
@@ -212,7 +217,57 @@ const S = {
 const saveShop = () => { lsSet("shop", S.shop); };
 
 /* ---------- quantities ---------- */
-const STOP = new Set("medium large small fresh dried boneless skinless finely chopped whole plain cooked frozen extra virgin sharp thick ground packed sliced diced minced divided optional reserved white black green yellow light dark heaped taco sized pieces cloves clove grated thin thinly roughly bite with about room temp temperature cut into".split(" "));
+/* ---------- times in step text -> timers ---------- */
+const DUR = /(\d+(?:\.\d+)?|[½¼¾])(?:\s*(?:[–-]|to)\s*(\d+(?:\.\d+)?))?\s*(seconds?|secs?|minutes?|mins?|hours?|hrs?)\b(?!\s+(?:less|more|past|longer|before|after|under|over|shorter)\b)/gi;
+function durations(text){
+  const out = [];
+  for (const m of String(text).matchAll(DUR)) {
+    const lo = { "½":.5, "¼":.25, "¾":.75 }[m[1]] ?? parseFloat(m[1]);
+    const u = m[3].toLowerCase(), mult = u.startsWith("s") ? 1 : u.startsWith("h") ? 3600 : 60;
+    out.push({ start: m.index, end: m.index + m[0].length, label: m[0], secs: Math.round(lo * mult) });
+  }
+  return out;
+}
+/* step text with every time turned into a tap-to-start timer chip */
+function stepHtml(s, i){
+  const d = durations(s.x); let html = "", at = 0;
+  d.forEach((t, j) => {
+    const punct = (s.x.slice(t.end).match(/^[.,;:!?)]+/) || [""])[0];
+    html += esc(s.x.slice(at, t.start)) + `<span class="nobr"><button class="tchip" data-act="timer" data-i="${i}" data-j="${j}">${ICON.clock}${esc(t.label)}</button>${esc(punct)}</span>`;
+    at = t.end + punct.length;
+  });
+  return html + esc(s.x.slice(at));
+}
+
+/* ---------- which ingredients go into which step ---------- */
+const STOP = new Set("medium large small fresh dried boneless skinless finely chopped whole plain cooked frozen extra virgin sharp thick ground packed sliced diced minced divided optional reserved white black green yellow red light dark heaped taco sized pieces piece cloves clove grated thin thinly roughly bite with about room temp temperature cut into neutral olive vegetable sunflower cooking smooth crushed warmed softened beaten halved quartered peeled unpeeled rinsed drained soaked trimmed patted dry powder paste flakes leaves leaf seeds pods pod stick sprig can cans tin of and the for to taste serve serving garnish".split(" "));
+const stem = w => w.replace(/(ies)$/, "y").replace(/(oes|ches|shes)$/, m => m.slice(0, -2)).replace(/s$/, "");
+const words = s => s.toLowerCase().split(/[^a-z]+/).filter(Boolean);
+function ingKeywords(name){
+  const core = name.split(/[,(]/)[0];
+  return core.split(/\s+or\s+/i).map(alt => words(alt).filter(w => w.length > 2 && !STOP.has(w)).map(stem)).filter(a => a.length);
+}
+/* Precision over recall: every keyword of one alternative must appear in the step text.
+   Each ingredient is listed once, at the step where it goes in, unless its name says "divided". */
+function guessUses(groups, steps){
+  const used = new Set();
+  return steps.map(s => {
+    const have = new Set(words(s.x + " " + s.t).map(stem));
+    const keys = [];
+    (groups || []).forEach((g, gi) => g.items.forEach((it, ii) => {
+      const key = gi + "." + ii;
+      if (it.q == null || (used.has(key) && !/divided/i.test(it.n))) return;
+      if (ingKeywords(it.n).some(alt => alt.every(w => have.has(w)))) { keys.push(key); used.add(key); }
+    }));
+    return keys;
+  });
+}
+function stepUses(r, i){
+  const s = r.steps[i];
+  if (Array.isArray(s.uses)) return s.uses;
+  if (!r._guess) Object.defineProperty(r, "_guess", { value: guessUses(r.groups, r.steps), enumerable: false });
+  return r._guess[i] || [];
+}
 const FR = [[0,""],[.125,"⅛"],[.25,"¼"],[1/3,"⅓"],[.5,"½"],[2/3,"⅔"],[.75,"¾"],[1,""]];
 function fmtQ(q, u){
   if (q == null) return "";
@@ -344,7 +399,6 @@ function parseIng(line){
   rest = rest.replace(/^of\s+/, "");
   return { q, u, n: rest || s, ...(sub ? {sub} : {}) };
 }
-const guessMin = t => { const m = String(t).match(/(\d+)(?:\s*[–-]\s*(\d+))?\s*(?:min|minutes|mins)\b/i); return m ? Math.round(m[2] ? (+m[1] + +m[2]) / 2 : +m[1]) : null; };
 function ingsToText(groups){
   return (groups||[]).map(g => (g.g ? `### ${g.g}\n` : "") + g.items.map(it => {
     const q = it.q == null ? "" : fmtQ(it.q, it.u) + (it.u ? (it.u==="g"||it.u==="ml" ? it.u : " " + it.u) : "");
@@ -362,15 +416,25 @@ function textToIngs(text){
   if (cur.items.length || cur.g) groups.push(cur);
   return groups.filter(g => g.items.length);
 }
-const stepsToText = steps => (steps||[]).map(s => `${s.t}\n${s.x}` + (s.min ? `\nTimer: ${s.min} min` : "")).join("\n\n");
+const stepsToText = steps => (steps||[]).map(s => `${s.t}\n${s.x}`).join("\n\n");
 function textToSteps(text){
   return text.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean).map(b => {
-    const lines = b.split("\n").map(l => l.trim()).filter(Boolean);
-    let min = null; const tl = lines.findIndex(l => /^timer:\s*\d+/i.test(l));
-    if (tl > -1) { min = parseInt(lines[tl].replace(/\D+/, "")); lines.splice(tl,1); }
+    const lines = b.split("\n").map(l => l.trim()).filter(Boolean).filter(l => !/^timer:/i.test(l));
     let t = lines[0].replace(/^\d+\.\s*/, "").replace(/\*\*/g, ""), x = lines.slice(1).join(" ");
     if (!x) { const i = t.indexOf(":"); if (i > 0 && i < 40) { x = t.slice(i+1).trim(); t = t.slice(0,i); } else { x = t; t = t.split(/[.,]/)[0].slice(0,40); } }
-    return { t, x, min: min ?? guessMin(x) };
+    return { t, x };
+  });
+}
+/* Keep hand-checked ingredient links for steps that didn't change; guess the rest. */
+function linkSteps(oldR, groups, steps){
+  const guess = guessUses(groups, steps);
+  const where = new Map();
+  groups.forEach((g, gi) => g.items.forEach((it, ii) => where.set((g.g || "") + "\u0000" + it.n, gi + "." + ii)));
+  return steps.map((s, i) => {
+    const prev = (oldR?.steps || []).find(o => o.t === s.t && o.x === s.x && Array.isArray(o.uses));
+    if (!prev) return { ...s, uses: guess[i] };
+    const uses = prev.uses.map(k => { const [gi, ii] = k.split(".").map(Number); const g = oldR.groups[gi], it = g?.items[ii]; return it && where.get((g.g || "") + "\u0000" + it.n); }).filter(Boolean);
+    return { ...s, uses };
   });
 }
 function parseMarkdown(md){
@@ -397,7 +461,7 @@ function parseMarkdown(md){
   }
   cur && steps.push(cur);
   r.groups = textToIngs(ing.join("\n"));
-  r.steps = steps.map(s => { if (!s.t) s.t = s.x.split(/[.,]/)[0].slice(0,40); return { t:s.t, x:s.x, min: guessMin(s.x) }; });
+  r.steps = steps.map(s => { if (!s.t) s.t = s.x.split(/[.,]/)[0].slice(0,40); return { t:s.t, x:s.x }; });
   r.notes = notes;
   return r;
 }
@@ -533,7 +597,7 @@ function viewRecipe(){
       </div>
     </section>
     <section class="block"><h2>Method</h2>
-      <ol class="steps">${(r.steps||[]).map((s, i) => `<li><div class="st">${esc(s.t)}</div><p>${esc(s.x)}</p>${s.min ? `<button class="tbtn" data-act="timer" data-i="${i}">${ICON.clock} ${s.min} min</button>` : ""}</li>`).join("")}</ol>
+      <ol class="steps">${(r.steps||[]).map((s, i) => `<li><div class="st">${esc(s.t)}</div><p>${stepHtml(s, i)}</p></li>`).join("")}</ol>
     </section>
     ${(r.notes||[]).length ? `<section class="block"><h2>Notes</h2><ul class="notes">${r.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul></section>` : ""}
     ${r.source ? `<section class="block src">Source: ${/^https?:\/\//.test(r.source) ? `<a href="${esc(r.source)}" target="_blank" rel="noopener">${esc(r.source.replace(/^https?:\/\/(www\.)?/, "").split("/")[0])}</a>` : esc(r.source)}</section>` : ""}
@@ -542,16 +606,12 @@ function viewRecipe(){
 function viewCook(){
   const r = S.recipes.find(x => x.id === S.rid); if (!r) return "";
   const i = S.cook.i, st = r.steps[i], n = r.steps.length, k = factor(r);
-  const used = [], text = st.x.toLowerCase();
-  (r.groups||[]).forEach(g => g.items.forEach(it => {
-    if (it.q == null) return;
-    const words = it.n.split(/[,(]/)[0].toLowerCase().split(/[^a-z]+/).filter(w => w.length > 3 && !STOP.has(w));
-    if (words.some(w => new RegExp("\\b" + w.replace(/s$/, "")).test(text))) used.push(ingLine(it, k));
-  }));
+  const used = stepUses(r, i).map(key => { const [gi, ii] = key.split(".").map(Number); const it = r.groups[gi]?.items[ii]; return it ? ingLine(it, k) : null; }).filter(Boolean);
+  const hasTimes = durations(st.x).length > 0;
   return `<div class="cook" role="dialog" aria-label="Cook mode">
     <div class="wrap bar">
       <div class="row between"><button class="icon" data-act="cookx" aria-label="Exit cook mode">${ICON.close}</button>
-        <div style="flex:1;min-width:0;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.title)}</div>
+        <div class="ttl">${esc(r.title)}</div>
         <button class="btn ghost" data-act="sheet" style="min-height:40px">Ingredients</button></div>
       <div class="prog">${r.steps.map((_, j) => `<i class="${j<=i?"on":""}"></i>`).join("")}</div>
       <div id="cookTray" class="tray"></div>
@@ -559,9 +619,9 @@ function viewCook(){
     <div class="body wrap" id="cookBody">
       <div class="num">Step ${i+1} of ${n}</div>
       <h2>${esc(st.t)}</h2>
-      <div class="text">${esc(st.x)}</div>
-      ${st.min ? `<button class="tbtn" data-act="timer" data-i="${i}">${ICON.clock} Start ${st.min} min timer</button>` : ""}
-      ${used.length ? `<div class="used"><h3 style="margin-bottom:6px">Amounts for this step</h3>${used.map(u => `<div><span class="qty">${esc(u.qty)}</span> ${esc(u.name)}</div>`).join("")}</div>` : ""}
+      ${used.length ? `<div class="used"><h3 style="margin-bottom:6px">Goes in now</h3>${used.map(u => `<div>${u.qty ? `<span class="qty">${esc(u.qty)}</span> ` : ""}${esc(u.name)}</div>`).join("")}</div>` : ""}
+      <div class="text">${stepHtml(st, i)}</div>
+      ${hasTimes ? `<p class="hint">Tap a time to start a timer</p>` : ""}
     </div>
     <div class="wrap nav">
       <button class="btn" data-act="prev" ${i===0?"disabled style=\"opacity:.4\"":""}>Back</button>
@@ -619,7 +679,7 @@ function viewEdit(){
     </div>
     <label>Tags <small>Comma separated, e.g. Instant Pot, Indian, Quick</small><input id="f-tags" value="${esc((e.tags||[]).join(", "))}"></label>
     <label>Ingredients <small>One per line. “### Sauce” starts a group. Add a substitute after “ | ”.</small><textarea id="f-ings" rows="10">${esc(ingsToText(e.groups))}</textarea></label>
-    <label>Method <small>Blank line between steps. First line is the step name. Optional last line “Timer: 8 min”.</small><textarea id="f-steps" rows="12">${esc(stepsToText(e.steps))}</textarea></label>
+    <label>Method <small>Blank line between steps. First line is the step name. Times written in a step, like “8–10 min”, become tap-to-start timers.</small><textarea id="f-steps" rows="12">${esc(stepsToText(e.steps))}</textarea></label>
     <label>Notes <small>One per line</small><textarea id="f-notes" rows="4">${esc((e.notes||[]).join("\n"))}</textarea></label>
     <label>Source link<input id="f-source" value="${esc(e.source)}"></label>
     ${e.id ? (S.confirmDel
@@ -738,7 +798,10 @@ document.addEventListener("click", async e => {
     case "sub": { const k = r.id + b.dataset.key; S.openSub[k] = !S.openSub[k]; render(); break; }
     case "shop1": { const [gi, ii] = b.dataset.key.split(".").map(Number); addShop([{ name: shopText(r.groups[gi].items[ii], factor(r)), from: r.title }]); break; }
     case "shopAll": { const k = factor(r); addShop(r.groups.flatMap(g => g.items.filter(it => it.q != null).map(it => ({ name: shopText(it, k), from: r.title })))); break; }
-    case "timer": { const s = r.steps[+b.dataset.i]; startTimer(s.t, s.min); toast(`${s.min} min timer started`); break; }
+    case "timer": {
+      const s = r.steps[+b.dataset.i], t = durations(s.x)[+b.dataset.j]; if (!t) break;
+      startTimer(`${s.t} · ${t.label}`, t.secs / 60); break;
+    }
     case "tadd": { const t = S.timers.find(x => x.id === b.dataset.t); if (t) t.end += 60000; renderTray(); break; }
     case "tdone": S.timers = S.timers.filter(x => x.id !== b.dataset.t); renderTray(); break;
     case "cook": S.cook = { i:0 }; S.sheet = false; render(); wake(true); break;
@@ -778,10 +841,11 @@ document.addEventListener("click", async e => {
         serves: Math.max(1, parseInt(v("f-serves")) || 2), equip:v("f-equip"),
         tags: v("f-tags").split(",").map(t => t.trim()).filter(Boolean),
         groups: textToIngs($("#f-ings").value),
-        steps: old.id && $("#f-steps").value.trim() === stepsToText(old.steps).trim() ? old.steps : textToSteps($("#f-steps").value),
+        steps: textToSteps($("#f-steps").value),
         notes: $("#f-notes").value.split("\n").map(l => l.trim()).filter(Boolean),
         source: v("f-source") || null, no: old.no || "", updated: Date.now()
       };
+      doc.steps = linkSteps(old, doc.groups, doc.steps);
       if (old.servesNote) doc.servesNote = old.servesNote;
       if (!doc.id) { let id = slug(title), n = 2; while (S.recipes.some(x => x.id === id)) id = slug(title) + "-" + n++; doc.id = id; }
       S.local[doc.id] = doc; lsSet("localRecipes", S.local);   // always usable here straight away

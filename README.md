@@ -38,7 +38,7 @@ Saving from the app needs a one-time setup per phone (Settings → Saving recipe
     ]}
   ],
   "steps": [
-    { "t": "Marinate", "x": "Mix chicken with yogurt…", "min": 15 }
+    { "t": "Marinate", "x": "Mix chicken with yogurt… Rest at least 15 min.", "uses": ["0.0", "0.1"] }
   ],
   "notes": ["Keeps 3–4 days."]
 }
@@ -46,7 +46,8 @@ Saving from the app needs a one-time setup per phone (Settings → Saving recipe
 
 - `q` is a number so it can scale; use `null` for "to taste". `u` is one of `g`, `kg`, `ml`, `l`, `tsp`, `tbsp`, `cup`, `oz`, or `""` for counts (2 onions).
 - `g` is a group heading, or `null` for none. `sub` is an optional substitute.
-- `min` is the step's timer in minutes, or `null`.
+- Timers come from the step text: every time written in `x` ("15 min", "8–10 minutes", "30 sec") becomes a tap-to-start timer, starting at the low end of a range. Phrases like "1 min less than packet time" are ignored.
+- `uses` lists the ingredients that go in at that step as `group.item` positions (`"1.3"` = 2nd group, 4th item). Cook mode shows them under "Goes in now". List each ingredient once, at the step where it's added. If `uses` is missing, the app guesses from the step text.
 - The file name must match `id`. The build fails with a clear message if a recipe is malformed, so a bad file never takes the site down.
 
 ## Send to Reminders (once per phone)

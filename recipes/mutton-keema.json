@@ -139,42 +139,67 @@
     {
       "t": "Thaw and dry the mince",
       "x": "Thaw overnight in fridge. Spread on a plate and pat thoroughly dry with paper towels. Critical for browning frozen mince.",
-      "min": null
+      "uses": [
+        "0.0"
+      ]
     },
     {
       "t": "Bloom whole spices",
       "x": "Heat oil over medium-high. Add bay leaves, cloves, cardamom and cinnamon. Fry 30–45 sec until fragrant.",
-      "min": null
+      "uses": [
+        "4.2",
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3"
+      ]
     },
     {
       "t": "Cook onions",
       "x": "Add onions and a pinch of salt. Cook 10–12 min, stirring regularly, until deep golden brown. Don't rush; this is the flavour base.",
-      "min": 11
+      "uses": [
+        "2.0"
+      ]
     },
     {
       "t": "Add aromatics",
       "x": "Add garlic and ginger. Stir fry 1–2 min until the raw smell is gone.",
-      "min": 2
+      "uses": [
+        "2.1",
+        "2.2"
+      ]
     },
     {
       "t": "Add ground spices",
       "x": "Add cumin, coriander, turmeric and chilli. Stir constantly 30 sec. Splash 1–2 tbsp water if it sticks.",
-      "min": null
+      "uses": [
+        "3.0",
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
     },
     {
       "t": "Add tomatoes",
       "x": "Cook 8–10 min until completely broken down and oil visibly separates from the masala.",
-      "min": 9
+      "uses": [
+        "4.0"
+      ]
     },
     {
       "t": "Brown the mince",
       "x": "Add mince and break up immediately. Medium-high, stirring often, until no pink remains and well browned, 10–12 min. Keep uncovered; moisture must escape.",
-      "min": 11
+      "uses": []
     },
     {
       "t": "Peas and finish",
       "x": "Stir through frozen peas 2 min. Add garam masala, taste and adjust salt. Finish with coriander.",
-      "min": 2
+      "uses": [
+        "4.1",
+        "3.4",
+        "3.5",
+        "4.3"
+      ]
     }
   ],
   "notes": [

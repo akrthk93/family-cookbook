@@ -52,22 +52,31 @@
     {
       "t": "Boil water",
       "x": "Bring 250ml water to a boil.",
-      "min": null
+      "uses": [
+        "0.0"
+      ]
     },
     {
       "t": "Brew",
       "x": "Add tea leaves and masala. Simmer 5 min.",
-      "min": 5
+      "uses": [
+        "0.1",
+        "0.2"
+      ]
     },
     {
       "t": "Sweeten",
-      "x": "Add sugar, simmer 1 more min.",
-      "min": 1
+      "x": "Add sugar, simmer 1 min more.",
+      "uses": [
+        "0.3"
+      ]
     },
     {
       "t": "Strain and finish",
       "x": "Strain, stir in evaporated milk. Pull between two cups if you like.",
-      "min": null
+      "uses": [
+        "0.4"
+      ]
     }
   ],
   "notes": []

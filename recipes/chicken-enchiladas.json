@@ -99,27 +99,44 @@
     {
       "t": "Prep chicken",
       "x": "Shred about 2 cups leftover chicken.",
-      "min": null
+      "uses": [
+        "0.0"
+      ]
     },
     {
       "t": "Make sauce",
-      "x": "Sauté onion and garlic in oil. Add tomato sauce, water, chillies and spices. Simmer.",
-      "min": 5
+      "x": "Sauté onion and garlic in oil. Add tomato sauce, water, chillies and spices. Simmer 5 min.",
+      "uses": [
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9"
+      ]
     },
     {
       "t": "Assemble",
       "x": "Fill tortillas with chicken, cheese and a little sauce. Roll, seam-side down in the pan.",
-      "min": null
+      "uses": [
+        "0.10",
+        "0.11"
+      ]
     },
     {
       "t": "Top",
       "x": "Spoon over remaining sauce, sprinkle cheese. Cover, simmer 5 min.",
-      "min": 5
+      "uses": []
     },
     {
       "t": "Garnish",
       "x": "Coriander, radish, avocado, jalapeño and sour cream.",
-      "min": null
+      "uses": [
+        "1.0"
+      ]
     }
   ],
   "notes": []

@@ -135,32 +135,57 @@
     {
       "t": "Marinate the chicken",
       "x": "Mix chicken with yogurt, ginger, garlic, white pepper and salt. Refrigerate at least 30 min.",
-      "min": 30
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5"
+      ]
     },
     {
       "t": "Make cashew paste",
       "x": "Soak cashews in warm water 15 min. Drain, grind smooth with 2–3 tbsp water.",
-      "min": 15
+      "uses": [
+        "1.2"
+      ]
     },
     {
       "t": "Aromatics and onions",
       "x": "Ghee, medium heat. Whole spices 30 sec. Add onions, 8–10 min until soft and pale golden, not brown. Remove onions and spices, set aside.",
-      "min": 9
+      "uses": [
+        "1.0",
+        "1.8",
+        "1.9",
+        "1.10",
+        "1.11",
+        "1.1"
+      ]
     },
     {
       "t": "Sear chicken",
       "x": "Same pan, medium heat. Add chicken, 6–8 min until yogurt coats it and it's half cooked.",
-      "min": 7
+      "uses": []
     },
     {
       "t": "Build the masala",
       "x": "Return onions. Add ginger-garlic and chillies, 1 min. Stir in cashew paste, low heat 2–3 min until oil starts to separate.",
-      "min": 3
+      "uses": [
+        "1.4",
+        "1.5",
+        "1.3"
+      ]
     },
     {
       "t": "Finish with cream",
       "x": "Add cream, low heat, simmer 12–15 min until chicken is cooked. Season with salt, sugar and garam masala, 2–3 more min. Never raise the heat after cream goes in.",
-      "min": 13
+      "uses": [
+        "1.6",
+        "1.12",
+        "1.13",
+        "1.7"
+      ]
     }
   ],
   "notes": [

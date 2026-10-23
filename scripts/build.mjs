@@ -26,6 +26,13 @@ const recipes = readdirSync(join(root, "recipes"))
       if (typeof it.n !== "string") errors.push(`${file}: ingredient ${gi}.${ii} has no "n" (name)`);
       if (it.q != null && typeof it.q !== "number") errors.push(`${file}: ingredient "${it.n}" has a non-numeric "q"`);
     }));
+    (r.steps || []).forEach((s, si) => {
+      if (s.uses != null && !Array.isArray(s.uses)) errors.push(`${file}: step ${si + 1} "uses" must be a list`);
+      (s.uses || []).forEach(k => {
+        const [gi, ii] = String(k).split(".").map(Number);
+        if (!r.groups?.[gi]?.items?.[ii]) errors.push(`${file}: step ${si + 1} uses "${k}", but there's no ingredient ${k}`);
+      });
+    });
     return r;
   })
   .filter(Boolean)

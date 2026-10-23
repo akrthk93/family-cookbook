@@ -143,32 +143,58 @@
     {
       "t": "Start the marinara",
       "x": "Olive oil, medium. Onion and carrot 5–6 min. Sun-dried tomatoes and garlic 30 sec. Add tomatoes and seasoning, simmer low 20–25 min.",
-      "min": 22
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6",
+        "1.7",
+        "1.8",
+        "1.9"
+      ]
     },
     {
       "t": "Mix the meatballs",
       "x": "Combine everything with wet hands, don't overmix. Form 3cm balls (~30g), 8–10 total.",
-      "min": null
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7"
+      ]
     },
     {
       "t": "Pan-fry the meatballs",
       "x": "2 tbsp oil, medium. Brown on all sides, 8–10 min total. Not cooked through yet.",
-      "min": 9
+      "uses": [
+        "0.8"
+      ]
     },
     {
       "t": "Finish in sauce",
       "x": "Into the marinara, cover, simmer 12–15 min, turning once. Done at 74°C.",
-      "min": 13
+      "uses": []
     },
     {
       "t": "Cook the spaghetti",
       "x": "While meatballs finish, cook spaghetti al dente. Reserve 125ml water.",
-      "min": 10
+      "uses": [
+        "2.0"
+      ]
     },
     {
       "t": "Combine and serve",
       "x": "Toss with sauce, loosen with pasta water. Parmesan and parsley.",
-      "min": null
+      "uses": [
+        "2.1"
+      ]
     }
   ],
   "notes": []

@@ -87,32 +87,47 @@
     {
       "t": "Air-fry the broccoli",
       "x": "Toss florets with 1 tbsp olive oil, salt and pepper. Air fry at 200°C for 8–9 min, shaking halfway, until edges are charred. Set aside.",
-      "min": 9
+      "uses": [
+        "0.2",
+        "0.3"
+      ]
     },
     {
       "t": "Air-fry the salmon",
       "x": "Pat salmon dry, season both sides. Air fry skin-side down at 200°C for 8–10 min, no need to flip, until it just flakes at the thickest part. Set aside.",
-      "min": 9
+      "uses": [
+        "0.0"
+      ]
     },
     {
       "t": "Boil the pasta",
       "x": "While the air fryer runs, boil well-salted water. Cook orecchiette until al dente, about 10–11 min. Reserve 150ml pasta water before draining.",
-      "min": 10
+      "uses": [
+        "0.1"
+      ]
     },
     {
       "t": "Build the sauce",
       "x": "Heat 2 tbsp olive oil in the skillet over medium heat. Add garlic and lime zest. Sauté 30–45 sec until fragrant, not browned.",
-      "min": null
+      "uses": [
+        "0.3",
+        "0.4",
+        "0.5"
+      ]
     },
     {
       "t": "Combine",
       "x": "Add drained pasta and broccoli with a splash of pasta water. Toss over low heat 1–2 min, adding more water for a light glossy coating. Stir in lime juice off the heat.",
-      "min": 2
+      "uses": []
     },
     {
       "t": "Finish and serve",
       "x": "Stir through parsley. Plate, flake the salmon over and mix through. Chilli flakes and parmesan on adult portions; keep the child's plain.",
-      "min": null
+      "uses": [
+        "0.6",
+        "0.9",
+        "0.10"
+      ]
     }
   ],
   "notes": [

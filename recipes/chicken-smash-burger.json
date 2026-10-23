@@ -126,32 +126,55 @@
     {
       "t": "Prep the onion strips",
       "x": "Mix egg and thinned yogurt. Separately mix flour, panko, paprika and salt. Dip onions in egg wash, then dredge. Single layer in the basket, spray generously.",
-      "min": null
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6",
+        "1.7"
+      ]
     },
     {
       "t": "Air fry the onions",
       "x": "200°C for 10–12 min, shaking halfway. Work in batches. Keep warm in oven at 100°C.",
-      "min": 11
+      "uses": []
     },
     {
       "t": "Cook the peppers",
       "x": "Small pan, medium-high, drizzle of oil. Capsicum strips 8–10 min until softened and charred. Season.",
-      "min": 9
+      "uses": [
+        "0.5"
+      ]
     },
     {
       "t": "Mix and form the chicken",
       "x": "Combine chicken, chilli, garlic powder, salt and pepper. Divide into 4 balls (~110g each).",
-      "min": null
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4"
+      ]
     },
     {
       "t": "Smash and cook",
-      "x": "Medium-high, thin film of oil. Two balls in, press flat to 1cm immediately. 3 min, flip, add cheese, 2 more min. Repeat.",
-      "min": 3
+      "x": "Medium-high, thin film of oil. Two balls in, press flat to 1cm immediately. 3 min, flip, add cheese, 2 min more. Repeat.",
+      "uses": [
+        "0.9",
+        "0.6"
+      ]
     },
     {
       "t": "Toast and assemble",
       "x": "Toast buns cut-side down 1 min. Mayo on both halves. Two patties per bun, capsicum, then onion strips. Eat right away.",
-      "min": null
+      "uses": [
+        "0.7",
+        "0.8"
+      ]
     }
   ],
   "notes": [

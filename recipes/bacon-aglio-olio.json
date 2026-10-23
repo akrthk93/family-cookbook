@@ -71,37 +71,52 @@
     {
       "t": "Cook pasta",
       "x": "Well-salted water. Cook 1–2 min past packet time. Reserve 125ml pasta water.",
-      "min": 11
+      "uses": [
+        "0.0",
+        "0.5"
+      ]
     },
     {
       "t": "Render bacon",
       "x": "Bacon into a cold skillet, medium heat, 5–6 min until crisp. Remove, leave 1–2 tbsp fat.",
-      "min": 6
+      "uses": [
+        "0.1"
+      ]
     },
     {
       "t": "Build base",
       "x": "Add olive oil, drop to low. Garlic 2–3 min until just golden.",
-      "min": 3
+      "uses": [
+        "0.3",
+        "0.2"
+      ]
     },
     {
       "t": "Add heat",
       "x": "Chilli flakes 30 sec. Don't let garlic burn.",
-      "min": null
+      "uses": [
+        "0.4"
+      ]
     },
     {
       "t": "Create sauce",
       "x": "Add pasta water, simmer, reduce by half, 2–3 min.",
-      "min": 3
+      "uses": [
+        "0.5"
+      ]
     },
     {
       "t": "Combine",
       "x": "Pasta and bacon in, toss vigorously 1–2 min until silky.",
-      "min": 2
+      "uses": []
     },
     {
       "t": "Finish",
       "x": "Off heat, parsley, adjust salt. Parmesan on the side.",
-      "min": null
+      "uses": [
+        "0.7",
+        "0.8"
+      ]
     }
   ],
   "notes": []

@@ -77,32 +77,45 @@
     {
       "t": "Prep for roasting",
       "x": "Halve tomatoes through the equator. Cut side up in the basket with onion and unpeeled garlic. Drizzle with oil and a pinch of salt.",
-      "min": null
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3"
+      ]
     },
     {
       "t": "Roast",
       "x": "Air fry at 200°C for 18–20 min until tomato edges char and flesh is soft. Garlic should be soft inside the skin.",
-      "min": 19
+      "uses": []
     },
     {
       "t": "Transfer",
       "x": "Scrape everything into the saucepan, including juices. Squeeze garlic out of skins, discard skins.",
-      "min": null
+      "uses": []
     },
     {
       "t": "Simmer",
       "x": "Add water, sugar, pepper and oregano. Bring to a gentle boil, simmer uncovered 10 min.",
-      "min": 10
+      "uses": [
+        "0.8",
+        "0.4",
+        "0.5",
+        "0.9"
+      ]
     },
     {
       "t": "Blend",
       "x": "Off the heat, blend with hand blender until completely smooth.",
-      "min": null
+      "uses": []
     },
     {
       "t": "Finish with butter",
       "x": "Low heat, add cold butter, stir until incorporated. Adjust salt. Serve immediately.",
-      "min": null
+      "uses": [
+        "0.7",
+        "0.6"
+      ]
     }
   ],
   "notes": [

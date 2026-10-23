@@ -82,37 +82,52 @@
     {
       "t": "Prep rice and chicken",
       "x": "Rinse basmati until water runs clear. Halve chicken breasts lengthwise, season both sides with about 2 tsp Cajun seasoning.",
-      "min": null
+      "uses": [
+        "0.5",
+        "0.0",
+        "0.1"
+      ]
     },
     {
       "t": "Dissolve the stock",
       "x": "Stir Knorr cube into 415ml hot water.",
-      "min": null
+      "uses": [
+        "0.8",
+        "0.9"
+      ]
     },
     {
       "t": "Sauté (optional)",
-      "x": "Soften onion, then garlic, in oil. Deglaze with a splash of stock and scrape the bottom completely clean, or you'll get a Burn warning.",
-      "min": 4
+      "x": "Soften onion, then garlic, in oil, about 4 min. Deglaze with a splash of stock and scrape the bottom completely clean, or you'll get a Burn warning.",
+      "uses": [
+        "0.2",
+        "0.3",
+        "0.4"
+      ]
     },
     {
       "t": "Build the layers",
       "x": "Stir in bell pepper, tomato paste and remaining Cajun seasoning. Pour stock over, lay chicken on top, spread rice evenly over everything. Do NOT stir.",
-      "min": null
+      "uses": [
+        "0.6",
+        "0.7",
+        "0.1"
+      ]
     },
     {
       "t": "Pressure cook",
       "x": "Seal, valve to Sealing, High Pressure 7 min.",
-      "min": 7
+      "uses": []
     },
     {
       "t": "Release and shred",
       "x": "Natural release 5 min, then quick release. Shred chicken with two forks, stir everything together.",
-      "min": 5
+      "uses": []
     },
     {
       "t": "Serve",
       "x": "Finish with coriander and lime if you have them. Cool before portioning.",
-      "min": null
+      "uses": []
     }
   ],
   "notes": [

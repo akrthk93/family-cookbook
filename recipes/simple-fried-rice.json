@@ -73,22 +73,39 @@
     {
       "t": "Scramble the eggs",
       "x": "Beat eggs with 1.5g salt. 10ml oil in wok, medium-high, until just smoking. Cook eggs, stirring, 30–60 sec until barely liquid. To a plate.",
-      "min": null
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2"
+      ]
     },
     {
       "t": "Carrot and luncheon meat",
       "x": "5ml oil, medium heat. Carrot with 1.5g salt 2–4 min until browning. Add luncheon meat 2–3 min. To the egg plate.",
-      "min": 5
+      "uses": [
+        "0.2",
+        "0.3",
+        "0.1",
+        "0.4"
+      ]
     },
     {
       "t": "Fry the rice",
       "x": "Scallion whites with remaining 15ml oil, 1 min. Add rice, spread in an even layer. Sprinkle pepper and remaining 4g salt. Stir and press to break clumps until grains separate, 2–5 min.",
-      "min": 4
+      "uses": [
+        "0.5",
+        "0.2",
+        "0.6",
+        "0.7",
+        "0.1"
+      ]
     },
     {
       "t": "Finish and serve",
       "x": "Add peas, egg mix and scallion greens. Stir, breaking eggs into small pieces, until peas are warm, about 2 min.",
-      "min": 2
+      "uses": [
+        "0.8"
+      ]
     }
   ],
   "notes": []

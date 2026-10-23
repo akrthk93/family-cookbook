@@ -98,32 +98,50 @@
     {
       "t": "Season and sear",
       "x": "Season chicken. Oil, medium-high, sear 4–5 min per side. Remove.",
-      "min": 5
+      "uses": [
+        "0.0",
+        "0.11",
+        "0.1"
+      ]
     },
     {
       "t": "Build flavour base",
       "x": "Onion 5 min. Add garlic, tomato paste and spices, 1 min until paste darkens.",
-      "min": 6
+      "uses": [
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8"
+      ]
     },
     {
       "t": "Add tomatoes",
       "x": "Tomatoes with juice, crush in the pan. Add stock, bring to simmer.",
-      "min": null
+      "uses": [
+        "0.9",
+        "0.10"
+      ]
     },
     {
       "t": "Braise chicken",
       "x": "Return chicken, cover, simmer 15–20 min until 75°C and tender.",
-      "min": 18
+      "uses": []
     },
     {
       "t": "Shred and reduce",
       "x": "Shred with forks, return, simmer uncovered 5–7 min until thick. Season.",
-      "min": 6
+      "uses": []
     },
     {
       "t": "Serve",
       "x": "Warm wraps in a dry pan, fill with tinga and toppings.",
-      "min": null
+      "uses": [
+        "0.12",
+        "0.13"
+      ]
     }
   ],
   "notes": []

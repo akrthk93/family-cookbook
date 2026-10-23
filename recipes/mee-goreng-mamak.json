@@ -120,32 +120,54 @@
     {
       "t": "Make the chilli paste",
       "x": "Blend soaked chillies, shallots and garlic with water until smooth.",
-      "min": null
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3"
+      ]
     },
     {
       "t": "Cook the red sauce",
-      "x": "Plenty of oil, small pan, low heat. Fry the paste until it breaks oil (red oil separates, paste looks drier). Add kicap manis, ketchup and colouring. Set aside.",
-      "min": 8
+      "x": "Plenty of oil, small pan, low heat. Fry the paste 8–10 min until it breaks oil (red oil separates, paste looks drier). Add kicap manis, ketchup and colouring. Set aside.",
+      "uses": [
+        "0.5",
+        "1.4",
+        "1.5",
+        "1.6"
+      ]
     },
     {
       "t": "Stir-fry",
       "x": "Wok, high heat. Cook protein through. Add cabbage, wilt slightly.",
-      "min": 3
+      "uses": [
+        "0.1",
+        "0.2"
+      ]
     },
     {
       "t": "Egg and noodles",
       "x": "Push to the side, crack in eggs and scramble. Add noodles, leafy veg and red sauce.",
-      "min": null
+      "uses": [
+        "0.3",
+        "0.0"
+      ]
     },
     {
       "t": "Finish",
       "x": "Toss until noodles are hot and evenly coated. Splash of water if dry. Salt to taste.",
-      "min": 2
+      "uses": [
+        "0.4"
+      ]
     },
     {
       "t": "Serve",
       "x": "With cucumber relish on the side (mix cucumber and onion with ketchup, chill 1 hr).",
-      "min": null
+      "uses": [
+        "2.0",
+        "2.1",
+        "2.2"
+      ]
     }
   ],
   "notes": []

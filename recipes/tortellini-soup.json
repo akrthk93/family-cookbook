@@ -104,17 +104,34 @@
     {
       "t": "Sauté aromatics",
       "x": "Sauté mode, highest setting. Heat oil, add onion, stir 2 min. Add garlic, stir until translucent, another 1–2 min.",
-      "min": 4
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2"
+      ]
     },
     {
       "t": "Pressure cook",
       "x": "Add basil, tomato paste, broth, tomatoes, chicken, salt, pepper and the dried tortellini. Stir gently to submerge. Seal lid, valve to sealing. Pressure cook 9 min high if using breast (11 min if leg/thigh). Quick release.",
-      "min": 9
+      "uses": [
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9",
+        "0.10"
+      ]
     },
     {
       "t": "Finish",
       "x": "Remove chicken, cube it, return to pot. Stir gently from here on; tortellini is delicate. Stir in spinach, Parmesan and warmed evaporated milk. Sauté briefly to wilt spinach and heat through. Serve.",
-      "min": null
+      "uses": [
+        "0.11",
+        "0.12",
+        "0.13"
+      ]
     }
   ],
   "notes": [

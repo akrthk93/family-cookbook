@@ -2,7 +2,12 @@
   "id": "french-beans-carrot-poriyal",
   "no": "13.02.25",
   "title": "French Beans Carrot Poriyal",
-  "tags": ["Indian", "Side", "Vegetarian", "South Indian"],
+  "tags": [
+    "Indian",
+    "Side",
+    "Vegetarian",
+    "South Indian"
+  ],
   "prep": "10 min",
   "cook": "12 min",
   "total": "22 min",
@@ -13,37 +18,122 @@
     {
       "g": "Vegetables",
       "items": [
-        { "q": 250, "u": "g", "n": "French beans, trimmed, 5mm pieces" },
-        { "q": 100, "u": "g", "n": "carrot, 5mm dice" },
-        { "q": 40, "u": "g", "n": "shallot or onion, finely chopped" }
+        {
+          "q": 250,
+          "u": "g",
+          "n": "French beans, trimmed, 5mm pieces"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "carrot, 5mm dice"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "shallot or onion, finely chopped"
+        }
       ]
     },
     {
       "g": "Tempering",
       "items": [
-        { "q": 10, "u": "ml", "n": "neutral oil" },
-        { "q": 3, "u": "g", "n": "mustard seeds" },
-        { "q": 3, "u": "g", "n": "urad dal" },
-        { "q": 1, "u": "", "n": "dried red chilli, broken" },
-        { "q": 1, "u": "", "n": "sprig curry leaves" }
+        {
+          "q": 10,
+          "u": "ml",
+          "n": "neutral oil"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "mustard seeds"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "urad dal"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "dried red chilli, broken"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "sprig curry leaves"
+        }
       ]
     },
     {
       "g": "Finish",
       "items": [
-        { "q": 2, "u": "g", "n": "turmeric powder" },
-        { "q": 2, "u": "g", "n": "salt" },
-        { "q": 30, "u": "ml", "n": "water" },
-        { "q": 20, "u": "g", "n": "grated coconut", "sub": "Desiccated coconut soaked in 1 tbsp warm water" }
+        {
+          "q": 2,
+          "u": "g",
+          "n": "turmeric powder"
+        },
+        {
+          "q": 2,
+          "u": "g",
+          "n": "salt"
+        },
+        {
+          "q": 30,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "grated coconut",
+          "sub": "Desiccated coconut soaked in 1 tbsp warm water"
+        }
       ]
     }
   ],
   "steps": [
-    { "t": "Temper", "x": "Heat the oil in the wok on medium. Add mustard seeds and wait until they pop. Add urad dal and stir 30 seconds until light golden. Add dried chilli and curry leaves.", "min": null },
-    { "t": "Soften the onion", "x": "Add the onion and cook until translucent.", "min": 2 },
-    { "t": "Steam the veg", "x": "Add beans, carrot, turmeric, salt and water. Stir, cover, and cook on medium-low until just tender.", "min": 5 },
-    { "t": "Dry out", "x": "Uncover, raise heat to medium and stir-fry until no liquid remains.", "min": 3 },
-    { "t": "Finish", "x": "Add the coconut and stir 1 minute. Turn off.", "min": 1 }
+    {
+      "t": "Temper",
+      "x": "Heat the oil in the wok on medium. Add mustard seeds and wait until they pop. Add urad dal and stir 30 seconds until light golden. Add dried chilli and curry leaves.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ]
+    },
+    {
+      "t": "Soften the onion",
+      "x": "Add the onion and cook until translucent, about 2 minutes.",
+      "uses": [
+        "0.2"
+      ]
+    },
+    {
+      "t": "Steam the veg",
+      "x": "Add beans, carrot, turmeric, salt and water. Stir, cover, and cook on medium-low until just tender, about 5 minutes.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "2.0",
+        "2.1",
+        "2.2"
+      ]
+    },
+    {
+      "t": "Dry out",
+      "x": "Uncover, raise heat to medium and stir-fry until no liquid remains, about 3 minutes.",
+      "uses": []
+    },
+    {
+      "t": "Finish",
+      "x": "Add the coconut and stir 1 minute. Turn off.",
+      "uses": [
+        "2.3"
+      ]
+    }
   ],
   "notes": [
     "Start this while the curry is pressure cooking.",

@@ -62,27 +62,36 @@
     {
       "t": "Prep the sauce base",
       "x": "Whisk eggs, yolk, Parmesan and pepper. Dice luncheon meat.",
-      "min": null
+      "uses": [
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.1"
+      ]
     },
     {
       "t": "Cook the pasta",
       "x": "Salted water, 1–2 min under packet time. Reserve 1 cup pasta water.",
-      "min": 9
+      "uses": [
+        "0.0"
+      ]
     },
     {
       "t": "Warm the meat",
       "x": "Olive oil, medium-low, luncheon meat 1–2 min.",
-      "min": 2
+      "uses": [
+        "0.5"
+      ]
     },
     {
       "t": "Make the carbonara",
       "x": "Hot pasta into the skillet, OFF the heat. Pour egg mix over while tossing hard. Add pasta water 2–3 tbsp at a time until creamy.",
-      "min": null
+      "uses": []
     },
     {
       "t": "Serve",
       "x": "Taste (probably no salt needed). Extra Parmesan and pepper.",
-      "min": null
+      "uses": []
     }
   ],
   "notes": []

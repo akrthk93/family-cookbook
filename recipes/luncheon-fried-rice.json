@@ -83,27 +83,47 @@
     {
       "t": "Scramble the eggs",
       "x": "Beat eggs with ¼ tsp salt. Hot kadai, 1 tsp oil, cook 30–60 sec. To a plate.",
-      "min": null
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2"
+      ]
     },
     {
       "t": "Aromatics and veg",
       "x": "1 tsp oil, medium. Onion with ¼ tsp salt 2–3 min. Garlic and carrot 2–3 min.",
-      "min": 5
+      "uses": [
+        "0.2",
+        "0.3",
+        "0.1",
+        "0.4",
+        "0.5"
+      ]
     },
     {
       "t": "Add luncheon meat",
       "x": "Cook 2–3 min until lightly browned. All to the egg plate.",
-      "min": 3
+      "uses": [
+        "0.6"
+      ]
     },
     {
       "t": "Fry the rice",
       "x": "Remaining 2 tsp oil. Rice in an even layer, pepper jeera and remaining ¾ tsp salt. Press and stir 3–5 min until grains separate.",
-      "min": 4
+      "uses": [
+        "0.2",
+        "0.7",
+        "0.8",
+        "0.1"
+      ]
     },
     {
       "t": "Finish",
       "x": "Add peas, eggs, veg mix and chicken 65. Stir 2 min until hot.",
-      "min": 2
+      "uses": [
+        "0.9",
+        "0.10"
+      ]
     }
   ],
   "notes": []

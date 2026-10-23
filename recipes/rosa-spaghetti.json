@@ -117,37 +117,61 @@
     {
       "t": "Cook the veggie balls",
       "x": "Prepare per packet. Set aside.",
-      "min": null
+      "uses": [
+        "1.0"
+      ]
     },
     {
       "t": "Boil the pasta",
       "x": "Heavily salted water. Cook spaghetti 1 min less than packet. Reserve 120ml pasta water.",
-      "min": 9
+      "uses": [
+        "0.0",
+        "0.1",
+        "1.12"
+      ]
     },
     {
       "t": "Build the tomato base",
       "x": "Olive oil, medium heat. Onion with a pinch of salt 5–6 min. Add garlic and chilli 1–2 min. Add tomato paste, stir constantly 2 min until brick-coloured.",
-      "min": 9
+      "uses": [
+        "1.7",
+        "1.2",
+        "1.1",
+        "1.8",
+        "1.3"
+      ]
     },
     {
       "t": "Add fresh tomatoes",
       "x": "Cook 5–6 min until broken down and jammy. Add oregano and basil.",
-      "min": 6
+      "uses": [
+        "1.4",
+        "1.9",
+        "1.10"
+      ]
     },
     {
       "t": "Add the cream",
       "x": "Stir in cream, simmer 3–4 min until uniform pink and slightly thick. Season.",
-      "min": 4
+      "uses": [
+        "1.5",
+        "1.11"
+      ]
     },
     {
       "t": "Finish the pasta",
       "x": "Toss spaghetti in the skillet, adding pasta water until silky. Parmesan off the heat, toss again.",
-      "min": null
+      "uses": [
+        "1.12",
+        "1.6"
+      ]
     },
     {
       "t": "Serve",
       "x": "Top with veggie balls, extra Parmesan, chilli flakes and parsley.",
-      "min": null
+      "uses": [
+        "2.0"
+      ]
     }
   ],
   "notes": [
