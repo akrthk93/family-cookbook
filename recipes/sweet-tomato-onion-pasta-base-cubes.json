@@ -6,7 +6,10 @@
   "total": "1 h 5 min (plus 3 h freezing)",
   "serves": 2,
   "equip": "1 stainless steel pasta pot/stockpot, Philips hand blender, 60ml-cell silicone tray(s) with lid",
-  "tags": [],
+  "tags": [
+    "Flavour Base",
+    "Freezer"
+  ],
   "groups": [
     {
       "g": "Base",
@@ -118,5 +121,5 @@
   ],
   "source": "None (original; inspired by LifeByMikeG's 5 Flavor Cubes doc)",
   "no": "",
-  "updated": 1792738224435
+  "updated": 1792741218745
 }
