@@ -1,0 +1,76 @@
+{
+  "id": "ginger-garlic-paste-cubes",
+  "title": "Ginger-Garlic Paste Cubes",
+  "prep": "25 min",
+  "cook": "0 min",
+  "total": "35 min (plus 3 h freezing)",
+  "serves": 2,
+  "equip": "Mixie (large jar), 15ml-cell silicone tray with lid",
+  "tags": [],
+  "groups": [
+    {
+      "g": "Paste",
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "ginger, scrubbed and sliced 1 cm thick (peel with a spoon)",
+          "sub": "galangal for Thai dishes"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "garlic cloves, peeled",
+          "sub": "peeled garlic from Sheng Siong or Mustafa"
+        },
+        {
+          "q": 60,
+          "u": "ml",
+          "n": "neutral oil"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep",
+      "x": "Scrape the ginger skin off with a spoon. Slice the ginger 1 cm thick so it doesn't jam the jar. Peel the garlic.",
+      "uses": [
+        "0.0",
+        "0.1"
+      ]
+    },
+    {
+      "t": "Blend in two batches",
+      "x": "For each batch put 100 g ginger, 100 g garlic, 30 ml oil and 1/2 tsp salt in the mixie jar. Run in 15-second bursts for 60 sec total, scraping down 2-3 times, until a smooth paste. Don't add water, as it makes ice crystals.",
+      "uses": [
+        "0.2",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Fill",
+      "x": "Combine both batches and stir. Spoon into the 15 ml cells and level the tops.",
+      "uses": []
+    },
+    {
+      "t": "Freeze immediately",
+      "x": "Freeze for 3 h until solid. Pop out, double-bag, press out the air and label with name and date.",
+      "uses": []
+    }
+  ],
+  "notes": [
+    "Use 2 cubes (30 g) for 4-5 portions. Add from frozen to hot oil and stir for 1 min until the raw smell is gone, without browning.",
+    "Safety: garlic in oil must stay frozen or refrigerated. Never leave the paste out at room temperature.",
+    "No chilli in the cubes. Add chilli to the dish itself.",
+    "Freezer life: 3 months. After that the flavour fades."
+  ],
+  "source": "None (original; inspired by LifeByMikeG's 5 Flavor Cubes doc)",
+  "no": "",
+  "updated": 1792738187125
+}
