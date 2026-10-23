@@ -1,0 +1,55 @@
+{
+  "id": "lime-juice-and-zest-cubes",
+  "title": "Lime Juice and Zest Cubes",
+  "prep": "20 min",
+  "cook": "0 min",
+  "total": "20 min (plus 2 h freezing)",
+  "serves": 2,
+  "equip": "None (no cooking); 15ml-cell silicone tray with lid",
+  "tags": [],
+  "groups": [
+    {
+      "g": "Cubes",
+      "items": [
+        {
+          "q": 10,
+          "u": "",
+          "n": "limes (about 300 ml juice)",
+          "sub": "7 lemons | calamansi, same juice volume"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Wash and zest first",
+      "x": "Wash and dry the limes. Zest all 10 with a fine grater, green part only (the white pith is bitter). If you have no grater, peel the green with a vegetable peeler and mince it finely.",
+      "uses": [
+        "0.0"
+      ]
+    },
+    {
+      "t": "Juice",
+      "x": "Roll each lime firmly on the counter, cut and squeeze. Strain out the seeds. You should have about 300 ml.",
+      "uses": []
+    },
+    {
+      "t": "Combine",
+      "x": "Stir the zest into the juice.",
+      "uses": []
+    },
+    {
+      "t": "Fill and freeze",
+      "x": "Fill the 15 ml cells, stirring the juice between spoonfuls so the zest is spread evenly. Freeze for 2 h until solid. Pop out, bag, press out the air and label with name and date.",
+      "uses": []
+    }
+  ],
+  "notes": [
+    "Use 1 cube (15 ml) per curry or dal for 4-5 portions. Add it at the end, off the heat. Heat and pressure dull the brightness, so never add it before pressure cooking.",
+    "For raita, chutney and fresh finishing squeezes, fresh lime still tastes better.",
+    "Freezer life: 3 months. Calamansi seeds are bitter, so strain thoroughly."
+  ],
+  "source": "None (original)",
+  "no": "",
+  "updated": 1792738237237
+}
