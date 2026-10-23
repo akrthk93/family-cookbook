@@ -6,7 +6,10 @@
   "total": "8 min",
   "serves": 2,
   "equip": "1 saucepan, fine-mesh sieve",
-  "tags": [],
+  "tags": [
+    "Quick",
+    "Drink"
+  ],
   "groups": [
     {
       "g": null,
@@ -78,5 +81,5 @@
   ],
   "source": "Cookbook, p. 260 (Drinks), \"The Perfect Masala Chai\"",
   "no": "",
-  "updated": 1792726600143
+  "updated": 1792741284010
 }
