@@ -6,7 +6,10 @@
   "total": "35 min (plus 3 h freezing)",
   "serves": 2,
   "equip": "Mixie (large jar), 15ml-cell silicone tray with lid",
-  "tags": [],
+  "tags": [
+    "Flavour Base",
+    "Freezer"
+  ],
   "groups": [
     {
       "g": "Paste",
@@ -72,5 +75,5 @@
   ],
   "source": "None (original; inspired by LifeByMikeG's 5 Flavor Cubes doc)",
   "no": "",
-  "updated": 1792738187125
+  "updated": 1792741230381
 }
