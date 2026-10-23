@@ -625,7 +625,7 @@ function viewCook(){
     </div>
     <div class="wrap nav">
       <button class="btn" data-act="prev" ${i===0?"disabled style=\"opacity:.4\"":""}>Back</button>
-      <button class="btn primary" data-act="${i===n-1?"cookx":"next"}" style="min-height:58px;font-size:19px">${i===n-1?"Finish":"Next step"}</button>
+      <button class="btn primary" data-act="${i===n-1?"finish":"next"}" style="min-height:58px;font-size:19px">${i===n-1?"Finish":"Next step"}</button>
     </div>
   </div>
   ${S.sheet ? `<div class="scrim" data-act="sheetx"></div><div class="sheet" role="dialog" aria-label="Ingredients"><div class="wrap"><div class="row between"><h2>Ingredients</h2><button class="icon" data-act="sheetx" aria-label="Close">${ICON.close}</button></div>${ingList(r, k, true)}</div></div>` : ""}`;
@@ -806,6 +806,7 @@ document.addEventListener("click", async e => {
     case "tdone": S.timers = S.timers.filter(x => x.id !== b.dataset.t); renderTray(); break;
     case "cook": S.cook = { i:0 }; S.sheet = false; render(); wake(true); break;
     case "cookx": S.cook = null; S.sheet = false; render(); break;
+    case "finish": S.cook = null; S.sheet = false; S.checked[r.id] = {}; lsSet("ck", S.checked); render(); toast("Finished. Ingredient ticks cleared"); break;
     case "next": S.cook.i = Math.min(r.steps.length - 1, S.cook.i + 1); render(); $("#cookBody")?.scrollTo(0,0); break;
     case "prev": S.cook.i = Math.max(0, S.cook.i - 1); render(); $("#cookBody")?.scrollTo(0,0); break;
     case "sheet": S.sheet = true; render(); break;
