@@ -666,7 +666,7 @@ function viewEdit(){
     </div></header>
   ${!S.token ? `<div class="wrap" style="margin-top:12px"><p class="notice">Saving isn't set up on this phone, so this recipe will stay on this phone only. <button class="btn ghost" style="min-height:36px;margin-top:6px" data-act="settings">Set up saving</button></p></div>` : ""}
   <main class="wrap"><form class="form" id="editForm">
-    ${!e.id ? `<label for="f-paste">Paste a recipe <small>Paste one Claude wrote and the fields below fill themselves</small></label><textarea id="f-paste" placeholder="# Recipe name&#10;## Ingredients&#10;- 500g chicken&#10;## Method&#10;1. **Sear** …"></textarea><button class="btn" type="button" data-act="parse">Fill from pasted text</button>` : ""}
+    <label for="f-paste">${e.id ? "Paste an updated recipe" : "Paste a recipe"} <small>${e.id ? "Paste a new version from Claude and the fields below are replaced" : "Paste one Claude wrote and the fields below fill themselves"}</small></label><textarea id="f-paste" placeholder="# Recipe name&#10;## Ingredients&#10;- 500g chicken&#10;## Method&#10;1. **Sear** …"></textarea><button class="btn" type="button" data-act="parse">${e.id ? "Replace from pasted text" : "Fill from pasted text"}</button>
     <label>Name<input id="f-title" value="${esc(e.title)}" required></label>
     <div class="grid3">
       <label>Prep<input id="f-prep" value="${esc(e.prep)}"></label>
@@ -830,7 +830,11 @@ document.addEventListener("click", async e => {
     case "parse": {
       const p = parseMarkdown($("#f-paste").value);
       if (!p.title && !p.groups.length) { toast("Couldn't find a recipe in that text"); break; }
-      S.editing = { ...S.editing, ...p }; S._force = true; render(); toast("Filled in. Check it, then Save");
+      const cur = S.editing;
+      // Remember the saved steps/ingredients so hand-checked "goes in now" links survive unchanged steps.
+      const orig = cur._orig || (cur.id ? { groups: cur.groups, steps: cur.steps } : null);
+      S.editing = { ...cur, ...p, source: p.source || cur.source, tags: p.tags.length ? p.tags : cur.tags, ...(orig ? { _orig: orig } : {}) };
+      S._force = true; render(); toast(cur.id ? "Replaced. Check it, then Save" : "Filled in. Check it, then Save");
       break;
     }
     case "save": {
@@ -846,7 +850,7 @@ document.addEventListener("click", async e => {
         notes: $("#f-notes").value.split("\n").map(l => l.trim()).filter(Boolean),
         source: v("f-source") || null, no: old.no || "", updated: Date.now()
       };
-      doc.steps = linkSteps(old, doc.groups, doc.steps);
+      doc.steps = linkSteps(old._orig || old, doc.groups, doc.steps);
       if (old.servesNote) doc.servesNote = old.servesNote;
       if (!doc.id) { let id = slug(title), n = 2; while (S.recipes.some(x => x.id === id)) id = slug(title) + "-" + n++; doc.id = id; }
       S.local[doc.id] = doc; lsSet("localRecipes", S.local);   // always usable here straight away
