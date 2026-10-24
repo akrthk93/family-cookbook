@@ -200,10 +200,10 @@ const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } ca
 const S = {
   ready:false, loadFailed:false,
   shared:[], local: lsGet("localRecipes", {}),   // local = saved on this phone, not yet in the published list
-  deleted: lsGet("deleted", []),                   // deleted here, waiting for the site to rebuild without it
+  deleted: lsGet("deleted", []).filter(e => e && typeof e === "object"),   // {id, at}: deleted here, hidden until the site rebuilds without it (10 min at most)
   token: lsGet("ghToken", ""), settings:false, confirmDel:false, busy:false,
   get recipes(){
-    const shared = this.shared.filter(r => !this.deleted.includes(r.id)).map(r => { const l = this.local[r.id]; return l ? { ...l, _local: !l._pushed, _pending: !!l._pushed } : r; });
+    const shared = this.shared.filter(r => !this.deleted.some(e => e.id === r.id)).map(r => { const l = this.local[r.id]; return l ? { ...l, _local: !l._pushed, _pending: !!l._pushed } : r; });
     const extra = Object.values(this.local).filter(l => !this.shared.some(r => r.id === l.id)).map(l => ({ ...l, _local: !l._pushed, _pending: !!l._pushed }));
     return [...shared, ...extra];
   },
@@ -299,7 +299,7 @@ async function load(){
     // drop local copies that have now landed on GitHub unchanged
     for (const id of Object.keys(S.local)) if (S.shared.some(r => r.id === id && (r.updated || 0) >= (S.local[id].updated || 0))) delete S.local[id];
     lsSet("localRecipes", S.local);
-    S.deleted = S.deleted.filter(id => S.shared.some(r => r.id === id));
+    S.deleted = S.deleted.filter(e => Date.now() - e.at < 600000 && S.shared.some(r => r.id === e.id));
     lsSet("deleted", S.deleted);
   } catch { S.loadFailed = true; }
   S.ready = true;
@@ -853,6 +853,7 @@ document.addEventListener("click", async e => {
       doc.steps = linkSteps(old._orig || old, doc.groups, doc.steps);
       if (old.servesNote) doc.servesNote = old.servesNote;
       if (!doc.id) { let id = slug(title), n = 2; while (S.recipes.some(x => x.id === id)) id = slug(title) + "-" + n++; doc.id = id; }
+      S.deleted = S.deleted.filter(e => e.id !== doc.id); lsSet("deleted", S.deleted);   // saving brings a deleted recipe back
       S.local[doc.id] = doc; lsSet("localRecipes", S.local);   // always usable here straight away
       history.pushState(null, "", "#" + encodeURIComponent(doc.id));
       if (!S.token) { go({ view:"recipe", rid:doc.id, tab:"recipes" }); toast("Saved on this phone"); break; }
@@ -881,7 +882,7 @@ document.addEventListener("click", async e => {
         if (!S.token) { toast("Set up saving first, so the delete reaches every phone"); go({ settings:true }); break; }
         try { await deleteRecipe(d); }
         catch (err) { toast(err instanceof SaveError ? err.message : "Couldn't delete. Try again"); S._force = true; render(); break; }
-        if (!S.deleted.includes(d.id)) S.deleted.push(d.id); lsSet("deleted", S.deleted);
+        S.deleted = S.deleted.filter(e => e.id !== d.id); S.deleted.push({ id: d.id, at: Date.now() }); lsSet("deleted", S.deleted);
       }
       delete S.local[d.id]; lsSet("localRecipes", S.local);
       history.pushState(null, "", location.pathname);
