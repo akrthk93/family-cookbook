@@ -50,6 +50,23 @@ Saving from the app needs a one-time setup per phone (Settings → Saving recipe
 - `uses` lists the ingredients that go in at that step as `group.item` positions (`"1.3"` = 2nd group, 4th item). Cook mode shows them under "Goes in now". List each ingredient once, at the step where it's added. If `uses` is missing, the app guesses from the step text.
 - The file name must match `id`. The build fails with a clear message if a recipe is malformed, so a bad file never takes the site down.
 
+## What to cook now
+
+The top of the Recipes screen suggests recipes for the current part of the week. The plan per weekday is set in Settings → Weekly plan (default: Sunday block on Sunday, dosa nights Tue/Thu, component nights Mon/Wed, weekend cooks Fri/Sat). Before 10am it shows breakfast; after 9:30pm it shows tomorrow's plan with a reminder of what to take out of the freezer. The chips under the suggestions show any other plan.
+
+A recipe joins a plan through its tags:
+
+| Tag | Shows up on |
+|---|---|
+| `Sunday block` | Prep day (freezer cubes, sambar) |
+| `Lunch batch` | Prep day, as "This week's lunch": the one made least recently |
+| `Dosa night` | Dosa nights |
+| `Weeknight` | Component nights |
+| `Weekend` | Weekend cooks |
+| `Breakfast`, `Drinks` | Mornings |
+
+"Made it today" on a recipe (or finishing cook mode) records when it was last made. Suggestions list the least recently made first. This history is kept on each phone.
+
 ## Send to Reminders (once per phone)
 
 Create a Shortcut named exactly **Add to Family List**: Split Text (Shortcut Input, by New Lines) → Repeat with Each → Add New Reminder (Repeat Item, list = family shopping list). The app's **Send to Reminders** button runs it.

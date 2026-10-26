@@ -163,6 +163,29 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 .notice{padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
 .notice.tip{display:flex;gap:10px;align-items:flex-start;color:var(--ink)}
 .publish{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+/* "Right now": what to cook for this slot of the week, above the full list */
+.now{margin:2px 0 20px}
+.now .kick{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.now h2{margin-top:2px}
+.now .why{margin:4px 0 0;color:var(--muted);font-size:15px}
+.now .eve{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:var(--turmeric);color:var(--turmeric-ink);font-size:15px;font-weight:700}
+.now .chips{padding-block:10px 0}
+.now .chip{padding:6px 12px;font-size:14px}
+.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin:10px -16px 0;padding:0 16px 4px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail .card{flex:none;width:min(78%,300px);scroll-snap-align:start;display:flex;flex-direction:column}
+.rail .card.pick{border:2px solid var(--accent);background:var(--accent-soft)}
+.rail .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:4px}
+.rail .meta{margin-top:auto;padding-top:6px}
+.now .none{margin:10px 0 0;padding:12px 14px;border-radius:12px;border:1px dashed var(--line);color:var(--muted);font-size:15px}
+.listhead{margin:0 0 8px}
+.made{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:15px}
+.made .btn{min-height:40px}
+.sched{list-style:none;margin:10px 0 0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.sched li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px 8px 16px;border-top:1px solid var(--line)}
+.sched li:first-child{border-top:0}
+.sched label{font-weight:700}
+.sched select{min-width:0;flex:0 1 190px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:16px}
 </style>
 </head>
 <body>
@@ -212,9 +235,56 @@ const S = {
   q:"", tag:null,
   scale:{}, checked: lsGet("ck", {}), openSub:{},
   cook:null, sheet:false, editing:null, published:null, confirmClear:false,
-  timers:[], tipHidden: lsGet("tipHidden", false)
+  timers:[], tipHidden: lsGet("tipHidden", false),
+  made: lsGet("made", {}),            // id -> {at, prev}: when this phone last marked it made
+  sched: lsGet("sched", null), slot:null   // slot = plan picked by hand on the list screen (null = follow the clock)
 };
 const saveShop = () => { lsSet("shop", S.shop); };
+
+/* ---------- what to cook right now ---------- */
+// Each plan is a slot of the week. A recipe shows up in a plan when it carries one of the plan's tags.
+const PLANS = {
+  breakfast: { name:"Breakfast", tags:["Breakfast","Drinks","Drink"], why:"Something quick before the day starts." },
+  prep:      { name:"Sunday block", tags:["Sunday block","Lunch batch"], why:"Lunch batch in the Instant Pot, sambar for dosa nights, and any freezer cubes running low.",
+               eve:"Move the chicken for the lunch batch from the freezer to the fridge tonight." },
+  dosa:      { name:"Dosa night", tags:["Dosa night"], why:"Sambar from the freezer and a fresh chutney. Crack an egg on the dosa for protein.",
+               eve:"Move a sambar box from the freezer to the fridge tonight." },
+  component: { name:"Component night", tags:["Weeknight"], why:"20 minutes or less, built from what's already prepped." },
+  weekend:   { name:"Weekend cook", tags:["Weekend"], why:"Time for something slower." },
+  off:       { name:"Night off", tags:[], why:"Eating out or leftovers. Nothing to cook." }
+};
+const DAY_PLANS = ["prep","component","dosa","weekend","off"];
+const DEFAULT_SCHED = ["prep","component","dosa","component","dosa","weekend","weekend"];   // Sun..Sat
+const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const sched = () => DEFAULT_SCHED.map((p, i) => PLANS[S.sched?.[i]] ? S.sched[i] : p);
+function slotNow(d = new Date()){
+  const h = d.getHours() + d.getMinutes() / 60, day = d.getDay(), s = sched();
+  if (h >= 21.5) { const p = s[(day + 1) % 7]; return { plan:p, when:"Tomorrow", eve: PLANS[p].eve }; }
+  if (h < 10) return { plan:"breakfast", when:"This morning", later: s[day] };
+  return { plan: s[day], when: h >= 15 && s[day] !== "prep" ? "Tonight" : "Today" };
+}
+const madeAt = id => S.made[id]?.at || 0;
+const dayStart = t => { const d = new Date(t); d.setHours(0,0,0,0); return d.getTime(); };
+function ago(t){
+  if (!t) return "Not made yet";
+  const n = Math.round((dayStart(Date.now()) - dayStart(t)) / 864e5);
+  return n <= 0 ? "Made today" : n === 1 ? "Made yesterday" : n < 14 ? `Made ${n} days ago` : n < 60 ? `Made ${Math.round(n/7)} weeks ago` : `Made ${Math.round(n/30)} months ago`;
+}
+const hash = s => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return h; };
+const thisWeek = () => Math.floor((Date.now() / 864e5 + 4) / 7);
+// Least recently made first; recipes never made rotate by week so the same one doesn't always lead.
+const byMade = (a, b) => madeAt(a.id) - madeAt(b.id) || hash(a.id + thisWeek()) - hash(b.id + thisWeek());
+const tagged = (r, tags) => (r.tags || []).some(t => tags.includes(t));
+function markMade(id){
+  const cur = S.made[id];
+  if (cur && dayStart(cur.at) === dayStart(Date.now())) return;   // already counted today
+  S.made[id] = { at: Date.now(), prev: cur?.at || 0 }; lsSet("made", S.made);
+}
+function unmarkMade(id){
+  const prev = S.made[id]?.prev;
+  if (prev) S.made[id] = { at: prev, prev: 0 }; else delete S.made[id];
+  lsSet("made", S.made);
+}
 
 /* ---------- quantities ---------- */
 /* ---------- times in step text -> timers ---------- */
@@ -530,6 +600,36 @@ function filtered(){
     .sort((a,b) => (b._local?1:0) - (a._local?1:0) || (b.no||"").localeCompare(a.no||"") || (b.updated||0) - (a.updated||0) || a.title.localeCompare(b.title));
 }
 const isStandalone = () => window.navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+function railCard(r, label, pick){
+  return `<button class="card${pick ? " pick" : ""}" data-act="open" data-id="${esc(r.id)}">
+    ${label ? `<div class="lbl">${esc(label)}</div>` : ""}
+    <div class="t">${esc(r.title)}</div>
+    <div class="meta"><span>${esc(r.total || "")}</span><span>${esc(ago(madeAt(r.id)))}</span></div>
+  </button>`;
+}
+function viewNow(){
+  const auto = slotNow(), key = S.slot || auto.plan, P = PLANS[key], manual = !!S.slot && S.slot !== auto.plan;
+  const when = manual ? "Picked" : auto.when;
+  let cards = "";
+  if (key === "prep") {
+    const lunches = S.recipes.filter(r => tagged(r, ["Lunch batch"])).sort(byMade);
+    const prep = S.recipes.filter(r => tagged(r, ["Sunday block"]) && !lunches.includes(r)).sort(byMade);
+    cards = [lunches[0] && railCard(lunches[0], "This week's lunch", true), ...prep.map(r => railCard(r)), ...lunches.slice(1).map(r => railCard(r, "Other lunch"))].filter(Boolean).join("");
+  } else {
+    cards = S.recipes.filter(r => tagged(r, P.tags)).sort(byMade).map(r => railCard(r)).join("");
+  }
+  const empty = key === "off" ? "" : `<p class="none">Nothing tagged “${esc(P.tags[0])}” yet. Add that tag to a recipe and it shows up here.</p>`;
+  return `<section class="now" aria-label="What to cook now">
+    <div class="kick">${esc(when)}</div>
+    <h2>${esc(P.name)}</h2>
+    <p class="why">${esc(P.why)}${!manual && auto.later && auto.later !== "off" ? ` Later today: ${esc(PLANS[auto.later].name)}.` : ""}</p>
+    ${!manual && auto.eve ? `<p class="eve">${esc(auto.eve)}</p>` : ""}
+    ${cards ? `<div class="rail">${cards}</div>` : empty}
+    <div class="chips" role="toolbar" aria-label="Show another part of the week">
+      ${["breakfast", ...DAY_PLANS.filter(p => p !== "off")].map(p => `<button class="chip" data-act="slot" data-slot="${p}" aria-pressed="${p === key}">${esc(PLANS[p].name)}</button>`).join("")}
+    </div>
+  </section>`;
+}
 function viewList(){
   const list = filtered();
   const tip = !isStandalone() && !S.tipHidden && /iPhone|iPad|iPod/.test(navigator.userAgent);
@@ -546,6 +646,7 @@ function viewList(){
     ${!S.ready ? `<p class="empty">Loading recipes…</p>` :
       !S.recipes.length ? `<div class="empty"><p>No recipes yet.</p><p>Tap <b>New</b> to paste one in.</p></div>` :
       !list.length ? `<p class="empty">Nothing matches “${esc(S.q || S.tag)}”.</p>` :
+      (!S.q && !S.tag ? viewNow() + `<h3 class="listhead">All recipes</h3>` : "") +
       `<div class="list">${list.map(r => `<button class="card" data-act="open" data-id="${esc(r.id)}">
         <div class="t">${esc(r.title)}</div>
         <div class="meta"><span>${esc(r.total || "")}</span><span>Serves ${r.serves || "?"}</span>${r.equip ? `<span>${esc(r.equip.split(",")[0])}</span>` : ""}</div>
@@ -584,6 +685,9 @@ function viewRecipe(){
       </div>
       ${r.equip ? `<div class="equip">${esc(r.equip)}</div>` : ""}
       <button class="btn primary big" data-act="cook">Start cooking</button>
+      <div class="made"><span>${esc(ago(madeAt(r.id)))}</span>${dayStart(madeAt(r.id)) === dayStart(Date.now())
+        ? `<button class="btn ghost" data-act="unmade">Undo</button>`
+        : `<button class="btn ghost" data-act="made">Made it today</button>`}</div>
     </div>
     <section class="block">
       <div class="row between"><h2>Ingredients</h2>
@@ -712,6 +816,13 @@ function viewSettings(){
            </form>
            <p class="equip">The key only works on the family-cookbook recipes and stays on this phone. You can paste the same key on the other family phone.</p>`}
     </section>
+    <section class="block">
+      <h2>Weekly plan</h2>
+      <p class="why" style="margin:6px 0 0;color:var(--muted)">Decides what the Recipes screen suggests each evening. Mornings before 10am show breakfast; after 9:30pm it shows tomorrow's plan.</p>
+      <ul class="sched">${[1,2,3,4,5,6,0].map(i => `<li><label for="sd-${i}">${DAYS[i]}</label>
+        <select id="sd-${i}" data-day="${i}">${DAY_PLANS.map(p => `<option value="${p}" ${sched()[i] === p ? "selected" : ""}>${esc(PLANS[p].name)}</option>`).join("")}</select></li>`).join("")}</ul>
+      <p class="equip" style="margin-top:8px">Saved on this phone. Recipes join a plan through their tags: Sunday block, Lunch batch, Dosa night, Weeknight, Weekend, Breakfast.</p>
+    </section>
   </main>`;
 }
 
@@ -744,6 +855,12 @@ const go = patch => { Object.assign(S, patch); S._force = true; S._lastView = nu
 
 /* ---------- events ---------- */
 document.addEventListener("input", e => { if (e.target.id === "q") { S.q = e.target.value; render(); } });
+document.addEventListener("change", e => {
+  const d = e.target.dataset?.day; if (d == null) return;
+  S.sched = sched(); S.sched[+d] = e.target.value; lsSet("sched", S.sched); toast(`${DAYS[+d]}: ${PLANS[e.target.value].name}`);
+});
+// the suggestion depends on the clock, so refresh it when the app comes back to the front
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && S.view === "list" && !S.settings) { S.slot = null; render(); } });
 document.addEventListener("submit", e => {
   e.preventDefault();
   if (e.target.id === "addForm") { const v = $("#addItem").value.trim(); if (v) { addShop([{ name:v }]); const i = $("#addItem"); if (i) { i.value = ""; i.focus(); } } }
@@ -806,7 +923,10 @@ document.addEventListener("click", async e => {
     case "tdone": S.timers = S.timers.filter(x => x.id !== b.dataset.t); renderTray(); break;
     case "cook": S.cook = { i:0 }; S.sheet = false; render(); wake(true); break;
     case "cookx": S.cook = null; S.sheet = false; render(); break;
-    case "finish": S.cook = null; S.sheet = false; S.checked[r.id] = {}; lsSet("ck", S.checked); render(); toast("Finished. Ingredient ticks cleared"); break;
+    case "finish": S.cook = null; S.sheet = false; S.checked[r.id] = {}; lsSet("ck", S.checked); markMade(r.id); render(); toast("Finished and marked as made today"); break;
+    case "made": markMade(r.id); render(); toast("Marked as made today"); break;
+    case "unmade": unmarkMade(r.id); render(); break;
+    case "slot": S.slot = b.dataset.slot === slotNow().plan ? null : b.dataset.slot; render(); break;
     case "next": S.cook.i = Math.min(r.steps.length - 1, S.cook.i + 1); render(); $("#cookBody")?.scrollTo(0,0); break;
     case "prev": S.cook.i = Math.max(0, S.cook.i - 1); render(); $("#cookBody")?.scrollTo(0,0); break;
     case "sheet": S.sheet = true; render(); break;
