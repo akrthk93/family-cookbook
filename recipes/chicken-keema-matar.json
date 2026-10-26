@@ -1,0 +1,201 @@
+{
+  "id": "chicken-keema-matar",
+  "title": "Chicken Keema Matar",
+  "prep": "10 min",
+  "cook": "30 min",
+  "total": "40 min",
+  "serves": 4,
+  "equip": "Instant Pot, Philips hand blender (chopper attachment)",
+  "tags": [
+    "Mains",
+    "Indian"
+  ],
+  "groups": [
+    {
+      "g": "Whole spices",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "ghee",
+          "sub": "neutral oil"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "cumin seeds"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "bay leaf"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "cloves"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "cinnamon stick (3cm)"
+        }
+      ]
+    },
+    {
+      "g": "Base",
+      "items": [
+        {
+          "q": 250,
+          "u": "g",
+          "n": "onion, finely chopped in the chopper"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "ginger-garlic paste",
+          "sub": "1 ginger-garlic freezer cube"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "green chillies, slit lengthwise (left whole so they can be removed)"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "tomato, chopped",
+          "sub": "150ml tomato purée | 1 onion-tomato masala freezer cube (then halve the onion and skip the tomato)"
+        }
+      ]
+    },
+    {
+      "g": "Ground spices",
+      "items": [
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Kashmiri chilli powder"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "coriander powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "garam masala"
+        },
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    },
+    {
+      "g": "Main",
+      "items": [
+        {
+          "q": 700,
+          "u": "g",
+          "n": "chicken mince"
+        },
+        {
+          "q": 60,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "frozen peas"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lemon juice"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "coriander leaves, chopped"
+        },
+        {
+          "q": 5,
+          "u": "g",
+          "n": "mint leaves, chopped (optional)"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Bloom whole spices",
+      "x": "Set the Instant Pot to Sauté (High). Heat the ghee, add cumin, bay leaf, cloves and cinnamon, and stir for 1 min until fragrant.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.4"
+      ]
+    },
+    {
+      "t": "Brown the onions",
+      "x": "Add the onion and cook for 6 min, stirring often, until light golden. Add the ginger-garlic paste and green chillies and cook 1 min until the raw smell is gone.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2"
+      ]
+    },
+    {
+      "t": "Cook the masala",
+      "x": "Add the tomato and all ground spices. Cook 3 min until the tomato softens and the masala looks jammy. If it catches, add a splash of the water.",
+      "uses": [
+        "1.3",
+        "3.1"
+      ]
+    },
+    {
+      "t": "Add the mince",
+      "x": "Add the chicken mince and break it up thoroughly with a spatula for 3 min until no large lumps remain. This step decides the texture, because lumps set under pressure. Add the water and scrape the bottom completely so you don't get a burn warning.",
+      "uses": [
+        "3.0"
+      ]
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min, then natural release for 10 min and release the rest.",
+      "uses": []
+    },
+    {
+      "t": "Finish",
+      "x": "Set to Sauté. Stir in the frozen peas and cook 3 min, uncovered, until the peas are hot and the keema is semi-dry. Turn off, then stir in the lemon juice, coriander and mint. Remove the green chillies before portioning your daughter's share.",
+      "uses": [
+        "2.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5"
+      ]
+    }
+  ],
+  "notes": [
+    "Approx. per portion: 400 kcal, 38g protein (keema only). Serve with 1 roti or 120g cooked rice.",
+    "Fridge: 4 days in Glasslock. Freezer: 3 months.",
+    "Reheat: microwave 2 min, stir, then 1 min more until steaming hot.",
+    "For wraps: cook 5 min longer on Sauté in step 6 until fully dry.",
+    "Spicier adult portion: stir a pinch of chilli powder or chopped green chilli into your own bowl.",
+    "Source uses 2 tbsp ghee for less meat; 1 tbsp is plenty with 700g mince."
+  ],
+  "source": "https://pipingpotcurry.com/keema-matar-pressure-cooker/",
+  "no": "",
+  "updated": 1793028557018
+}
