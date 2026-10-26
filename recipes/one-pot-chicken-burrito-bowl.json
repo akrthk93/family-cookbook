@@ -1,0 +1,196 @@
+{
+  "id": "one-pot-chicken-burrito-bowl",
+  "title": "One-Pot Chicken Burrito Bowl",
+  "prep": "10 min",
+  "cook": "30 min",
+  "total": "40 min",
+  "serves": 4,
+  "equip": "Instant Pot, Philips hand blender (chopper attachment)",
+  "tags": [
+    "Mains",
+    "Mexican"
+  ],
+  "groups": [
+    {
+      "g": "Base",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "onion, diced"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "red capsicum, diced"
+        },
+        {
+          "q": 600,
+          "u": "g",
+          "n": "boneless chicken thigh, cut into 2.5cm cubes",
+          "sub": "chicken breast (cook 1 min less)"
+        }
+      ]
+    },
+    {
+      "g": "Spices",
+      "items": [
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "ground cumin"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "smoked paprika",
+          "sub": "sweet paprika"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "garlic powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "salt",
+          "sub": "1 Santa Maria taco spice mix sachet (then skip the salt and other spices)"
+        }
+      ]
+    },
+    {
+      "g": "Pot",
+      "items": [
+        {
+          "q": 180,
+          "u": "ml",
+          "n": "chicken stock (1/2 Knorr chicken cube dissolved in hot water)"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "can black beans (400g), drained and rinsed",
+          "sub": "red kidney beans"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "frozen corn"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "can diced tomatoes (400g), with juice",
+          "sub": "250g fresh tomato, chopped + 100ml water"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "long grain or jasmine rice, rinsed until water runs clear"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lime juice"
+        }
+      ]
+    },
+    {
+      "g": "To serve (per portion)",
+      "items": [
+        {
+          "q": 50,
+          "u": "g",
+          "n": "Greek yogurt"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "lettuce, shredded"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "salsa"
+        },
+        {
+          "q": null,
+          "u": "",
+          "n": "Coriander leaves and hot sauce to taste"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Soften the veg",
+      "x": "Set the Instant Pot to Sauté (High). Heat the oil, add onion and capsicum, and cook 3 min until softened.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2"
+      ]
+    },
+    {
+      "t": "Season the chicken",
+      "x": "Add the chicken and all spices. Stir for 2 min until the chicken is coated and turning opaque at the edges.",
+      "uses": []
+    },
+    {
+      "t": "Deglaze thoroughly",
+      "x": "Turn off Sauté. Pour in the stock and scrape every bit off the bottom. This is the main defence against a burn warning.",
+      "uses": []
+    },
+    {
+      "t": "Layer, don't stir",
+      "x": "Spread the beans and corn over the chicken, then pour the tomatoes over evenly. Scatter the rinsed rice on top and press it down with a spoon so it's just submerged. Do not stir after adding the rice.",
+      "uses": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ]
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 6 min, then natural release for 10 min and release the rest.",
+      "uses": []
+    },
+    {
+      "t": "Fluff and rest",
+      "x": "Add the lime juice and gently fold everything together with a fork, without over-stirring or the rice turns mushy. Close the lid (not sealed) and rest 5 min to absorb any remaining liquid.",
+      "uses": [
+        "2.5"
+      ]
+    },
+    {
+      "t": "Portion",
+      "x": "Divide into 4 Glasslocks. Pack the yogurt, lettuce and salsa separately (partitioned container) so they stay cold and fresh.",
+      "uses": [
+        "3.1",
+        "3.2"
+      ]
+    }
+  ],
+  "notes": [
+    "Approx. per portion: 530 kcal, 38g protein including yogurt.",
+    "Kid-friendly as-is: there's no chilli in the base. Adults add hot sauce or sliced chilli at serving.",
+    "Fridge: 3 days. Cool the rice quickly (spread it in containers, into the fridge within 1 hour) and reheat until steaming hot throughout.",
+    "Freezer: 2 months without toppings; reheat from frozen 4 min, stirring halfway.",
+    "Burn warning mid-cook: cancel, quick release, scrape the bottom, add 60ml water around the edge (not stirred in), and restart for the remaining time.",
+    "Also works as burrito filling: wrap in a tortilla with the yogurt and lettuce."
+  ],
+  "source": "https://realfoodwholelife.com/recipes/instant-pot-chicken-burrito-bowls/",
+  "no": "",
+  "updated": 1793028568043
+}
