@@ -1,0 +1,172 @@
+{
+  "id": "white-chicken-chili",
+  "title": "White Chicken Chili",
+  "prep": "10 min",
+  "cook": "35 min",
+  "total": "45 min",
+  "serves": 4,
+  "equip": "Instant Pot, Philips hand blender (stick + beaker, chopper attachment)",
+  "tags": [
+    "Mains",
+    "Mexican"
+  ],
+  "groups": [
+    {
+      "g": "Base",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "onion, diced"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "green capsicum, diced"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "green chillies, de-seeded and finely chopped"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "garlic cloves, minced",
+          "sub": "1 tsp ginger-garlic paste"
+        }
+      ]
+    },
+    {
+      "g": "Spices",
+      "items": [
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "ground cumin"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "coriander powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    },
+    {
+      "g": "Pot",
+      "items": [
+        {
+          "q": 500,
+          "u": "ml",
+          "n": "chicken stock (1 Knorr chicken cube dissolved in hot water)"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "cans cannellini beans (800g total), drained and rinsed",
+          "sub": "chickpeas"
+        },
+        {
+          "q": 600,
+          "u": "g",
+          "n": "boneless chicken thigh, whole",
+          "sub": "chicken breast, whole (cook 2 min less)"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lime juice"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "coriander leaves, chopped"
+        }
+      ]
+    },
+    {
+      "g": "To serve (per portion)",
+      "items": [
+        {
+          "q": 30,
+          "u": "g",
+          "n": "Greek yogurt"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Make the creamy base",
+      "x": "In the hand blender beaker, blend 1 can of the beans with 250ml of the stock until completely smooth, about 1 min. This is what makes it creamy without cream.",
+      "uses": []
+    },
+    {
+      "t": "Soften the veg",
+      "x": "Set the Instant Pot to Sauté (High). Heat the oil, add onion, capsicum and green chillies, and cook 4 min until soft. Add garlic and all spices and stir 1 min.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4"
+      ]
+    },
+    {
+      "t": "Deglaze",
+      "x": "Turn off Sauté. Add the remaining 250ml stock and scrape the bottom completely.",
+      "uses": []
+    },
+    {
+      "t": "Load the pot",
+      "x": "Lay the whole chicken thighs in a single layer. Add the remaining whole beans. Pour the bean purée over the top last and don't stir, because thick purée on the bottom can trigger a burn warning.",
+      "uses": [
+        "2.2"
+      ]
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest.",
+      "uses": []
+    },
+    {
+      "t": "Shred and finish",
+      "x": "Lift the chicken onto a board and shred with two forks. Return it to the pot and stir everything together. If it's thinner than you like, Sauté 3 min uncovered, stirring, to thicken. Stir in the lime juice and coriander.",
+      "uses": [
+        "1.1",
+        "2.3",
+        "2.4"
+      ]
+    }
+  ],
+  "notes": [
+    "Approx. per portion: 395 kcal, 37g protein including yogurt. Add 1 tortilla or 100g cooked rice if you want more carbs.",
+    "Mild enough for kids. For adults, add chilli flakes or hot sauce at serving.",
+    "Fridge: 4 days. It thickens as it sits, so add a splash of water when reheating.",
+    "Freezer: 3 months. Reheat from frozen 4 min, stirring halfway.",
+    "Swap the cannellini for chickpeas if that's what's in the pantry; blend one can the same way."
+  ],
+  "source": "https://kristineskitchenblog.com/instant-pot-white-chicken-chili/",
+  "no": "",
+  "updated": 1793028578493
+}
