@@ -1,0 +1,223 @@
+{
+  "id": "tofu-black-bean-chilli",
+  "no": "13.02.30",
+  "title": "Tofu Black Bean Chilli (Taco Filling)",
+  "prep": "15 min",
+  "cook": "30 min",
+  "total": "45 min",
+  "serves": 4,
+  "equip": "Nonstick wok, Philips hand blender (chopper attachment)",
+  "tags": [
+    "Mexican",
+    "Vegan",
+    "Weeknight",
+    "Wraps"
+  ],
+  "groups": [
+    {
+      "g": "Tofu",
+      "items": [
+        {
+          "q": 400,
+          "u": "g",
+          "n": "firm tofu, drained and pressed 10 min",
+          "sub": "250g paneer, cut into 1cm cubes (vegetarian, not vegan)"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "light soy sauce"
+        }
+      ]
+    },
+    {
+      "g": "Chilli",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "onion, diced"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "red capsicum, diced"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "garlic cloves, minced",
+          "sub": "1 tsp ginger-garlic paste"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "ground cumin"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "smoked paprika"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "dried oregano"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "chilli powder (skip for kids)"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "tomato paste",
+          "sub": "50g extra canned tomato, cooked 3 min longer"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "can diced tomatoes (400g)"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "can black beans (400g), drained and rinsed",
+          "sub": "red kidney beans"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "frozen corn"
+        },
+        {
+          "q": 100,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lime juice",
+          "sub": "1 lime juice cube"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "coriander leaves, chopped"
+        }
+      ]
+    },
+    {
+      "g": "For tacos (per person)",
+      "items": [
+        {
+          "q": 2,
+          "u": "",
+          "n": "small tortillas"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "lettuce or cabbage, shredded"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "salsa"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "avocado, sliced",
+          "sub": "50g Greek yogurt (not vegan)"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Brown the tofu",
+      "x": "Crumble the pressed tofu by hand into mince-sized pieces. Heat the oil in the wok on medium-high, add the tofu and leave it 3 min before stirring. Cook 8–10 min in total until golden and dry at the edges, then add the soy sauce, toss 30 sec and tip onto a plate. Browning first is what gives it a mince-like chew. (Paneer: pan-fry the cubes 4 min until golden and set aside.)",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2"
+      ]
+    },
+    {
+      "t": "Soften the veg",
+      "x": "Add the oil to the wok, then the onion and capsicum, and cook 5 min until soft.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2"
+      ]
+    },
+    {
+      "t": "Spices and paste",
+      "x": "Add garlic, cumin, paprika, oregano, chilli powder and tomato paste and stir 2 min until the paste darkens.",
+      "uses": [
+        "1.3",
+        "1.4",
+        "1.5",
+        "1.6",
+        "1.7",
+        "1.8"
+      ]
+    },
+    {
+      "t": "Simmer",
+      "x": "Add the tomatoes, beans, corn, water and salt. Bring to a boil and simmer uncovered for 10 min, stirring now and then.",
+      "uses": [
+        "1.9",
+        "1.10",
+        "1.11",
+        "1.12",
+        "1.13"
+      ]
+    },
+    {
+      "t": "Return the tofu",
+      "x": "Stir the tofu back in and simmer 5 min until thick enough to sit on a tortilla without running. Mash a few beans against the side if it needs thickening. Stir in lime juice and coriander.",
+      "uses": [
+        "1.14",
+        "1.15"
+      ]
+    },
+    {
+      "t": "Build tacos",
+      "x": "Warm the tortillas in a dry pan for 30 sec a side. Fill with chilli, lettuce, salsa and avocado.",
+      "uses": [
+        "2.0",
+        "2.1",
+        "2.2",
+        "2.3"
+      ]
+    }
+  ],
+  "notes": [
+    "Approx. per portion (chilli only): 300 kcal, 21g protein. With 2 tortillas and toppings: about 520 kcal.",
+    "Also good as a bowl over 100g rice, or as burrito filling.",
+    "Fridge: 4 days. Freezer: 3 months (tofu version); the paneer version is better fresh.",
+    "Kids: skip the chilli powder in the pot; adults add hot sauce."
+  ],
+  "source": null,
+  "updated": 1793055278728
+}

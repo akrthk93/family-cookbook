@@ -1,0 +1,206 @@
+{
+  "id": "meen-kuzhambu",
+  "no": "13.02.28",
+  "title": "Meen Kuzhambu (Tamil Fish Curry)",
+  "prep": "15 min",
+  "cook": "35 min",
+  "total": "50 min",
+  "serves": 4,
+  "equip": "Nonstick wok or 1 wide saucepan with lid",
+  "tags": [
+    "Indian",
+    "South Indian",
+    "Fish",
+    "Weekend"
+  ],
+  "groups": [
+    {
+      "g": "Fish",
+      "items": [
+        {
+          "q": 600,
+          "u": "g",
+          "n": "firm fish steaks, 2cm thick (tenggiri / batang)",
+          "sub": "kurau or red snapper steaks; or frozen basa fillets, thawed, simmered 4 min only"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    },
+    {
+      "g": "Tamarind",
+      "items": [
+        {
+          "q": 30,
+          "u": "g",
+          "n": "tamarind",
+          "sub": "2 tbsp tamarind concentrate"
+        },
+        {
+          "q": 400,
+          "u": "ml",
+          "n": "hot water"
+        }
+      ]
+    },
+    {
+      "g": "Base",
+      "items": [
+        {
+          "q": 1.5,
+          "u": "tbsp",
+          "n": "gingelly (sesame) oil",
+          "sub": "neutral oil"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "mustard seeds"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "fenugreek seeds"
+        },
+        {
+          "q": 15,
+          "u": "",
+          "n": "curry leaves"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "shallots, thinly sliced",
+          "sub": "1 medium onion, thinly sliced"
+        },
+        {
+          "q": 8,
+          "u": "",
+          "n": "garlic cloves, halved"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "tomato, chopped"
+        }
+      ]
+    },
+    {
+      "g": "Spices",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "Kashmiri chilli powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "chilli powder (skip for kids)"
+        },
+        {
+          "q": 1.5,
+          "u": "tbsp",
+          "n": "coriander powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric"
+        },
+        {
+          "q": 1.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "naatu sakkarai",
+          "sub": "jaggery"
+        },
+        {
+          "q": 200,
+          "u": "ml",
+          "n": "water"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep fish and tamarind",
+      "x": "Pat the fish dry and rub with turmeric and salt. Soak the tamarind in the hot water for 10 min, squeeze, strain and keep the liquid.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "1.0",
+        "1.1"
+      ]
+    },
+    {
+      "t": "Temper",
+      "x": "Heat the oil in the wok on medium. Add mustard seeds and let them pop, then fenugreek and curry leaves for 15 sec.",
+      "uses": [
+        "2.0",
+        "2.1",
+        "2.2",
+        "2.3"
+      ]
+    },
+    {
+      "t": "Shallots, garlic, tomato",
+      "x": "Add the shallots and garlic and cook 5 min until soft and light golden. Add the tomato and cook 4 min until it breaks down.",
+      "uses": [
+        "2.4",
+        "2.5",
+        "2.6"
+      ]
+    },
+    {
+      "t": "Bloom the spices",
+      "x": "Turn the heat to low. Add both chilli powders, coriander powder and turmeric with 2 tbsp of the water and stir for 1 min. Keeping the heat low stops the powders scorching.",
+      "uses": [
+        "3.0",
+        "3.1",
+        "3.2",
+        "3.3"
+      ]
+    },
+    {
+      "t": "Simmer the kuzhambu",
+      "x": "Pour in the tamarind water and the rest of the water, add salt and naatu sakkarai, and bring to a boil. Simmer uncovered on medium-low for 12–15 min until it thickens and a thin layer of oil floats on top.",
+      "uses": [
+        "3.4",
+        "3.5",
+        "3.6"
+      ]
+    },
+    {
+      "t": "Cook the fish",
+      "x": "Slide the fish into the curry in one layer. Don't stir; swirl the pan or spoon gravy over the top instead so the fish doesn't break. Cover and simmer on low for 6–8 min until the fish flakes at the thickest part."
+    },
+    {
+      "t": "Rest",
+      "x": "Turn off the heat and rest covered for 30 min before serving. Kuzhambu tastes better a few hours later, and best the next day."
+    }
+  ],
+  "notes": [
+    "Approx. per serving (150g fish + gravy): 280 kcal, 30g protein.",
+    "Serve with rice, idli or dosa.",
+    "Fridge: 2 days. Fish texture suffers in the freezer, so cook it within 2 days of buying.",
+    "Kids: make it with only Kashmiri chilli powder (skip the regular chilli powder); adults add a pinch of chilli powder or pepper to their bowl.",
+    "No coconut by design: the tamarind and shallots carry the flavour. If it tastes too sour, add another 1/2 tsp naatu sakkarai."
+  ],
+  "source": "Traditional Tamil meen kuzhambu method",
+  "updated": 1793055278728
+}

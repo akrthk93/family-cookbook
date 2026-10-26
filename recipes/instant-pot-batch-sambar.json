@@ -1,0 +1,237 @@
+{
+  "id": "instant-pot-batch-sambar",
+  "no": "13.02.26",
+  "title": "Instant Pot Batch Sambar",
+  "prep": "20 min",
+  "cook": "40 min",
+  "total": "1 hr",
+  "serves": 8,
+  "servesNote": "2 dosa nights for the family, frozen in 2 boxes",
+  "equip": "Instant Pot with trivet, stainless steel bowl that fits inside it, small saucepan (tempering)",
+  "tags": [
+    "Indian",
+    "South Indian",
+    "Instant Pot",
+    "Dosa night",
+    "Sunday block",
+    "Freezer",
+    "Vegan"
+  ],
+  "groups": [
+    {
+      "g": "Dal",
+      "items": [
+        {
+          "q": 300,
+          "u": "g",
+          "n": "toor dal, rinsed until the water runs clear"
+        },
+        {
+          "q": 900,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "neutral oil (stops the dal foaming)"
+        }
+      ]
+    },
+    {
+      "g": "Vegetables",
+      "items": [
+        {
+          "q": 2,
+          "u": "",
+          "n": "drumsticks, cut into 6cm pieces",
+          "sub": "skip, or add 100g extra pumpkin"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "pumpkin, 3cm cubes"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "brinjal, 3cm cubes",
+          "sub": "lady's finger, 3cm pieces"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "carrot, thick rounds"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "shallots, peeled and halved",
+          "sub": "1 medium onion, chunked"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "tomato, quartered"
+        }
+      ]
+    },
+    {
+      "g": "Sambar",
+      "items": [
+        {
+          "q": 30,
+          "u": "g",
+          "n": "tamarind, soaked in the hot water below",
+          "sub": "2 tbsp tamarind concentrate"
+        },
+        {
+          "q": 250,
+          "u": "ml",
+          "n": "hot water (for the tamarind)"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "sambar powder"
+        },
+        {
+          "q": 2.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "naatu sakkarai",
+          "sub": "jaggery or brown sugar"
+        },
+        {
+          "q": 500,
+          "u": "ml",
+          "n": "water, to adjust thickness"
+        }
+      ]
+    },
+    {
+      "g": "Tempering",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil",
+          "sub": "gingelly oil or ghee"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "mustard seeds"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "fenugreek seeds"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "dried red chillies, broken"
+        },
+        {
+          "q": 15,
+          "u": "",
+          "n": "curry leaves"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "asafoetida (hing)"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "coriander leaves, chopped"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Soak the tamarind",
+      "x": "Soak the tamarind in the hot water for 10 min while you cut the vegetables, then squeeze it out and strain the liquid. Throw away the pulp.",
+      "uses": [
+        "2.0",
+        "2.1"
+      ]
+    },
+    {
+      "t": "Load the dal",
+      "x": "Put the rinsed dal, water, turmeric and oil in the Instant Pot and stir.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Add the vegetables on top",
+      "x": "Set the trivet over the dal. Put all the vegetables in the steel bowl and set it on the trivet. Cooking them separately keeps them in pieces instead of melting into the dal.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ]
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest."
+    },
+    {
+      "t": "Mash and combine",
+      "x": "Lift out the bowl and trivet. Whisk the dal until smooth (the hand blender's whisk attachment does it in 30 sec). Set to Sauté. Stir in the tamarind water, sambar powder, salt, naatu sakkarai and the vegetables.",
+      "uses": [
+        "2.2",
+        "2.3",
+        "2.4"
+      ]
+    },
+    {
+      "t": "Simmer",
+      "x": "Add the 500ml water and simmer on Sauté for 8 min, stirring now and then, until the raw tamarind smell is gone. It should pour like thick soup; it thickens more as it cools.",
+      "uses": [
+        "2.5"
+      ]
+    },
+    {
+      "t": "Temper",
+      "x": "Heat the oil in the small saucepan on medium. Add mustard seeds and let them pop, then fenugreek, red chillies, curry leaves and hing for 20 sec. Pour it straight into the sambar and stir in the coriander.",
+      "uses": [
+        "3.0",
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "3.5",
+        "3.6"
+      ]
+    }
+  ],
+  "notes": [
+    "Approx. per bowl (300ml): 190 kcal, 10g protein.",
+    "Freeze: cool fast, split into 2 boxes, freeze up to 3 months. Move a box to the fridge the night before a dosa night.",
+    "Reheat in a saucepan to a full boil, adding 50–100ml water to loosen.",
+    "Brinjal goes soft after freezing; pumpkin and drumstick hold up best.",
+    "Mild enough for kids as written. For more heat, add 1 extra dried chilli to the tempering."
+  ],
+  "source": "Adapted from standard Instant Pot sambar method (dal below, vegetables pot-in-pot)",
+  "updated": 1793055278728
+}

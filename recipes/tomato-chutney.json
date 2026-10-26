@@ -1,0 +1,141 @@
+{
+  "id": "tomato-chutney",
+  "no": "13.02.27",
+  "title": "10-Minute Tomato Chutney",
+  "prep": "5 min",
+  "cook": "10 min",
+  "total": "20 min",
+  "serves": 4,
+  "equip": "Small deep nonstick pan, mixie",
+  "tags": [
+    "Indian",
+    "South Indian",
+    "Dosa night",
+    "Side",
+    "Vegan",
+    "Quick"
+  ],
+  "groups": [
+    {
+      "g": "Chutney",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "chana dal"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "urad dal"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "dried red chillies (Kashmiri for kids)",
+          "sub": "1 tsp Kashmiri chilli powder, added with the tomato"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "onion, roughly chopped"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "garlic cloves"
+        },
+        {
+          "q": 5,
+          "u": "g",
+          "n": "ginger, sliced"
+        },
+        {
+          "q": 300,
+          "u": "g",
+          "n": "ripe tomatoes, roughly chopped"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "naatu sakkarai",
+          "sub": "sugar"
+        }
+      ]
+    },
+    {
+      "g": "Tempering",
+      "items": [
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "mustard seeds"
+        },
+        {
+          "q": 10,
+          "u": "",
+          "n": "curry leaves"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Fry the dals",
+      "x": "Heat the oil in the pan on medium. Add chana dal, urad dal and red chillies and stir for 1 min until the dals turn light golden. Don't let them brown, or the chutney turns bitter.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Cook onion and tomato",
+      "x": "Add onion, garlic and ginger and cook 2 min. Add the tomatoes, salt and naatu sakkarai and cook 5 min, pressing with the spatula, until the tomatoes collapse and look jammy.",
+      "uses": [
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9"
+      ]
+    },
+    {
+      "t": "Grind",
+      "x": "Cool for 5 min, then grind in the mixie to a smooth paste. Add 2 tbsp water only if the blades stick."
+    },
+    {
+      "t": "Temper",
+      "x": "Wipe the pan, heat the oil, add mustard seeds and let them pop, then curry leaves for 10 sec. Pour over the chutney.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2"
+      ]
+    }
+  ],
+  "notes": [
+    "Approx. per serving (60g): 70 kcal.",
+    "Fridge: 5 days in a sealed glass box. Freezes well in ice-cube trays for 2 months.",
+    "Light alternative to coconut chutney on dosa nights."
+  ],
+  "source": null,
+  "updated": 1793055278728
+}
