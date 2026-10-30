@@ -1,5 +1,5 @@
 {
-  "updated": 1793366744335,
+  "updated": 1793366751098,
   "items": [
     {
       "id": "ss-skillet",
@@ -196,7 +196,7 @@
       "id": "paring",
       "name": "Paring knife",
       "cat": "knives",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "serrated",
@@ -262,7 +262,7 @@
       "id": "peeler",
       "name": "Peeler",
       "cat": "prep",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "bowls",
