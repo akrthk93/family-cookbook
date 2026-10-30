@@ -113,7 +113,7 @@ section.block{margin-top:22px}
 .notes li{margin-bottom:6px}
 .src{font-size:15px;color:var(--muted);word-break:break-word}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
-nav.tabs .in{display:grid;grid-template-columns:1fr 1fr;max-width:720px;margin:0 auto}
+nav.tabs .in{display:grid;grid-template-columns:1fr 1fr 1fr;max-width:720px;margin:0 auto}
 nav.tabs button{min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;color:var(--muted);position:relative}
 nav.tabs button svg{width:24px;height:24px}
 nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
@@ -186,6 +186,30 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 .sched li:first-child{border-top:0}
 .sched label{font-weight:700}
 .sched select{min-width:0;flex:0 1 190px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:16px}
+.cmp-sum{margin-top:10px;padding:10px 14px;border-radius:12px;background:var(--accent-soft);color:var(--ink);font-size:15px;min-height:44px;display:flex;align-items:center}
+.cmp-sum.none{background:var(--sunk);color:var(--muted)}
+.cmp-sum b{color:var(--accent)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 12px 12px 14px;display:flex;flex-direction:column;gap:10px}
+.opt.best{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent)}
+.opt .top{display:flex;gap:8px;align-items:center}
+.opt .top input{flex:1;min-width:0;border:0;background:transparent;font-weight:700;font-size:17px;padding:6px 0}
+.opt .top input::placeholder{color:var(--muted);font-weight:700}
+.fields{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 76px 58px;gap:8px}
+.fields label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;min-width:0}
+.fields input,.fields select{width:100%;min-width:0;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:17px;font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none}
+.fields select{padding-right:6px;text-align:center}
+.money{position:relative}
+.money span{position:absolute;left:10px;bottom:11px;color:var(--muted);font-size:17px;pointer-events:none}
+.money input{padding-left:22px}
+.res{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;min-height:28px;font-variant-numeric:tabular-nums}
+.res .per{font-weight:700;font-size:18px}
+.res .sub100{color:var(--muted);font-size:14px}
+.pill{font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.pill.best{background:var(--accent);color:var(--accent-ink)}
+.pill.more{background:var(--sunk);color:var(--chilli)}
+.pill.same{background:var(--sunk);color:var(--muted)}
+.res .wait{color:var(--muted);font-size:15px}
 </style>
 </head>
 <body>
@@ -194,6 +218,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 <nav class="tabs" id="tabs"><div class="in">
   <button id="tab-recipes" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg>Recipes</button>
   <button id="tab-shop"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Shopping<span class="badge" id="shopBadge" hidden></span></button>
+  <button id="tab-cmp"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M12 5V3"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg>Compare</button>
 </div></nav>
 
 <script>
@@ -586,6 +611,56 @@ async function checkToken(t){
   return null;
 }
 
+/* ---------- price comparison ---------- */
+const UNIT = { g:["mass",.001], kg:["mass",1], ml:["vol",.001], l:["vol",1], pcs:["count",1] };
+const PER = { mass:["kg","100g",.1], vol:["L","100ml",.1], count:["piece",null,null] };
+const newOpt = () => ({ id: Math.random().toString(36).slice(2, 8), name:"", price:"", size:"", unit:"g", packs:"1" });
+const num = v => { const n = parseFloat(String(v).replace(",", ".")); return isFinite(n) && n > 0 ? n : null; };
+S.cmp = lsGet("cmp", null) || [newOpt(), newOpt()];
+const money = n => n >= 100 ? "$" + n.toFixed(0) : n >= 10 ? "$" + n.toFixed(2) : "$" + n.toFixed(2);
+function unitPrice(o){
+  const price = num(o.price), size = num(o.size), packs = num(o.packs) || 1, [dim, f] = UNIT[o.unit] || UNIT.g;
+  if (price == null || size == null) return null;
+  return { dim, per: price / (size * packs * f) };
+}
+/* Compares options that share a kind of unit (weight, volume, pieces); the kind most options use wins. */
+function compareAll(){
+  const rows = S.cmp.map(o => ({ o, u: unitPrice(o) }));
+  const count = {}; rows.forEach(r => r.u && (count[r.u.dim] = (count[r.u.dim] || 0) + 1));
+  const dim = Object.keys(count).sort((a, b) => count[b] - count[a])[0];
+  const pool = rows.filter(r => r.u && r.u.dim === dim);
+  const best = pool.length ? Math.min(...pool.map(r => r.u.per)) : null;
+  return { rows, dim, best, ready: pool.length };
+}
+const optName = (o, i) => o.name.trim() || `Option ${i + 1}`;
+function resHtml(r, c){
+  if (!r.u) return `<span class="wait">Enter price and size</span>`;
+  const [big, small, k] = PER[r.u.dim];
+  const line = `<span class="per">${money(r.u.per)} / ${big}</span>${small ? `<span class="sub100">${money(r.u.per * k)} / ${small}</span>` : ""}`;
+  if (r.u.dim !== c.dim) return line + `<span class="pill same">Can't compare: different unit</span>`;
+  if (c.ready < 2) return line;
+  const diff = (r.u.per / c.best - 1) * 100;
+  return line + (diff < 0.5 ? `<span class="pill best">Best value</span>` : `<span class="pill more">+${diff < 10 ? diff.toFixed(1) : Math.round(diff)}% more</span>`);
+}
+function sumHtml(c){
+  if (c.ready < 2) return [`Fill in at least two options to compare`, true];
+  const ranked = c.rows.map((r, i) => ({ ...r, i })).filter(r => r.u && r.u.dim === c.dim).sort((a, b) => a.u.per - b.u.per);
+  const [a, b] = ranked, big = PER[c.dim][0];
+  if (b.u.per / a.u.per - 1 < 0.005) return [`<span><b>${esc(optName(a.o, a.i))}</b> and <b>${esc(optName(b.o, b.i))}</b> cost the same per ${big}</span>`, false];
+  const save = b.u.per - a.u.per;
+  return [`<span><b>${esc(optName(a.o, a.i))}</b> is cheapest, ${money(save)}/${big} less than ${esc(optName(b.o, b.i))}</span>`, false];
+}
+/* Update results in place, so typing never re-renders the inputs. */
+function paintCompare(){
+  const c = compareAll();
+  c.rows.forEach(r => {
+    const el = document.getElementById("res-" + r.o.id); if (el) el.innerHTML = resHtml(r, c);
+    const card = document.getElementById("opt-" + r.o.id); if (card) card.classList.toggle("best", c.ready >= 2 && !!r.u && r.u.dim === c.dim && r.u.per / c.best - 1 < 0.005);
+  });
+  const sum = $("#cmpSum"); if (sum) { const [h, none] = sumHtml(c); sum.innerHTML = h; sum.classList.toggle("none", none); }
+}
+const saveCmp = () => lsSet("cmp", S.cmp);
+
 /* ---------- views ---------- */
 function allTags(){
   const c = {}; S.recipes.forEach(r => (r.tags||[]).forEach(t => c[t] = (c[t]||0) + 1));
@@ -826,6 +901,31 @@ function viewSettings(){
   </main>`;
 }
 
+function viewCompare(){
+  const c = compareAll(), [sum, none] = sumHtml(c);
+  const unitOpts = sel => Object.keys(UNIT).map(u => `<option value="${u}" ${u === sel ? "selected" : ""}>${u}</option>`).join("");
+  return `<header class="top"><div class="wrap">
+    <div class="row between"><h1>Compare</h1><button class="btn ghost" data-act="cmpReset" style="min-height:40px">Start over</button></div>
+    <div class="cmp-sum ${none ? "none" : ""}" id="cmpSum" aria-live="polite">${sum}</div>
+  </div></header>
+  <main class="wrap"><div class="opts">
+    ${c.rows.map((r, i) => { const o = r.o; return `<div class="opt" id="opt-${o.id}">
+      <div class="top"><input id="n-${o.id}" data-cmp="${o.id}" data-k="name" value="${esc(o.name)}" placeholder="Option ${i + 1}" aria-label="Name for option ${i + 1}" autocomplete="off">
+        ${c.rows.length > 2 ? `<button class="mini" data-act="cmpDel" data-id="${o.id}" aria-label="Remove option ${i + 1}">${ICON.trash}</button>` : ""}</div>
+      <div class="fields">
+        <label class="money">Price<span>$</span><input id="p-${o.id}" data-cmp="${o.id}" data-k="price" value="${esc(o.price)}" inputmode="decimal" autocomplete="off" placeholder="0.00"></label>
+        <label>Size<input id="s-${o.id}" data-cmp="${o.id}" data-k="size" value="${esc(o.size)}" inputmode="decimal" autocomplete="off" placeholder="500"></label>
+        <label>Unit<select id="u-${o.id}" data-cmp="${o.id}" data-k="unit">${unitOpts(o.unit)}</select></label>
+        <label>Packs<input id="k-${o.id}" data-cmp="${o.id}" data-k="packs" value="${esc(o.packs)}" inputmode="numeric" autocomplete="off"></label>
+      </div>
+      <div class="res" id="res-${o.id}">${resHtml(r, c)}</div>
+    </div>`; }).join("")}
+  </div>
+  <button class="btn" data-act="cmpAdd" style="margin-top:12px;width:100%">${ICON.plus} Add option</button>
+  <p class="equip" style="margin-top:14px">Packs is for multi-packs: 2 × 500g is size 500, packs 2. Prices are per kg for weight, per litre for liquids, per piece for counts.</p>
+  </main>`;
+}
+
 /* ---------- render ---------- */
 function render(){
   const app = $("#app");
@@ -837,12 +937,14 @@ function render(){
   if (S.settings) html = viewSettings();
   else if (S.view === "edit") html = viewEdit();
   else if (S.tab === "shop") html = viewShop();
+  else if (S.tab === "cmp") html = viewCompare();
   else if (S.view === "recipe") html = viewRecipe() + (S.cook ? viewCook() : "");
   else html = viewList();
   app.innerHTML = html;
   $("#tabs").hidden = S.view === "edit" || !!S.cook || S.settings;
   $("#tab-recipes").setAttribute("aria-current", S.tab === "recipes" ? "page" : "false");
   $("#tab-shop").setAttribute("aria-current", S.tab === "shop" ? "page" : "false");
+  $("#tab-cmp").setAttribute("aria-current", S.tab === "cmp" ? "page" : "false");
   const open = S.shop.filter(s => !s.done).length, b = $("#shopBadge");
   b.hidden = !open; b.textContent = open;
   document.body.style.overflow = S.cook ? "hidden" : "";
@@ -854,7 +956,12 @@ function render(){
 const go = patch => { Object.assign(S, patch); S._force = true; S._lastView = null; render(); };
 
 /* ---------- events ---------- */
-document.addEventListener("input", e => { if (e.target.id === "q") { S.q = e.target.value; render(); } });
+document.addEventListener("input", e => {
+  if (e.target.id === "q") { S.q = e.target.value; render(); return; }
+  const id = e.target.dataset?.cmp; if (!id) return;
+  const o = S.cmp.find(x => x.id === id); if (!o) return;
+  o[e.target.dataset.k] = e.target.value; saveCmp(); paintCompare();
+});
 document.addEventListener("change", e => {
   const d = e.target.dataset?.day; if (d == null) return;
   S.sched = sched(); S.sched[+d] = e.target.value; lsSet("sched", S.sched); toast(`${DAYS[+d]}: ${PLANS[e.target.value].name}`);
@@ -890,6 +997,7 @@ async function pushLocal(r, quiet){
 }
 $("#tab-recipes").onclick = () => { audio(); go({ tab:"recipes", view: S.view === "edit" ? "list" : S.view }); };
 $("#tab-shop").onclick = () => { audio(); go({ tab:"shop", confirmClear:false }); };
+$("#tab-cmp").onclick = () => { audio(); go({ tab:"cmp" }); };
 window.addEventListener("hashchange", () => {
   const h = decodeURIComponent(location.hash.slice(1));
   if (!h && S.view === "recipe") go({ view:"list", rid:null, cook:null });
@@ -936,6 +1044,14 @@ document.addEventListener("click", async e => {
     case "clearAsk": S.confirmClear = true; render(); break;
     case "clearNo": S.confirmClear = false; render(); break;
     case "clearYes": S.confirmClear = false; S.shop = S.shop.filter(x => !x.done); saveShop(); render(); break;
+    case "cmpAdd": {
+      const o = newOpt(); o.unit = S.cmp[S.cmp.length - 1]?.unit || "g";   // usually the same unit as the last one
+      S.cmp.push(o); saveCmp(); S._force = true; render();
+      const el = document.getElementById("p-" + o.id); if (el) { el.focus(); el.scrollIntoView({ block:"center" }); }
+      break;
+    }
+    case "cmpDel": S.cmp = S.cmp.filter(x => x.id !== b.dataset.id); saveCmp(); S._force = true; render(); break;
+    case "cmpReset": S.cmp = [newOpt(), newOpt()]; saveCmp(); S._force = true; render(); window.scrollTo(0, 0); break;
     case "copy": copy(S.shop.filter(s => !s.done).map(s => s.name).join("\n"), "List copied"); break;
     case "toRem": {
       const open = S.shop.filter(s => !s.done);

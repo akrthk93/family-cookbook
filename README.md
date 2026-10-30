@@ -67,6 +67,10 @@ A recipe joins a plan through its tags:
 
 "Made it today" on a recipe (or finishing cook mode) records when it was last made. Suggestions list the least recently made first. This history is kept on each phone.
 
+## Compare prices
+
+The Compare tab works out price per kg (per litre for liquids, per piece for counts) for options in the store, marks the cheapest, and shows how much more the others cost. Use Packs for multi-packs (2 × 500g is size 500, packs 2). The comparison is kept on the phone until you tap Start over.
+
 ## Send to Reminders (once per phone)
 
 Create a Shortcut named exactly **Add to Family List**: Split Text (Shortcut Input, by New Lines) → Repeat with Each → Add New Reminder (Repeat Item, list = family shopping list). The app's **Send to Reminders** button runs it.
