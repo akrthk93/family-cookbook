@@ -1,5 +1,5 @@
 {
-  "updated": 1793366708010,
+  "updated": 1793366709979,
   "items": [
     {
       "id": "ss-skillet",
@@ -268,7 +268,7 @@
       "id": "bowls",
       "name": "Mixing bowls",
       "cat": "prep",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "tongs",
