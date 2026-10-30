@@ -293,6 +293,10 @@ body.locked{overflow:hidden}
 .pchip{background:none;padding:0;color:inherit}
 .pchip[disabled]{opacity:.6}
 .struck{text-decoration:line-through}
+.choice .unit{flex:none;color:var(--muted);font-weight:700;min-width:36px}
+.havebtns{display:flex;flex-direction:column;gap:8px;width:100%}
+.havebtns .btn{width:100%;min-height:44px;justify-content:flex-start;text-align:left}
+.havenote{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:var(--accent-soft);font-size:15px}
 </style>
 </head>
 <body>
@@ -452,6 +456,12 @@ function stepUses(r, i){
 }
 /* ---------- your ingredient changes: a swap or leave it out, kept per recipe on this phone ---------- */
 S.ovr = lsGet("ovr", {});
+/* "I have…": cook to the amount of one ingredient you have. { key, q, mode: "solo" | "all" } per recipe.
+   solo = use all of it and keep the rest as written; all = scale the whole recipe to it. Cleared when you finish. */
+S.have = lsGet("have", {});
+const HAVE_LIMIT = 0.2;          // within ±20% of the recipe, keeping the rest as written is fine
+const haveOf = r => { const h = S.have[r.id], it = h && itemFor(r, h.key); return it && it.q > 0 ? { ...h, it, ratio: h.q / it.q } : null; };
+const saveHave = () => lsSet("have", S.have);
 const parseUse = k => { const [a, q] = String(k).split("@"); const [gi, ii] = a.split(".").map(Number); return { key: a, gi, ii, q: q != null ? parseFloat(q) : null }; };
 const itemFor = (r, key) => { const [gi, ii] = String(key).split(".").map(Number); return r.groups?.[gi]?.items?.[ii]; };
 function effItem(r, key, portion){
@@ -459,30 +469,51 @@ function effItem(r, key, portion){
   const o = S.ovr[r.id]?.[key], base = portion != null ? { ...it, q: portion } : it;
   if (o?.skip) return { ...base, skip: true };
   if (o?.swap) { const own = /^\s*[\d½¼¾⅓⅔]/.test(o.swap); return { ...base, n: o.swap, q: own ? null : base.q, u: own ? "" : base.u, swapped: true }; }
+  const h = haveOf(r);
+  if (h?.mode === "solo" && h.key === key && base.q != null) return { ...base, fixedQ: base.q * h.ratio, have: true };   // exactly what you have, whatever the servings
   return base;
 }
 /* the recipe with swaps applied and left-out items marked skip */
 const withChanges = r => !S.ovr[r.id] ? r : { ...r, groups: r.groups.map((g, gi) => ({ ...g, items: g.items.map((it, ii) => effItem(r, gi + "." + ii)) })) };
 const changeCount = r => Object.keys(S.ovr[r.id] || {}).length;
+function haveNote(r){
+  const h = haveOf(r); if (!h) return "";
+  const amt = `${fmtQ(h.q, h.it.u)}${h.it.u || ""} ${h.it.n.split(",")[0]}`;
+  return `<p class="havenote">${h.mode === "all" ? `Scaled ×${+h.ratio.toFixed(2)} to your ${esc(amt)}.` : `Using all ${esc(amt)} you have, the rest as written.`} <button class="linkbtn" data-act="haveClear" data-rid="${esc(r.id)}">Undo</button></p>`;
+}
 /* what goes in at step i: [{ key, line, skip, swapped }] */
-const stepItems = (r, i, k) => stepUses(r, i).map(u => { const p = parseUse(u), it = effItem(r, p.key, p.q); return it ? { key: p.key, line: ingLine(it, k), skip: !!it.skip, swapped: !!it.swapped } : null; }).filter(Boolean);
-const goesIn = (r, items) => items.filter(x => !x.skip).map(x => `<li><button class="ingbtn" data-act="ingOpen" data-rid="${esc(r.id)}" data-key="${x.key}">${x.line.qty ? `<b>${esc(x.line.qty)}</b> ` : ""}${esc(x.line.name)}${x.swapped ? ` <span class="sw">swapped</span>` : ""}</button></li>`).join("");
+const stepItems = (r, i, k) => stepUses(r, i).map(u => { const p = parseUse(u), it = effItem(r, p.key, p.q); return it ? { key: p.key, line: ingLine(it, k), skip: !!it.skip, swapped: !!it.swapped, have: !!it.have } : null; }).filter(Boolean);
+const goesIn = (r, items, k) => items.filter(x => !x.skip).map(x => `<li><button class="ingbtn" data-act="ingOpen" data-rid="${esc(r.id)}" data-key="${x.key}"${k != null ? ` data-k="${k}"` : ""}>${x.line.qty ? `<b>${esc(x.line.qty)}</b> ` : ""}${esc(x.line.name)}${x.swapped ? ` <span class="sw">swapped</span>` : x.have ? ` <span class="sw">what you have</span>` : ""}</button></li>`).join("");
 function viewIngSheet(){
   const { rid, key } = S.ingSheet, r = S.recipes.find(x => x.id === rid), it = r && itemFor(r, key);
   if (!it) return "";
   const o = S.ovr[rid]?.[key] || {}, l = ingLine(it, 1);
-  const cur = o.skip ? "skip" : o.swap != null ? (o.swap === it.sub ? "sub" : "own") : "orig";
+  const h = haveOf(r), mine = h && h.key === key;
+  const cur = o.skip ? "skip" : o.swap != null ? (o.swap === it.sub ? "sub" : "own") : mine ? "have" : "orig";
   return `<div class="scrim" data-act="ingx"></div><div class="sheet" role="dialog" aria-label="Change ingredient"><div class="wrap">
     <div class="row between"><h2>Change ingredient</h2><button class="icon" data-act="ingx" aria-label="Close">${ICON.close}</button></div>
     <p class="muted" style="margin:4px 0 12px">${esc(r.title)}</p>
     <div class="choices">
       <button class="choice" data-act="ingSet" data-v="orig" aria-pressed="${cur === "orig"}"><b>As written</b><span>${esc((l.qty ? l.qty + " " : "") + l.name)}</span></button>
+      ${it.q > 0 && !o.skip && o.swap == null ? `<form class="choice" id="haveForm" aria-pressed="${cur === "have"}" onsubmit="return false"><b>I have…</b>
+        <span class="row" style="margin-top:6px"><input id="haveQ" inputmode="decimal" autocomplete="off" value="${mine ? +h.q.toFixed(2) : ""}" placeholder="${esc(fmtQ(it.q * (S.ingSheet.k ?? 1), it.u))}" aria-label="How much ${esc(it.n)} you have"><span class="unit">${esc(it.u || "pcs")}</span></span>
+        <span id="havePrev" style="display:block;width:100%">${havePreview(r, key, mine ? h.q : null)}</span></form>` : ""}
       ${it.sub ? `<button class="choice" data-act="ingSet" data-v="sub" aria-pressed="${cur === "sub"}"><b>Use the swap</b><span>${esc(it.sub)}</span></button>` : ""}
       <form class="choice" id="ingOwn" aria-pressed="${cur === "own"}"><b>Something else</b><span class="row" style="margin-top:6px"><input id="ingOwnText" value="${esc(cur === "own" ? o.swap : "")}" placeholder="e.g. 100g Greek yogurt" autocomplete="off" aria-label="Your swap"><button class="btn" type="submit">Use</button></span></form>
       <button class="choice" data-act="ingSet" data-v="skip" aria-pressed="${cur === "skip"}"><b>Leave it out</b><span>Hidden from the steps, prep and shopping list</span></button>
     </div>
     <p class="muted small">Kept for this recipe on this phone until you pick “As written”. Starting with a number replaces the amount too.</p>
   </div></div>`;
+}
+/* both ways to use what you have, with the one that fits marked */
+function havePreview(r, key, q){
+  const it = itemFor(r, key), need = it.q * (S.ingSheet?.k ?? 1);
+  if (!(q > 0)) return `<span class="muted small" style="display:block;margin-top:6px">Recipe uses ${esc(fmtQ(need, it.u))}${esc(it.u ? it.u : "")}. Type how much you have.</span>`;
+  const diff = q / need - 1, close = Math.abs(diff) <= HAVE_LIMIT + 1e-9, pct = Math.round(Math.abs(diff) * 100), amt = `${fmtQ(q, it.u)}${it.u || ""}`;
+  const x = q / it.q, xs = x >= 10 ? x.toFixed(0) : (Math.round(x * 100) / 100).toString();
+  return `<span class="muted small" style="display:block;margin:6px 0 8px">${pct < 1 ? "That's what the recipe uses." : `That's ${pct}% ${diff > 0 ? "more" : "less"} than the recipe${close ? ", close enough to keep the rest as written" : ", so scaling everything keeps it balanced"}.`}</span>
+    <span class="havebtns"><button class="btn ${close ? "primary" : "ghost"}" data-act="haveSet" data-mode="solo">Use ${esc(amt)}, keep the rest${close ? " ✓" : ""}</button>
+    <button class="btn ${close ? "ghost" : "primary"}" data-act="haveSet" data-mode="all">Scale everything ×${xs}${close ? "" : " ✓"}</button></span>`;
 }
 function setChange(rid, key, v){
   const all = S.ovr[rid] = S.ovr[rid] || {};
@@ -505,11 +536,13 @@ function fmtQ(q, u){
 }
 const fmtU = (q, u) => !u ? "" : u === "cup" ? (q != null && q > 1.01 ? "cups" : "cup") : u;
 function ingLine(it, k){
-  const q = it.q == null ? null : it.q * k;
+  let q = it.fixedQ != null ? it.fixedQ : it.q == null ? null : it.q * k;
+  if (q != null && !it.u && it.fixedQ == null && Math.abs(k - 1) > 1e-6) q = Math.max(0.5, Math.round(q * 2) / 2);   // scaled counts: whole or half onions, not 1⅜
   const qs = fmtQ(q, it.u), us = fmtU(q, it.u);
   return { qty: [qs, us].filter(Boolean).join(it.u==="g"||it.u==="ml" ? "" : " "), name: it.n };
 }
-const factor = r => (S.scale[r.id] || r.serves || 1) / (r.serves || 1);
+const servFactor = r => (S.scale[r.id] || r.serves || 1) / (r.serves || 1);
+const factor = r => { const h = haveOf(r); return h?.mode === "all" ? h.ratio : servFactor(r); };
 const shopText = (it, k) => { const l = ingLine(it, k); return (l.qty ? l.qty + " " : "") + l.name; };
 
 /* ---------- data ---------- */
@@ -871,8 +904,8 @@ function ingList(r, k, compact){
   return `<ul class="ing">${(r.groups||[]).map((g, gi) => (g.g ? `<li class="grp"><h3>${esc(g.g)}</h3></li>` : "") + g.items.map((it, ii) => {
     const key = gi + "." + ii, e = effItem(r, key), l = ingLine(e, k), on = !!ck[key];
     return `<li><div class="irow ${on?"done":""} ${e.skip ? "left" : ""}">
-      <button class="check" data-act="check" data-key="${key}" aria-pressed="${on}"><span class="box"></span><span class="itext">${l.qty ? `<span class="qty">${esc(l.qty)}</span> ` : ""}${esc(l.name)}${e.skip ? ` <span class="sw">left out</span>` : e.swapped ? ` <span class="sw">swapped</span>` : ""}</span></button>
-      <button class="mini ${e.skip || e.swapped ? "on" : ""}" data-act="ingOpen" data-rid="${esc(r.id)}" data-key="${key}" aria-label="Swap or leave out ${esc(it.n)}">${it.sub ? "Swap" : ICON.edit}</button>
+      <button class="check" data-act="check" data-key="${key}" aria-pressed="${on}"><span class="box"></span><span class="itext">${l.qty ? `<span class="qty">${esc(l.qty)}</span> ` : ""}${esc(l.name)}${e.skip ? ` <span class="sw">left out</span>` : e.swapped ? ` <span class="sw">swapped</span>` : e.have ? ` <span class="sw">what you have</span>` : ""}</span></button>
+      <button class="mini ${e.skip || e.swapped || e.have ? "on" : ""}" data-act="ingOpen" data-rid="${esc(r.id)}" data-key="${key}" aria-label="Swap or leave out ${esc(it.n)}">${it.sub ? "Swap" : ICON.edit}</button>
       ${compact ? "" : `<button class="mini" data-act="shop1" data-key="${key}" aria-label="Add ${esc(it.n)} to shopping list">${ICON.cart}</button>`}
     </div></li>`;
   }).join("")).join("")}</ul>`;
@@ -903,9 +936,10 @@ function viewRecipe(){
     </div>
     <section class="block">
       <div class="row between"><h2>Ingredients</h2>
-        <div class="scale" aria-label="Servings"><button data-act="sc" data-d="-1" aria-label="Fewer servings">−</button><output>${sv} ${sv>1?"serves":"serve"}</output><button data-act="sc" data-d="1" aria-label="More servings">+</button></div>
+        <div class="scale" aria-label="Servings"><button data-act="sc" data-d="-1" aria-label="Fewer servings">−</button><output>${haveOf(r)?.mode === "all" ? `≈${+((r.serves || 1) * haveOf(r).ratio).toFixed(1)}` : sv} ${sv>1?"serves":"serve"}</output><button data-act="sc" data-d="1" aria-label="More servings">+</button></div>
       </div>
       ${r.servesNote && k === 1 ? `<div class="equip" style="margin-top:6px">${esc(r.servesNote)}</div>` : ""}
+      ${haveNote(r)}
       ${changeCount(r) ? `<p class="muted small" style="margin:8px 0 0">${changeCount(r)} ingredient change${changeCount(r) > 1 ? "s" : ""} on this phone · <button class="linkbtn" data-act="ingReset">Undo all</button></p>` : ""}
       ${ingList(r, k, false)}
       <div class="row" style="margin-top:10px;flex-wrap:wrap">
@@ -1080,7 +1114,7 @@ function sessionDishes(sess){
   return sess.ids.map(id => {
     const r = S.recipes.find(x => x.id === id); if (!r) return null;
     const units = CookPlan.modelSteps(r);
-    return { r, steps: units, prep: CookPlan.prepTasks(withChanges(r), i => stepUses(r, i), units), k: (sess.servings[id] || r.serves || 1) / (r.serves || 1) };
+    return { r, steps: units, prep: CookPlan.prepTasks(withChanges(r), i => stepUses(r, i), units), k: haveOf(r)?.mode === "all" ? haveOf(r).ratio : (sess.servings[id] || r.serves || 1) / (r.serves || 1) };
   });
 }
 const toMin = (sess, ms) => (ms - sess.startedAt) / 60000;
@@ -1186,7 +1220,7 @@ function taskInfo(D, key){
   const [kind, di, n] = CookPlan.parseKey(key), d = D[di], r = d.r;
   if (kind === "p") {
     const p = d.prep.find(x => x.feeds === n);
-    const items = (p?.items || []).map(k => { const it = effItem(r, k); return it ? { key: k, line: ingLine(it, d.k), skip: !!it.skip, swapped: !!it.swapped } : null; }).filter(Boolean);
+    const items = (p?.items || []).map(k => { const it = effItem(r, k); return it ? { key: k, line: ingLine(it, d.k), skip: !!it.skip, swapped: !!it.swapped, have: !!it.have } : null; }).filter(Boolean);
     const forSteps = (p?.steps || []).map(i => `“${r.steps[i].t}”`);
     return { kind, di, n, r, title: "Get ready: chop and measure", sub: `for ${forSteps.join(" and ") || `“${d.steps[n].t}”`}`, items, act: p?.act || 2 };
   }
@@ -1228,8 +1262,8 @@ function viewSetup(){
     </div></header>
   <main class="wrap">
     <section class="block" style="margin-top:6px"><h3>Dishes</h3>
-      <ul class="dishes">${cfg.ids.map((id, di) => { const r = S.recipes.find(x => x.id === id); if (!r) return ""; const sv = cfg.servings[id] || r.serves || 1, ch = changeCount(r); return `<li>
-        ${dot(di)}<span class="dn">${esc(r.title)}${ch ? `<br><span class="muted small">${ch} ingredient change${ch > 1 ? "s" : ""}</span>` : ""}</span>
+      <ul class="dishes">${cfg.ids.map((id, di) => { const r = S.recipes.find(x => x.id === id); if (!r) return ""; const hv = haveOf(r), sv = hv?.mode === "all" ? `≈${+((r.serves || 1) * hv.ratio).toFixed(1)}` : cfg.servings[id] || r.serves || 1, ch = changeCount(r); return `<li>
+        ${dot(di)}<span class="dn">${esc(r.title)}${ch ? `<br><span class="muted small">${ch} ingredient change${ch > 1 ? "s" : ""}</span>` : ""}${hv ? `<br><span class="muted small">${hv.mode === "all" ? `Scaled ×${+hv.ratio.toFixed(2)} to` : "Using all"} your ${esc(fmtQ(hv.q, hv.it.u) + (hv.it.u || ""))} ${esc(hv.it.n.split(",")[0])}</span>` : ""}</span>
         <span class="scale sm"><button data-act="setupServ" data-id="${esc(id)}" data-d="-1" aria-label="Fewer servings">−</button><output>${sv}</output><button data-act="setupServ" data-id="${esc(id)}" data-d="1" aria-label="More servings">+</button></span>
       </li>`; }).join("")}</ul>
       <p class="muted small">Numbers are servings. To swap or leave out an ingredient, tap it on the recipe or on any card while you cook.</p>
@@ -1265,7 +1299,7 @@ function viewSession(){
     return `<article class="now d${i.di % 4}">
       <div class="who">${dot(i.di)}<span>${esc(shortName(i.r))}</span><span class="kind">${esc(i.sub)}</span></div>
       <h2>${esc(i.title)}</h2>
-      ${items.length ? `<ul class="gin">${goesIn(i.r, items)}</ul><p class="muted small" style="margin:4px 0 0">Tap an ingredient to swap it or leave it out.</p>` : ""}
+      ${items.length ? `<ul class="gin">${goesIn(i.r, items, D[i.di].k)}</ul><p class="muted small" style="margin:4px 0 0">Tap an ingredient to swap it or leave it out.</p>` : ""}
       ${i.raw ? `<p class="text">${partsHtml(i.raw, i.u.j, label, true)}</p>` : ""}
       ${i.kind === "s" && i.until ? `<p class="muted small">Get it going, then tap Done. You'll tap “${SIGNAL[i.until] || "Done"}” when ${esc(i.until)} (about ${fmtDur(i.wait)}).</p>`
         : i.kind === "s" && i.wait ? `<p class="muted small">Tap Done when the hands-on part is finished. A ${fmtDur(i.wait)} timer starts and you'll get something else to do meanwhile.</p>` : ""}
@@ -1346,6 +1380,7 @@ const go = patch => { Object.assign(S, patch); S._force = true; S._lastView = nu
 
 /* ---------- events ---------- */
 document.addEventListener("input", e => {
+  if (e.target.id === "haveQ") { const v = parseFloat(String(e.target.value).replace(",", ".")); const el = $("#havePrev"); if (el) el.innerHTML = havePreview(S.recipes.find(x => x.id === S.ingSheet.rid), S.ingSheet.key, v); return; }
   if (e.target.id === "q") { S.q = e.target.value; render(); return; }
   const id = e.target.dataset?.cmp; if (!id) return;
   const o = S.cmp.find(x => x.id === id); if (!o) return;
@@ -1407,14 +1442,22 @@ document.addEventListener("click", async e => {
     case "tipx": S.tipHidden = true; lsSet("tipHidden", true); render(); break;
     case "open": history.pushState(null, "", "#" + encodeURIComponent(b.dataset.id)); go({ view:"recipe", rid:b.dataset.id }); wake(true); break;
     case "back": if (location.hash) history.pushState(null, "", location.pathname); go({ view:"list", rid:null }); wake(false); break;
-    case "sc": { const cur = S.scale[r.id] || r.serves || 1; S.scale[r.id] = Math.max(1, Math.min(20, cur + +b.dataset.d)); render(); break; }
+    case "sc": { if (haveOf(r)?.mode === "all") { delete S.have[r.id]; saveHave(); } const cur = S.scale[r.id] || r.serves || 1; S.scale[r.id] = Math.max(1, Math.min(20, cur + +b.dataset.d)); render(); break; }
     case "check": { const c = S.checked[r.id] = S.checked[r.id] || {}; c[b.dataset.key] = !c[b.dataset.key]; lsSet("ck", S.checked); render(); break; }
     case "uncheck": S.checked[r.id] = {}; lsSet("ck", S.checked); render(); break;
     case "shop1": { const it = effItem(r, b.dataset.key); if (it.skip) { toast("That one's left out of this recipe"); break; } addShop([{ name: shopText(it, factor(r)), from: r.title }]); break; }
     case "shopAll": { const k = factor(r); addShop(withChanges(r).groups.flatMap(g => g.items.filter(it => it.q != null && !it.skip).map(it => ({ name: shopText(it, k), from: r.title })))); break; }
-    case "ingOpen": S.ingSheet = { rid: b.dataset.rid, key: b.dataset.key }; S._force = true; render(); break;
+    case "ingOpen": { const rr = S.recipes.find(x => x.id === b.dataset.rid); S.ingSheet = { rid: b.dataset.rid, key: b.dataset.key, k: b.dataset.k != null ? +b.dataset.k : servFactor(rr) }; S._force = true; render(); break; }
+    case "haveSet": {
+      const { rid, key } = S.ingSheet, q = parseFloat(String($("#haveQ").value).replace(",", "."));
+      if (!(q > 0)) { toast("Type how much you have"); break; }
+      S.have[rid] = { key, q, mode: b.dataset.mode }; saveHave(); S.ingSheet = null; S._force = true; render();
+      toast(b.dataset.mode === "all" ? "Scaled the whole recipe" : "Using what you have"); break;
+    }
+    case "haveClear": delete S.have[b.dataset.rid]; saveHave(); S._force = true; render(); toast("Back to the recipe amounts"); break;
     case "ingx": S.ingSheet = null; S._force = true; render(); break;
     case "ingSet": { const { rid, key } = S.ingSheet, it = itemFor(S.recipes.find(x => x.id === rid), key), v = b.dataset.v;
+      if (S.have[rid]?.key === key) { delete S.have[rid]; saveHave(); }
       setChange(rid, key, v === "orig" ? null : v === "skip" ? { skip: true } : { swap: it.sub }); toast(v === "orig" ? "Back to the recipe" : v === "skip" ? "Left out" : "Swapped"); break; }
     case "ingReset": delete S.ovr[r.id]; lsSet("ovr", S.ovr); S._force = true; render(); toast("Ingredients back to the recipe"); break;
     case "timer": {
@@ -1425,7 +1468,7 @@ document.addEventListener("click", async e => {
     case "tdone": S.timers = S.timers.filter(x => x.id !== b.dataset.t); renderTray(); if (S.sessionOpen) { S._force = true; render(); } break;
     case "cook": S.cook = { i:0 }; S.sheet = false; render(); wake(true); break;
     case "cookx": S.cook = null; S.sheet = false; render(); break;
-    case "finish": S.cook = null; S.sheet = false; S.checked[r.id] = {}; lsSet("ck", S.checked); markMade(r.id); render(); toast("Finished and marked as made today"); break;
+    case "finish": S.cook = null; S.sheet = false; S.checked[r.id] = {}; lsSet("ck", S.checked); delete S.have[r.id]; saveHave(); markMade(r.id); render(); toast("Finished and marked as made today"); break;
     case "made": markMade(r.id); render(); toast("Marked as made today"); break;
     case "unmade": unmarkMade(r.id); render(); break;
     case "slot": S.slot = b.dataset.slot === slotNow().plan ? null : b.dataset.slot; render(); break;
@@ -1463,6 +1506,7 @@ document.addEventListener("click", async e => {
     }
     case "setupServ": {
       const id = b.dataset.id, rr = S.recipes.find(x => x.id === id), cur = S.together.servings[id] || rr.serves || 1;
+      if (haveOf(rr)?.mode === "all") { delete S.have[id]; saveHave(); }
       S.together.servings[id] = Math.max(1, Math.min(20, cur + +b.dataset.d)); S._force = true; render(); break;
     }
     case "sessionStart":
@@ -1483,6 +1527,7 @@ document.addEventListener("click", async e => {
     case "endYes": case "sessionFinish": {
       const ids = S.session?.ids || [];
       if (a === "sessionFinish") ids.filter((_, i) => !(S.session.dropped || []).includes(i)).forEach(markMade);
+      if (a === "sessionFinish") { ids.forEach(id => delete S.have[id]); saveHave(); }
       S.timers = S.timers.filter(t => !t.key); renderTray();
       S.session = null; saveSession(); S.sessionOpen = false; S.confirmEnd = false; wake(false);
       go({ view: "list", tab: "recipes" });

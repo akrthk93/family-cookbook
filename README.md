@@ -83,6 +83,8 @@ On the Recipes screen, tap **Cook several dishes together**, pick 2 to 4 dishes,
 - The session survives closing the app. **Finish** marks every dish as made today.
 - Steps with parts (air fry, toss, air fry; pressure cook until it beeps, then natural release) get a timer per part. Each running timer shows its step and what comes next. Tap a dish's name to stop cooking it; **Skip** skips a task.
 
+**Cook to what you have**: tap an ingredient, choose **I have…** and type the amount. Within ±20% of the recipe it suggests using all of it and keeping the rest as written; beyond that it suggests scaling the whole recipe to it (counts round to whole or half). Both buttons are always there. It applies to the recipe, cook mode, Cook together and the shopping list, and clears when you finish.
+
 **Swap or leave out an ingredient**: tap it on a recipe or on a card while cooking. Pick the suggested swap, type your own, or leave it out. It applies to the steps, prep, cook mode and shopping list for that recipe on that phone until you set it back.
 
 The planner lives in `public/plan.js` (pure functions, testable in node).
