@@ -1,5 +1,5 @@
 {
-  "updated": 1793358256939,
+  "updated": 1793366593102,
   "items": [
     {
       "id": "ss-skillet",
@@ -88,10 +88,11 @@
       "id": "cs-wok",
       "name": "Carbon steel wok",
       "cat": "cookware",
-      "status": "want",
+      "status": "check",
       "role": "wok",
       "material": "carbon steel",
-      "notes": "Upgrade from the nonstick wok: takes full gas heat"
+      "notes": "Upgrade from the nonstick wok: takes full gas heat",
+      "keep": true
     },
     {
       "id": "instant-pot",
