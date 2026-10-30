@@ -1,5 +1,5 @@
 {
-  "updated": 1793366722330,
+  "updated": 1793366726573,
   "items": [
     {
       "id": "ss-skillet",
@@ -274,7 +274,7 @@
       "id": "tongs",
       "name": "Tongs",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "fish-spatula",
@@ -310,13 +310,13 @@
       "id": "whisk",
       "name": "Whisk",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "splatter",
       "name": "Splatter guard",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "scale",
