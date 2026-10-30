@@ -71,13 +71,25 @@
   "steps": [
     {
       "t": "Cook pasta",
-      "x": "Salted water, al dente. Taste 2 min before packet time.",
+      "x": "Bring a large pot of salted water to the boil. Add the orecchiette and cook until al dente. Start tasting 2 min before the packet time.",
       "uses": [
         "0.0"
       ],
       "on": "pot",
-      "act": 2,
-      "wait": 18
+      "parts": [
+        {
+          "x": "Bring a large pot of salted water to the boil.",
+          "act": 1,
+          "wait": 8,
+          "until": "it boils"
+        },
+        {
+          "x": "Add the orecchiette and cook until al dente. Start tasting 2 min before the packet time.",
+          "act": 1,
+          "wait": 10,
+          "until": "it's al dente"
+        }
+      ]
     },
     {
       "t": "Heat oil and garlic",

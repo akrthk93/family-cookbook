@@ -71,9 +71,9 @@
       "t": "Brown the onions",
       "x": "Heat the oil in the stockpot on medium. Add the onions and 1 tsp salt. Cook for 25 min, stirring every 2-3 min, until deep golden. Add 30 ml water at a time if they stick.",
       "uses": [
-        "0.0",
         "0.2",
-        "1.0"
+        "0.0",
+        "1.0@6"
       ],
       "on": "pot",
       "act": 10,
@@ -95,7 +95,8 @@
       "x": "Add the canned tomatoes with their juice, turmeric and the remaining salt. Crush the tomatoes with the spoon. Simmer on medium-low for 30 min, stirring every 5 min, until thick and the oil separates at the edges.",
       "uses": [
         "0.4",
-        "1.1"
+        "1.1",
+        "1.0@6"
       ],
       "on": "pot",
       "act": 2,
@@ -116,8 +117,18 @@
       "x": "Cool for 30 min with the lid off. Spoon into the 60ml cells and level the tops.",
       "uses": [],
       "on": "none",
-      "act": 3,
-      "wait": 30
+      "parts": [
+        {
+          "x": "Cool for 30 min with the lid off.",
+          "act": 0,
+          "wait": 30
+        },
+        {
+          "x": "Spoon into the 60ml cells and level the tops.",
+          "act": 3,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Freeze and bag",

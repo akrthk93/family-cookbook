@@ -189,25 +189,47 @@
     },
     {
       "t": "Finish in sauce",
-      "x": "Into the marinara, cover, simmer 12–15 min, turning once. Done at 74°C.",
+      "x": "Put the meatballs into the marinara, cover and simmer 6 min. Turn them over and simmer another 6–8 min, covered, until 74°C inside.",
       "uses": [],
       "on": "deep",
-      "act": 1,
-      "wait": 13,
       "after": [
         0
+      ],
+      "parts": [
+        {
+          "x": "Put the meatballs into the marinara, cover and simmer 6 min.",
+          "act": 1,
+          "wait": 6
+        },
+        {
+          "x": "Turn them over and simmer another 6–8 min, covered, until 74°C inside.",
+          "act": 0.5,
+          "wait": 6
+        }
       ]
     },
     {
       "t": "Cook the spaghetti",
-      "x": "While meatballs finish, cook spaghetti al dente. Reserve 125ml water.",
+      "x": "While the meatballs finish, bring a large pot of salted water to the boil. Cook the spaghetti until al dente. Reserve 125ml pasta water before draining.",
       "uses": [
         "2.0"
       ],
       "on": "pot",
-      "act": 2,
-      "wait": 18,
-      "overlap": true
+      "overlap": true,
+      "parts": [
+        {
+          "x": "While the meatballs finish, bring a large pot of salted water to the boil.",
+          "act": 1,
+          "wait": 8,
+          "until": "it boils"
+        },
+        {
+          "x": "Cook the spaghetti until al dente. Reserve 125ml pasta water before draining.",
+          "act": 1,
+          "wait": 10,
+          "until": "it's al dente"
+        }
+      ]
     },
     {
       "t": "Combine and serve",

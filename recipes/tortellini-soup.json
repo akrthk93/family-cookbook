@@ -128,8 +128,19 @@
         "0.10"
       ],
       "on": "ip",
-      "act": 2,
-      "wait": 21
+      "parts": [
+        {
+          "x": "Add basil, tomato paste, broth, tomatoes, chicken, salt, pepper and the dried tortellini. Stir gently to submerge. Seal lid, valve to sealing. Pressure cook 9 min high if using breast (11 min if leg/thigh).",
+          "act": 2,
+          "wait": 19,
+          "until": "it beeps"
+        },
+        {
+          "x": "Quick release.",
+          "act": 0.5,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Finish",

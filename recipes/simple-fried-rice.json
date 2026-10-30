@@ -76,8 +76,8 @@
       "x": "Beat eggs with 1.5g salt. 10ml oil in wok, medium-high, until just smoking. Cook eggs, stirring, 30–60 sec until barely liquid. To a plate.",
       "uses": [
         "0.0",
-        "0.1",
-        "0.2"
+        "0.1@1.5",
+        "0.2@10"
       ],
       "on": "wok",
       "act": 2,
@@ -87,9 +87,9 @@
       "t": "Carrot and luncheon meat",
       "x": "5ml oil, medium heat. Carrot with 1.5g salt 2–4 min until browning. Add luncheon meat 2–3 min. To the egg plate.",
       "uses": [
-        "0.2",
+        "0.2@5",
         "0.3",
-        "0.1",
+        "0.1@1.5",
         "0.4"
       ],
       "on": "wok",
@@ -101,10 +101,10 @@
       "x": "Scallion whites with remaining 15ml oil, 1 min. Add rice, spread in an even layer. Sprinkle pepper and remaining 4g salt. Stir and press to break clumps until grains separate, 2–5 min.",
       "uses": [
         "0.5",
-        "0.2",
+        "0.2@15",
         "0.6",
         "0.7",
-        "0.1"
+        "0.1@4"
       ],
       "on": "wok",
       "act": 5,

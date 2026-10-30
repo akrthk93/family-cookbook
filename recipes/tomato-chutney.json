@@ -125,11 +125,21 @@
     },
     {
       "t": "Grind",
-      "x": "Cool for 5 min, then grind in the mixie to a smooth paste. Add 2 tbsp water only if the blades stick.",
+      "x": "Take the pan off the heat and cool for 5 min. Grind in the mixie to a smooth paste. Add 2 tbsp water only if the blades stick.",
       "uses": [],
       "on": "none",
-      "act": 3,
-      "wait": 5
+      "parts": [
+        {
+          "x": "Take the pan off the heat and cool for 5 min.",
+          "act": 0,
+          "wait": 5
+        },
+        {
+          "x": "Grind in the mixie to a smooth paste. Add 2 tbsp water only if the blades stick.",
+          "act": 2,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Temper",

@@ -56,6 +56,8 @@
       "t": "Blend in two batches",
       "x": "For each batch put 100 g ginger, 100 g garlic, 30 ml oil and 1/2 tsp salt in the mixie jar. Run in 15-second bursts for 60 sec total, scraping down 2-3 times, until a smooth paste. Don't add water, as it makes ice crystals.",
       "uses": [
+        "0.0",
+        "0.1",
         "0.2",
         "0.3"
       ],

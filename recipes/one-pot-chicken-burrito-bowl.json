@@ -149,7 +149,14 @@
     {
       "t": "Season the chicken",
       "x": "Add the chicken and all spices. Stir for 2 min until the chicken is coated and turning opaque at the edges.",
-      "uses": [],
+      "uses": [
+        "0.3",
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
       "on": "ip",
       "act": 3,
       "wait": 0
@@ -157,7 +164,9 @@
     {
       "t": "Deglaze thoroughly",
       "x": "Turn off Sauté. Pour in the stock and scrape every bit off the bottom. This is the main defence against a burn warning.",
-      "uses": [],
+      "uses": [
+        "2.0"
+      ],
       "on": "ip",
       "act": 2,
       "wait": 0
@@ -168,7 +177,8 @@
       "uses": [
         "2.1",
         "2.2",
-        "2.3"
+        "2.3",
+        "2.4"
       ],
       "on": "ip",
       "act": 3,
@@ -176,11 +186,22 @@
     },
     {
       "t": "Pressure cook",
-      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 6 min, then natural release for 10 min and release the rest.",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 6 min. Let it release naturally for 10 min, then release the rest.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 26
+      "parts": [
+        {
+          "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 6 min.",
+          "act": 1,
+          "wait": 16,
+          "until": "it beeps"
+        },
+        {
+          "x": "Let it release naturally for 10 min, then release the rest.",
+          "act": 0,
+          "wait": 10
+        }
+      ]
     },
     {
       "t": "Fluff and rest",
@@ -196,8 +217,10 @@
       "t": "Portion",
       "x": "Divide into 4 Glasslocks. Pack the yogurt, lettuce and salsa separately (partitioned container) so they stay cold and fresh.",
       "uses": [
+        "3.0",
         "3.1",
-        "3.2"
+        "3.2",
+        "3.3"
       ],
       "on": "none",
       "act": 4,

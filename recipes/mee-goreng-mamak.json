@@ -120,7 +120,7 @@
   "steps": [
     {
       "t": "Make the chilli paste",
-      "x": "Blend soaked chillies, shallots and garlic with water until smooth.",
+      "x": "Soak the dried chillies in boiling water for 10 min. Drain, then blend the chillies, shallots and garlic with the water until smooth.",
       "uses": [
         "1.0",
         "1.1",
@@ -128,8 +128,18 @@
         "1.3"
       ],
       "on": "none",
-      "act": 2,
-      "wait": 10
+      "parts": [
+        {
+          "x": "Soak the dried chillies in boiling water for 10 min.",
+          "act": 0.5,
+          "wait": 10
+        },
+        {
+          "x": "Drain, then blend the chillies, shallots and garlic with the water until smooth.",
+          "act": 2,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Cook the red sauce",

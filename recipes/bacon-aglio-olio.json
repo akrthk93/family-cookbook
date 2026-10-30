@@ -71,14 +71,26 @@
   "steps": [
     {
       "t": "Cook pasta",
-      "x": "Well-salted water. Cook 1–2 min past packet time. Reserve 125ml pasta water.",
+      "x": "Bring a large pot of well-salted water to the boil. Add the spaghetti and cook 1–2 min past the packet time. Reserve 125ml pasta water before draining.",
       "uses": [
         "0.0",
         "0.5"
       ],
       "on": "pot",
-      "act": 2,
-      "wait": 18
+      "parts": [
+        {
+          "x": "Bring a large pot of well-salted water to the boil.",
+          "act": 1,
+          "wait": 8,
+          "until": "it boils"
+        },
+        {
+          "x": "Add the spaghetti and cook 1–2 min past the packet time. Reserve 125ml pasta water before draining.",
+          "act": 1,
+          "wait": 11,
+          "until": "it's done"
+        }
+      ]
     },
     {
       "t": "Render bacon",

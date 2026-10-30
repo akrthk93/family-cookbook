@@ -138,7 +138,7 @@
   "steps": [
     {
       "t": "Prep fish and tamarind",
-      "x": "Pat the fish dry and rub with turmeric and salt. Soak the tamarind in the hot water for 10 min, squeeze, strain and keep the liquid.",
+      "x": "Soak the tamarind in the hot water for 10 min. Squeeze it, strain and keep the liquid. Pat the fish dry and rub with turmeric and salt.",
       "uses": [
         "0.0",
         "0.1",
@@ -147,8 +147,18 @@
         "1.1"
       ],
       "on": "none",
-      "act": 3,
-      "wait": 10
+      "parts": [
+        {
+          "x": "Soak the tamarind in the hot water for 10 min.",
+          "act": 0.5,
+          "wait": 10
+        },
+        {
+          "x": "Squeeze it, strain and keep the liquid. Pat the fish dry and rub with turmeric and salt.",
+          "act": 3,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Temper",

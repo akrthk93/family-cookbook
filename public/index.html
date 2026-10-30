@@ -269,6 +269,30 @@ body.locked{overflow:hidden}
 .ownway{margin-bottom:14px}
 .ownway h3{margin-bottom:6px}
 .ownway .waits{margin-top:0}
+.pnow{background:var(--accent-soft);border-radius:6px;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.pdone{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.plater{color:var(--muted)}
+.wtext{flex:1 0 100%;padding-left:22px;font-size:15px}
+.wtext summary{color:var(--accent);font-weight:700;cursor:pointer;padding:4px 0}
+.wtext p{margin:4px 0}
+.wtext .then{color:var(--ink)}
+.waits li.ring .wtext summary,.waits li.ring .pnow{color:inherit}
+.ingbtn{text-align:left;width:100%;padding:2px 0}
+.gin li{list-style:none}
+.gin.plain{background:none;padding:0;margin:0}
+.sw{font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.irow.left .itext{color:var(--muted);text-decoration:line-through}
+.irow.left .sw{text-decoration:none;display:inline-block}
+.choices{display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface)}
+.choice[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.choice span{color:var(--muted);font-size:15px}
+.choice .row{width:100%}
+.choice input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:16px}
+.linkbtn{color:var(--accent);font-weight:700;text-decoration:underline}
+.pchip{background:none;padding:0;color:inherit}
+.pchip[disabled]{opacity:.6}
+.struck{text-decoration:line-through}
 </style>
 </head>
 <body>
@@ -409,11 +433,13 @@ function guessUses(groups, steps){
   const used = new Set();
   return steps.map(s => {
     const have = new Set(words(s.x + " " + s.t).map(stem));
-    const keys = [];
+    const keys = [], sigs = new Set();
     (groups || []).forEach((g, gi) => g.items.forEach((it, ii) => {
       const key = gi + "." + ii;
       if (it.q == null || (used.has(key) && !/divided/i.test(it.n))) return;
-      if (ingKeywords(it.n).some(alt => alt.every(w => have.has(w)))) { keys.push(key); used.add(key); }
+      const kw = ingKeywords(it.n), sig = JSON.stringify(kw);
+      if (sigs.has(sig)) return;                       // e.g. a second "salt": leave it for a later step
+      if (kw.some(alt => alt.every(w => have.has(w)))) { keys.push(key); used.add(key); sigs.add(sig); }
     }));
     return keys;
   });
@@ -423,6 +449,46 @@ function stepUses(r, i){
   if (Array.isArray(s.uses)) return s.uses;
   if (!r._guess) Object.defineProperty(r, "_guess", { value: guessUses(r.groups, r.steps), enumerable: false });
   return r._guess[i] || [];
+}
+/* ---------- your ingredient changes: a swap or leave it out, kept per recipe on this phone ---------- */
+S.ovr = lsGet("ovr", {});
+const parseUse = k => { const [a, q] = String(k).split("@"); const [gi, ii] = a.split(".").map(Number); return { key: a, gi, ii, q: q != null ? parseFloat(q) : null }; };
+const itemFor = (r, key) => { const [gi, ii] = String(key).split(".").map(Number); return r.groups?.[gi]?.items?.[ii]; };
+function effItem(r, key, portion){
+  const it = itemFor(r, key); if (!it) return null;
+  const o = S.ovr[r.id]?.[key], base = portion != null ? { ...it, q: portion } : it;
+  if (o?.skip) return { ...base, skip: true };
+  if (o?.swap) { const own = /^\s*[\d½¼¾⅓⅔]/.test(o.swap); return { ...base, n: o.swap, q: own ? null : base.q, u: own ? "" : base.u, swapped: true }; }
+  return base;
+}
+/* the recipe with swaps applied and left-out items marked skip */
+const withChanges = r => !S.ovr[r.id] ? r : { ...r, groups: r.groups.map((g, gi) => ({ ...g, items: g.items.map((it, ii) => effItem(r, gi + "." + ii)) })) };
+const changeCount = r => Object.keys(S.ovr[r.id] || {}).length;
+/* what goes in at step i: [{ key, line, skip, swapped }] */
+const stepItems = (r, i, k) => stepUses(r, i).map(u => { const p = parseUse(u), it = effItem(r, p.key, p.q); return it ? { key: p.key, line: ingLine(it, k), skip: !!it.skip, swapped: !!it.swapped } : null; }).filter(Boolean);
+const goesIn = (r, items) => items.filter(x => !x.skip).map(x => `<li><button class="ingbtn" data-act="ingOpen" data-rid="${esc(r.id)}" data-key="${x.key}">${x.line.qty ? `<b>${esc(x.line.qty)}</b> ` : ""}${esc(x.line.name)}${x.swapped ? ` <span class="sw">swapped</span>` : ""}</button></li>`).join("");
+function viewIngSheet(){
+  const { rid, key } = S.ingSheet, r = S.recipes.find(x => x.id === rid), it = r && itemFor(r, key);
+  if (!it) return "";
+  const o = S.ovr[rid]?.[key] || {}, l = ingLine(it, 1);
+  const cur = o.skip ? "skip" : o.swap != null ? (o.swap === it.sub ? "sub" : "own") : "orig";
+  return `<div class="scrim" data-act="ingx"></div><div class="sheet" role="dialog" aria-label="Change ingredient"><div class="wrap">
+    <div class="row between"><h2>Change ingredient</h2><button class="icon" data-act="ingx" aria-label="Close">${ICON.close}</button></div>
+    <p class="muted" style="margin:4px 0 12px">${esc(r.title)}</p>
+    <div class="choices">
+      <button class="choice" data-act="ingSet" data-v="orig" aria-pressed="${cur === "orig"}"><b>As written</b><span>${esc((l.qty ? l.qty + " " : "") + l.name)}</span></button>
+      ${it.sub ? `<button class="choice" data-act="ingSet" data-v="sub" aria-pressed="${cur === "sub"}"><b>Use the swap</b><span>${esc(it.sub)}</span></button>` : ""}
+      <form class="choice" id="ingOwn" aria-pressed="${cur === "own"}"><b>Something else</b><span class="row" style="margin-top:6px"><input id="ingOwnText" value="${esc(cur === "own" ? o.swap : "")}" placeholder="e.g. 100g Greek yogurt" autocomplete="off" aria-label="Your swap"><button class="btn" type="submit">Use</button></span></form>
+      <button class="choice" data-act="ingSet" data-v="skip" aria-pressed="${cur === "skip"}"><b>Leave it out</b><span>Hidden from the steps, prep and shopping list</span></button>
+    </div>
+    <p class="muted small">Kept for this recipe on this phone until you pick “As written”. Starting with a number replaces the amount too.</p>
+  </div></div>`;
+}
+function setChange(rid, key, v){
+  const all = S.ovr[rid] = S.ovr[rid] || {};
+  if (v == null) delete all[key]; else all[key] = v;
+  if (!Object.keys(all).length) delete S.ovr[rid];
+  lsSet("ovr", S.ovr); S.ingSheet = null; S._force = true; render();
 }
 const FR = [[0,""],[.125,"⅛"],[.25,"¼"],[1/3,"⅓"],[.5,"½"],[2/3,"⅔"],[.75,"¾"],[1,""]];
 function fmtQ(q, u){
@@ -591,8 +657,8 @@ function linkSteps(oldR, groups, steps){
   return steps.map((s, i) => {
     const prev = (oldR?.steps || []).find(o => o.t === s.t && o.x === s.x && Array.isArray(o.uses));
     if (!prev) return { ...s, uses: guess[i] };
-    const uses = prev.uses.map(k => { const [gi, ii] = k.split(".").map(Number); const g = oldR.groups[gi], it = g?.items[ii]; return it && where.get((g.g || "") + "\u0000" + it.n); }).filter(Boolean);
-    return { ...s, uses };
+    const uses = prev.uses.map(k => { const p = parseUse(k), g = oldR.groups[p.gi], it = g?.items[p.ii]; const nk = it && where.get((g.g || "") + "\u0000" + it.n); return nk && (p.q != null ? `${nk}@${p.q}` : nk); }).filter(Boolean);
+    return { ...prev, t: s.t, x: s.x, uses };   // keeps its timings, parts and links
   });
 }
 function parseMarkdown(md){
@@ -803,12 +869,12 @@ function viewList(){
 function ingList(r, k, compact){
   const ck = S.checked[r.id] || {};
   return `<ul class="ing">${(r.groups||[]).map((g, gi) => (g.g ? `<li class="grp"><h3>${esc(g.g)}</h3></li>` : "") + g.items.map((it, ii) => {
-    const key = gi + "." + ii, l = ingLine(it, k), on = !!ck[key], so = S.openSub[r.id + key];
-    return `<li><div class="irow ${on?"done":""}">
-      <button class="check" data-act="check" data-key="${key}" aria-pressed="${on}"><span class="box"></span><span class="itext">${l.qty ? `<span class="qty">${esc(l.qty)}</span> ` : ""}${esc(l.name)}</span></button>
-      ${it.sub ? `<button class="mini ${so?"on":""}" data-act="sub" data-key="${key}" aria-expanded="${!!so}" aria-label="Show substitute">Swap</button>` : ""}
+    const key = gi + "." + ii, e = effItem(r, key), l = ingLine(e, k), on = !!ck[key];
+    return `<li><div class="irow ${on?"done":""} ${e.skip ? "left" : ""}">
+      <button class="check" data-act="check" data-key="${key}" aria-pressed="${on}"><span class="box"></span><span class="itext">${l.qty ? `<span class="qty">${esc(l.qty)}</span> ` : ""}${esc(l.name)}${e.skip ? ` <span class="sw">left out</span>` : e.swapped ? ` <span class="sw">swapped</span>` : ""}</span></button>
+      <button class="mini ${e.skip || e.swapped ? "on" : ""}" data-act="ingOpen" data-rid="${esc(r.id)}" data-key="${key}" aria-label="Swap or leave out ${esc(it.n)}">${it.sub ? "Swap" : ICON.edit}</button>
       ${compact ? "" : `<button class="mini" data-act="shop1" data-key="${key}" aria-label="Add ${esc(it.n)} to shopping list">${ICON.cart}</button>`}
-    </div>${it.sub && so ? `<div class="sub"><b>Swap:</b> ${esc(it.sub)}</div>` : ""}</li>`;
+    </div></li>`;
   }).join("")).join("")}</ul>`;
 }
 function viewRecipe(){
@@ -840,6 +906,7 @@ function viewRecipe(){
         <div class="scale" aria-label="Servings"><button data-act="sc" data-d="-1" aria-label="Fewer servings">−</button><output>${sv} ${sv>1?"serves":"serve"}</output><button data-act="sc" data-d="1" aria-label="More servings">+</button></div>
       </div>
       ${r.servesNote && k === 1 ? `<div class="equip" style="margin-top:6px">${esc(r.servesNote)}</div>` : ""}
+      ${changeCount(r) ? `<p class="muted small" style="margin:8px 0 0">${changeCount(r)} ingredient change${changeCount(r) > 1 ? "s" : ""} on this phone · <button class="linkbtn" data-act="ingReset">Undo all</button></p>` : ""}
       ${ingList(r, k, false)}
       <div class="row" style="margin-top:10px;flex-wrap:wrap">
         <button class="btn" data-act="shopAll">${ICON.cart} Add all to list</button>
@@ -856,7 +923,7 @@ function viewRecipe(){
 function viewCook(){
   const r = S.recipes.find(x => x.id === S.rid); if (!r) return "";
   const i = S.cook.i, st = r.steps[i], n = r.steps.length, k = factor(r);
-  const used = stepUses(r, i).map(key => { const [gi, ii] = key.split(".").map(Number); const it = r.groups[gi]?.items[ii]; return it ? ingLine(it, k) : null; }).filter(Boolean);
+  const used = stepItems(r, i, k).filter(x => !x.skip);
   const hasTimes = durations(st.x).length > 0;
   return `<div class="cook" role="dialog" aria-label="Cook mode">
     <div class="wrap bar">
@@ -869,7 +936,7 @@ function viewCook(){
     <div class="body wrap" id="cookBody">
       <div class="num">Step ${i+1} of ${n}</div>
       <h2>${esc(st.t)}</h2>
-      ${used.length ? `<div class="used"><h3 style="margin-bottom:6px">Goes in now</h3>${used.map(u => `<div>${u.qty ? `<span class="qty">${esc(u.qty)}</span> ` : ""}${esc(u.name)}</div>`).join("")}</div>` : ""}
+      ${used.length ? `<div class="used"><h3 style="margin-bottom:6px">Goes in now</h3><ul class="gin plain">${goesIn(r, used)}</ul></div>` : ""}
       <div class="text">${stepHtml(st, i)}</div>
       ${hasTimes ? `<p class="hint">Tap a time to start a timer</p>` : ""}
     </div>
@@ -999,18 +1066,21 @@ function viewCompare(){
 
 /* ---------- cook together ---------- */
 S.session = lsGet("session", null);      // the running session, kept across app restarts
-S.pick = null; S.together = null; S.sessionOpen = false; S.confirmEnd = false;
+if (S.session && S.session.v !== 2) S.session = null;   // from an older version of the app
+S.pick = null; S.together = null; S.sessionOpen = false; S.confirmEnd = false; S.confirmDrop = null;
 const saveSession = () => lsSet("session", S.session);
 const GOALS = { together: ["Serve together", "Shorter dishes start later so everything is hot at the same time."],
                 fast:     ["Done fastest", "Shortest total time. Dishes finish when they finish, good for batch prep."] };
+const SIGNAL = { "it beeps": "It beeped", "it boils": "It's boiling", "it's al dente": "It's al dente", "it's done": "It's done" };
 const clock = ms => new Date(ms).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }).toLowerCase().replace(/\s/g, "");
 function fmtDur(min){ min = Math.max(1, Math.round(min)); const h = Math.floor(min / 60), m = min % 60; return h ? `${h} hr${m ? ` ${m} min` : ""}` : `${m} min`; }
-const shortName = r => r.title.replace(/\s*\([^)]*\)\s*/g, " ").replace(/^(Instant Pot|One-Pot|Air Fryer|Quick)\s+/i, "").trim();
+const shortName = r => r.title.replace(/\s*\([^)]*\)\s*/g, " ").replace(/^(Instant Pot|One-Pot|Air Fryer|Quick|\d+-Minute)\s+/i, "").trim();
 
 function sessionDishes(sess){
   return sess.ids.map(id => {
     const r = S.recipes.find(x => x.id === id); if (!r) return null;
-    return { r, steps: CookPlan.modelSteps(r), prep: CookPlan.prepTasks(r, i => stepUses(r, i), CookPlan.modelSteps(r)), k: (sess.servings[id] || r.serves || 1) / (r.serves || 1) };
+    const units = CookPlan.modelSteps(r);
+    return { r, steps: units, prep: CookPlan.prepTasks(withChanges(r), i => stepUses(r, i), units), k: (sess.servings[id] || r.serves || 1) / (r.serves || 1) };
   });
 }
 const toMin = (sess, ms) => (ms - sess.startedAt) / 60000;
@@ -1021,47 +1091,72 @@ function planSession(sess, D){
   const actOf = key => { const [kind, di, n] = CookPlan.parseKey(key); return kind === "s" ? D[di].steps[n].act : (D[di].prep.find(p => p.feeds === n)?.act || 2); };
   const state = {
     now,
-    dishes: sess.dishes.map(d => ({ next: d.next, waitEnd: Object.fromEntries(Object.entries(d.waitEnd).map(([k, ms]) => [k, toMin(sess, ms)])) })),
+    // a wait that ends on a signal (it beeps) isn't over until you say so
+    dishes: sess.dishes.map(d => ({ done: d.done, waitEnd: Object.fromEntries(Object.entries(d.waitEnd).map(([u, ms]) => [u, d.sig[u] ? Math.max(toMin(sess, ms), now + 0.5) : toMin(sess, ms)])) })),
     prepDone: new Set(sess.prepDone),
     busy: sess.busy.map(b => ({ key: b.key, until: toMin(sess, b.at) + actOf(b.key) })),
   };
   return CookPlan.plan(D.map(d => ({ steps: d.steps, prep: d.prep })), state, { hands: sess.hands, mode: sess.mode });
 }
 function newSession(cfg){
-  return { ids: [...cfg.ids], servings: { ...cfg.servings }, mode: cfg.mode, hands: cfg.hands, startedAt: Date.now(),
-           dishes: cfg.ids.map(() => ({ next: 0, waitEnd: {} })), prepDone: [], busy: [] };
+  return { v: 2, ids: [...cfg.ids], servings: { ...cfg.servings }, mode: cfg.mode, hands: cfg.hands, startedAt: Date.now(),
+           dishes: cfg.ids.map(() => ({ done: [], waitEnd: {}, sig: {} })), prepDone: [], busy: [] };
 }
-/* Give every free pair of hands the task the plan starts now. */
+/* Start hands-free parts that are due (a natural release), then give every free pair of hands its next task. */
 function fillHands(){
-  const sess = S.session; if (!sess || sess.busy.length >= sess.hands) return;
-  const p = planSession(sess); if (!p) return;
-  const now = toMin(sess, Date.now());
-  const next = p.tasks.filter(t => !t.busy && t.start <= now + 0.01).sort((a, b) => a.start - b.start);
-  for (const t of next) { if (sess.busy.length >= sess.hands) break; sess.busy.push({ key: t.key, at: Date.now() }); }
+  const sess = S.session; if (!sess) return;
+  const D = sessionDishes(sess); if (D.some(d => !d)) return;
+  for (let k = 0; k < 20; k++) {
+    const p = planSession(sess, D), now = toMin(sess, Date.now());
+    const due = p.tasks.filter(t => !t.busy && t.start <= now + 0.01);
+    const auto = due.filter(t => t.kind === "s" && D[t.dish].steps[CookPlan.parseKey(t.key)[2]].act <= 0);
+    if (auto.length) { auto.forEach(t => completeTask(t.key, false, D, true)); continue; }
+    for (const t of due.sort((a, b) => a.start - b.start)) { if (sess.busy.length >= sess.hands) break; sess.busy.push({ key: t.key, at: Date.now() }); }
+    break;
+  }
   saveSession();
 }
 function sessionDone(sess, D){
-  return sess.dishes.every((d, di) => d.next >= D[di].steps.length && Object.values(d.waitEnd).every(ms => ms <= Date.now())) &&
+  return sess.dishes.every((d, di) => d.done.length >= D[di].steps.length && Object.values(d.waitEnd).every(ms => ms <= Date.now()) && !Object.keys(d.sig).length) &&
          D.every((d, di) => d.prep.every(p => sess.prepDone.includes(`p${di}.${p.feeds}`))) && !sess.busy.length;
 }
-function completeTask(key, skip){
-  const sess = S.session, D = sessionDishes(sess), [kind, di, n] = CookPlan.parseKey(key);
+function unitLabel(D, di, u){ const d = D[di], s = d.steps[u]; return `${shortName(d.r)}: ${s.t}${s.nj > 1 ? ` (${s.j + 1}/${s.nj})` : ""}`; }
+function completeTask(key, skip, D, quiet){
+  const sess = S.session; D = D || sessionDishes(sess);
+  const [kind, di, n] = CookPlan.parseKey(key);
   sess.busy = sess.busy.filter(b => b.key !== key);
   if (kind === "p") { if (!sess.prepDone.includes(key)) sess.prepDone.push(key); }
   else {
     const st = D[di].steps[n], dish = sess.dishes[di];
-    dish.next = Math.max(dish.next, n + 1);
+    if (!dish.done.includes(n)) dish.done.push(n);
     if (st.wait > 0 && !skip) {
       dish.waitEnd[n] = Date.now() + st.wait * 60000;
-      startTimer(`${shortName(D[di].r)}: ${st.t}`, st.wait, `${di}.${n}`);
+      if (st.until) dish.sig[n] = true;
+      startTimer(st.until ? `${unitLabel(D, di, n)}: check if ${st.until}` : unitLabel(D, di, n), st.wait, `${di}.${n}`);
     }
   }
-  saveSession(); fillHands();
+  saveSession();
+  if (!quiet) fillHands();
 }
-function changeWait(di, n, ms){
-  const sess = S.session, dish = sess.dishes[di];
-  if (ms == null) { delete dish.waitEnd[n]; S.timers = S.timers.filter(t => t.key !== `${di}.${n}`); }
-  else { dish.waitEnd[n] = ms; S.timers.forEach(t => { if (t.key === `${di}.${n}`) { t.end = ms; t.ring = false; } }); }
+function endWait(di, u){
+  const d = S.session.dishes[di];
+  delete d.waitEnd[u]; delete d.sig[u];
+  S.timers = S.timers.filter(t => t.key !== `${di}.${u}`);
+  saveSession(); fillHands(); renderTray();
+}
+function addMinute(di, u){
+  const d = S.session.dishes[di], ms = Math.max(Date.now(), d.waitEnd[u]) + 60000;
+  d.waitEnd[u] = ms;
+  S.timers.forEach(t => { if (t.key === `${di}.${u}`) { t.end = ms; t.ring = false; } });
+  saveSession(); renderTray();
+}
+function dropDish(di){
+  const sess = S.session, D = sessionDishes(sess), d = sess.dishes[di];
+  d.done = D[di].steps.map((_, u) => u); d.waitEnd = {}; d.sig = {};
+  D[di].prep.forEach(p => { const k = `p${di}.${p.feeds}`; if (!sess.prepDone.includes(k)) sess.prepDone.push(k); });
+  sess.busy = sess.busy.filter(b => CookPlan.parseKey(b.key)[1] !== di);
+  S.timers = S.timers.filter(t => !(t.key || "").startsWith(`${di}.`));
+  (sess.dropped = sess.dropped || []).push(di);
   saveSession(); fillHands(); renderTray();
 }
 let lastTick = Date.now();
@@ -1075,26 +1170,33 @@ function sessionTick(){
 function restoreSessionTimers(){
   const sess = S.session; if (!sess) return;
   const D = sessionDishes(sess); if (D.some(d => !d)) return;
-  sess.dishes.forEach((d, di) => Object.entries(d.waitEnd).forEach(([n, ms]) => {
-    if (ms > Date.now() && !S.timers.some(t => t.key === `${di}.${n}`))
-      S.timers.push({ id: Math.random().toString(36).slice(2), label: `${shortName(D[di].r)}: ${D[di].steps[n].t}`, end: ms, ring: false, key: `${di}.${n}` });
+  sess.dishes.forEach((d, di) => Object.entries(d.waitEnd).forEach(([u, ms]) => {
+    if ((ms > Date.now() || d.sig[u]) && !S.timers.some(t => t.key === `${di}.${u}`))
+      S.timers.push({ id: Math.random().toString(36).slice(2), label: unitLabel(D, di, +u), end: ms, ring: ms <= Date.now(), key: `${di}.${u}` });
   }));
 }
 
-/* What a task is, for the screen */
+/* Step text with the part you're on highlighted and its times as tap-to-start timers. */
+function partsHtml(raw, j, label, chips){
+  const timed = x => { if (!chips) return boldTimes(x); let h = "", at = 0; for (const t of durations(x)) { h += esc(x.slice(at, t.start)) + `<button class="tchip" data-act="mtimer" data-label="${esc(label)}" data-secs="${t.secs}">${ICON.clock}${esc(t.label)}</button>`; at = t.end; } return h + esc(x.slice(at)); };
+  if (!Array.isArray(raw.parts) || raw.parts.length < 2) return timed(raw.x);
+  return raw.parts.map((p, i) => i === j ? `<span class="pnow">${timed(p.x)}</span>` : `<span class="${i < j ? "pdone" : "plater"}">${esc(p.x)}</span>`).join(" ");
+}
 function taskInfo(D, key){
   const [kind, di, n] = CookPlan.parseKey(key), d = D[di], r = d.r;
   if (kind === "p") {
     const p = d.prep.find(x => x.feeds === n);
-    const items = (p?.items || []).map(k => { const [gi, ii] = k.split(".").map(Number); return ingLine(r.groups[gi].items[ii], d.k); });
-    return { kind, di, n, r, title: "Get ready: chop and measure", sub: `for “${r.steps[n].t}”`, items, act: p?.act || 2 };
+    const items = (p?.items || []).map(k => { const it = effItem(r, k); return it ? { key: k, line: ingLine(it, d.k), skip: !!it.skip, swapped: !!it.swapped } : null; }).filter(Boolean);
+    const forSteps = (p?.steps || []).map(i => `“${r.steps[i].t}”`);
+    return { kind, di, n, r, title: "Get ready: chop and measure", sub: `for ${forSteps.join(" and ") || `“${d.steps[n].t}”`}`, items, act: p?.act || 2 };
   }
-  const st = d.steps[n], raw = r.steps[n];
-  const items = stepUses(r, n).map(k => { const [gi, ii] = k.split(".").map(Number); const it = r.groups[gi]?.items[ii]; return it ? ingLine(it, d.k) : null; }).filter(Boolean);
-  return { kind, di, n, r, title: raw.t, sub: `Step ${n + 1} of ${r.steps.length}`, text: raw.x, items, act: st.act, wait: st.wait, on: st.on };
+  const u = d.steps[n], raw = r.steps[u.i];
+  return { kind, di, n, r, u, raw, title: u.t, sub: `Step ${u.i + 1} of ${r.steps.length}${u.nj > 1 ? ` · part ${u.j + 1} of ${u.nj}` : ""}`,
+           items: u.j === 0 ? stepItems(r, u.i, d.k) : [], act: u.act, wait: u.wait, until: u.until };
 }
 const dot = di => `<span class="dot d${di % 4}" aria-hidden="true"></span>`;
 const boldTimes = text => { let h = "", at = 0; for (const t of durations(text)) { h += esc(text.slice(at, t.start)) + `<b>${esc(t.label)}</b>`; at = t.end; } return h + esc(text.slice(at)); };
+const taskName = i => i.kind === "p" ? "Chop and measure" : i.title + (i.u?.nj > 1 ? ` (${i.u.j + 1}/${i.u.nj})` : "");
 
 function sessionBanner(){
   const sess = S.session, D = sessionDishes(sess);
@@ -1112,25 +1214,25 @@ function viewSetup(){
   const fake = newSession(cfg), D = sessionDishes(fake);
   const p = D.some(d => !d) ? null : planSession(fake, D);
   const seg = (name, val, opts) => `<div class="seg" role="group">${opts.map(([v, label]) => `<button data-act="setupSet" data-k="${name}" data-v="${v}" aria-pressed="${val == v}">${label}</button>`).join("")}</div>`;
-  const before = D.flatMap((d, di) => d ? d.steps.filter(s => s.before).map(s => `${shortName(d.r)}: ${d.r.steps[s.i].x.split(/(?<=\.)\s/)[0]}`) : []);
+  const before = D.flatMap(d => d ? d.steps.filter(s => s.before && s.j === 0).map(s => `${shortName(d.r)}: ${d.r.steps[s.i].x.split(/(?<=\.)\s/)[0]}`) : []);
   const shared = [];
   if (p) for (const [v, label] of [["ip", "Instant Pot"], ["af", "Air fryer"]]) {
     const users = D.map((d, di) => ({ d, di, t: p.tasks.filter(t => t.dish === di && t.kind === "s" && d.steps[+t.key.split(".")[1]].on === v).map(t => t.start) }))
       .filter(x => x.t.length).sort((a, b) => Math.min(...a.t) - Math.min(...b.t));
     if (users.length > 1) shared.push(`${label}: ${users.map(u => shortName(u.d.r)).join(", then ")}`);
   }
-  const first = p ? p.tasks.slice().sort((a, b) => a.start - b.start).slice(0, 6) : [];
+  const first = p ? p.tasks.filter(t => t.end > t.start).sort((a, b) => a.start - b.start).slice(0, 6) : [];
   return `<header class="top"><div class="wrap row between">
       <button class="icon" data-act="setupX" aria-label="Back">${ICON.back}</button>
       <h2 style="font-size:20px">Cook together</h2><span style="width:44px"></span>
     </div></header>
   <main class="wrap">
     <section class="block" style="margin-top:6px"><h3>Dishes</h3>
-      <ul class="dishes">${cfg.ids.map((id, di) => { const r = S.recipes.find(x => x.id === id); if (!r) return ""; const sv = cfg.servings[id] || r.serves || 1; return `<li>
-        ${dot(di)}<span class="dn">${esc(r.title)}</span>
+      <ul class="dishes">${cfg.ids.map((id, di) => { const r = S.recipes.find(x => x.id === id); if (!r) return ""; const sv = cfg.servings[id] || r.serves || 1, ch = changeCount(r); return `<li>
+        ${dot(di)}<span class="dn">${esc(r.title)}${ch ? `<br><span class="muted small">${ch} ingredient change${ch > 1 ? "s" : ""}</span>` : ""}</span>
         <span class="scale sm"><button data-act="setupServ" data-id="${esc(id)}" data-d="-1" aria-label="Fewer servings">−</button><output>${sv}</output><button data-act="setupServ" data-id="${esc(id)}" data-d="1" aria-label="More servings">+</button></span>
       </li>`; }).join("")}</ul>
-      <p class="muted small">Numbers are servings.</p>
+      <p class="muted small">Numbers are servings. To swap or leave out an ingredient, tap it on the recipe or on any card while you cook.</p>
     </section>
     <section class="block"><h3>Goal</h3>${seg("mode", cfg.mode, [["together", GOALS.together[0]], ["fast", GOALS.fast[0]]])}
       <p class="muted small">${GOALS[cfg.mode][1]}</p></section>
@@ -1142,7 +1244,7 @@ function viewSetup(){
     </section>
     ${before.length ? `<section class="block"><div class="notice tip"><span><b>Before you start</b><br>${before.map(esc).join("<br>")}</span></div></section>` : ""}
     <section class="block"><h3>How it starts</h3>
-      <ol class="plan">${first.map(t => { const i = taskInfo(D, t.key); return `<li><span class="when">${Math.round(t.start)} min</span>${dot(t.dish)}<span><b>${esc(i.kind === "p" ? "Chop and measure" : i.title)}</b> <span class="muted">${esc(shortName(i.r))}</span></span></li>`; }).join("")}</ol>
+      <ol class="plan">${first.map(t => { const i = taskInfo(D, t.key); return `<li><span class="when">${Math.round(t.start)} min</span>${dot(t.dish)}<span><b>${esc(taskName(i))}</b> <span class="muted">${esc(shortName(i.r))}</span></span></li>`; }).join("")}</ol>
     </section>` : `<p class="notice">One of these recipes isn't available any more.</p>`}
     <button class="btn primary big" data-act="sessionStart" style="margin-top:18px" ${p ? "" : "disabled"}>Start cooking</button>
   </main>`;
@@ -1152,27 +1254,43 @@ function viewSession(){
   const sess = S.session, D = sessionDishes(sess);
   if (D.some(d => !d)) return `<div class="cook"><div class="wrap bar"><button class="icon" data-act="sessionClose" aria-label="Close">${ICON.close}</button></div><div class="wrap body"><p class="notice">A recipe in this session was deleted. End the session to start a new one.</p><button class="btn danger" data-act="endYes">End session</button></div></div>`;
   const p = planSession(sess, D), now = Date.now(), nowM = toMin(sess, now), done = sessionDone(sess, D);
-  // waits still running, plus finished ones whose alarm hasn't been acknowledged yet
-  const waits = sess.dishes.flatMap((d, di) => Object.entries(d.waitEnd).map(([n, ms]) => ({ di, n: +n, ms })))
-    .filter(w => w.ms > now || S.timers.some(t => t.key === `${w.di}.${w.n}`)).sort((a, b) => a.ms - b.ms);
+  const dropped = new Set(sess.dropped || []);
+  // waits on the go, plus finished ones whose alarm hasn't been acknowledged
+  const waits = sess.dishes.flatMap((d, di) => Object.entries(d.waitEnd).map(([u, ms]) => ({ di, u: +u, ms, sig: !!d.sig[u] })))
+    .filter(w => w.ms > now || w.sig || S.timers.some(t => t.key === `${w.di}.${w.u}`)).sort((a, b) => a.ms - b.ms);
+  const mine = S.timers.filter(t => !t.key);
   const nowCards = sess.busy.map(b => {
-    const i = taskInfo(D, b.key);
+    const i = taskInfo(D, b.key), label = `${shortName(i.r)}: ${i.title}`;
+    const items = i.items.filter(x => !x.skip);
     return `<article class="now d${i.di % 4}">
       <div class="who">${dot(i.di)}<span>${esc(shortName(i.r))}</span><span class="kind">${esc(i.sub)}</span></div>
       <h2>${esc(i.title)}</h2>
-      ${i.items.length ? `<ul class="gin">${i.items.map(l => `<li>${l.qty ? `<b>${esc(l.qty)}</b> ` : ""}${esc(l.name)}</li>`).join("")}</ul>` : ""}
-      ${i.text ? `<p class="text">${boldTimes(i.text)}</p>` : ""}
-      ${i.kind === "s" && i.wait ? `<p class="muted small">Tap Done when the hands-on part is finished. A ${fmtDur(i.wait)} timer starts, and you'll get something else to do meanwhile.</p>` : ""}
-      <div class="row" style="margin-top:12px"><button class="btn primary grow" data-act="taskDone" data-key="${b.key}">Done</button>${i.kind === "s" ? `<button class="btn ghost" data-act="taskSkip" data-key="${b.key}">Skip</button>` : ""}</div>
+      ${items.length ? `<ul class="gin">${goesIn(i.r, items)}</ul><p class="muted small" style="margin:4px 0 0">Tap an ingredient to swap it or leave it out.</p>` : ""}
+      ${i.raw ? `<p class="text">${partsHtml(i.raw, i.u.j, label, true)}</p>` : ""}
+      ${i.kind === "s" && i.until ? `<p class="muted small">Get it going, then tap Done. You'll tap “${SIGNAL[i.until] || "Done"}” when ${esc(i.until)} (about ${fmtDur(i.wait)}).</p>`
+        : i.kind === "s" && i.wait ? `<p class="muted small">Tap Done when the hands-on part is finished. A ${fmtDur(i.wait)} timer starts and you'll get something else to do meanwhile.</p>` : ""}
+      <div class="row" style="margin-top:12px"><button class="btn primary grow" data-act="taskDone" data-key="${b.key}">Done</button><button class="btn ghost" data-act="taskSkip" data-key="${b.key}">Skip</button></div>
     </article>`;
   });
-  const upcoming = p.tasks.filter(t => !t.busy).sort((a, b) => a.start - b.start);
+  const upcoming = p.tasks.filter(t => !t.busy && t.end > t.start).sort((a, b) => a.start - b.start);
   if (!done) for (let h = sess.busy.length; h < sess.hands; h++) {
-    const nxt = upcoming[0];
-    const when = nxt ? Math.max(0, nxt.start - nowM) : null;
+    const nxt = upcoming[0], when = nxt ? Math.max(0, nxt.start - nowM) : null;
     nowCards.push(`<article class="now idle"><h2>Nothing to do right now</h2>
-      <p class="muted">${nxt ? `Next up${when >= 0.5 ? ` in about ${fmtDur(when)}` : ""}: <b>${esc(taskInfo(D, nxt.key).title)}</b> (${esc(shortName(D[nxt.dish].r))}).` : ""} Tidy up or wash a pan.</p></article>`);
+      <p class="muted">${nxt ? `Next up${when >= 0.5 ? ` in about ${fmtDur(when)}` : ""}: <b>${esc(taskName(taskInfo(D, nxt.key)))}</b> (${esc(shortName(D[nxt.dish].r))}).` : ""} Tidy up or wash a pan.</p></article>`);
   }
+  const waitRow = w => {
+    const d = D[w.di], u = d.steps[w.u], raw = d.r.steps[u.i], ring = w.ms <= now;
+    const nextUnit = d.steps[w.u + 1], then = nextUnit ? (nextUnit.i === u.i ? (raw.parts?.[nextUnit.j]?.x || "") : `Next: ${nextUnit.t}`) : "Then it's done.";
+    const ctl = w.sig
+      ? `<span class="tt">${ring ? "Any moment" : `~<span data-until="${w.ms}">${mmss(w.ms - now)}</span>`}</span><button class="btn ghost sm" data-act="waitAdd" data-di="${w.di}" data-n="${w.u}" aria-label="Add a minute">+1m</button><button class="btn primary sm" data-act="waitEnd" data-di="${w.di}" data-n="${w.u}">${SIGNAL[u.until] || "Done"}</button>`
+      : ring ? `<span class="tt">Time's up</span><button class="btn primary sm" data-act="waitOk" data-di="${w.di}" data-n="${w.u}">OK</button>`
+      : `<span class="tt" data-until="${w.ms}">${mmss(w.ms - now)}</span><button class="btn ghost sm" data-act="waitAdd" data-di="${w.di}" data-n="${w.u}" aria-label="Add a minute">+1m</button><button class="btn ghost sm" data-act="waitEnd" data-di="${w.di}" data-n="${w.u}">Done early</button>`;
+    return `<li class="${ring && !w.sig ? "ring" : ""}">
+      ${dot(w.di)}<span class="wl"><b>${esc(u.t)}${u.nj > 1 ? ` (${u.j + 1}/${u.nj})` : ""}</b>${w.sig ? ` <span class="muted small">until ${esc(u.until)}</span>` : ""}<br><span class="muted small">${esc(shortName(d.r))}</span></span>
+      <span class="ctl">${ctl}</span>
+      <details class="wtext"${ring ? " open" : ""}><summary>Show step</summary><p>${partsHtml(raw, u.j, "", false)}</p>${then ? `<p class="then"><b>${nextUnit && nextUnit.i === u.i ? "When it's done" : ""}</b> ${esc(then)}</p>` : ""}</details>
+    </li>`;
+  };
   return `<div class="cook session" role="dialog" aria-label="Cook together">
     <div class="wrap bar"><div class="row between">
       <button class="icon" data-act="sessionClose" aria-label="Leave the session screen (it keeps running)">${ICON.back}</button>
@@ -1180,16 +1298,16 @@ function viewSession(){
       <button class="btn ghost" data-act="endAsk" style="min-height:40px">End</button>
     </div>
     ${S.confirmEnd ? `<div class="confirm row between" style="margin-top:8px"><span>End this session?</span><span class="row"><button class="btn ghost" data-act="endNo" style="min-height:40px">Keep cooking</button><button class="btn danger" data-act="endYes" style="min-height:40px">End</button></span></div>` : ""}
-    <div class="progress">${D.map((d, di) => `<span class="pchip">${dot(di)}${esc(shortName(d.r))} <b>${Math.min(sess.dishes[di].next, d.steps.length)}/${d.steps.length}</b></span>`).join("")}</div>
+    <div class="progress">${D.map((d, di) => `<button class="pchip" data-act="dropAsk" data-di="${di}" ${dropped.has(di) ? "disabled" : ""}>${dot(di)}<span class="${dropped.has(di) ? "struck" : ""}">${esc(shortName(d.r))}</span> <b>${dropped.has(di) ? "stopped" : `${Math.min(sess.dishes[di].done.length, d.steps.length)}/${d.steps.length}`}</b></button>`).join("")}</div>
+    ${S.confirmDrop != null ? `<div class="confirm row between" style="margin-top:8px"><span>Stop cooking ${esc(shortName(D[S.confirmDrop].r))}?</span><span class="row"><button class="btn ghost" data-act="dropNo" style="min-height:40px">Keep it</button><button class="btn danger" data-act="dropYes" style="min-height:40px">Stop</button></span></div>` : ""}
     </div>
     <div class="body wrap">
-      ${waits.length ? `<section class="ownway"><h3>Cooking on its own</h3><ul class="waits">${waits.map(w => { const key = `${w.di}.${w.n}`, ring = w.ms <= now; return `<li class="${ring ? "ring" : ""}">
-        ${dot(w.di)}<span class="wl"><b>${esc(D[w.di].r.steps[w.n].t)}</b><br><span class="muted small">${esc(shortName(D[w.di].r))}</span></span>
-        <span class="ctl">${ring ? `<span class="tt">Time's up</span><button class="btn primary sm" data-act="waitOk" data-di="${w.di}" data-n="${w.n}">OK</button>`
-               : `<span class="tt" data-until="${w.ms}">${mmss(w.ms - now)}</span><button class="btn ghost sm" data-act="waitAdd" data-di="${w.di}" data-n="${w.n}" aria-label="Add a minute">+1m</button><button class="btn ghost sm" data-act="waitEnd" data-di="${w.di}" data-n="${w.n}">Done early</button>`}</span>
-      </li>`; }).join("")}</ul></section>` : ""}
-      ${done ? `<article class="now finished"><h2>All ${D.length} dishes are ready</h2><p class="muted">Finishing marks each one as made today.</p><button class="btn primary big" data-act="sessionFinish">Finish</button></article>` : nowCards.join("")}
-      ${!done && upcoming.length ? `<section class="block"><h3>Coming up</h3><ol class="plan">${upcoming.slice(0, 5).map(t => { const i = taskInfo(D, t.key), m = Math.max(0, t.start - nowM); return `<li><span class="when">${m < 0.5 ? "next" : `~${Math.round(m)} min`}</span>${dot(t.dish)}<span><b>${esc(i.kind === "p" ? "Chop and measure" : i.title)}</b> <span class="muted">${esc(shortName(i.r))}</span></span></li>`; }).join("")}</ol></section>` : ""}
+      ${waits.length || mine.length ? `<section class="ownway"><h3>Cooking on its own</h3><ul class="waits">${waits.map(waitRow).join("")}${mine.map(t => `<li class="${t.ring ? "ring" : ""}">
+        <span class="dot" style="background:var(--muted)"></span><span class="wl"><b>${esc(t.label)}</b><br><span class="muted small">Your timer</span></span>
+        <span class="ctl">${t.ring ? `<span class="tt">Time's up</span><button class="btn primary sm" data-act="tdone" data-t="${t.id}">OK</button>` : `<span class="tt" data-until="${t.end}">${mmss(t.end - now)}</span><button class="btn ghost sm" data-act="tdone" data-t="${t.id}">Cancel</button>`}</span>
+      </li>`).join("")}</ul></section>` : ""}
+      ${done ? `<article class="now finished"><h2>All ${D.length - dropped.size} dishes are ready</h2><p class="muted">Finishing marks each one as made today.</p><button class="btn primary big" data-act="sessionFinish">Finish</button></article>` : nowCards.join("")}
+      ${!done && upcoming.length ? `<section class="block"><h3>Coming up</h3><ol class="plan">${upcoming.slice(0, 5).map(t => { const i = taskInfo(D, t.key), m = Math.max(0, t.start - nowM); return `<li><span class="when">${m < 0.5 ? "next" : `~${Math.round(m)} min`}</span>${dot(t.dish)}<span><b>${esc(taskName(i))}</b> <span class="muted">${esc(shortName(i.r))}</span></span></li>`; }).join("")}</ol></section>` : ""}
     </div>
   </div>`;
 }
@@ -1210,7 +1328,7 @@ function render(){
   else if (S.tab === "cmp") html = viewCompare();
   else if (S.view === "recipe") html = viewRecipe() + (S.cook ? viewCook() : "");
   else html = viewList();
-  app.innerHTML = html;
+  app.innerHTML = html + (S.ingSheet ? viewIngSheet() : "");
   $("#tabs").hidden = S.view === "edit" || !!S.cook || S.settings || !!S.together || (S.sessionOpen && !!S.session) || !!S.pick;
   document.body.classList.toggle("locked", !!S.cook || (S.sessionOpen && !!S.session));
   $("#tab-recipes").setAttribute("aria-current", S.tab === "recipes" ? "page" : "false");
@@ -1243,6 +1361,7 @@ document.addEventListener("submit", e => {
   e.preventDefault();
   if (e.target.id === "addForm") { const v = $("#addItem").value.trim(); if (v) { addShop([{ name:v }]); const i = $("#addItem"); if (i) { i.value = ""; i.focus(); } } }
   if (e.target.id === "tokenForm") turnOnSaving($("#f-token").value.trim());
+  if (e.target.id === "ingOwn") { const v = $("#ingOwnText").value.trim(); if (!v) { toast("Type what you're using instead"); return; } setChange(S.ingSheet.rid, S.ingSheet.key, { swap: v }); toast("Swapped"); }
 });
 async function turnOnSaving(t){
   if (!t) { toast("Paste the key first"); return; }
@@ -1291,15 +1410,19 @@ document.addEventListener("click", async e => {
     case "sc": { const cur = S.scale[r.id] || r.serves || 1; S.scale[r.id] = Math.max(1, Math.min(20, cur + +b.dataset.d)); render(); break; }
     case "check": { const c = S.checked[r.id] = S.checked[r.id] || {}; c[b.dataset.key] = !c[b.dataset.key]; lsSet("ck", S.checked); render(); break; }
     case "uncheck": S.checked[r.id] = {}; lsSet("ck", S.checked); render(); break;
-    case "sub": { const k = r.id + b.dataset.key; S.openSub[k] = !S.openSub[k]; render(); break; }
-    case "shop1": { const [gi, ii] = b.dataset.key.split(".").map(Number); addShop([{ name: shopText(r.groups[gi].items[ii], factor(r)), from: r.title }]); break; }
-    case "shopAll": { const k = factor(r); addShop(r.groups.flatMap(g => g.items.filter(it => it.q != null).map(it => ({ name: shopText(it, k), from: r.title })))); break; }
+    case "shop1": { const it = effItem(r, b.dataset.key); if (it.skip) { toast("That one's left out of this recipe"); break; } addShop([{ name: shopText(it, factor(r)), from: r.title }]); break; }
+    case "shopAll": { const k = factor(r); addShop(withChanges(r).groups.flatMap(g => g.items.filter(it => it.q != null && !it.skip).map(it => ({ name: shopText(it, k), from: r.title })))); break; }
+    case "ingOpen": S.ingSheet = { rid: b.dataset.rid, key: b.dataset.key }; S._force = true; render(); break;
+    case "ingx": S.ingSheet = null; S._force = true; render(); break;
+    case "ingSet": { const { rid, key } = S.ingSheet, it = itemFor(S.recipes.find(x => x.id === rid), key), v = b.dataset.v;
+      setChange(rid, key, v === "orig" ? null : v === "skip" ? { skip: true } : { swap: it.sub }); toast(v === "orig" ? "Back to the recipe" : v === "skip" ? "Left out" : "Swapped"); break; }
+    case "ingReset": delete S.ovr[r.id]; lsSet("ovr", S.ovr); S._force = true; render(); toast("Ingredients back to the recipe"); break;
     case "timer": {
       const s = r.steps[+b.dataset.i], t = durations(s.x)[+b.dataset.j]; if (!t) break;
       startTimer(`${s.t} · ${t.label}`, t.secs / 60); break;
     }
     case "tadd": { const t = S.timers.find(x => x.id === b.dataset.t); if (t) t.end += 60000; renderTray(); break; }
-    case "tdone": S.timers = S.timers.filter(x => x.id !== b.dataset.t); renderTray(); break;
+    case "tdone": S.timers = S.timers.filter(x => x.id !== b.dataset.t); renderTray(); if (S.sessionOpen) { S._force = true; render(); } break;
     case "cook": S.cook = { i:0 }; S.sheet = false; render(); wake(true); break;
     case "cookx": S.cook = null; S.sheet = false; render(); break;
     case "finish": S.cook = null; S.sheet = false; S.checked[r.id] = {}; lsSet("ck", S.checked); markMade(r.id); render(); toast("Finished and marked as made today"); break;
@@ -1349,13 +1472,17 @@ document.addEventListener("click", async e => {
     case "sessionClose": S.sessionOpen = false; S.confirmEnd = false; go({ view: "list", tab: "recipes" }); break;
     case "taskDone": case "taskSkip": completeTask(b.dataset.key, a === "taskSkip"); go({}); break;
     case "waitOk": S.timers = S.timers.filter(t => t.key !== `${b.dataset.di}.${b.dataset.n}`); renderTray(); go({}); break;
-    case "waitAdd": { const di = +b.dataset.di, n = +b.dataset.n, cur = S.session.dishes[di].waitEnd[n]; changeWait(di, n, Math.max(Date.now(), cur) + 60000); go({}); break; }
-    case "waitEnd": changeWait(+b.dataset.di, +b.dataset.n, null); go({}); break;
+    case "waitAdd": addMinute(+b.dataset.di, +b.dataset.n); S._force = true; render(); break;
+    case "waitEnd": endWait(+b.dataset.di, +b.dataset.n); go({}); break;
+    case "mtimer": startTimer(b.dataset.label || "Timer", +b.dataset.secs / 60); S._force = true; render(); break;
+    case "dropAsk": S.confirmDrop = +b.dataset.di; S._force = true; render(); break;
+    case "dropNo": S.confirmDrop = null; S._force = true; render(); break;
+    case "dropYes": dropDish(S.confirmDrop); S.confirmDrop = null; go({}); break;
     case "endAsk": S.confirmEnd = true; S._force = true; render(); break;
     case "endNo": S.confirmEnd = false; S._force = true; render(); break;
     case "endYes": case "sessionFinish": {
       const ids = S.session?.ids || [];
-      if (a === "sessionFinish") ids.forEach(markMade);
+      if (a === "sessionFinish") ids.filter((_, i) => !(S.session.dropped || []).includes(i)).forEach(markMade);
       S.timers = S.timers.filter(t => !t.key); renderTray();
       S.session = null; saveSession(); S.sessionOpen = false; S.confirmEnd = false; wake(false);
       go({ view: "list", tab: "recipes" });

@@ -62,8 +62,14 @@
       "x": "Bring to a boil over medium-high heat, about 4 min. Stay close, because milk boils over fast.",
       "uses": [],
       "on": "sauce",
-      "act": 1,
-      "wait": 4
+      "parts": [
+        {
+          "x": "Bring to a boil over medium-high heat, about 4 min. Stay close, because milk boils over fast.",
+          "act": 1,
+          "wait": 4,
+          "until": "it boils"
+        }
+      ]
     },
     {
       "t": "Simmer",

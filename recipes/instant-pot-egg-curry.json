@@ -172,19 +172,40 @@
     },
     {
       "t": "Pressure cook",
-      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min, natural release for 5 min, then release the rest.",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min. Let it release naturally for 5 min, then release the rest.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 20
+      "parts": [
+        {
+          "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min.",
+          "act": 1,
+          "wait": 15,
+          "until": "it beeps"
+        },
+        {
+          "x": "Let it release naturally for 5 min, then release the rest.",
+          "act": 0,
+          "wait": 5
+        }
+      ]
     },
     {
       "t": "Cool and peel the eggs",
-      "x": "Move the eggs into a bowl of cold water for 5 min, then peel. Halve them lengthwise.",
+      "x": "Move the eggs into a bowl of cold water for 5 min. Peel them and halve them lengthwise.",
       "uses": [],
       "on": "none",
-      "act": 8,
-      "wait": 0
+      "parts": [
+        {
+          "x": "Move the eggs into a bowl of cold water for 5 min.",
+          "act": 0.5,
+          "wait": 5
+        },
+        {
+          "x": "Peel them and halve them lengthwise.",
+          "act": 6,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Blend the base",

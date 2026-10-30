@@ -201,8 +201,19 @@
       "x": "Lock the lid, valve to Sealing. Pressure Cook on High for 6 minutes. Natural release 5 minutes, then quick release.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 21
+      "parts": [
+        {
+          "x": "Lock the lid, valve to Sealing. Pressure Cook on High for 6 minutes.",
+          "act": 1,
+          "wait": 16,
+          "until": "it beeps"
+        },
+        {
+          "x": "Natural release 5 minutes, then quick release.",
+          "act": 0,
+          "wait": 5
+        }
+      ]
     },
     {
       "t": "Reduce and finish",

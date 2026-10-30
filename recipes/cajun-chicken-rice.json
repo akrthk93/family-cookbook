@@ -86,7 +86,7 @@
       "uses": [
         "0.5",
         "0.0",
-        "0.1"
+        "0.1@0.67"
       ],
       "on": "none",
       "act": 4,
@@ -121,7 +121,7 @@
       "uses": [
         "0.6",
         "0.7",
-        "0.1"
+        "0.1@0.33"
       ],
       "on": "ip",
       "act": 2,
@@ -132,16 +132,32 @@
       "x": "Seal, valve to Sealing, High Pressure 7 min.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 22
+      "parts": [
+        {
+          "x": "Seal, valve to Sealing, High Pressure 7 min.",
+          "act": 1,
+          "wait": 17,
+          "until": "it beeps"
+        }
+      ]
     },
     {
       "t": "Release and shred",
-      "x": "Natural release 5 min, then quick release. Shred chicken with two forks, stir everything together.",
+      "x": "Let it release naturally for 5 min. Then quick release, shred the chicken with two forks and stir everything together.",
       "uses": [],
       "on": "ip",
-      "act": 3,
-      "wait": 0
+      "parts": [
+        {
+          "x": "Let it release naturally for 5 min.",
+          "act": 0,
+          "wait": 5
+        },
+        {
+          "x": "Then quick release, shred the chicken with two forks and stir everything together.",
+          "act": 3,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Serve",

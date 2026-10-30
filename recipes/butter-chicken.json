@@ -155,7 +155,7 @@
     },
     {
       "t": "Tomatoes and pressure cook",
-      "x": "Stir in tomatoes, chilli, turmeric, garam masala, sugar and a pinch of salt. No extra water. Seal, High Pressure 5 min, quick release.",
+      "x": "Stir in tomatoes, chilli, turmeric, garam masala, sugar and a pinch of salt. No extra water. Seal and pressure cook on High for 5 min. Quick release.",
       "uses": [
         "1.4",
         "1.5",
@@ -164,8 +164,19 @@
         "1.8"
       ],
       "on": "ip",
-      "act": 2,
-      "wait": 17
+      "parts": [
+        {
+          "x": "Stir in tomatoes, chilli, turmeric, garam masala, sugar and a pinch of salt. No extra water. Seal and pressure cook on High for 5 min.",
+          "act": 2.5,
+          "wait": 15,
+          "until": "it beeps"
+        },
+        {
+          "x": "Quick release.",
+          "act": 0.5,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Blend (optional)",

@@ -68,9 +68,9 @@
       "t": "Sweat the onions",
       "x": "Heat the oil on medium. Add the onions and 1 tsp salt. Cook for 10 min, stirring, until soft and translucent but not browned.",
       "uses": [
-        "0.0",
         "0.3",
-        "1.0"
+        "0.0",
+        "1.0@6"
       ],
       "on": "pot",
       "act": 6,
@@ -101,7 +101,8 @@
       "t": "Simmer slowly",
       "x": "Add the canned tomatoes with their juice and the remaining salt. Crush the tomatoes with the spoon. Simmer on medium-low with the lid ajar for 35 min, stirring every 5 min, until thick and the oil separates at the edges. This slow cook-down is what removes the sourness.",
       "uses": [
-        "0.5"
+        "0.5",
+        "1.0@6"
       ],
       "on": "pot",
       "act": 2,
@@ -122,8 +123,18 @@
       "x": "Cool for 30 min with the lid off. Spoon into the 60 ml cells and level the tops.",
       "uses": [],
       "on": "none",
-      "act": 3,
-      "wait": 30
+      "parts": [
+        {
+          "x": "Cool for 30 min with the lid off.",
+          "act": 0,
+          "wait": 30
+        },
+        {
+          "x": "Spoon into the 60 ml cells and level the tops.",
+          "act": 3,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Freeze and bag",

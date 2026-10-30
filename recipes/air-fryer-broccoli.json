@@ -92,6 +92,9 @@
       "uses": [
         "0.1",
         "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
         "2.0"
       ],
       "on": "none",
@@ -108,11 +111,21 @@
     },
     {
       "t": "Air fry",
-      "x": "Spread the florets in a single layer in the basket. Cook at 190°C for 5 min, shake or toss, then cook another 5 min until the edges are charred and the stems are tender.",
+      "x": "Spread the florets in a single layer in the basket. Cook at 190°C for 5 min. Shake or toss, then cook another 5 min until the edges are charred and the stems are tender.",
       "uses": [],
       "on": "af",
-      "act": 1.5,
-      "wait": 10
+      "parts": [
+        {
+          "x": "Spread the florets in a single layer in the basket. Cook at 190°C for 5 min.",
+          "act": 1,
+          "wait": 5
+        },
+        {
+          "x": "Shake or toss, then cook another 5 min until the edges are charred and the stems are tender.",
+          "act": 0.5,
+          "wait": 5
+        }
+      ]
     },
     {
       "t": "Finish",

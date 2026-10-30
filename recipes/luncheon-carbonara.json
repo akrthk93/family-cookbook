@@ -75,13 +75,25 @@
     },
     {
       "t": "Cook the pasta",
-      "x": "Salted water, 1–2 min under packet time. Reserve 1 cup pasta water.",
+      "x": "Bring a large pot of salted water to the boil. Add the spaghetti and cook 1–2 min under the packet time. Reserve 1 cup pasta water before draining.",
       "uses": [
         "0.0"
       ],
       "on": "pot",
-      "act": 2,
-      "wait": 17
+      "parts": [
+        {
+          "x": "Bring a large pot of salted water to the boil.",
+          "act": 1,
+          "wait": 8,
+          "until": "it boils"
+        },
+        {
+          "x": "Add the spaghetti and cook 1–2 min under the packet time. Reserve 1 cup pasta water before draining.",
+          "act": 1,
+          "wait": 9,
+          "until": "it's al dente"
+        }
+      ]
     },
     {
       "t": "Warm the meat",

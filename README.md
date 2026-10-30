@@ -47,12 +47,13 @@ Saving from the app needs a one-time setup per phone (Settings → Saving recipe
 - `q` is a number so it can scale; use `null` for "to taste". `u` is one of `g`, `kg`, `ml`, `l`, `tsp`, `tbsp`, `cup`, `oz`, or `""` for counts (2 onions).
 - `g` is a group heading, or `null` for none. `sub` is an optional substitute.
 - Timers come from the step text: every time written in `x` ("15 min", "8–10 minutes", "30 sec") becomes a tap-to-start timer, starting at the low end of a range. Phrases like "1 min less than packet time" are ignored.
-- `uses` lists the ingredients that go in at that step as `group.item` positions (`"1.3"` = 2nd group, 4th item). Cook mode shows them under "Goes in now". List each ingredient once, at the step where it's added. If `uses` is missing, the app guesses from the step text.
+- `uses` lists the ingredients that go in at that step as `group.item` positions. Add `@amount` when only part of it goes in at that step (`"0.1@1.5"` = 1.5 of ingredient 0.1's unit), e.g. a divided salt or one of two cans (`"1.3"` = 2nd group, 4th item). Cook mode shows them under "Goes in now". List each ingredient once, at the step where it's added. If `uses` is missing, the app guesses from the step text.
 - Step timing for Cook together (optional; the app estimates them from the step text when missing):
   - `act`: hands-on minutes. `wait`: hands-free minutes after that (pressure cooking, simmering, marinating). Include the Instant Pot's time to come up to pressure and any natural release in `wait`.
   - `on`: what the step ties up: `ip` (Instant Pot), `af` (air fryer), `pan`, `deep`, `wok`, `pot`, `tawa`, `steam`, `pc` (stovetop pressure cooker) need a big burner; `sauce` (saucepan, small pan) takes any burner; `none` for the counter.
   - `overlap: true`: the step can start while the previous step is still in its hands-free time (e.g. make the sauce while the pasta boils).
   - `after: [n]`: the step also waits for step n to finish completely (e.g. combine pasta and sauce after the pasta step).
+  - `parts`: split a step whose timing comes in pieces, e.g. `[{"x": "Air fry 5 min.", "act": 1, "wait": 5}, {"x": "Shake, then air fry another 5 min.", "act": 0.5, "wait": 5}]`. Each part gets its own timer in Cook together; set the step's `x` to the parts' text joined with spaces. A part with `"until": "it beeps"` (or "it boils", "it's al dente") waits for you to confirm instead of a fixed time; `wait` is the estimate. A part with `act: 0` (a natural release) starts by itself.
 - The file name must match `id`. The build fails with a clear message if a recipe is malformed, so a bad file never takes the site down.
 
 ## What to cook now
@@ -80,6 +81,9 @@ On the Recipes screen, tap **Cook several dishes together**, pick 2 to 4 dishes,
 - **Cooking on its own** shows the timers that start when you finish a hands-on step (+1m, Done early, an alarm when time's up).
 - It never puts two dishes in the Instant Pot or air fryer at once and uses at most 2 big burners and 1 small one. It re-plans every time you tap Done, so running behind is fine.
 - The session survives closing the app. **Finish** marks every dish as made today.
+- Steps with parts (air fry, toss, air fry; pressure cook until it beeps, then natural release) get a timer per part. Each running timer shows its step and what comes next. Tap a dish's name to stop cooking it; **Skip** skips a task.
+
+**Swap or leave out an ingredient**: tap it on a recipe or on a card while cooking. Pick the suggested swap, type your own, or leave it out. It applies to the steps, prep, cook mode and shopping list for that recipe on that phone until you set it back.
 
 The planner lives in `public/plan.js` (pure functions, testable in node).
 

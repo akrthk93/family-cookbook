@@ -152,10 +152,9 @@
       "t": "Season the chicken",
       "x": "Rub the skinned thighs with 3 g salt and 1 g turmeric. Leave for 10 min while you do the next two steps.",
       "uses": [
+        "0.0",
         "0.1",
-        "0.2",
-        "1.3",
-        "1.4"
+        "0.2"
       ],
       "on": "none",
       "act": 2,
@@ -166,20 +165,30 @@
       "x": "Soak the tamarind in 250 ml hot water for 10 min. Squeeze it out with your fingers, strain, and discard the pulp. Quarter the tomatoes.",
       "uses": [
         "1.0",
-        "1.2"
+        "1.1"
       ],
       "on": "none",
-      "act": 1,
-      "wait": 10
+      "parts": [
+        {
+          "x": "Soak the tamarind in 250 ml hot water for 10 min.",
+          "act": 1,
+          "wait": 10
+        },
+        {
+          "x": "Squeeze it out with your fingers, strain, and discard the pulp. Quarter the tomatoes.",
+          "act": 2,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Crush the base spices",
       "x": "In the mortar, coarsely crush 1.2 g pepper, the cumin, the coriander seeds and the garlic. Keep it coarse for texture, not a paste.",
       "uses": [
+        "2.0",
         "2.1",
         "2.2",
-        "2.3",
-        "5.0"
+        "2.3"
       ],
       "on": "none",
       "act": 5,
@@ -189,20 +198,33 @@
     {
       "t": "Pressure cook",
       "x": "Add to the Instant Pot: thighs, tomatoes, tamarind water, 750 ml water, 6 g salt, 1 g turmeric and the crushed base spices. Seal and cook on High pressure for 12 min. Natural release for 10 min, then quick release.",
-      "uses": [],
+      "uses": [
+        "1.2",
+        "1.3",
+        "1.4"
+      ],
       "on": "ip",
-      "act": 2,
-      "wait": 32,
       "after": [
         1
+      ],
+      "parts": [
+        {
+          "x": "Add to the Instant Pot: thighs, tomatoes, tamarind water, 750 ml water, 6 g salt, 1 g turmeric and the crushed base spices. Seal and cook on High pressure for 12 min.",
+          "act": 2,
+          "wait": 22,
+          "until": "it beeps"
+        },
+        {
+          "x": "Natural release for 10 min, then quick release.",
+          "act": 0,
+          "wait": 10
+        }
       ]
     },
     {
       "t": "Shred the chicken",
       "x": "Lift the thighs out onto a plate. Mash the tomatoes against the side of the pot with the back of a ladle. Don't use the hand blender, as it clouds the rasam. Pull the meat off the bones in bite-size chunks and discard the bones. Return about three-quarters of the meat to the pot.",
-      "uses": [
-        "0.0"
-      ],
+      "uses": [],
       "on": "none",
       "act": 5,
       "wait": 0
@@ -219,6 +241,7 @@
       "t": "Adult heat",
       "x": "Press Sauté. Add the 2.5 g freshly crushed pepper and the naatu sakkarai to the pot. Simmer gently for 5 min. Don't hard boil, or the pepper turns bitter. Taste and add salt if needed.",
       "uses": [
+        "3.0",
         "1.5"
       ],
       "on": "ip",
@@ -229,8 +252,11 @@
       "t": "Tadka",
       "x": "Heat the ghee in the small nonstick pan over medium heat. Add the mustard seeds and wait until they pop. Add the hing and curry leaves for 5 seconds. Pour half into the child's bowl. Add the dried chillies to the pan for 10 seconds, then pour into the pot.",
       "uses": [
-        "3.1",
-        "4.3"
+        "4.0",
+        "4.1",
+        "4.2",
+        "4.3",
+        "3.1"
       ],
       "on": "sauce",
       "act": 2,
@@ -239,7 +265,9 @@
     {
       "t": "Finish",
       "x": "Turn off Sauté. Stir in the coriander. Rest with the lid on for 5 min, then serve over hot rice.",
-      "uses": [],
+      "uses": [
+        "5.0"
+      ],
       "on": "ip",
       "act": 1,
       "wait": 5

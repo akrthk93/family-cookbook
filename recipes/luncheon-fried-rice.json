@@ -86,8 +86,8 @@
       "x": "Beat eggs with ¼ tsp salt. Hot kadai, 1 tsp oil, cook 30–60 sec. To a plate.",
       "uses": [
         "0.0",
-        "0.1",
-        "0.2"
+        "0.1@0.25",
+        "0.2@1"
       ],
       "on": "wok",
       "act": 2,
@@ -97,9 +97,9 @@
       "t": "Aromatics and veg",
       "x": "1 tsp oil, medium. Onion with ¼ tsp salt 2–3 min. Garlic and carrot 2–3 min.",
       "uses": [
-        "0.2",
+        "0.2@1",
         "0.3",
-        "0.1",
+        "0.1@0.25",
         "0.4",
         "0.5"
       ],
@@ -121,10 +121,10 @@
       "t": "Fry the rice",
       "x": "Remaining 2 tsp oil. Rice in an even layer, pepper jeera and remaining ¾ tsp salt. Press and stir 3–5 min until grains separate.",
       "uses": [
-        "0.2",
+        "0.2@2",
         "0.7",
         "0.8",
-        "0.1"
+        "0.1@0.75"
       ],
       "on": "wok",
       "act": 4,

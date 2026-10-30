@@ -144,6 +144,7 @@
         "0.0",
         "0.1",
         "0.2",
+        "0.3",
         "0.4"
       ],
       "on": "ip",
@@ -167,7 +168,11 @@
       "x": "Add the tomato and all ground spices. Cook 3 min until the tomato softens and the masala looks jammy. If it catches, add a splash of the water.",
       "uses": [
         "1.3",
-        "3.1"
+        "2.0",
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4"
       ],
       "on": "ip",
       "act": 3,
@@ -177,7 +182,8 @@
       "t": "Add the mince",
       "x": "Add the chicken mince and break it up thoroughly with a spatula for 3 min until no large lumps remain. This step decides the texture, because lumps set under pressure. Add the water and scrape the bottom completely so you don't get a burn warning.",
       "uses": [
-        "3.0"
+        "3.0",
+        "3.1"
       ],
       "on": "ip",
       "act": 4,
@@ -185,17 +191,27 @@
     },
     {
       "t": "Pressure cook",
-      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min, then natural release for 10 min and release the rest.",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min. Let it release naturally for 10 min, then release the rest.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 25
+      "parts": [
+        {
+          "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min.",
+          "act": 1,
+          "wait": 15,
+          "until": "it beeps"
+        },
+        {
+          "x": "Let it release naturally for 10 min, then release the rest.",
+          "act": 0,
+          "wait": 10
+        }
+      ]
     },
     {
       "t": "Finish",
       "x": "Set to Sauté. Stir in the frozen peas and cook 3 min, uncovered, until the peas are hot and the keema is semi-dry. Turn off, then stir in the lemon juice, coriander and mint. Remove the green chillies before portioning your daughter's share.",
       "uses": [
-        "2.1",
         "3.2",
         "3.3",
         "3.4",

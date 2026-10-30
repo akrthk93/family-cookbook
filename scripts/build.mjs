@@ -33,8 +33,18 @@ const recipes = readdirSync(join(root, "recipes"))
       for (const f of ["act", "wait"]) if (s[f] != null && !(typeof s[f] === "number" && s[f] >= 0)) errors.push(`${file}: step ${si + 1} "${f}" must be minutes (a number)`);
       if (s.after != null && !(Array.isArray(s.after) && s.after.every(j => Number.isInteger(j) && j >= 0 && j < si))) errors.push(`${file}: step ${si + 1} "after" must list earlier step numbers (0-based)`);
       if (s.overlap && si === 0) errors.push(`${file}: the first step can't overlap`);
+      if (s.parts != null) {
+        if (!Array.isArray(s.parts) || !s.parts.length) errors.push(`${file}: step ${si + 1} "parts" must be a non-empty list`);
+        else s.parts.forEach((pt, pi) => {
+          if (typeof pt.x !== "string" || !pt.x) errors.push(`${file}: step ${si + 1} part ${pi + 1} needs its text in "x"`);
+          for (const f of ["act", "wait"]) if (!(typeof pt[f] === "number" && pt[f] >= 0)) errors.push(`${file}: step ${si + 1} part ${pi + 1} "${f}" must be minutes`);
+          if (pt.until != null && typeof pt.until !== "string") errors.push(`${file}: step ${si + 1} part ${pi + 1} "until" must be text like "it beeps"`);
+        });
+      }
       (s.uses || []).forEach(k => {
-        const [gi, ii] = String(k).split(".").map(Number);
+        const [key, portion] = String(k).split("@");
+        if (portion != null && !(parseFloat(portion) > 0)) errors.push(`${file}: step ${si + 1} uses "${k}", but the part after @ isn't an amount`);
+        const [gi, ii] = key.split(".").map(Number);
         if (!r.groups?.[gi]?.items?.[ii]) errors.push(`${file}: step ${si + 1} uses "${k}", but there's no ingredient ${k}`);
       });
     });

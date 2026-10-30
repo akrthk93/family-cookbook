@@ -122,14 +122,24 @@
     },
     {
       "t": "Deglaze and simmer",
-      "x": "Stock in, reduce by half. Add cream. Return chicken, cover, simmer low 8–10 min until cooked.",
+      "x": "Pour in the stock and let it reduce by half, about 4 min. Add the cream, return the chicken, cover and simmer on low for 8–10 min until cooked.",
       "uses": [
         "0.8",
         "0.9"
       ],
       "on": "pan",
-      "act": 2,
-      "wait": 14
+      "parts": [
+        {
+          "x": "Pour in the stock and let it reduce by half, about 4 min.",
+          "act": 1,
+          "wait": 4
+        },
+        {
+          "x": "Add the cream, return the chicken, cover and simmer on low for 8–10 min until cooked.",
+          "act": 1,
+          "wait": 8
+        }
+      ]
     },
     {
       "t": "Serve",

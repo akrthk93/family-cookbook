@@ -141,8 +141,19 @@
         "0.0"
       ],
       "on": "ip",
-      "act": 2,
-      "wait": 23
+      "parts": [
+        {
+          "x": "Chicken into the pot, pour sauce over, stir to coat. Seal, Pressure Cook High 8 min.",
+          "act": 2,
+          "wait": 18,
+          "until": "it beeps"
+        },
+        {
+          "x": "Natural release 5 min, then quick release.",
+          "act": 0,
+          "wait": 5
+        }
+      ]
     },
     {
       "t": "Add peanut butter",

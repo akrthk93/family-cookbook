@@ -56,8 +56,14 @@
         "0.0"
       ],
       "on": "sauce",
-      "act": 0.5,
-      "wait": 3
+      "parts": [
+        {
+          "x": "Bring 250ml water to a boil.",
+          "act": 0.5,
+          "wait": 3,
+          "until": "it boils"
+        }
+      ]
     },
     {
       "t": "Brew",

@@ -120,7 +120,10 @@
     {
       "t": "Make the creamy base",
       "x": "In the hand blender beaker, blend 1 can of the beans with 250ml of the stock until completely smooth, about 1 min. This is what makes it creamy without cream.",
-      "uses": [],
+      "uses": [
+        "2.1@1",
+        "2.0@250"
+      ],
       "on": "none",
       "act": 2,
       "wait": 0
@@ -133,7 +136,12 @@
         "0.1",
         "0.2",
         "0.3",
-        "0.4"
+        "0.4",
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3",
+        "1.4"
       ],
       "on": "ip",
       "act": 6,
@@ -142,7 +150,9 @@
     {
       "t": "Deglaze",
       "x": "Turn off Sauté. Add the remaining 250ml stock and scrape the bottom completely.",
-      "uses": [],
+      "uses": [
+        "2.0@250"
+      ],
       "on": "ip",
       "act": 2,
       "wait": 0
@@ -151,7 +161,8 @@
       "t": "Load the pot",
       "x": "Lay the whole chicken thighs in a single layer. Add the remaining whole beans. Pour the bean purée over the top last and don't stir, because thick purée on the bottom can trigger a burn warning.",
       "uses": [
-        "2.2"
+        "2.2",
+        "2.1@1"
       ],
       "on": "ip",
       "act": 2,
@@ -159,17 +170,27 @@
     },
     {
       "t": "Pressure cook",
-      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest.",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min. Let it release naturally for 10 min, then release the rest.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 30
+      "parts": [
+        {
+          "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min.",
+          "act": 1,
+          "wait": 20,
+          "until": "it beeps"
+        },
+        {
+          "x": "Let it release naturally for 10 min, then release the rest.",
+          "act": 0,
+          "wait": 10
+        }
+      ]
     },
     {
       "t": "Shred and finish",
       "x": "Lift the chicken onto a board and shred with two forks. Return it to the pot and stir everything together. If it's thinner than you like, Sauté 3 min uncovered, stirring, to thicken. Stir in the lime juice and coriander.",
       "uses": [
-        "1.1",
         "2.3",
         "2.4"
       ],

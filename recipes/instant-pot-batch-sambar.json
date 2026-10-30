@@ -163,14 +163,24 @@
   "steps": [
     {
       "t": "Soak the tamarind",
-      "x": "Soak the tamarind in the hot water for 10 min while you cut the vegetables, then squeeze it out and strain the liquid. Throw away the pulp.",
+      "x": "Soak the tamarind in the hot water for 10 min while you cut the vegetables. Squeeze it out, strain the liquid and throw away the pulp.",
       "uses": [
         "2.0",
         "2.1"
       ],
       "on": "none",
-      "act": 1,
-      "wait": 10
+      "parts": [
+        {
+          "x": "Soak the tamarind in the hot water for 10 min while you cut the vegetables.",
+          "act": 1,
+          "wait": 10
+        },
+        {
+          "x": "Squeeze it out, strain the liquid and throw away the pulp.",
+          "act": 1.5,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Load the dal",
@@ -203,11 +213,22 @@
     },
     {
       "t": "Pressure cook",
-      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest.",
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min. Let it release naturally for 10 min, then release the rest.",
       "uses": [],
       "on": "ip",
-      "act": 1,
-      "wait": 30
+      "parts": [
+        {
+          "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min.",
+          "act": 1,
+          "wait": 20,
+          "until": "it beeps"
+        },
+        {
+          "x": "Let it release naturally for 10 min, then release the rest.",
+          "act": 0,
+          "wait": 10
+        }
+      ]
     },
     {
       "t": "Mash and combine",

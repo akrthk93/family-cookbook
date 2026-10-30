@@ -154,9 +154,19 @@
         "1.2"
       ],
       "on": "none",
-      "act": 3,
-      "wait": 15,
-      "overlap": true
+      "overlap": true,
+      "parts": [
+        {
+          "x": "Soak cashews in warm water 15 min.",
+          "act": 0.5,
+          "wait": 15
+        },
+        {
+          "x": "Drain, grind smooth with 2–3 tbsp water.",
+          "act": 2.5,
+          "wait": 0
+        }
+      ]
     },
     {
       "t": "Aromatics and onions",
@@ -202,7 +212,7 @@
     },
     {
       "t": "Finish with cream",
-      "x": "Add cream, low heat, simmer 12–15 min until chicken is cooked. Season with salt, sugar and garam masala, 2–3 more min. Never raise the heat after cream goes in.",
+      "x": "Add cream, low heat, simmer 12–15 min until chicken is cooked. Season with salt, sugar and garam masala and simmer 2–3 min more. Never raise the heat after cream goes in.",
       "uses": [
         "1.6",
         "1.12",
@@ -210,8 +220,18 @@
         "1.7"
       ],
       "on": "pan",
-      "act": 2,
-      "wait": 15
+      "parts": [
+        {
+          "x": "Add cream, low heat, simmer 12–15 min until chicken is cooked.",
+          "act": 1,
+          "wait": 12
+        },
+        {
+          "x": "Season with salt, sugar and garam masala and simmer 2–3 min more. Never raise the heat after cream goes in.",
+          "act": 1,
+          "wait": 2
+        }
+      ]
     }
   ],
   "notes": [
