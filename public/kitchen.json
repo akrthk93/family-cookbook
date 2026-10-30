@@ -1,5 +1,5 @@
 {
-  "updated": 1793366709979,
+  "updated": 1793366722330,
   "items": [
     {
       "id": "ss-skillet",
@@ -286,7 +286,7 @@
       "id": "silicone-spatula",
       "name": "Silicone spatula",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "wooden-spoon",
