@@ -52,24 +52,36 @@
         "0.1",
         "0.2",
         "0.3"
-      ]
+      ],
+      "on": "sauce",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Boil",
       "x": "Bring to a boil over medium-high heat, about 4 min. Stay close, because milk boils over fast.",
-      "uses": []
+      "uses": [],
+      "on": "sauce",
+      "act": 1,
+      "wait": 4
     },
     {
       "t": "Simmer",
       "x": "As soon as it boils, reduce the heat to low and simmer for 1 min.",
-      "uses": []
+      "uses": [],
+      "on": "sauce",
+      "act": 0.5,
+      "wait": 1
     },
     {
       "t": "Strain and sweeten",
       "x": "Strain through a fine-mesh sieve into 2 mugs. Stir in the sugar and serve right away.",
       "uses": [
         "0.4"
-      ]
+      ],
+      "on": "none",
+      "act": 1.5,
+      "wait": 0
     }
   ],
   "notes": [

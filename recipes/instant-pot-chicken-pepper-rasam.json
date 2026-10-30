@@ -156,7 +156,10 @@
         "0.2",
         "1.3",
         "1.4"
-      ]
+      ],
+      "on": "none",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Prep tamarind and tomatoes",
@@ -164,7 +167,10 @@
       "uses": [
         "1.0",
         "1.2"
-      ]
+      ],
+      "on": "none",
+      "act": 1,
+      "wait": 10
     },
     {
       "t": "Crush the base spices",
@@ -174,31 +180,50 @@
         "2.2",
         "2.3",
         "5.0"
-      ]
+      ],
+      "on": "none",
+      "act": 5,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Pressure cook",
       "x": "Add to the Instant Pot: thighs, tomatoes, tamarind water, 750 ml water, 6 g salt, 1 g turmeric and the crushed base spices. Seal and cook on High pressure for 12 min. Natural release for 10 min, then quick release.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 2,
+      "wait": 32,
+      "after": [
+        1
+      ]
     },
     {
       "t": "Shred the chicken",
       "x": "Lift the thighs out onto a plate. Mash the tomatoes against the side of the pot with the back of a ladle. Don't use the hand blender, as it clouds the rasam. Pull the meat off the bones in bite-size chunks and discard the bones. Return about three-quarters of the meat to the pot.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "none",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Set aside the child's portion",
       "x": "Before any adult pepper goes in, ladle about 250 ml of broth with the reserved chicken into a bowl.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Adult heat",
       "x": "Press Sauté. Add the 2.5 g freshly crushed pepper and the naatu sakkarai to the pot. Simmer gently for 5 min. Don't hard boil, or the pepper turns bitter. Taste and add salt if needed.",
       "uses": [
         "1.5"
-      ]
+      ],
+      "on": "ip",
+      "act": 1,
+      "wait": 5
     },
     {
       "t": "Tadka",
@@ -206,12 +231,18 @@
       "uses": [
         "3.1",
         "4.3"
-      ]
+      ],
+      "on": "sauce",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Finish",
       "x": "Turn off Sauté. Stir in the coriander. Rest with the lid on for 5 min, then serve over hot rice.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 5
     }
   ],
   "notes": [

@@ -88,7 +88,10 @@
         "0.0",
         "0.1",
         "0.2"
-      ]
+      ],
+      "on": "wok",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Aromatics and veg",
@@ -99,14 +102,20 @@
         "0.1",
         "0.4",
         "0.5"
-      ]
+      ],
+      "on": "wok",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Add luncheon meat",
       "x": "Cook 2–3 min until lightly browned. All to the egg plate.",
       "uses": [
         "0.6"
-      ]
+      ],
+      "on": "wok",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Fry the rice",
@@ -116,7 +125,10 @@
         "0.7",
         "0.8",
         "0.1"
-      ]
+      ],
+      "on": "wok",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Finish",
@@ -124,7 +136,10 @@
       "uses": [
         "0.9",
         "0.10"
-      ]
+      ],
+      "on": "wok",
+      "act": 2,
+      "wait": 0
     }
   ],
   "notes": []

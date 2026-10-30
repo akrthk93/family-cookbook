@@ -47,7 +47,10 @@
       "uses": [
         "0.0",
         "0.1"
-      ]
+      ],
+      "on": "none",
+      "act": 12,
+      "wait": 0
     },
     {
       "t": "Blend in two batches",
@@ -55,17 +58,26 @@
       "uses": [
         "0.2",
         "0.3"
-      ]
+      ],
+      "on": "none",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Fill",
       "x": "Combine both batches and stir. Spoon into the 15 ml cells and level the tops.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Freeze immediately",
       "x": "Freeze for 3 h until solid. Pop out, double-bag, press out the air and label with name and date.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     }
   ],
   "notes": [

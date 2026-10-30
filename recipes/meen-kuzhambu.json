@@ -145,7 +145,10 @@
         "0.2",
         "1.0",
         "1.1"
-      ]
+      ],
+      "on": "none",
+      "act": 3,
+      "wait": 10
     },
     {
       "t": "Temper",
@@ -155,7 +158,11 @@
         "2.1",
         "2.2",
         "2.3"
-      ]
+      ],
+      "on": "wok",
+      "act": 1,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Shallots, garlic, tomato",
@@ -164,7 +171,10 @@
         "2.4",
         "2.5",
         "2.6"
-      ]
+      ],
+      "on": "wok",
+      "act": 9,
+      "wait": 0
     },
     {
       "t": "Bloom the spices",
@@ -173,25 +183,42 @@
         "3.0",
         "3.1",
         "3.2",
-        "3.3"
-      ]
+        "3.3",
+        "3.6"
+      ],
+      "on": "wok",
+      "act": 1.5,
+      "wait": 0
     },
     {
       "t": "Simmer the kuzhambu",
       "x": "Pour in the tamarind water and the rest of the water, add salt and naatu sakkarai, and bring to a boil. Simmer uncovered on medium-low for 12–15 min until it thickens and a thin layer of oil floats on top.",
       "uses": [
         "3.4",
-        "3.5",
-        "3.6"
+        "3.5"
+      ],
+      "on": "wok",
+      "act": 2,
+      "wait": 12,
+      "after": [
+        0
       ]
     },
     {
       "t": "Cook the fish",
-      "x": "Slide the fish into the curry in one layer. Don't stir; swirl the pan or spoon gravy over the top instead so the fish doesn't break. Cover and simmer on low for 6–8 min until the fish flakes at the thickest part."
+      "x": "Slide the fish into the curry in one layer. Don't stir; swirl the pan or spoon gravy over the top instead so the fish doesn't break. Cover and simmer on low for 6–8 min until the fish flakes at the thickest part.",
+      "uses": [],
+      "on": "wok",
+      "act": 1,
+      "wait": 6
     },
     {
       "t": "Rest",
-      "x": "Turn off the heat and rest covered for 30 min before serving. Kuzhambu tastes better a few hours later, and best the next day."
+      "x": "Turn off the heat and rest covered for 30 min before serving. Kuzhambu tastes better a few hours later, and best the next day.",
+      "uses": [],
+      "on": "none",
+      "act": 0.5,
+      "wait": 30
     }
   ],
   "notes": [

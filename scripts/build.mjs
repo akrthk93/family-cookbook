@@ -28,6 +28,11 @@ const recipes = readdirSync(join(root, "recipes"))
     }));
     (r.steps || []).forEach((s, si) => {
       if (s.uses != null && !Array.isArray(s.uses)) errors.push(`${file}: step ${si + 1} "uses" must be a list`);
+      const ON = ["ip", "af", "pc", "wok", "pan", "deep", "pot", "tawa", "steam", "sauce", "none"];
+      if (s.on != null && !ON.includes(s.on)) errors.push(`${file}: step ${si + 1} "on" must be one of ${ON.join(", ")}`);
+      for (const f of ["act", "wait"]) if (s[f] != null && !(typeof s[f] === "number" && s[f] >= 0)) errors.push(`${file}: step ${si + 1} "${f}" must be minutes (a number)`);
+      if (s.after != null && !(Array.isArray(s.after) && s.after.every(j => Number.isInteger(j) && j >= 0 && j < si))) errors.push(`${file}: step ${si + 1} "after" must list earlier step numbers (0-based)`);
+      if (s.overlap && si === 0) errors.push(`${file}: the first step can't overlap`);
       (s.uses || []).forEach(k => {
         const [gi, ii] = String(k).split(".").map(Number);
         if (!r.groups?.[gi]?.items?.[ii]) errors.push(`${file}: step ${si + 1} uses "${k}", but there's no ingredient ${k}`);
@@ -47,7 +52,7 @@ cpSync(join(root, "public"), dist, { recursive: true });
 const data = JSON.stringify(recipes);
 writeFileSync(join(dist, "recipes.json"), data);
 
-const version = createHash("sha256").update(data + readFileSync(join(root, "public/index.html"))).digest("hex").slice(0, 10);
+const version = createHash("sha256").update(data + readFileSync(join(root, "public/index.html")) + readFileSync(join(root, "public/plan.js"))).digest("hex").slice(0, 10);
 for (const f of ["index.html", "sw.js"]) {
   const p = join(dist, f);
   writeFileSync(p, readFileSync(p, "utf8").replaceAll("__REPO__", repo).replaceAll("__VERSION__", version));

@@ -102,7 +102,10 @@
       "x": "Shred about 2 cups leftover chicken.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "none",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Make sauce",
@@ -117,7 +120,10 @@
         "0.7",
         "0.8",
         "0.9"
-      ]
+      ],
+      "on": "pan",
+      "act": 4,
+      "wait": 5
     },
     {
       "t": "Assemble",
@@ -125,19 +131,28 @@
       "uses": [
         "0.10",
         "0.11"
-      ]
+      ],
+      "on": "pan",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Top",
       "x": "Spoon over remaining sauce, sprinkle cheese. Cover, simmer 5 min.",
-      "uses": []
+      "uses": [],
+      "on": "pan",
+      "act": 1,
+      "wait": 5
     },
     {
       "t": "Garnish",
       "x": "Coriander, radish, avocado, jalapeño and sour cream.",
       "uses": [
         "1.0"
-      ]
+      ],
+      "on": "none",
+      "act": 2,
+      "wait": 0
     }
   ],
   "notes": []

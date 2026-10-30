@@ -120,7 +120,10 @@
     {
       "t": "Make the creamy base",
       "x": "In the hand blender beaker, blend 1 can of the beans with 250ml of the stock until completely smooth, about 1 min. This is what makes it creamy without cream.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Soften the veg",
@@ -131,24 +134,36 @@
         "0.2",
         "0.3",
         "0.4"
-      ]
+      ],
+      "on": "ip",
+      "act": 6,
+      "wait": 0
     },
     {
       "t": "Deglaze",
       "x": "Turn off Sauté. Add the remaining 250ml stock and scrape the bottom completely.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Load the pot",
       "x": "Lay the whole chicken thighs in a single layer. Add the remaining whole beans. Pour the bean purée over the top last and don't stir, because thick purée on the bottom can trigger a burn warning.",
       "uses": [
         "2.2"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
       "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 30
     },
     {
       "t": "Shred and finish",
@@ -157,7 +172,10 @@
         "1.1",
         "2.3",
         "2.4"
-      ]
+      ],
+      "on": "ip",
+      "act": 5,
+      "wait": 0
     }
   ],
   "notes": [

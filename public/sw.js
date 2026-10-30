@@ -4,7 +4,7 @@ const VERSION = "__VERSION__";
 const SHELL = `shell-${VERSION}`;
 const DATA = "data";
 const FONTS = "fonts";
-const SHELL_FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./apple-touch-icon.png", "./icon-512.png"];
+const SHELL_FILES = ["./", "./index.html", "./plan.js", "./manifest.webmanifest", "./icon.svg", "./apple-touch-icon.png", "./icon-512.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(SHELL).then(c => c.addAll(SHELL_FILES)).then(() => self.skipWaiting()));

@@ -78,7 +78,10 @@
         "0.0",
         "0.1",
         "0.2"
-      ]
+      ],
+      "on": "wok",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Carrot and luncheon meat",
@@ -88,7 +91,10 @@
         "0.3",
         "0.1",
         "0.4"
-      ]
+      ],
+      "on": "wok",
+      "act": 6,
+      "wait": 0
     },
     {
       "t": "Fry the rice",
@@ -99,14 +105,20 @@
         "0.6",
         "0.7",
         "0.1"
-      ]
+      ],
+      "on": "wok",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Finish and serve",
       "x": "Add peas, egg mix and scallion greens. Stir, breaking eggs into small pieces, until peas are warm, about 2 min.",
       "uses": [
         "0.8"
-      ]
+      ],
+      "on": "wok",
+      "act": 2,
+      "wait": 0
     }
   ],
   "notes": []

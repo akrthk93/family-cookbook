@@ -135,19 +135,29 @@
         "1.5",
         "1.6",
         "1.7"
-      ]
+      ],
+      "on": "none",
+      "act": 8,
+      "wait": 0
     },
     {
       "t": "Air fry the onions",
       "x": "200°C for 10–12 min, shaking halfway. Work in batches. Keep warm in oven at 100°C.",
-      "uses": []
+      "uses": [],
+      "on": "af",
+      "act": 1,
+      "wait": 11
     },
     {
       "t": "Cook the peppers",
       "x": "Small pan, medium-high, drizzle of oil. Capsicum strips 8–10 min until softened and charred. Season.",
       "uses": [
         "0.5"
-      ]
+      ],
+      "on": "sauce",
+      "act": 3,
+      "wait": 6,
+      "overlap": true
     },
     {
       "t": "Mix and form the chicken",
@@ -158,7 +168,11 @@
         "0.2",
         "0.3",
         "0.4"
-      ]
+      ],
+      "on": "none",
+      "act": 4,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Smash and cook",
@@ -166,6 +180,12 @@
       "uses": [
         "0.9",
         "0.6"
+      ],
+      "on": "pan",
+      "act": 10,
+      "wait": 0,
+      "after": [
+        2
       ]
     },
     {
@@ -174,6 +194,12 @@
       "uses": [
         "0.7",
         "0.8"
+      ],
+      "on": "pan",
+      "act": 3,
+      "wait": 0,
+      "after": [
+        1
       ]
     }
   ],

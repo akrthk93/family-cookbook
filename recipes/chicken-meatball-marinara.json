@@ -154,7 +154,10 @@
         "1.7",
         "1.8",
         "1.9"
-      ]
+      ],
+      "on": "deep",
+      "act": 6,
+      "wait": 20
     },
     {
       "t": "Mix the meatballs",
@@ -168,32 +171,55 @@
         "0.5",
         "0.6",
         "0.7"
-      ]
+      ],
+      "on": "none",
+      "act": 6,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Pan-fry the meatballs",
       "x": "2 tbsp oil, medium. Brown on all sides, 8–10 min total. Not cooked through yet.",
       "uses": [
         "0.8"
-      ]
+      ],
+      "on": "pan",
+      "act": 9,
+      "wait": 0
     },
     {
       "t": "Finish in sauce",
       "x": "Into the marinara, cover, simmer 12–15 min, turning once. Done at 74°C.",
-      "uses": []
+      "uses": [],
+      "on": "deep",
+      "act": 1,
+      "wait": 13,
+      "after": [
+        0
+      ]
     },
     {
       "t": "Cook the spaghetti",
       "x": "While meatballs finish, cook spaghetti al dente. Reserve 125ml water.",
       "uses": [
         "2.0"
-      ]
+      ],
+      "on": "pot",
+      "act": 2,
+      "wait": 18,
+      "overlap": true
     },
     {
       "t": "Combine and serve",
       "x": "Toss with sauce, loosen with pasta water. Parmesan and parsley.",
       "uses": [
         "2.1"
+      ],
+      "on": "deep",
+      "act": 2,
+      "wait": 0,
+      "after": [
+        4
       ]
     }
   ],

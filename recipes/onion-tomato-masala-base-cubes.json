@@ -74,7 +74,10 @@
         "0.0",
         "0.2",
         "1.0"
-      ]
+      ],
+      "on": "pot",
+      "act": 10,
+      "wait": 15
     },
     {
       "t": "Darken the paste",
@@ -82,7 +85,10 @@
       "uses": [
         "0.1",
         "0.3"
-      ]
+      ],
+      "on": "pot",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Cook down the tomatoes",
@@ -90,24 +96,36 @@
       "uses": [
         "0.4",
         "1.1"
-      ]
+      ],
+      "on": "pot",
+      "act": 2,
+      "wait": 28
     },
     {
       "t": "Blend smooth",
       "x": "Take the pot off the heat. Blend with the hand blender for 2 min until fully smooth. Keep the blade under the surface to avoid splatter. Taste: it should be sweet and rounded, not sharp. If it is sharp, stir in 1/8 tsp baking soda off the heat (it will fizz), then taste again.",
       "uses": [
         "1.2"
-      ]
+      ],
+      "on": "none",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Cool and fill",
       "x": "Cool for 30 min with the lid off. Spoon into the 60ml cells and level the tops.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 3,
+      "wait": 30
     },
     {
       "t": "Freeze and bag",
       "x": "Freeze uncovered for 3 h until solid. Pop out the cubes, bag flat, press out the air and label with name and date.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     }
   ],
   "notes": [

@@ -48,6 +48,11 @@ Saving from the app needs a one-time setup per phone (Settings → Saving recipe
 - `g` is a group heading, or `null` for none. `sub` is an optional substitute.
 - Timers come from the step text: every time written in `x` ("15 min", "8–10 minutes", "30 sec") becomes a tap-to-start timer, starting at the low end of a range. Phrases like "1 min less than packet time" are ignored.
 - `uses` lists the ingredients that go in at that step as `group.item` positions (`"1.3"` = 2nd group, 4th item). Cook mode shows them under "Goes in now". List each ingredient once, at the step where it's added. If `uses` is missing, the app guesses from the step text.
+- Step timing for Cook together (optional; the app estimates them from the step text when missing):
+  - `act`: hands-on minutes. `wait`: hands-free minutes after that (pressure cooking, simmering, marinating). Include the Instant Pot's time to come up to pressure and any natural release in `wait`.
+  - `on`: what the step ties up: `ip` (Instant Pot), `af` (air fryer), `pan`, `deep`, `wok`, `pot`, `tawa`, `steam`, `pc` (stovetop pressure cooker) need a big burner; `sauce` (saucepan, small pan) takes any burner; `none` for the counter.
+  - `overlap: true`: the step can start while the previous step is still in its hands-free time (e.g. make the sauce while the pasta boils).
+  - `after: [n]`: the step also waits for step n to finish completely (e.g. combine pasta and sauce after the pasta step).
 - The file name must match `id`. The build fails with a clear message if a recipe is malformed, so a bad file never takes the site down.
 
 ## What to cook now
@@ -66,6 +71,17 @@ A recipe joins a plan through its tags:
 | `Breakfast`, `Drinks` | Mornings |
 
 "Made it today" on a recipe (or finishing cook mode) records when it was last made. Suggestions list the least recently made first. This history is kept on each phone.
+
+## Cook together
+
+On the Recipes screen, tap **Cook several dishes together**, pick 2 to 4 dishes, set servings, and choose **Serve together** (shorter dishes start later so everything is hot at once) or **Done fastest** (batch prep), and one or two cooks. The app then guides you live:
+
+- **Now** shows what to do, one card per cook. Chopping is pulled out of the ingredient list and slotted into waiting time, but always finished before a pan goes on, so nothing scorches while you chop. Once a pan is hot, its next step comes straight away.
+- **Cooking on its own** shows the timers that start when you finish a hands-on step (+1m, Done early, an alarm when time's up).
+- It never puts two dishes in the Instant Pot or air fryer at once and uses at most 2 big burners and 1 small one. It re-plans every time you tap Done, so running behind is fine.
+- The session survives closing the app. **Finish** marks every dish as made today.
+
+The planner lives in `public/plan.js` (pure functions, testable in node).
 
 ## Compare prices
 

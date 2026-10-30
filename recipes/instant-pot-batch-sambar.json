@@ -167,7 +167,10 @@
       "uses": [
         "2.0",
         "2.1"
-      ]
+      ],
+      "on": "none",
+      "act": 1,
+      "wait": 10
     },
     {
       "t": "Load the dal",
@@ -177,7 +180,11 @@
         "0.1",
         "0.2",
         "0.3"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Add the vegetables on top",
@@ -189,11 +196,18 @@
         "1.3",
         "1.4",
         "1.5"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
-      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest."
+      "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 10 min, then natural release for 10 min and release the rest.",
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 30
     },
     {
       "t": "Mash and combine",
@@ -202,6 +216,12 @@
         "2.2",
         "2.3",
         "2.4"
+      ],
+      "on": "ip",
+      "act": 4,
+      "wait": 0,
+      "after": [
+        0
       ]
     },
     {
@@ -209,7 +229,10 @@
       "x": "Add the 500ml water and simmer on Sauté for 8 min, stirring now and then, until the raw tamarind smell is gone. It should pour like thick soup; it thickens more as it cools.",
       "uses": [
         "2.5"
-      ]
+      ],
+      "on": "ip",
+      "act": 1,
+      "wait": 8
     },
     {
       "t": "Temper",
@@ -222,7 +245,11 @@
         "3.4",
         "3.5",
         "3.6"
-      ]
+      ],
+      "on": "sauce",
+      "act": 3,
+      "wait": 0,
+      "overlap": true
     }
   ],
   "notes": [

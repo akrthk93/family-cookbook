@@ -54,7 +54,10 @@
       "x": "Bring 250ml water to a boil.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "sauce",
+      "act": 0.5,
+      "wait": 3
     },
     {
       "t": "Brew",
@@ -62,21 +65,30 @@
       "uses": [
         "0.1",
         "0.2"
-      ]
+      ],
+      "on": "sauce",
+      "act": 0.5,
+      "wait": 5
     },
     {
       "t": "Sweeten",
       "x": "Add sugar, simmer 1 min more.",
       "uses": [
         "0.3"
-      ]
+      ],
+      "on": "sauce",
+      "act": 0.5,
+      "wait": 1
     },
     {
       "t": "Strain and finish",
       "x": "Strain, stir in evaporated milk. Pull between two cups if you like.",
       "uses": [
         "0.4"
-      ]
+      ],
+      "on": "none",
+      "act": 1.5,
+      "wait": 0
     }
   ],
   "notes": []

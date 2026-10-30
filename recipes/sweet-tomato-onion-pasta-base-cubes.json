@@ -71,7 +71,10 @@
         "0.0",
         "0.3",
         "1.0"
-      ]
+      ],
+      "on": "pot",
+      "act": 6,
+      "wait": 4
     },
     {
       "t": "Add carrot and garlic",
@@ -79,38 +82,56 @@
       "uses": [
         "0.1",
         "0.2"
-      ]
+      ],
+      "on": "pot",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Darken the paste",
       "x": "Add the tomato paste. Cook for 3 min until it turns brick red.",
       "uses": [
         "0.4"
-      ]
+      ],
+      "on": "pot",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Simmer slowly",
       "x": "Add the canned tomatoes with their juice and the remaining salt. Crush the tomatoes with the spoon. Simmer on medium-low with the lid ajar for 35 min, stirring every 5 min, until thick and the oil separates at the edges. This slow cook-down is what removes the sourness.",
       "uses": [
         "0.5"
-      ]
+      ],
+      "on": "pot",
+      "act": 2,
+      "wait": 33
     },
     {
       "t": "Blend and taste",
       "x": "Take the pot off the heat and blend smooth with the hand blender. If it is still sharp, stir in 1/8 tsp baking soda off the heat (it will fizz), then taste again.",
       "uses": [
         "1.1"
-      ]
+      ],
+      "on": "none",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Cool and fill",
       "x": "Cool for 30 min with the lid off. Spoon into the 60 ml cells and level the tops.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 3,
+      "wait": 30
     },
     {
       "t": "Freeze and bag",
       "x": "Freeze uncovered for 3 h until solid. Pop out, bag flat, press out the air and label with name and date.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     }
   ],
   "notes": [

@@ -74,7 +74,10 @@
       "x": "Salted water, al dente. Taste 2 min before packet time.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "pot",
+      "act": 2,
+      "wait": 18
     },
     {
       "t": "Heat oil and garlic",
@@ -82,33 +85,52 @@
       "uses": [
         "0.1",
         "0.2"
-      ]
+      ],
+      "on": "pan",
+      "act": 4,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Add sausage",
       "x": "Push garlic aside, brown sausage 5–6 min, breaking up. Mix together.",
       "uses": [
         "0.5"
-      ]
+      ],
+      "on": "pan",
+      "act": 6,
+      "wait": 0
     },
     {
       "t": "Add chilli",
       "x": "Chilli flakes, 1 min.",
       "uses": [
         "0.3"
-      ]
+      ],
+      "on": "pan",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Add tomatoes",
       "x": "Crush tomatoes by hand, add to pan, simmer with a pinch of salt 4–5 min.",
       "uses": [
         "0.4"
-      ]
+      ],
+      "on": "pan",
+      "act": 2,
+      "wait": 4
     },
     {
       "t": "Combine pasta",
       "x": "Reserve ½ cup pasta water. Toss pasta in sauce, loosening with water.",
-      "uses": []
+      "uses": [],
+      "on": "pan",
+      "act": 2,
+      "wait": 0,
+      "after": [
+        0
+      ]
     },
     {
       "t": "Finish",
@@ -116,7 +138,10 @@
       "uses": [
         "0.6",
         "0.8"
-      ]
+      ],
+      "on": "none",
+      "act": 1.5,
+      "wait": 0
     }
   ],
   "notes": []

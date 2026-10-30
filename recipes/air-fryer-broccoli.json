@@ -81,7 +81,10 @@
       "x": "Cut the broccoli into florets of about 4cm. Wash them, then dry thoroughly with a clean towel. Wet florets steam instead of crisping.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "none",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Season",
@@ -90,24 +93,36 @@
         "0.1",
         "1.0",
         "2.0"
-      ]
+      ],
+      "on": "none",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Preheat",
       "x": "Preheat the air fryer to 190°C for 3 min.",
-      "uses": []
+      "uses": [],
+      "on": "af",
+      "act": 0.5,
+      "wait": 3
     },
     {
       "t": "Air fry",
       "x": "Spread the florets in a single layer in the basket. Cook at 190°C for 5 min, shake or toss, then cook another 5 min until the edges are charred and the stems are tender.",
-      "uses": []
+      "uses": [],
+      "on": "af",
+      "act": 1.5,
+      "wait": 10
     },
     {
       "t": "Finish",
       "x": "Tip into a bowl and toss with the lemon juice. Serve straight away.",
       "uses": [
         "3.0"
-      ]
+      ],
+      "on": "none",
+      "act": 1.5,
+      "wait": 0
     }
   ],
   "notes": [

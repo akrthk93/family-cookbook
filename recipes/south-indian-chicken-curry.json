@@ -136,14 +136,20 @@
         "0.3",
         "0.4",
         "0.5"
-      ]
+      ],
+      "on": "ip",
+      "act": 1.5,
+      "wait": 0
     },
     {
       "t": "Brown the onion",
       "x": "Add the onion and cook, stirring, until golden brown, about 7 minutes. This builds the base flavour, so don't rush it.",
       "uses": [
         "1.0"
-      ]
+      ],
+      "on": "ip",
+      "act": 7,
+      "wait": 0
     },
     {
       "t": "Add aromatics and tomato",
@@ -152,7 +158,10 @@
         "1.1",
         "1.2",
         "1.3"
-      ]
+      ],
+      "on": "ip",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Toast the powders",
@@ -161,7 +170,10 @@
         "1.4",
         "1.5",
         "1.6"
-      ]
+      ],
+      "on": "ip",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Coat the chicken",
@@ -169,19 +181,28 @@
       "uses": [
         "2.0",
         "1.7"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Deglaze",
       "x": "Pour in the water and scrape the bottom well. This prevents the Burn warning.",
       "uses": [
         "2.1"
-      ]
+      ],
+      "on": "ip",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
       "x": "Lock the lid, valve to Sealing. Pressure Cook on High for 6 minutes. Natural release 5 minutes, then quick release.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 21
     },
     {
       "t": "Reduce and finish",
@@ -189,7 +210,10 @@
       "uses": [
         "2.2",
         "2.3"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 3
     }
   ],
   "notes": [

@@ -68,31 +68,50 @@
         "0.3",
         "0.4",
         "0.1"
-      ]
+      ],
+      "on": "none",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Cook the pasta",
       "x": "Salted water, 1–2 min under packet time. Reserve 1 cup pasta water.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "pot",
+      "act": 2,
+      "wait": 17
     },
     {
       "t": "Warm the meat",
       "x": "Olive oil, medium-low, luncheon meat 1–2 min.",
       "uses": [
         "0.5"
-      ]
+      ],
+      "on": "pan",
+      "act": 2,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Make the carbonara",
       "x": "Hot pasta into the skillet, OFF the heat. Pour egg mix over while tossing hard. Add pasta water 2–3 tbsp at a time until creamy.",
-      "uses": []
+      "uses": [],
+      "on": "pan",
+      "act": 2,
+      "wait": 0,
+      "after": [
+        1
+      ]
     },
     {
       "t": "Serve",
       "x": "Taste (probably no salt needed). Extra Parmesan and pepper.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     }
   ],
   "notes": []

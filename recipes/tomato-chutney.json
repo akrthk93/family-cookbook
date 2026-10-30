@@ -103,7 +103,10 @@
         "0.1",
         "0.2",
         "0.3"
-      ]
+      ],
+      "on": "sauce",
+      "act": 1.5,
+      "wait": 0
     },
     {
       "t": "Cook onion and tomato",
@@ -115,11 +118,18 @@
         "0.7",
         "0.8",
         "0.9"
-      ]
+      ],
+      "on": "sauce",
+      "act": 7,
+      "wait": 0
     },
     {
       "t": "Grind",
-      "x": "Cool for 5 min, then grind in the mixie to a smooth paste. Add 2 tbsp water only if the blades stick."
+      "x": "Cool for 5 min, then grind in the mixie to a smooth paste. Add 2 tbsp water only if the blades stick.",
+      "uses": [],
+      "on": "none",
+      "act": 3,
+      "wait": 5
     },
     {
       "t": "Temper",
@@ -128,7 +138,10 @@
         "1.0",
         "1.1",
         "1.2"
-      ]
+      ],
+      "on": "sauce",
+      "act": 2,
+      "wait": 0
     }
   ],
   "notes": [

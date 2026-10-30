@@ -210,6 +210,65 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
 .pill.more{background:var(--sunk);color:var(--chilli)}
 .pill.same{background:var(--sunk);color:var(--muted)}
 .res .wait{color:var(--muted);font-size:15px}
+:root{--d0:#1B6A50;--d1:#B97A00;--d2:#B3361F;--d3:#2F6FB0}
+@media (prefers-color-scheme: dark){:root{--d0:#5CC29A;--d1:#F2B93A;--d2:#F07A62;--d3:#7FB2E5}}
+body.locked{overflow:hidden}
+.muted{color:var(--muted)} .small{font-size:14px}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;flex:none;background:var(--d0)}
+.dot.d1{background:var(--d1)} .dot.d2{background:var(--d2)} .dot.d3{background:var(--d3)}
+.together-btn{width:100%;margin-bottom:14px;justify-content:center}
+.pickhelp{margin:0 0 12px;color:var(--muted)}
+.card.pickable{position:relative;padding-right:52px}
+.card.picked{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pickmark{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:15px;color:var(--accent-ink)}
+.card.picked .pickmark{background:var(--accent);border-color:var(--accent)}
+.pickbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px))}
+.pickbar .btn.primary[disabled]{opacity:.45}
+.banner{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:12px 14px;margin-bottom:14px}
+.banner .dots{display:flex;flex-direction:column;gap:3px}
+.dishes{list-style:none;margin:8px 0 0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.dishes li{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 14px;border-top:1px solid var(--line)}
+.dishes li:first-child{border-top:0}
+.dishes .dn{flex:1;min-width:0;font-weight:700}
+.scale.sm{padding:3px}
+.scale.sm button{width:34px;height:34px;font-size:20px}
+.scale.sm output{min-width:32px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;margin-top:8px;border-radius:12px;background:var(--sunk)}
+.seg button{min-height:44px;border-radius:9px;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.preview{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.preview .big{font-family:var(--display);font-weight:800;font-size:34px;line-height:1.1}
+.plan{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.plan li{display:flex;align-items:baseline;gap:10px}
+.plan .when{flex:none;width:64px;color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.plan .dot{transform:translateY(1px)}
+.session .ttl{text-align:center}
+.progress{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:10px;font-size:14px}
+.pchip{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.pchip b{font-variant-numeric:tabular-nums}
+.now{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px;border-left:6px solid var(--d0)}
+.now.d1{border-left-color:var(--d1)} .now.d2{border-left-color:var(--d2)} .now.d3{border-left-color:var(--d3)}
+.now.idle{border-left-color:var(--line)}
+.now.finished{border-left-color:var(--accent)}
+.now .who{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;flex-wrap:wrap}
+.now .kind{margin-left:auto;color:var(--muted);font-weight:400;font-size:14px}
+.now h2{font-size:26px;margin:8px 0 10px}
+.now .text{font-size:19px;line-height:1.45;margin:10px 0 0}
+.gin{list-style:none;margin:0;padding:10px 12px;border-radius:10px;background:var(--sunk);display:flex;flex-direction:column;gap:2px;font-size:17px}
+.btn.grow{flex:1;min-height:56px;font-size:19px}
+.btn.sm{min-height:36px;padding:0 10px;font-size:14px}
+.waits{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.waits li{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 10px 10px 12px}
+.waits li{flex-wrap:wrap}
+.waits .wl{flex:1 1 0;min-width:0}
+.waits .ctl{display:flex;align-items:center;gap:6px;flex:1 0 100%;padding-left:22px}
+.waits .ctl .tt{margin-right:auto}
+.waits .tt{font-family:var(--display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums}
+.waits li.ring{background:var(--turmeric);color:var(--turmeric-ink);border-color:var(--turmeric)}
+.waits li.ring .muted{color:inherit}
+.ownway{margin-bottom:14px}
+.ownway h3{margin-bottom:6px}
+.ownway .waits{margin-top:0}
 </style>
 </head>
 <body>
@@ -221,6 +280,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
   <button id="tab-cmp"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M12 5V3"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg>Compare</button>
 </div></nav>
 
+<script src="./plan.js"></script>
 <script>
 "use strict";
 const REPO = "__REPO__";            // owner/name, filled in at build time
@@ -234,6 +294,7 @@ const ICON = {
   cart: svg('<path d="M3 4h2l2.4 11h11L21 7H6.2"/><path d="M14 2v6M11 5h6"/>'),
   plus: svg('<path d="M12 5v14M5 12h14"/>'),
   clock: svg('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>'),
+  pots: svg('<path d="M3 11h18M5 11v6a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-6M8 11V9M16 11V9M9 5c0 1 1 1 1 2M14 5c0 1 1 1 1 2"/>'),
   edit: svg('<path d="M4 20h4L19 9l-4-4L4 16z"/>'),
   trash: svg('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'),
   share: svg('<path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v7h14v-7"/>'),
@@ -398,6 +459,7 @@ async function load(){
     lsSet("deleted", S.deleted);
   } catch { S.loadFailed = true; }
   S.ready = true;
+  if (S.session) { restoreSessionTimers(); S.sessionOpen = true; fillHands(); }
   const h = decodeURIComponent(location.hash.slice(1));
   if (h && S.recipes.some(r => r.id === h)) { S.view = "recipe"; S.rid = h; }
   render();
@@ -427,7 +489,7 @@ async function wake(on){
     if (!on && lock) { await lock.release(); lock = null; }
   } catch {}
 }
-document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && S.view === "recipe") wake(true); });
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && (S.view === "recipe" || S.sessionOpen)) wake(true); });
 
 /* ---------- timers ---------- */
 let actx = null;
@@ -445,14 +507,15 @@ function beep(){
     }
   } catch {}
 }
-function startTimer(label, min){
+function startTimer(label, min, key){
   audio();
-  S.timers.push({ id: Math.random().toString(36).slice(2), label, end: Date.now() + min*60000, ring:false });
-  renderTray();
+  const t = { id: Math.random().toString(36).slice(2), label, end: Date.now() + min*60000, ring:false, key };
+  S.timers.push(t); renderTray(); return t;
 }
 const mmss = ms => { const s = Math.max(0, Math.ceil(ms/1000)); return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; };
 let lastBeep = 0;
 setInterval(() => {
+  if (S.session) sessionTick();
   if (!S.timers.length) return;
   const now = Date.now(); let ringing = false;
   for (const t of S.timers) { if (!t.ring && now >= t.end) t.ring = true; if (t.ring) ringing = true; }
@@ -465,7 +528,7 @@ function renderTray(){
     <div class="tt">${t.ring ? "0:00" : mmss(t.end - Date.now())}</div>
     ${t.ring ? `<button data-act="tdone" data-t="${t.id}">OK</button>` : `<button data-act="tadd" data-t="${t.id}" aria-label="Add one minute">+1m</button><button data-act="tdone" data-t="${t.id}" aria-label="Cancel timer">${ICON.close}</button>`}
   </div>`).join("");
-  $("#tray").innerHTML = S.cook ? "" : html;
+  $("#tray").innerHTML = S.cook || S.sessionOpen ? "" : html;
   const ct = $("#cookTray"); if (ct) ct.innerHTML = S.cook ? html : "";
 }
 
@@ -721,13 +784,21 @@ function viewList(){
     ${!S.ready ? `<p class="empty">Loading recipes…</p>` :
       !S.recipes.length ? `<div class="empty"><p>No recipes yet.</p><p>Tap <b>New</b> to paste one in.</p></div>` :
       !list.length ? `<p class="empty">Nothing matches “${esc(S.q || S.tag)}”.</p>` :
-      (!S.q && !S.tag ? viewNow() + `<h3 class="listhead">All recipes</h3>` : "") +
-      `<div class="list">${list.map(r => `<button class="card" data-act="open" data-id="${esc(r.id)}">
+      (S.session && !S.pick ? sessionBanner() : "") +
+      (S.pick ? `<p class="pickhelp">Tap 2 to 4 dishes to cook at the same time.</p>` :
+        `<button class="btn ghost together-btn" data-act="pickStart">${ICON.pots} Cook several dishes together</button>`) +
+      (!S.q && !S.tag && !S.pick ? viewNow() + `<h3 class="listhead">All recipes</h3>` : "") +
+      `<div class="list">${list.map(r => { const on = S.pick?.includes(r.id); return `<button class="card${S.pick ? " pickable" : ""}${on ? " picked" : ""}" data-act="${S.pick ? "pickToggle" : "open"}" data-id="${esc(r.id)}"${S.pick ? ` aria-pressed="${!!on}"` : ""}>
+        ${S.pick ? `<span class="pickmark" aria-hidden="true">${on ? S.pick.indexOf(r.id) + 1 : ""}</span>` : ""}
         <div class="t">${esc(r.title)}</div>
         <div class="meta"><span>${esc(r.total || "")}</span><span>Serves ${r.serves || "?"}</span>${r.equip ? `<span>${esc(r.equip.split(",")[0])}</span>` : ""}</div>
         <div class="tags">${r._local ? `<span class="tag local">This phone only</span>` : r._pending ? `<span class="tag ip">Syncing</span>` : ""}${(r.tags||[]).slice(0,5).map(t => `<span class="tag ${t==="Instant Pot"||t==="Air fryer"?"ip":""}">${esc(t)}</span>`).join("")}</div>
-      </button>`).join("")}</div>`}
-  </main>`;
+      </button>`; }).join("")}</div>`}
+  </main>
+  ${S.pick ? `<div class="pickbar"><div class="wrap row between">
+    <button class="btn ghost" data-act="pickCancel">Cancel</button>
+    <button class="btn primary" data-act="pickGo" ${S.pick.length < 2 ? "disabled" : ""}>${S.pick.length < 2 ? "Pick at least 2" : `Plan ${S.pick.length} dishes`}</button>
+  </div></div>` : ""}`;
 }
 function ingList(r, k, compact){
   const ck = S.checked[r.id] || {};
@@ -926,6 +997,203 @@ function viewCompare(){
   </main>`;
 }
 
+/* ---------- cook together ---------- */
+S.session = lsGet("session", null);      // the running session, kept across app restarts
+S.pick = null; S.together = null; S.sessionOpen = false; S.confirmEnd = false;
+const saveSession = () => lsSet("session", S.session);
+const GOALS = { together: ["Serve together", "Shorter dishes start later so everything is hot at the same time."],
+                fast:     ["Done fastest", "Shortest total time. Dishes finish when they finish, good for batch prep."] };
+const clock = ms => new Date(ms).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }).toLowerCase().replace(/\s/g, "");
+function fmtDur(min){ min = Math.max(1, Math.round(min)); const h = Math.floor(min / 60), m = min % 60; return h ? `${h} hr${m ? ` ${m} min` : ""}` : `${m} min`; }
+const shortName = r => r.title.replace(/\s*\([^)]*\)\s*/g, " ").replace(/^(Instant Pot|One-Pot|Air Fryer|Quick)\s+/i, "").trim();
+
+function sessionDishes(sess){
+  return sess.ids.map(id => {
+    const r = S.recipes.find(x => x.id === id); if (!r) return null;
+    return { r, steps: CookPlan.modelSteps(r), prep: CookPlan.prepTasks(r, i => stepUses(r, i), CookPlan.modelSteps(r)), k: (sess.servings[id] || r.serves || 1) / (r.serves || 1) };
+  });
+}
+const toMin = (sess, ms) => (ms - sess.startedAt) / 60000;
+function planSession(sess, D){
+  D = D || sessionDishes(sess);
+  if (D.some(d => !d)) return null;
+  const now = toMin(sess, Date.now());
+  const actOf = key => { const [kind, di, n] = CookPlan.parseKey(key); return kind === "s" ? D[di].steps[n].act : (D[di].prep.find(p => p.feeds === n)?.act || 2); };
+  const state = {
+    now,
+    dishes: sess.dishes.map(d => ({ next: d.next, waitEnd: Object.fromEntries(Object.entries(d.waitEnd).map(([k, ms]) => [k, toMin(sess, ms)])) })),
+    prepDone: new Set(sess.prepDone),
+    busy: sess.busy.map(b => ({ key: b.key, until: toMin(sess, b.at) + actOf(b.key) })),
+  };
+  return CookPlan.plan(D.map(d => ({ steps: d.steps, prep: d.prep })), state, { hands: sess.hands, mode: sess.mode });
+}
+function newSession(cfg){
+  return { ids: [...cfg.ids], servings: { ...cfg.servings }, mode: cfg.mode, hands: cfg.hands, startedAt: Date.now(),
+           dishes: cfg.ids.map(() => ({ next: 0, waitEnd: {} })), prepDone: [], busy: [] };
+}
+/* Give every free pair of hands the task the plan starts now. */
+function fillHands(){
+  const sess = S.session; if (!sess || sess.busy.length >= sess.hands) return;
+  const p = planSession(sess); if (!p) return;
+  const now = toMin(sess, Date.now());
+  const next = p.tasks.filter(t => !t.busy && t.start <= now + 0.01).sort((a, b) => a.start - b.start);
+  for (const t of next) { if (sess.busy.length >= sess.hands) break; sess.busy.push({ key: t.key, at: Date.now() }); }
+  saveSession();
+}
+function sessionDone(sess, D){
+  return sess.dishes.every((d, di) => d.next >= D[di].steps.length && Object.values(d.waitEnd).every(ms => ms <= Date.now())) &&
+         D.every((d, di) => d.prep.every(p => sess.prepDone.includes(`p${di}.${p.feeds}`))) && !sess.busy.length;
+}
+function completeTask(key, skip){
+  const sess = S.session, D = sessionDishes(sess), [kind, di, n] = CookPlan.parseKey(key);
+  sess.busy = sess.busy.filter(b => b.key !== key);
+  if (kind === "p") { if (!sess.prepDone.includes(key)) sess.prepDone.push(key); }
+  else {
+    const st = D[di].steps[n], dish = sess.dishes[di];
+    dish.next = Math.max(dish.next, n + 1);
+    if (st.wait > 0 && !skip) {
+      dish.waitEnd[n] = Date.now() + st.wait * 60000;
+      startTimer(`${shortName(D[di].r)}: ${st.t}`, st.wait, `${di}.${n}`);
+    }
+  }
+  saveSession(); fillHands();
+}
+function changeWait(di, n, ms){
+  const sess = S.session, dish = sess.dishes[di];
+  if (ms == null) { delete dish.waitEnd[n]; S.timers = S.timers.filter(t => t.key !== `${di}.${n}`); }
+  else { dish.waitEnd[n] = ms; S.timers.forEach(t => { if (t.key === `${di}.${n}`) { t.end = ms; t.ring = false; } }); }
+  saveSession(); fillHands(); renderTray();
+}
+let lastTick = Date.now();
+function sessionTick(){
+  const now = Date.now(), sess = S.session;
+  document.querySelectorAll("[data-until]").forEach(el => { el.textContent = mmss(+el.dataset.until - now); });
+  const crossed = sess.dishes.some(d => Object.values(d.waitEnd).some(ms => ms > lastTick && ms <= now));
+  lastTick = now;
+  if (crossed) { fillHands(); if (S.sessionOpen) render(); }
+}
+function restoreSessionTimers(){
+  const sess = S.session; if (!sess) return;
+  const D = sessionDishes(sess); if (D.some(d => !d)) return;
+  sess.dishes.forEach((d, di) => Object.entries(d.waitEnd).forEach(([n, ms]) => {
+    if (ms > Date.now() && !S.timers.some(t => t.key === `${di}.${n}`))
+      S.timers.push({ id: Math.random().toString(36).slice(2), label: `${shortName(D[di].r)}: ${D[di].steps[n].t}`, end: ms, ring: false, key: `${di}.${n}` });
+  }));
+}
+
+/* What a task is, for the screen */
+function taskInfo(D, key){
+  const [kind, di, n] = CookPlan.parseKey(key), d = D[di], r = d.r;
+  if (kind === "p") {
+    const p = d.prep.find(x => x.feeds === n);
+    const items = (p?.items || []).map(k => { const [gi, ii] = k.split(".").map(Number); return ingLine(r.groups[gi].items[ii], d.k); });
+    return { kind, di, n, r, title: "Get ready: chop and measure", sub: `for “${r.steps[n].t}”`, items, act: p?.act || 2 };
+  }
+  const st = d.steps[n], raw = r.steps[n];
+  const items = stepUses(r, n).map(k => { const [gi, ii] = k.split(".").map(Number); const it = r.groups[gi]?.items[ii]; return it ? ingLine(it, d.k) : null; }).filter(Boolean);
+  return { kind, di, n, r, title: raw.t, sub: `Step ${n + 1} of ${r.steps.length}`, text: raw.x, items, act: st.act, wait: st.wait, on: st.on };
+}
+const dot = di => `<span class="dot d${di % 4}" aria-hidden="true"></span>`;
+const boldTimes = text => { let h = "", at = 0; for (const t of durations(text)) { h += esc(text.slice(at, t.start)) + `<b>${esc(t.label)}</b>`; at = t.end; } return h + esc(text.slice(at)); };
+
+function sessionBanner(){
+  const sess = S.session, D = sessionDishes(sess);
+  if (D.some(d => !d)) return "";
+  const p = planSession(sess, D), done = sessionDone(sess, D);
+  return `<button class="banner" data-act="sessionOpen">
+    <span class="dots">${D.map((_, i) => dot(i)).join("")}</span>
+    <span style="flex:1;min-width:0"><b>Cooking ${D.length} dishes</b><br><span class="muted">${done ? "Everything's ready" : `Ready around ${clock(sess.startedAt + p.finish * 60000)}`}</span></span>
+    <span class="btn primary" style="min-height:40px">Resume</span>
+  </button>`;
+}
+
+function viewSetup(){
+  const cfg = S.together;
+  const fake = newSession(cfg), D = sessionDishes(fake);
+  const p = D.some(d => !d) ? null : planSession(fake, D);
+  const seg = (name, val, opts) => `<div class="seg" role="group">${opts.map(([v, label]) => `<button data-act="setupSet" data-k="${name}" data-v="${v}" aria-pressed="${val == v}">${label}</button>`).join("")}</div>`;
+  const before = D.flatMap((d, di) => d ? d.steps.filter(s => s.before).map(s => `${shortName(d.r)}: ${d.r.steps[s.i].x.split(/(?<=\.)\s/)[0]}`) : []);
+  const shared = [];
+  if (p) for (const [v, label] of [["ip", "Instant Pot"], ["af", "Air fryer"]]) {
+    const users = D.map((d, di) => ({ d, di, t: p.tasks.filter(t => t.dish === di && t.kind === "s" && d.steps[+t.key.split(".")[1]].on === v).map(t => t.start) }))
+      .filter(x => x.t.length).sort((a, b) => Math.min(...a.t) - Math.min(...b.t));
+    if (users.length > 1) shared.push(`${label}: ${users.map(u => shortName(u.d.r)).join(", then ")}`);
+  }
+  const first = p ? p.tasks.slice().sort((a, b) => a.start - b.start).slice(0, 6) : [];
+  return `<header class="top"><div class="wrap row between">
+      <button class="icon" data-act="setupX" aria-label="Back">${ICON.back}</button>
+      <h2 style="font-size:20px">Cook together</h2><span style="width:44px"></span>
+    </div></header>
+  <main class="wrap">
+    <section class="block" style="margin-top:6px"><h3>Dishes</h3>
+      <ul class="dishes">${cfg.ids.map((id, di) => { const r = S.recipes.find(x => x.id === id); if (!r) return ""; const sv = cfg.servings[id] || r.serves || 1; return `<li>
+        ${dot(di)}<span class="dn">${esc(r.title)}</span>
+        <span class="scale sm"><button data-act="setupServ" data-id="${esc(id)}" data-d="-1" aria-label="Fewer servings">−</button><output>${sv}</output><button data-act="setupServ" data-id="${esc(id)}" data-d="1" aria-label="More servings">+</button></span>
+      </li>`; }).join("")}</ul>
+      <p class="muted small">Numbers are servings.</p>
+    </section>
+    <section class="block"><h3>Goal</h3>${seg("mode", cfg.mode, [["together", GOALS.together[0]], ["fast", GOALS.fast[0]]])}
+      <p class="muted small">${GOALS[cfg.mode][1]}</p></section>
+    <section class="block"><h3>Cooks</h3>${seg("hands", cfg.hands, [[1, "Just me"], [2, "Two of us"]])}</section>
+    ${p ? `<section class="block preview">
+      <div class="big">${fmtDur(p.finish)}</div>
+      <div>Ready around <b>${clock(Date.now() + p.finish * 60000)}</b> if you start now</div>
+      ${shared.length ? `<ul class="notes small">${shared.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+    </section>
+    ${before.length ? `<section class="block"><div class="notice tip"><span><b>Before you start</b><br>${before.map(esc).join("<br>")}</span></div></section>` : ""}
+    <section class="block"><h3>How it starts</h3>
+      <ol class="plan">${first.map(t => { const i = taskInfo(D, t.key); return `<li><span class="when">${Math.round(t.start)} min</span>${dot(t.dish)}<span><b>${esc(i.kind === "p" ? "Chop and measure" : i.title)}</b> <span class="muted">${esc(shortName(i.r))}</span></span></li>`; }).join("")}</ol>
+    </section>` : `<p class="notice">One of these recipes isn't available any more.</p>`}
+    <button class="btn primary big" data-act="sessionStart" style="margin-top:18px" ${p ? "" : "disabled"}>Start cooking</button>
+  </main>`;
+}
+
+function viewSession(){
+  const sess = S.session, D = sessionDishes(sess);
+  if (D.some(d => !d)) return `<div class="cook"><div class="wrap bar"><button class="icon" data-act="sessionClose" aria-label="Close">${ICON.close}</button></div><div class="wrap body"><p class="notice">A recipe in this session was deleted. End the session to start a new one.</p><button class="btn danger" data-act="endYes">End session</button></div></div>`;
+  const p = planSession(sess, D), now = Date.now(), nowM = toMin(sess, now), done = sessionDone(sess, D);
+  // waits still running, plus finished ones whose alarm hasn't been acknowledged yet
+  const waits = sess.dishes.flatMap((d, di) => Object.entries(d.waitEnd).map(([n, ms]) => ({ di, n: +n, ms })))
+    .filter(w => w.ms > now || S.timers.some(t => t.key === `${w.di}.${w.n}`)).sort((a, b) => a.ms - b.ms);
+  const nowCards = sess.busy.map(b => {
+    const i = taskInfo(D, b.key);
+    return `<article class="now d${i.di % 4}">
+      <div class="who">${dot(i.di)}<span>${esc(shortName(i.r))}</span><span class="kind">${esc(i.sub)}</span></div>
+      <h2>${esc(i.title)}</h2>
+      ${i.items.length ? `<ul class="gin">${i.items.map(l => `<li>${l.qty ? `<b>${esc(l.qty)}</b> ` : ""}${esc(l.name)}</li>`).join("")}</ul>` : ""}
+      ${i.text ? `<p class="text">${boldTimes(i.text)}</p>` : ""}
+      ${i.kind === "s" && i.wait ? `<p class="muted small">Tap Done when the hands-on part is finished. A ${fmtDur(i.wait)} timer starts, and you'll get something else to do meanwhile.</p>` : ""}
+      <div class="row" style="margin-top:12px"><button class="btn primary grow" data-act="taskDone" data-key="${b.key}">Done</button>${i.kind === "s" ? `<button class="btn ghost" data-act="taskSkip" data-key="${b.key}">Skip</button>` : ""}</div>
+    </article>`;
+  });
+  const upcoming = p.tasks.filter(t => !t.busy).sort((a, b) => a.start - b.start);
+  if (!done) for (let h = sess.busy.length; h < sess.hands; h++) {
+    const nxt = upcoming[0];
+    const when = nxt ? Math.max(0, nxt.start - nowM) : null;
+    nowCards.push(`<article class="now idle"><h2>Nothing to do right now</h2>
+      <p class="muted">${nxt ? `Next up${when >= 0.5 ? ` in about ${fmtDur(when)}` : ""}: <b>${esc(taskInfo(D, nxt.key).title)}</b> (${esc(shortName(D[nxt.dish].r))}).` : ""} Tidy up or wash a pan.</p></article>`);
+  }
+  return `<div class="cook session" role="dialog" aria-label="Cook together">
+    <div class="wrap bar"><div class="row between">
+      <button class="icon" data-act="sessionClose" aria-label="Leave the session screen (it keeps running)">${ICON.back}</button>
+      <div class="ttl">${done ? "Everything's ready" : `Ready around ${clock(sess.startedAt + p.finish * 60000)}`}</div>
+      <button class="btn ghost" data-act="endAsk" style="min-height:40px">End</button>
+    </div>
+    ${S.confirmEnd ? `<div class="confirm row between" style="margin-top:8px"><span>End this session?</span><span class="row"><button class="btn ghost" data-act="endNo" style="min-height:40px">Keep cooking</button><button class="btn danger" data-act="endYes" style="min-height:40px">End</button></span></div>` : ""}
+    <div class="progress">${D.map((d, di) => `<span class="pchip">${dot(di)}${esc(shortName(d.r))} <b>${Math.min(sess.dishes[di].next, d.steps.length)}/${d.steps.length}</b></span>`).join("")}</div>
+    </div>
+    <div class="body wrap">
+      ${waits.length ? `<section class="ownway"><h3>Cooking on its own</h3><ul class="waits">${waits.map(w => { const key = `${w.di}.${w.n}`, ring = w.ms <= now; return `<li class="${ring ? "ring" : ""}">
+        ${dot(w.di)}<span class="wl"><b>${esc(D[w.di].r.steps[w.n].t)}</b><br><span class="muted small">${esc(shortName(D[w.di].r))}</span></span>
+        <span class="ctl">${ring ? `<span class="tt">Time's up</span><button class="btn primary sm" data-act="waitOk" data-di="${w.di}" data-n="${w.n}">OK</button>`
+               : `<span class="tt" data-until="${w.ms}">${mmss(w.ms - now)}</span><button class="btn ghost sm" data-act="waitAdd" data-di="${w.di}" data-n="${w.n}" aria-label="Add a minute">+1m</button><button class="btn ghost sm" data-act="waitEnd" data-di="${w.di}" data-n="${w.n}">Done early</button>`}</span>
+      </li>`; }).join("")}</ul></section>` : ""}
+      ${done ? `<article class="now finished"><h2>All ${D.length} dishes are ready</h2><p class="muted">Finishing marks each one as made today.</p><button class="btn primary big" data-act="sessionFinish">Finish</button></article>` : nowCards.join("")}
+      ${!done && upcoming.length ? `<section class="block"><h3>Coming up</h3><ol class="plan">${upcoming.slice(0, 5).map(t => { const i = taskInfo(D, t.key), m = Math.max(0, t.start - nowM); return `<li><span class="when">${m < 0.5 ? "next" : `~${Math.round(m)} min`}</span>${dot(t.dish)}<span><b>${esc(i.kind === "p" ? "Chop and measure" : i.title)}</b> <span class="muted">${esc(shortName(i.r))}</span></span></li>`; }).join("")}</ol></section>` : ""}
+    </div>
+  </div>`;
+}
+
 /* ---------- render ---------- */
 function render(){
   const app = $("#app");
@@ -935,13 +1203,16 @@ function render(){
   const keepScroll = sameView ? window.scrollY : 0;
   let html;
   if (S.settings) html = viewSettings();
+  else if (S.sessionOpen && S.session) html = viewSession();
+  else if (S.together) html = viewSetup();
   else if (S.view === "edit") html = viewEdit();
   else if (S.tab === "shop") html = viewShop();
   else if (S.tab === "cmp") html = viewCompare();
   else if (S.view === "recipe") html = viewRecipe() + (S.cook ? viewCook() : "");
   else html = viewList();
   app.innerHTML = html;
-  $("#tabs").hidden = S.view === "edit" || !!S.cook || S.settings;
+  $("#tabs").hidden = S.view === "edit" || !!S.cook || S.settings || !!S.together || (S.sessionOpen && !!S.session) || !!S.pick;
+  document.body.classList.toggle("locked", !!S.cook || (S.sessionOpen && !!S.session));
   $("#tab-recipes").setAttribute("aria-current", S.tab === "recipes" ? "page" : "false");
   $("#tab-shop").setAttribute("aria-current", S.tab === "shop" ? "page" : "false");
   $("#tab-cmp").setAttribute("aria-current", S.tab === "cmp" ? "page" : "false");
@@ -1052,6 +1323,45 @@ document.addEventListener("click", async e => {
     }
     case "cmpDel": S.cmp = S.cmp.filter(x => x.id !== b.dataset.id); saveCmp(); S._force = true; render(); break;
     case "cmpReset": S.cmp = [newOpt(), newOpt()]; saveCmp(); S._force = true; render(); window.scrollTo(0, 0); break;
+    case "pickStart":
+      if (S.session) { toast("Finish or end the current session first"); S.sessionOpen = true; fillHands(); go({}); wake(true); break; }
+      S.pick = []; S._force = true; render(); break;
+    case "pickToggle": {
+      const id = b.dataset.id, i = S.pick.indexOf(id);
+      if (i > -1) S.pick.splice(i, 1); else if (S.pick.length >= 4) { toast("Up to 4 dishes at a time"); break; } else S.pick.push(id);
+      S._force = true; render(); break;
+    }
+    case "pickCancel": S.pick = null; S._force = true; render(); break;
+    case "pickGo": go({ together: { ids: [...S.pick], servings: {}, mode: lsGet("togetherMode", "together"), hands: lsGet("togetherHands", 1) }, pick: null }); break;
+    case "setupX": go({ pick: [...S.together.ids], together: null }); break;
+    case "setupSet": {
+      const k = b.dataset.k, v = k === "hands" ? +b.dataset.v : b.dataset.v;
+      S.together[k] = v; lsSet(k === "hands" ? "togetherHands" : "togetherMode", v); S._force = true; render(); break;
+    }
+    case "setupServ": {
+      const id = b.dataset.id, rr = S.recipes.find(x => x.id === id), cur = S.together.servings[id] || rr.serves || 1;
+      S.together.servings[id] = Math.max(1, Math.min(20, cur + +b.dataset.d)); S._force = true; render(); break;
+    }
+    case "sessionStart":
+      S.session = newSession(S.together); S.together = null; S.sessionOpen = true; S.confirmEnd = false; lastTick = Date.now();
+      saveSession(); fillHands(); wake(true); go({}); break;
+    case "sessionOpen": S.sessionOpen = true; fillHands(); wake(true); go({}); break;
+    case "sessionClose": S.sessionOpen = false; S.confirmEnd = false; go({ view: "list", tab: "recipes" }); break;
+    case "taskDone": case "taskSkip": completeTask(b.dataset.key, a === "taskSkip"); go({}); break;
+    case "waitOk": S.timers = S.timers.filter(t => t.key !== `${b.dataset.di}.${b.dataset.n}`); renderTray(); go({}); break;
+    case "waitAdd": { const di = +b.dataset.di, n = +b.dataset.n, cur = S.session.dishes[di].waitEnd[n]; changeWait(di, n, Math.max(Date.now(), cur) + 60000); go({}); break; }
+    case "waitEnd": changeWait(+b.dataset.di, +b.dataset.n, null); go({}); break;
+    case "endAsk": S.confirmEnd = true; S._force = true; render(); break;
+    case "endNo": S.confirmEnd = false; S._force = true; render(); break;
+    case "endYes": case "sessionFinish": {
+      const ids = S.session?.ids || [];
+      if (a === "sessionFinish") ids.forEach(markMade);
+      S.timers = S.timers.filter(t => !t.key); renderTray();
+      S.session = null; saveSession(); S.sessionOpen = false; S.confirmEnd = false; wake(false);
+      go({ view: "list", tab: "recipes" });
+      toast(a === "sessionFinish" ? `Nice. ${ids.length} dishes marked as made today` : "Session ended");
+      break;
+    }
     case "copy": copy(S.shop.filter(s => !s.done).map(s => s.name).join("\n"), "List copied"); break;
     case "toRem": {
       const open = S.shop.filter(s => !s.done);

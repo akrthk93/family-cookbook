@@ -141,17 +141,26 @@
         "0.0",
         "0.1",
         "0.2"
-      ]
+      ],
+      "on": "ip",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Season the chicken",
       "x": "Add the chicken and all spices. Stir for 2 min until the chicken is coated and turning opaque at the edges.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Deglaze thoroughly",
       "x": "Turn off Sauté. Pour in the stock and scrape every bit off the bottom. This is the main defence against a burn warning.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Layer, don't stir",
@@ -160,19 +169,28 @@
         "2.1",
         "2.2",
         "2.3"
-      ]
+      ],
+      "on": "ip",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
       "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 6 min, then natural release for 10 min and release the rest.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 26
     },
     {
       "t": "Fluff and rest",
       "x": "Add the lime juice and gently fold everything together with a fork, without over-stirring or the rice turns mushy. Close the lid (not sealed) and rest 5 min to absorb any remaining liquid.",
       "uses": [
         "2.5"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 5
     },
     {
       "t": "Portion",
@@ -180,7 +198,10 @@
       "uses": [
         "3.1",
         "3.2"
-      ]
+      ],
+      "on": "none",
+      "act": 4,
+      "wait": 0
     }
   ],
   "notes": [

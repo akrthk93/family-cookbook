@@ -87,7 +87,10 @@
         "0.5",
         "0.0",
         "0.1"
-      ]
+      ],
+      "on": "none",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Dissolve the stock",
@@ -95,7 +98,10 @@
       "uses": [
         "0.8",
         "0.9"
-      ]
+      ],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Sauté (optional)",
@@ -104,7 +110,10 @@
         "0.2",
         "0.3",
         "0.4"
-      ]
+      ],
+      "on": "ip",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Build the layers",
@@ -113,22 +122,34 @@
         "0.6",
         "0.7",
         "0.1"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
       "x": "Seal, valve to Sealing, High Pressure 7 min.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 22
     },
     {
       "t": "Release and shred",
       "x": "Natural release 5 min, then quick release. Shred chicken with two forks, stir everything together.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Serve",
       "x": "Finish with coriander and lime if you have them. Cool before portioning.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 2,
+      "wait": 0
     }
   ],
   "notes": [

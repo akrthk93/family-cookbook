@@ -129,26 +129,38 @@
         "1.8",
         "1.9",
         "1.10"
-      ]
+      ],
+      "on": "none",
+      "act": 5,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
       "x": "Chicken into the pot, pour sauce over, stir to coat. Seal, Pressure Cook High 8 min. Natural release 5 min, then quick release.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 23
     },
     {
       "t": "Add peanut butter",
       "x": "Open lid, add peanut butter, stir vigorously until dissolved. Taste: more lime for brightness, soy for salt, Sriracha for heat.",
       "uses": [
         "1.0"
-      ]
+      ],
+      "on": "ip",
+      "act": 2,
+      "wait": 0
     },
     {
       "t": "Reduce if needed",
       "x": "Too thin? Sauté mode, simmer 3–4 min, stirring, until it coats the chicken.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 3
     },
     {
       "t": "Serve",
@@ -157,7 +169,10 @@
         "2.0",
         "2.1",
         "2.2"
-      ]
+      ],
+      "on": "none",
+      "act": 2,
+      "wait": 0
     }
   ],
   "notes": [

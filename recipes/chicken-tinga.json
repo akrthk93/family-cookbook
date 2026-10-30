@@ -103,7 +103,10 @@
         "0.0",
         "0.11",
         "0.1"
-      ]
+      ],
+      "on": "sauce",
+      "act": 10,
+      "wait": 0
     },
     {
       "t": "Build flavour base",
@@ -116,7 +119,10 @@
         "0.6",
         "0.7",
         "0.8"
-      ]
+      ],
+      "on": "sauce",
+      "act": 7,
+      "wait": 0
     },
     {
       "t": "Add tomatoes",
@@ -124,17 +130,26 @@
       "uses": [
         "0.9",
         "0.10"
-      ]
+      ],
+      "on": "sauce",
+      "act": 2,
+      "wait": 3
     },
     {
       "t": "Braise chicken",
       "x": "Return chicken, cover, simmer 15–20 min until 75°C and tender.",
-      "uses": []
+      "uses": [],
+      "on": "sauce",
+      "act": 1,
+      "wait": 17
     },
     {
       "t": "Shred and reduce",
       "x": "Shred with forks, return, simmer uncovered 5–7 min until thick. Season.",
-      "uses": []
+      "uses": [],
+      "on": "sauce",
+      "act": 4,
+      "wait": 5
     },
     {
       "t": "Serve",
@@ -142,7 +157,10 @@
       "uses": [
         "0.12",
         "0.13"
-      ]
+      ],
+      "on": "pan",
+      "act": 4,
+      "wait": 0
     }
   ],
   "notes": []

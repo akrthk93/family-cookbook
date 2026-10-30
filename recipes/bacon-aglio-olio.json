@@ -75,14 +75,21 @@
       "uses": [
         "0.0",
         "0.5"
-      ]
+      ],
+      "on": "pot",
+      "act": 2,
+      "wait": 18
     },
     {
       "t": "Render bacon",
       "x": "Bacon into a cold skillet, medium heat, 5–6 min until crisp. Remove, leave 1–2 tbsp fat.",
       "uses": [
         "0.1"
-      ]
+      ],
+      "on": "pan",
+      "act": 6,
+      "wait": 0,
+      "overlap": true
     },
     {
       "t": "Build base",
@@ -90,26 +97,41 @@
       "uses": [
         "0.3",
         "0.2"
-      ]
+      ],
+      "on": "pan",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Add heat",
       "x": "Chilli flakes 30 sec. Don't let garlic burn.",
       "uses": [
         "0.4"
-      ]
+      ],
+      "on": "pan",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Create sauce",
       "x": "Add pasta water, simmer, reduce by half, 2–3 min.",
       "uses": [
         "0.5"
-      ]
+      ],
+      "on": "pan",
+      "act": 1,
+      "wait": 2
     },
     {
       "t": "Combine",
       "x": "Pasta and bacon in, toss vigorously 1–2 min until silky.",
-      "uses": []
+      "uses": [],
+      "on": "pan",
+      "act": 2,
+      "wait": 0,
+      "after": [
+        0
+      ]
     },
     {
       "t": "Finish",
@@ -117,7 +139,10 @@
       "uses": [
         "0.7",
         "0.8"
-      ]
+      ],
+      "on": "none",
+      "act": 1.5,
+      "wait": 0
     }
   ],
   "notes": []

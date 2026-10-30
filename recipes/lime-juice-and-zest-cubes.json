@@ -30,22 +30,34 @@
       "x": "Wash and dry the limes. Zest all 10 with a fine grater, green part only (the white pith is bitter). If you have no grater, peel the green with a vegetable peeler and mince it finely.",
       "uses": [
         "0.0"
-      ]
+      ],
+      "on": "none",
+      "act": 8,
+      "wait": 0
     },
     {
       "t": "Juice",
       "x": "Roll each lime firmly on the counter, cut and squeeze. Strain out the seeds. You should have about 300 ml.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 8,
+      "wait": 0
     },
     {
       "t": "Combine",
       "x": "Stir the zest into the juice.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 1,
+      "wait": 0
     },
     {
       "t": "Fill and freeze",
       "x": "Fill the 15 ml cells, stirring the juice between spoonfuls so the zest is spread evenly. Freeze for 2 h until solid. Pop out, bag, press out the air and label with name and date.",
-      "uses": []
+      "uses": [],
+      "on": "none",
+      "act": 5,
+      "wait": 0
     }
   ],
   "notes": [

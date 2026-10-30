@@ -145,7 +145,10 @@
         "0.1",
         "0.2",
         "0.4"
-      ]
+      ],
+      "on": "ip",
+      "act": 1.5,
+      "wait": 0
     },
     {
       "t": "Brown the onions",
@@ -154,7 +157,10 @@
         "1.0",
         "1.1",
         "1.2"
-      ]
+      ],
+      "on": "ip",
+      "act": 7,
+      "wait": 0
     },
     {
       "t": "Cook the masala",
@@ -162,19 +168,28 @@
       "uses": [
         "1.3",
         "3.1"
-      ]
+      ],
+      "on": "ip",
+      "act": 3,
+      "wait": 0
     },
     {
       "t": "Add the mince",
       "x": "Add the chicken mince and break it up thoroughly with a spatula for 3 min until no large lumps remain. This step decides the texture, because lumps set under pressure. Add the water and scrape the bottom completely so you don't get a burn warning.",
       "uses": [
         "3.0"
-      ]
+      ],
+      "on": "ip",
+      "act": 4,
+      "wait": 0
     },
     {
       "t": "Pressure cook",
       "x": "Lock the lid with the vent on Sealing. Pressure cook on High for 5 min, then natural release for 10 min and release the rest.",
-      "uses": []
+      "uses": [],
+      "on": "ip",
+      "act": 1,
+      "wait": 25
     },
     {
       "t": "Finish",
@@ -185,7 +200,10 @@
         "3.3",
         "3.4",
         "3.5"
-      ]
+      ],
+      "on": "ip",
+      "act": 4,
+      "wait": 0
     }
   ],
   "notes": [
