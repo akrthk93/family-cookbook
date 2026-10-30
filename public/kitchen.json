@@ -1,5 +1,5 @@
 {
-  "updated": 1793367243254,
+  "updated": 1793367601032,
   "items": [
     {
       "id": "ss-skillet",
@@ -346,6 +346,15 @@
       "cat": "specialty",
       "status": "check",
       "role": "trivet"
+    },
+    {
+      "id": "saute-pan",
+      "name": "Sauté pan (deep, with lid)",
+      "cat": "cookware",
+      "status": "want",
+      "role": "deep",
+      "material": "stainless",
+      "suggest": "saute-pan"
     }
   ],
   "dismissed": [
