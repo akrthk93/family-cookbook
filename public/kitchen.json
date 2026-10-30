@@ -1,5 +1,5 @@
 {
-  "updated": 1793366621025,
+  "updated": 1793366642728,
   "items": [
     {
       "id": "ss-skillet",
@@ -257,13 +257,6 @@
       "cat": "prep",
       "status": "check",
       "role": "colander"
-    },
-    {
-      "id": "microplane",
-      "name": "Microplane / fine grater",
-      "cat": "prep",
-      "status": "check",
-      "role": "grater"
     },
     {
       "id": "peeler",
