@@ -1,5 +1,5 @@
 {
-  "updated": 1793366642728,
+  "updated": 1793366654539,
   "items": [
     {
       "id": "ss-skillet",
@@ -248,7 +248,7 @@
       "id": "fine-sieve",
       "name": "Fine-mesh sieve",
       "cat": "prep",
-      "status": "check",
+      "status": "owned",
       "role": "sieve"
     },
     {
