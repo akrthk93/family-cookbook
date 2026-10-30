@@ -319,6 +319,11 @@ body.locked{overflow:hidden}
 .form select{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:16px;font-weight:400;width:100%;-webkit-appearance:none;appearance:none}
 .form label.inline{flex-direction:row;align-items:center;gap:10px;font-weight:400}
 .form label.inline input{width:auto}
+.krow.sug .kmain{flex-basis:100%}
+.krow.sug .kmain .small:last-child{margin-top:2px}
+.krow.sug .yn{margin-left:auto}
+details.later{margin-top:12px}
+details.later summary{font-weight:700;color:var(--accent);cursor:pointer;padding:6px 0}
 </style>
 </head>
 <body>
@@ -416,11 +421,12 @@ const tagged = (r, tags) => (r.tags || []).some(t => tags.includes(t));
 function markMade(id){
   const cur = S.made[id];
   if (cur && dayStart(cur.at) === dayStart(Date.now())) return;   // already counted today
-  S.made[id] = { at: Date.now(), prev: cur?.at || 0 }; lsSet("made", S.made);
+  S.made[id] = { at: Date.now(), prev: cur?.at || 0, log: [...(cur?.log || (cur?.at ? [cur.at] : [])), Date.now()].slice(-30) }; lsSet("made", S.made);
 }
+const madeLog = () => Object.fromEntries(Object.entries(S.made).map(([id, m]) => [id, m.log || (m.at ? [m.at] : [])]));
 function unmarkMade(id){
-  const prev = S.made[id]?.prev;
-  if (prev) S.made[id] = { at: prev, prev: 0 }; else delete S.made[id];
+  const prev = S.made[id]?.prev, log = (S.made[id]?.log || []).slice(0, -1);
+  if (prev) S.made[id] = { at: prev, prev: 0, log }; else delete S.made[id];
   lsSet("made", S.made);
 }
 
@@ -1429,6 +1435,7 @@ function viewKitchen(){
     ${A.buy.length ? `<section class="block"><h2>Buy</h2><ul class="klist">${A.buy.map(b => row(esc(b.wanted ? b.wanted.name : b.name),
         [b.n ? `Needed by ${plural(b.n, "recipe")}` : "No recipe needs it yet", b.upgradeOf?.length ? `upgrade from your ${esc(b.upgradeOf.join(", ").toLowerCase())}` : "", b.wanted ? "on your wish list" : ""].filter(Boolean).join(" · ") + (b.wanted?.notes ? `<br>${esc(b.wanted.notes)}` : "") + (b.recipes.length && b.recipes.length < S.recipes.length ? recipeList(b.recipes) : ""),
         "", b.wanted ? `data-act="kOpen" data-id="${esc(b.wanted.id)}"` : "")).join("")}</ul></section>` : ""}
+    ${sugHtml()}
     ${A.upgrade.length ? `<section class="block"><h2>Upgrade</h2><ul class="klist">${A.upgrade.map(u => row(esc(u.item.name), `${esc(u.from)} → <b>${esc(u.to)}</b> · used by ${plural(u.n, "recipe")}`, "", `data-act="kOpen" data-id="${esc(u.item.id)}"`)).join("")}</ul></section>` : ""}
     ${A.replace.length ? `<section class="block"><h2>Replace</h2><ul class="klist">${A.replace.map(x => row(esc(x.item.name), esc(x.why), "", `data-act="kOpen" data-id="${esc(x.item.id)}"`)).join("")}</ul></section>` : ""}
     ${A.cut.length ? `<section class="block"><h2>Cut or rethink</h2><ul class="klist">${A.cut.map(c => row(esc(c.item.name), esc(c.why), `<button class="btn ghost sm" data-act="kKeep" data-id="${esc(c.item.id)}">Keep</button>`, `data-act="kOpen" data-id="${esc(c.item.id)}"`)).join("")}</ul></section>` : ""}
@@ -1444,6 +1451,19 @@ function viewKitchen(){
     </section>
     <p class="muted small" style="margin-top:18px">Recipes count towards a piece of gear through its kind (skillet, wok, Instant Pot…). Tap anything to edit it. Advice gets sharper as more recipes go in.</p>
   </main>`;
+}
+function sugHtml(){
+  const all = Kitchen.suggest(S.kitchen.items, S.recipes, madeLog(), S.kitchen.dismissed || []);
+  if (!all.length) return "";
+  const strong = all.filter(x => x.level === "strong"), some = all.filter(x => x.level === "some");
+  const row = x => `<li class="krow sug"><div class="kmain"><b>${esc(x.name)}</b><span class="muted small">${esc(x.why)}</span><span class="small">${esc(x.note)}</span></div>
+    <span class="yn"><button class="btn primary sm" data-act="kSug" data-v="want" data-id="${x.id}">Want</button><button class="btn ghost sm" data-act="kSug" data-v="owned" data-id="${x.id}">Have it</button><button class="btn ghost sm" data-act="kSug" data-v="no" data-id="${x.id}">Not for me</button></span></li>`;
+  const logged = Object.values(S.made).some(m => (m.log || []).length);
+  return `<section class="block"><h2>Suggested for you</h2>
+    <p class="muted small" style="margin:4px 0 8px">Gear you don't have that your recipes point to. Recipes you cook often count more${logged ? "" : " (that builds up as you tap Made it or finish cooking; until then, your weekly rotation counts extra)"}.</p>
+    ${strong.length ? `<h3 class="kcat" style="margin-top:4px">Worth getting</h3><ul class="klist">${strong.map(row).join("")}</ul>` : ""}
+    ${some.length ? `<details class="later"${strong.length ? "" : " open"}><summary>Maybe later · ${some.length}</summary><ul class="klist">${some.map(row).join("")}</ul></details>` : ""}
+  </section>`;
 }
 function viewKitchenSheet(){
   const e = S.kEdit, isNew = !e.id;
@@ -1640,6 +1660,16 @@ document.addEventListener("click", async e => {
     case "kYes": case "kWant": kItem(b.dataset.id).status = a === "kYes" ? "owned" : "want"; saveKitchen(a === "kYes" ? "Marked as yours" : "Added to your wish list"); S._force = true; render(); break;
     case "kNo": S.kitchen.items = S.kitchen.items.filter(i => i.id !== b.dataset.id); saveKitchen("Removed"); S._force = true; render(); break;
     case "kKeep": kItem(b.dataset.id).keep = true; saveKitchen("Kept"); S._force = true; render(); break;
+    case "kSug": {
+      const c = Kitchen.CATALOG.find(x => x.id === b.dataset.id), v = b.dataset.v;
+      if (v === "no") { S.kitchen.dismissed = [...new Set([...(S.kitchen.dismissed || []), c.id])]; saveKitchen("Won't suggest it again"); }
+      else {
+        let id = c.id, n = 2; while (kItem(id)) id = c.id + "-" + n++;
+        S.kitchen.items.push(Object.fromEntries(Object.entries({ id, name: c.name, cat: c.cat, status: v, role: c.role, material: c.material, suggest: c.id }).filter(([, x]) => x != null)));
+        saveKitchen(v === "want" ? "Added to your wish list" : "Added to what you have");
+      }
+      S._force = true; render(); break;
+    }
     case "kAllCheck": S.kAllCheck = !S.kAllCheck; S._force = true; render(); break;
     case "pickStart":
       if (S.session) { toast("Finish or end the current session first"); S.sessionOpen = true; fillHands(); go({}); wake(true); break; }

@@ -119,6 +119,14 @@
       "notes": "With chopper and whisk attachments"
     },
     {
+      "id": "pull-chopper",
+      "name": "Pull-string chopper",
+      "cat": "prep",
+      "status": "owned",
+      "role": "chopper",
+      "notes": "Onions, tomatoes, chillies, coriander"
+    },
+    {
       "id": "mixie",
       "name": "Mixie (mixer-grinder)",
       "cat": "appliances",

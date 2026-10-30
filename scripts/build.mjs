@@ -57,6 +57,7 @@ const recipes = readdirSync(join(root, "recipes"))
 try {
   const k = JSON.parse(readFileSync(join(root, "public/kitchen.json"), "utf8"));
   const ids = new Set();
+  if (k.dismissed != null && !(Array.isArray(k.dismissed) && k.dismissed.every(x => typeof x === "string"))) errors.push(`public/kitchen.json: "dismissed" must be a list of suggestion ids`);
   if (!Array.isArray(k.items)) errors.push(`public/kitchen.json: needs an "items" list`);
   else k.items.forEach((it, i) => {
     const at = `public/kitchen.json item ${i + 1}${it.name ? ` (${it.name})` : ""}`;
