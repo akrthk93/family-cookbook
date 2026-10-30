@@ -1,5 +1,5 @@
 {
-  "updated": 1793367601032,
+  "updated": 1793367623976,
   "items": [
     {
       "id": "ss-skillet",
@@ -72,16 +72,6 @@
       "material": "stainless",
       "brand": "Hawkins",
       "notes": "Replaced an Indus Valley one",
-      "keep": true
-    },
-    {
-      "id": "cs-wok",
-      "name": "Carbon steel wok",
-      "cat": "cookware",
-      "status": "check",
-      "role": "wok",
-      "material": "carbon steel",
-      "notes": "Upgrade from the nonstick wok: takes full gas heat",
       "keep": true
     },
     {
