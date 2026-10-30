@@ -1,5 +1,5 @@
 {
-  "updated": 1793366593102,
+  "updated": 1793366621025,
   "items": [
     {
       "id": "ss-skillet",
@@ -214,7 +214,7 @@
       "id": "boards",
       "name": "Cutting boards, veg and non-veg",
       "cat": "knives",
-      "status": "check",
+      "status": "owned",
       "role": "board",
       "qty": 2
     },
