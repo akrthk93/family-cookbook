@@ -1,5 +1,5 @@
 {
-  "updated": 1793366751098,
+  "updated": 1793367011807,
   "items": [
     {
       "id": "ss-skillet",
@@ -386,5 +386,8 @@
       "status": "check",
       "role": "trivet"
     }
+  ],
+  "dismissed": [
+    "spare-inner-pot"
   ]
 }
