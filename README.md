@@ -89,6 +89,18 @@ On the Recipes screen, tap **Cook several dishes together**, pick 2 to 4 dishes,
 
 The planner lives in `public/plan.js` (pure functions, testable in node).
 
+## Kitchen
+
+The Kitchen tab tracks equipment by category (stovetop cookware, appliances, knives and boards, prep tools, utensils, measuring, storage, specialty). Each item has a status (have it, not sure, want it), material, size, brand, condition and notes, and a **kind** (skillet, sauté pan, wok, stockpot, saucepan, tawa, pressure cooker, Instant Pot, air fryer, hand blender, mixie, sieve, grater, thermometer, scale…) that links it to the recipes.
+
+The app reads the recipes (each step's `on`, plus words like "strain", "zest", "74°C") and shows:
+- **Buy**: kinds of gear recipes need that you don't own, plus your wish list, with how many recipes need each
+- **Upgrade**: heavily used gear (4+ recipes) still below the "worth getting to" step of its material path, e.g. nonstick → stainless → carbon steel for frying pans, nonstick → carbon steel for woks, stamped steel → Victorinox → Japanese for knives
+- **Cut or rethink**: gear no recipe uses, or replaced by something better you own (tap **Keep** to silence it)
+- **Do you have these?**: items to confirm, the ones recipes need most first
+
+The list lives in `public/kitchen.json`. The app saves changes there the same way it saves recipes, so everyone sees the same list.
+
 ## Compare prices
 
 The Compare tab works out price per kg (per litre for liquids, per piece for counts) for options in the store, marks the cheapest, and shows how much more the others cost. Use Packs for multi-packs (2 × 500g is size 500, packs 2). The comparison is kept on the phone until you tap Start over.

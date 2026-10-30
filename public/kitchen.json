@@ -1,0 +1,377 @@
+{
+  "updated": 1793355653242,
+  "items": [
+    {
+      "id": "ss-skillet",
+      "name": "Stainless steel skillet",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "pan",
+      "material": "stainless"
+    },
+    {
+      "id": "nonstick-frypan",
+      "name": "Flat nonstick frying pan",
+      "cat": "cookware",
+      "status": "check",
+      "role": "pan",
+      "material": "nonstick",
+      "notes": "For eggs and delicate fish"
+    },
+    {
+      "id": "nonstick-wok",
+      "name": "Nonstick wok",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "wok",
+      "material": "nonstick"
+    },
+    {
+      "id": "small-deep-pan",
+      "name": "Small deep nonstick pan",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "sauce",
+      "material": "nonstick",
+      "notes": "Tadka and small batches"
+    },
+    {
+      "id": "saucepans",
+      "name": "Saucepan",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "sauce",
+      "material": "stainless",
+      "qty": 2
+    },
+    {
+      "id": "pasta-pot",
+      "name": "Pasta pot / stockpot",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "pot",
+      "material": "stainless"
+    },
+    {
+      "id": "dosa-tawa",
+      "name": "Dosa tawa",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "tawa",
+      "material": "nonstick",
+      "brand": "Futura",
+      "keep": true,
+      "notes": "Dosa nights twice a week (batter, no recipe)"
+    },
+    {
+      "id": "hawkins",
+      "name": "Pressure cooker",
+      "cat": "cookware",
+      "status": "owned",
+      "role": "pc",
+      "material": "stainless",
+      "brand": "Hawkins",
+      "notes": "Replaced an Indus Valley one",
+      "keep": true
+    },
+    {
+      "id": "saute-pan",
+      "name": "Sauté pan with lid",
+      "cat": "cookware",
+      "status": "want",
+      "role": "deep",
+      "material": "stainless",
+      "size": "28cm",
+      "notes": "Deep and straight-sided, for tossing pasta and sauces one-handed. Budget under S$100."
+    },
+    {
+      "id": "cs-wok",
+      "name": "Carbon steel wok",
+      "cat": "cookware",
+      "status": "want",
+      "role": "wok",
+      "material": "carbon steel",
+      "notes": "Upgrade from the nonstick wok: takes full gas heat"
+    },
+    {
+      "id": "instant-pot",
+      "name": "Instant Pot",
+      "cat": "appliances",
+      "status": "owned",
+      "role": "ip"
+    },
+    {
+      "id": "air-fryer",
+      "name": "Air fryer",
+      "cat": "appliances",
+      "status": "owned",
+      "role": "af",
+      "brand": "Ninja"
+    },
+    {
+      "id": "hand-blender",
+      "name": "Hand blender",
+      "cat": "appliances",
+      "status": "owned",
+      "role": "blender",
+      "brand": "Philips",
+      "model": "HR2684/00",
+      "notes": "With chopper and whisk attachments"
+    },
+    {
+      "id": "mixie",
+      "name": "Mixie (mixer-grinder)",
+      "cat": "appliances",
+      "status": "owned",
+      "role": "mixie"
+    },
+    {
+      "id": "microwave",
+      "name": "Microwave",
+      "cat": "appliances",
+      "status": "owned"
+    },
+    {
+      "id": "kettle",
+      "name": "Electric kettle",
+      "cat": "appliances",
+      "status": "check"
+    },
+    {
+      "id": "mercer-chef",
+      "name": "Chef's knife (non-veg)",
+      "cat": "knives",
+      "status": "owned",
+      "role": "knife",
+      "material": "stamped soft steel",
+      "brand": "Mercer",
+      "notes": "X30Cr13 steel"
+    },
+    {
+      "id": "veg-knife",
+      "name": "Veg knife",
+      "cat": "knives",
+      "status": "check",
+      "role": "knife",
+      "notes": "You keep separate veg and non-veg knives. Which one is the veg knife?"
+    },
+    {
+      "id": "victorinox",
+      "name": "Chef's knife, 8\"",
+      "cat": "knives",
+      "status": "want",
+      "role": "knife",
+      "material": "Victorinox / forged German",
+      "brand": "Victorinox",
+      "model": "Fibrox",
+      "notes": "Noted as the next chef's knife"
+    },
+    {
+      "id": "ikea-chopper",
+      "name": "Chopper (for cubing chicken)",
+      "cat": "knives",
+      "status": "owned",
+      "brand": "IKEA"
+    },
+    {
+      "id": "paring",
+      "name": "Paring knife",
+      "cat": "knives",
+      "status": "check"
+    },
+    {
+      "id": "serrated",
+      "name": "Serrated knife",
+      "cat": "knives",
+      "status": "check"
+    },
+    {
+      "id": "shears",
+      "name": "Kitchen shears",
+      "cat": "knives",
+      "status": "check"
+    },
+    {
+      "id": "boards",
+      "name": "Cutting boards, veg and non-veg",
+      "cat": "knives",
+      "status": "check",
+      "role": "board",
+      "qty": 2
+    },
+    {
+      "id": "whetstone",
+      "name": "Whetstone #1000",
+      "cat": "knives",
+      "status": "owned",
+      "role": "sharpener",
+      "material": "whetstone",
+      "brand": "Shapton",
+      "model": "Ha No Kuromaku #1000"
+    },
+    {
+      "id": "pull-through",
+      "name": "Pull-through sharpener",
+      "cat": "knives",
+      "status": "owned",
+      "role": "sharpener",
+      "material": "pull-through",
+      "brand": "Kitchen IQ"
+    },
+    {
+      "id": "mortar",
+      "name": "Mortar and pestle",
+      "cat": "prep",
+      "status": "owned",
+      "role": "mortar"
+    },
+    {
+      "id": "fine-sieve",
+      "name": "Fine-mesh sieve",
+      "cat": "prep",
+      "status": "check",
+      "role": "sieve"
+    },
+    {
+      "id": "colander",
+      "name": "Colander",
+      "cat": "prep",
+      "status": "check",
+      "role": "colander"
+    },
+    {
+      "id": "microplane",
+      "name": "Microplane / fine grater",
+      "cat": "prep",
+      "status": "check",
+      "role": "grater"
+    },
+    {
+      "id": "peeler",
+      "name": "Peeler",
+      "cat": "prep",
+      "status": "check"
+    },
+    {
+      "id": "bowls",
+      "name": "Mixing bowls",
+      "cat": "prep",
+      "status": "check"
+    },
+    {
+      "id": "tongs",
+      "name": "Tongs",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "fish-spatula",
+      "name": "Fish spatula / turner",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "silicone-spatula",
+      "name": "Silicone spatula",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "wooden-spoon",
+      "name": "Wooden spoon",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "ladle",
+      "name": "Ladle",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "spider",
+      "name": "Spider or slotted spoon",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "whisk",
+      "name": "Whisk",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "splatter",
+      "name": "Splatter guard",
+      "cat": "utensils",
+      "status": "check"
+    },
+    {
+      "id": "scale",
+      "name": "Digital kitchen scale",
+      "cat": "measuring",
+      "status": "check",
+      "role": "scale"
+    },
+    {
+      "id": "thermometer",
+      "name": "Instant-read thermometer",
+      "cat": "measuring",
+      "status": "check",
+      "role": "thermometer"
+    },
+    {
+      "id": "spoons",
+      "name": "Measuring spoons",
+      "cat": "measuring",
+      "status": "check"
+    },
+    {
+      "id": "jug",
+      "name": "Measuring jug",
+      "cat": "measuring",
+      "status": "check"
+    },
+    {
+      "id": "glasslock-700",
+      "name": "Glasslock containers, ~700ml",
+      "cat": "storage",
+      "status": "owned",
+      "brand": "Glasslock"
+    },
+    {
+      "id": "glasslock-part",
+      "name": "Glasslock partitioned containers, ~600ml",
+      "cat": "storage",
+      "status": "owned",
+      "brand": "Glasslock"
+    },
+    {
+      "id": "silicone-trays",
+      "name": "Silicone freezer trays with lids (15ml and 60ml cells)",
+      "cat": "storage",
+      "status": "check",
+      "notes": "Ordered from Pinduoduo"
+    },
+    {
+      "id": "freezer-bags",
+      "name": "Freezer bags",
+      "cat": "storage",
+      "status": "check"
+    },
+    {
+      "id": "idli-satti",
+      "name": "Idli steamer (idli satti)",
+      "cat": "specialty",
+      "status": "owned",
+      "role": "steam"
+    },
+    {
+      "id": "ip-trivet",
+      "name": "Instant Pot trivet and steel bowl (pot-in-pot)",
+      "cat": "specialty",
+      "status": "check",
+      "role": "trivet"
+    }
+  ]
+}

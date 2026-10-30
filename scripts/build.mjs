@@ -53,6 +53,20 @@ const recipes = readdirSync(join(root, "recipes"))
   .filter(Boolean)
   .sort((a, b) => (b.no || "").localeCompare(a.no || "") || a.title.localeCompare(b.title));
 
+// kitchen equipment list
+try {
+  const k = JSON.parse(readFileSync(join(root, "public/kitchen.json"), "utf8"));
+  const ids = new Set();
+  if (!Array.isArray(k.items)) errors.push(`public/kitchen.json: needs an "items" list`);
+  else k.items.forEach((it, i) => {
+    const at = `public/kitchen.json item ${i + 1}${it.name ? ` (${it.name})` : ""}`;
+    if (!it.id || ids.has(it.id)) errors.push(`${at}: needs a unique "id"`); ids.add(it.id);
+    if (!it.name) errors.push(`${at}: needs a "name"`);
+    if (!["cookware", "appliances", "knives", "prep", "utensils", "measuring", "storage", "specialty"].includes(it.cat)) errors.push(`${at}: "cat" isn't a known category`);
+    if (it.status && !["owned", "check", "want"].includes(it.status)) errors.push(`${at}: "status" must be owned, check or want`);
+  });
+} catch (e) { errors.push(`public/kitchen.json: not valid JSON (${e.message})`); }
+
 if (errors.length) { console.error("Recipe problems:\n  " + errors.join("\n  ")); process.exit(1); }
 
 rmSync(dist, { recursive: true, force: true });
@@ -62,7 +76,7 @@ cpSync(join(root, "public"), dist, { recursive: true });
 const data = JSON.stringify(recipes);
 writeFileSync(join(dist, "recipes.json"), data);
 
-const version = createHash("sha256").update(data + readFileSync(join(root, "public/index.html")) + readFileSync(join(root, "public/plan.js"))).digest("hex").slice(0, 10);
+const version = createHash("sha256").update(data + readFileSync(join(root, "public/index.html")) + readFileSync(join(root, "public/plan.js")) + readFileSync(join(root, "public/kitchen.js"))).digest("hex").slice(0, 10);
 for (const f of ["index.html", "sw.js"]) {
   const p = join(dist, f);
   writeFileSync(p, readFileSync(p, "utf8").replaceAll("__REPO__", repo).replaceAll("__VERSION__", version));

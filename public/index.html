@@ -113,7 +113,7 @@ section.block{margin-top:22px}
 .notes li{margin-bottom:6px}
 .src{font-size:15px;color:var(--muted);word-break:break-word}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
-nav.tabs .in{display:grid;grid-template-columns:1fr 1fr 1fr;max-width:720px;margin:0 auto}
+nav.tabs .in{display:grid;grid-template-columns:repeat(4,1fr);max-width:720px;margin:0 auto}
 nav.tabs button{min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;color:var(--muted);position:relative}
 nav.tabs button svg{width:24px;height:24px}
 nav.tabs button[aria-current="page"]{color:var(--accent);font-weight:700}
@@ -297,6 +297,28 @@ body.locked{overflow:hidden}
 .havebtns{display:flex;flex-direction:column;gap:8px;width:100%}
 .havebtns .btn{width:100%;min-height:44px;justify-content:flex-start;text-align:left}
 .havenote{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:var(--accent-soft);font-size:15px}
+.kitchen h2{margin-top:4px}
+.kcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+.kcard ul{margin:6px 0 0;padding-left:18px}
+.kcard li{margin:4px 0}
+.klist{list-style:none;margin:8px 0 0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.krow{display:flex;align-items:center;gap:8px;padding:10px 12px 10px 14px;border-top:1px solid var(--line);flex-wrap:wrap}
+.krow:first-child{border-top:0}
+.kmain{flex:1 1 60%;min-width:0;display:flex;flex-direction:column;gap:2px;text-align:left}
+.kmain .which{margin-top:4px}
+.which summary{color:var(--accent);font-weight:700;font-size:14px;cursor:pointer}
+.which p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.yn{display:flex;gap:6px;flex:none}
+.kcat{margin:16px 0 0}
+.pill{font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap;flex:none}
+.pill.zero{background:var(--sunk);color:var(--muted)}
+.pill.want{background:var(--turmeric);color:var(--turmeric-ink)}
+.pill.worn{background:var(--sunk);color:var(--chilli)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid2 label{min-width:0}
+.form select{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:16px;font-weight:400;width:100%;-webkit-appearance:none;appearance:none}
+.form label.inline{flex-direction:row;align-items:center;gap:10px;font-weight:400}
+.form label.inline input{width:auto}
 </style>
 </head>
 <body>
@@ -306,9 +328,11 @@ body.locked{overflow:hidden}
   <button id="tab-recipes" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg>Recipes</button>
   <button id="tab-shop"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>Shopping<span class="badge" id="shopBadge" hidden></span></button>
   <button id="tab-cmp"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14M12 5V3"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg>Compare</button>
+  <button id="tab-kitchen"><svg viewBox="0 0 24 24"><path d="M3 11h14v5a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M17 13h4"/><path d="M7 7c0-1 1-1 1-2M11 7c0-1 1-1 1-2"/></svg>Kitchen</button>
 </div></nav>
 
 <script src="./plan.js"></script>
+<script src="./kitchen.js"></script>
 <script>
 "use strict";
 const REPO = "__REPO__";            // owner/name, filled in at build time
@@ -557,6 +581,7 @@ async function load(){
     S.deleted = S.deleted.filter(e => Date.now() - e.at < 600000 && S.shared.some(r => r.id === e.id));
     lsSet("deleted", S.deleted);
   } catch { S.loadFailed = true; }
+  await loadKitchen();
   S.ready = true;
   if (S.session) { restoreSessionTimers(); S.sessionOpen = true; fillHands(); }
   const h = decodeURIComponent(location.hash.slice(1));
@@ -754,6 +779,13 @@ async function pushRecipe(r){
     message: `${sha ? "Update" : "Add"} recipe: ${r.title}`, content: b64(recipeJson(r)), branch: "main", ...(sha ? { sha } : {})
   }) });
   if (res.status === 409 || res.status === 422) throw new SaveError("Someone changed this recipe at the same moment. Reopen it and try again");
+  if (!res.ok) throw new SaveError("Couldn't save to GitHub. Try again in a moment");
+}
+async function pushFile(path, text, message){
+  const cur = await gh(`/contents/${path}?ref=main`, { allow404: true });
+  const sha = cur.status === 404 ? null : cur.ok ? (await cur.json()).sha : (() => { throw new SaveError("Couldn't reach GitHub. Try again in a moment"); })();
+  const res = await gh(`/contents/${path}`, { method: "PUT", body: JSON.stringify({ message, content: b64(text), branch: "main", ...(sha ? { sha } : {}) }) });
+  if (res.status === 409 || res.status === 422) throw new SaveError("It changed somewhere else at the same moment. Try again");
   if (!res.ok) throw new SaveError("Couldn't save to GitHub. Try again in a moment");
 }
 async function deleteRecipe(r){
@@ -1346,6 +1378,112 @@ function viewSession(){
   </div>`;
 }
 
+/* ---------- kitchen: what you own vs what the recipes need ---------- */
+S.kitchen = { items: [], updated: 0 }; S.kEdit = null; S.kConfirmDel = false; S.kAllCheck = false; S.kSync = "";
+const COND = { good: "Good", worn: "Worn", replace: "Needs replacing" }, STATUS = { owned: "Have it", check: "Not sure", want: "Want it" };
+async function loadKitchen(){
+  let remote = null;
+  try { const res = await fetch("./kitchen.json", { cache: "no-cache" }); if (res.ok) remote = await res.json(); } catch {}
+  const local = lsGet("kitchenLocal", null);
+  // changes made on this phone that haven't reached the site yet win until they do
+  S.kitchen = local && (!remote || (local.updated || 0) > (remote.updated || 0)) ? local : (remote || local || { items: [], updated: 0 });
+  if (local && remote && (remote.updated || 0) >= (local.updated || 0)) lsSet("kitchenLocal", null);
+  S.kSync = local && S.kitchen === local && !local.pushed ? "local" : "";
+}
+let kTimer = null;
+function saveKitchen(msg){
+  S.kitchen.updated = Date.now(); S.kitchen.pushed = false;
+  lsSet("kitchenLocal", S.kitchen); S.kSync = "local";
+  if (msg) toast(msg);
+  if (!S.token) return;
+  clearTimeout(kTimer);
+  kTimer = setTimeout(async () => {
+    try {
+      const { pushed, ...data } = S.kitchen;
+      await pushFile("public/kitchen.json", JSON.stringify(data, null, 2) + "\n", "Update kitchen equipment");
+      S.kitchen.pushed = true; lsSet("kitchenLocal", S.kitchen); S.kSync = "";
+      if (S.tab === "kitchen" && !S.kEdit) { S._force = true; render(); }
+    } catch (err) { S.kSync = "failed"; toast(err instanceof SaveError ? err.message : "Couldn't save to GitHub. It's kept on this phone"); }
+  }, 1500);
+}
+const kItem = id => S.kitchen.items.find(i => i.id === id);
+const recipeTitle = id => S.recipes.find(r => r.id === id)?.title || id;
+function recipeList(ids){
+  const t = ids.map(recipeTitle).sort((a, b) => a.localeCompare(b));
+  return `<details class="which"><summary>Which recipes</summary><p>${t.slice(0, 12).map(esc).join(" · ")}${t.length > 12 ? ` and ${t.length - 12} more` : ""}</p></details>`;
+}
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+function viewKitchen(){
+  const A = Kitchen.analyse(S.kitchen.items, S.recipes);
+  const sync = S.kSync === "local" ? (S.token ? `<p class="notice">Saving to the family cookbook…</p>` : `<p class="notice">Changes are saved on this phone only. <button class="linkbtn" data-act="settings">Set up saving</button> to share them.</p>`)
+             : S.kSync === "failed" ? `<p class="notice">Couldn't save to the family cookbook. Changes are kept on this phone and will be sent with your next change.</p>` : "";
+  const row = (title, sub, extra = "", act = "") => `<li class="krow">${act ? `<button class="kmain" ${act}>` : `<div class="kmain">`}<b>${title}</b>${sub ? `<span class="muted small">${sub}</span>` : ""}${act ? "</button>" : "</div>"}${extra}</li>`;
+  const checks = S.kAllCheck ? A.check : A.check.slice(0, 6);
+  const byCat = Kitchen.CATS.map(([cat, name]) => [name, S.kitchen.items.filter(i => i.cat === cat && i.status !== "check").sort((a, b) => (a.status === "want") - (b.status === "want") || a.name.localeCompare(b.name))]).filter(([, l]) => l.length);
+  return `<header class="top"><div class="wrap">
+    <div class="row between"><h1>Kitchen</h1><button class="btn primary" data-act="kAdd">${ICON.plus} Add</button></div>
+  </div></header>
+  <main class="wrap kitchen">
+    ${sync}
+    ${A.insights.length ? `<section class="kcard insights"><h3>From your ${S.recipes.length} recipes</h3><ul>${A.insights.map(x => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
+    ${A.buy.length ? `<section class="block"><h2>Buy</h2><ul class="klist">${A.buy.map(b => row(esc(b.wanted ? b.wanted.name : b.name),
+        [b.n ? `Needed by ${plural(b.n, "recipe")}` : "No recipe needs it yet", b.upgradeOf?.length ? `upgrade from your ${esc(b.upgradeOf.join(", ").toLowerCase())}` : "", b.wanted ? "on your wish list" : ""].filter(Boolean).join(" · ") + (b.wanted?.notes ? `<br>${esc(b.wanted.notes)}` : "") + (b.recipes.length && b.recipes.length < S.recipes.length ? recipeList(b.recipes) : ""),
+        "", b.wanted ? `data-act="kOpen" data-id="${esc(b.wanted.id)}"` : "")).join("")}</ul></section>` : ""}
+    ${A.upgrade.length ? `<section class="block"><h2>Upgrade</h2><ul class="klist">${A.upgrade.map(u => row(esc(u.item.name), `${esc(u.from)} → <b>${esc(u.to)}</b> · used by ${plural(u.n, "recipe")}`, "", `data-act="kOpen" data-id="${esc(u.item.id)}"`)).join("")}</ul></section>` : ""}
+    ${A.replace.length ? `<section class="block"><h2>Replace</h2><ul class="klist">${A.replace.map(x => row(esc(x.item.name), esc(x.why), "", `data-act="kOpen" data-id="${esc(x.item.id)}"`)).join("")}</ul></section>` : ""}
+    ${A.cut.length ? `<section class="block"><h2>Cut or rethink</h2><ul class="klist">${A.cut.map(c => row(esc(c.item.name), esc(c.why), `<button class="btn ghost sm" data-act="kKeep" data-id="${esc(c.item.id)}">Keep</button>`, `data-act="kOpen" data-id="${esc(c.item.id)}"`)).join("")}</ul></section>` : ""}
+    ${A.check.length ? `<section class="block"><h2>Do you have these?</h2><p class="muted small" style="margin:4px 0 8px">The ones your recipes need most come first.</p><ul class="klist">${checks.map(c => row(esc(c.item.name), c.n ? `Needed by ${plural(c.n, "recipe")}` : "",
+        `<span class="yn"><button class="btn primary sm" data-act="kYes" data-id="${esc(c.item.id)}">Yes</button><button class="btn ghost sm" data-act="kWant" data-id="${esc(c.item.id)}">Want</button><button class="btn ghost sm" data-act="kNo" data-id="${esc(c.item.id)}">No</button></span>`)).join("")}</ul>
+      ${A.check.length > 6 ? `<button class="btn ghost" style="margin-top:8px;width:100%" data-act="kAllCheck">${S.kAllCheck ? "Show fewer" : `Show all ${A.check.length}`}</button>` : ""}</section>` : ""}
+    <section class="block"><h2>What you have</h2>
+      ${byCat.map(([name, list]) => `<h3 class="kcat">${esc(name)}</h3><ul class="klist">${list.map(i => {
+        const n = A.uses(i), meta = [i.material, i.size, [i.brand, i.model].filter(Boolean).join(" ")].filter(Boolean).join(" · ");
+        const tag = i.status === "want" ? `<span class="pill want">want</span>` : i.condition && i.condition !== "good" ? `<span class="pill worn">${esc(COND[i.condition].toLowerCase())}</span>` : n != null && Kitchen.LINKED.has(i.role) ? `<span class="pill ${n ? "" : "zero"}">${n ? plural(n, "recipe") : "unused"}</span>` : "";
+        return row(`${esc(i.name)}${i.qty > 1 ? ` ×${i.qty}` : ""}`, esc(meta), tag, `data-act="kOpen" data-id="${esc(i.id)}"`);
+      }).join("")}</ul>`).join("")}
+    </section>
+    <p class="muted small" style="margin-top:18px">Recipes count towards a piece of gear through its kind (skillet, wok, Instant Pot…). Tap anything to edit it. Advice gets sharper as more recipes go in.</p>
+  </main>`;
+}
+function viewKitchenSheet(){
+  const e = S.kEdit, isNew = !e.id;
+  const opt = (obj, sel) => Object.entries(obj).map(([v, l]) => `<option value="${esc(v)}" ${v === (sel || "") ? "selected" : ""}>${esc(l)}</option>`).join("");
+  const roles = { "": "Not linked to recipes", ...Object.fromEntries(Object.entries(Kitchen.ROLES).map(([k, r]) => [k, r.name])) };
+  const ladder = Kitchen.ROLES[e.role]?.ladder;
+  return `<div class="scrim" data-act="kx"></div><div class="sheet" role="dialog" aria-label="${isNew ? "Add equipment" : "Edit equipment"}"><div class="wrap">
+    <div class="row between"><h2>${isNew ? "Add equipment" : "Edit"}</h2><button class="icon" data-act="kx" aria-label="Close">${ICON.close}</button></div>
+    <form class="form" id="kForm">
+      <label>Name<input id="k-name" value="${esc(e.name)}" required autocomplete="off"></label>
+      <div class="grid2"><label>Category<select id="k-cat">${opt(Object.fromEntries(Kitchen.CATS), e.cat || "cookware")}</select></label>
+        <label>Status<select id="k-status">${opt(STATUS, e.status || "owned")}</select></label></div>
+      <label>Kind <small>Links it to recipes that need this kind of gear</small><select id="k-role">${opt(roles, e.role)}</select></label>
+      <label>Material <small>${ladder ? `Progression: ${ladder.map(esc).join(" → ")}` : "Optional"}</small><input id="k-material" list="k-mats" value="${esc(e.material)}" autocomplete="off"><datalist id="k-mats">${Kitchen.MATERIALS.map(m => `<option value="${esc(m)}">`).join("")}</datalist></label>
+      <div class="grid3"><label>Size<input id="k-size" value="${esc(e.size)}" placeholder="28cm" autocomplete="off"></label>
+        <label>How many<input id="k-qty" type="number" min="1" inputmode="numeric" value="${esc(e.qty || 1)}"></label>
+        <label>Condition<select id="k-cond">${opt(COND, e.condition || "good")}</select></label></div>
+      <div class="grid2"><label>Brand<input id="k-brand" value="${esc(e.brand)}" autocomplete="off"></label><label>Model<input id="k-model" value="${esc(e.model)}" autocomplete="off"></label></div>
+      <label>Notes<textarea id="k-notes" rows="3">${esc(e.notes)}</textarea></label>
+      <label class="inline"><input type="checkbox" id="k-keep" ${e.keep ? "checked" : ""}> Keep it even if no recipe uses it</label>
+      <button class="btn primary big" type="submit">${isNew ? "Add" : "Save"}</button>
+      ${isNew ? "" : S.kConfirmDel ? `<div class="confirm row between"><span>Remove ${esc(e.name)}?</span><span class="row"><button class="btn ghost" type="button" data-act="kDelNo">Keep</button><button class="btn danger" type="button" data-act="kDelYes">Remove</button></span></div>`
+        : `<button class="btn danger" type="button" data-act="kDelAsk">Remove</button>`}
+    </form>
+  </div></div>`;
+}
+function kSubmit(){
+  const v = id => $("#" + id).value.trim(), name = v("k-name");
+  if (!name) { toast("Give it a name"); return; }
+  const it = { ...(S.kEdit.id ? kItem(S.kEdit.id) : {}), name, cat: v("k-cat"), status: v("k-status"), condition: v("k-cond"),
+    role: v("k-role") || undefined, material: v("k-material") || undefined, size: v("k-size") || undefined, brand: v("k-brand") || undefined,
+    model: v("k-model") || undefined, notes: v("k-notes") || undefined, qty: Math.max(1, parseInt(v("k-qty")) || 1), keep: $("#k-keep").checked || undefined };
+  if (it.condition === "good") delete it.condition;
+  if (it.qty === 1) delete it.qty;
+  Object.keys(it).forEach(k => it[k] === undefined && delete it[k]);
+  if (!it.id) { let id = slug(name), n = 2; while (kItem(id)) id = slug(name) + "-" + n++; it.id = id; S.kitchen.items.push(it); }
+  else S.kitchen.items = S.kitchen.items.map(x => x.id === it.id ? it : x);
+  S.kEdit = null; S.kConfirmDel = false; saveKitchen("Saved"); S._force = true; render();
+}
+
 /* ---------- render ---------- */
 function render(){
   const app = $("#app");
@@ -1360,14 +1498,16 @@ function render(){
   else if (S.view === "edit") html = viewEdit();
   else if (S.tab === "shop") html = viewShop();
   else if (S.tab === "cmp") html = viewCompare();
+  else if (S.tab === "kitchen") html = viewKitchen();
   else if (S.view === "recipe") html = viewRecipe() + (S.cook ? viewCook() : "");
   else html = viewList();
-  app.innerHTML = html + (S.ingSheet ? viewIngSheet() : "");
+  app.innerHTML = html + (S.ingSheet ? viewIngSheet() : "") + (S.kEdit ? viewKitchenSheet() : "");
   $("#tabs").hidden = S.view === "edit" || !!S.cook || S.settings || !!S.together || (S.sessionOpen && !!S.session) || !!S.pick;
   document.body.classList.toggle("locked", !!S.cook || (S.sessionOpen && !!S.session));
   $("#tab-recipes").setAttribute("aria-current", S.tab === "recipes" ? "page" : "false");
   $("#tab-shop").setAttribute("aria-current", S.tab === "shop" ? "page" : "false");
   $("#tab-cmp").setAttribute("aria-current", S.tab === "cmp" ? "page" : "false");
+  $("#tab-kitchen").setAttribute("aria-current", S.tab === "kitchen" ? "page" : "false");
   const open = S.shop.filter(s => !s.done).length, b = $("#shopBadge");
   b.hidden = !open; b.textContent = open;
   document.body.style.overflow = S.cook ? "hidden" : "";
@@ -1396,6 +1536,7 @@ document.addEventListener("submit", e => {
   e.preventDefault();
   if (e.target.id === "addForm") { const v = $("#addItem").value.trim(); if (v) { addShop([{ name:v }]); const i = $("#addItem"); if (i) { i.value = ""; i.focus(); } } }
   if (e.target.id === "tokenForm") turnOnSaving($("#f-token").value.trim());
+  if (e.target.id === "kForm") kSubmit();
   if (e.target.id === "ingOwn") { const v = $("#ingOwnText").value.trim(); if (!v) { toast("Type what you're using instead"); return; } setChange(S.ingSheet.rid, S.ingSheet.key, { swap: v }); toast("Swapped"); }
 });
 async function turnOnSaving(t){
@@ -1423,6 +1564,7 @@ async function pushLocal(r, quiet){
 $("#tab-recipes").onclick = () => { audio(); go({ tab:"recipes", view: S.view === "edit" ? "list" : S.view }); };
 $("#tab-shop").onclick = () => { audio(); go({ tab:"shop", confirmClear:false }); };
 $("#tab-cmp").onclick = () => { audio(); go({ tab:"cmp" }); };
+$("#tab-kitchen").onclick = () => { audio(); go({ tab:"kitchen", kEdit:null }); };
 window.addEventListener("hashchange", () => {
   const h = decodeURIComponent(location.hash.slice(1));
   if (!h && S.view === "recipe") go({ view:"list", rid:null, cook:null });
@@ -1489,6 +1631,16 @@ document.addEventListener("click", async e => {
     }
     case "cmpDel": S.cmp = S.cmp.filter(x => x.id !== b.dataset.id); saveCmp(); S._force = true; render(); break;
     case "cmpReset": S.cmp = [newOpt(), newOpt()]; saveCmp(); S._force = true; render(); window.scrollTo(0, 0); break;
+    case "kAdd": S.kEdit = { cat: "cookware", status: "owned" }; S.kConfirmDel = false; S._force = true; render(); break;
+    case "kOpen": S.kEdit = { ...kItem(b.dataset.id) }; S.kConfirmDel = false; S._force = true; render(); break;
+    case "kx": S.kEdit = null; S._force = true; render(); break;
+    case "kDelAsk": S.kConfirmDel = true; S._force = true; render(); break;
+    case "kDelNo": S.kConfirmDel = false; S._force = true; render(); break;
+    case "kDelYes": S.kitchen.items = S.kitchen.items.filter(i => i.id !== S.kEdit.id); S.kEdit = null; saveKitchen("Removed"); S._force = true; render(); break;
+    case "kYes": case "kWant": kItem(b.dataset.id).status = a === "kYes" ? "owned" : "want"; saveKitchen(a === "kYes" ? "Marked as yours" : "Added to your wish list"); S._force = true; render(); break;
+    case "kNo": S.kitchen.items = S.kitchen.items.filter(i => i.id !== b.dataset.id); saveKitchen("Removed"); S._force = true; render(); break;
+    case "kKeep": kItem(b.dataset.id).keep = true; saveKitchen("Kept"); S._force = true; render(); break;
+    case "kAllCheck": S.kAllCheck = !S.kAllCheck; S._force = true; render(); break;
     case "pickStart":
       if (S.session) { toast("Finish or end the current session first"); S.sessionOpen = true; fillHands(); go({}); wake(true); break; }
       S.pick = []; S._force = true; render(); break;

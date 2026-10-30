@@ -4,7 +4,7 @@ const VERSION = "__VERSION__";
 const SHELL = `shell-${VERSION}`;
 const DATA = "data";
 const FONTS = "fonts";
-const SHELL_FILES = ["./", "./index.html", "./plan.js", "./manifest.webmanifest", "./icon.svg", "./apple-touch-icon.png", "./icon-512.png"];
+const SHELL_FILES = ["./", "./index.html", "./plan.js", "./kitchen.js", "./manifest.webmanifest", "./icon.svg", "./apple-touch-icon.png", "./icon-512.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(SHELL).then(c => c.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
@@ -33,6 +33,15 @@ self.addEventListener("fetch", e => {
   }
   if (url.origin !== location.origin) return;
 
+  if (url.pathname.endsWith("/kitchen.json")) {
+    e.respondWith(
+      fetch(req).then(res => {
+        if (res.ok) { const copy = res.clone(); caches.open(DATA).then(c => c.put("kitchen.json", copy)); }
+        return res;
+      }).catch(() => caches.open(DATA).then(c => c.match("kitchen.json")))
+    );
+    return;
+  }
   if (url.pathname.endsWith("/recipes.json")) {
     e.respondWith(
       fetch(req).then(res => {
