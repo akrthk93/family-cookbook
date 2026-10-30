@@ -1,5 +1,5 @@
 {
-  "updated": 1793355653242,
+  "updated": 1793358217708,
   "items": [
     {
       "id": "ss-skillet",
@@ -364,7 +364,8 @@
       "name": "Idli steamer (idli satti)",
       "cat": "specialty",
       "status": "owned",
-      "role": "steam"
+      "role": "steam",
+      "keep": true
     },
     {
       "id": "ip-trivet",
