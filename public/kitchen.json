@@ -1,5 +1,5 @@
 {
-  "updated": 1793366726573,
+  "updated": 1793366744335,
   "items": [
     {
       "id": "ss-skillet",
@@ -298,7 +298,7 @@
       "id": "ladle",
       "name": "Ladle",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "spider",
