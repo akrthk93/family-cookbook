@@ -1,5 +1,5 @@
 {
-  "updated": 1793366700439,
+  "updated": 1793366708010,
   "items": [
     {
       "id": "ss-skillet",
@@ -336,13 +336,13 @@
       "id": "spoons",
       "name": "Measuring spoons",
       "cat": "measuring",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "jug",
       "name": "Measuring jug",
       "cat": "measuring",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "glasslock-700",
