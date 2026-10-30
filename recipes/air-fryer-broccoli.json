@@ -1,0 +1,122 @@
+{
+  "id": "air-fryer-broccoli",
+  "title": "Air Fryer Broccoli",
+  "prep": "5 min",
+  "cook": "10 min",
+  "total": "15 min",
+  "serves": 3,
+  "equip": "Air fryer, 1 large mixing bowl",
+  "tags": [
+    "Side Dishes",
+    "Western"
+  ],
+  "groups": [
+    {
+      "g": "Broccoli",
+      "items": [
+        {
+          "q": 400,
+          "u": "g",
+          "n": "broccoli florets"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "neutral oil",
+          "sub": "olive oil"
+        }
+      ]
+    },
+    {
+      "g": "Seasoning A: Simple Spices",
+      "items": [
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "garlic powder"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "smoked paprika",
+          "sub": "chilli powder"
+        }
+      ]
+    },
+    {
+      "g": "Seasoning B: Cajun",
+      "items": [
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "cajun seasoning"
+        }
+      ]
+    },
+    {
+      "g": "Finish",
+      "items": [
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "lemon juice",
+          "sub": "lime juice"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Cut and dry",
+      "x": "Cut the broccoli into florets of about 4cm. Wash them, then dry thoroughly with a clean towel. Wet florets steam instead of crisping.",
+      "uses": [
+        "0.0"
+      ]
+    },
+    {
+      "t": "Season",
+      "x": "Toss the florets with the oil in a large bowl until evenly coated. Add Seasoning A or Seasoning B, not both, and toss again. Cajun mixes already contain salt, so add no extra.",
+      "uses": [
+        "0.1",
+        "1.0",
+        "2.0"
+      ]
+    },
+    {
+      "t": "Preheat",
+      "x": "Preheat the air fryer to 190°C for 3 min.",
+      "uses": []
+    },
+    {
+      "t": "Air fry",
+      "x": "Spread the florets in a single layer in the basket. Cook at 190°C for 5 min, shake or toss, then cook another 5 min until the edges are charred and the stems are tender.",
+      "uses": []
+    },
+    {
+      "t": "Finish",
+      "x": "Tip into a bowl and toss with the lemon juice. Serve straight away.",
+      "uses": [
+        "3.0"
+      ]
+    }
+  ],
+  "notes": [
+    "Don't overcrowd the basket. If you double the batch, cook in two rounds.",
+    "With Seasoning B, set aside the child's portion and season it with only salt (0.25 tsp) and oil before adding cajun to the rest.",
+    "For softer broccoli, cook 2 min longer. For darker, crispier tips, cook 2 min longer and shake once more.",
+    "Eat fresh. Leftovers keep 2 days in the fridge but soften. Reheat in the air fryer at 180°C for 3 min."
+  ],
+  "source": "None",
+  "no": "",
+  "updated": 1793333810059
+}
