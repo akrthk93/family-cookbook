@@ -64,7 +64,7 @@ try {
     if (!it.id || ids.has(it.id)) errors.push(`${at}: needs a unique "id"`); ids.add(it.id);
     if (!it.name) errors.push(`${at}: needs a "name"`);
     if (!["cookware", "appliances", "knives", "prep", "utensils", "measuring", "storage", "specialty"].includes(it.cat)) errors.push(`${at}: "cat" isn't a known category`);
-    if (it.status && !["owned", "check", "want"].includes(it.status)) errors.push(`${at}: "status" must be owned, check or want`);
+    if (it.status && !["owned", "check", "want", "no"].includes(it.status)) errors.push(`${at}: "status" must be owned, check, want or no`);
   });
 } catch (e) { errors.push(`public/kitchen.json: not valid JSON (${e.message})`); }
 

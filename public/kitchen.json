@@ -1,5 +1,5 @@
 {
-  "updated": 1793367011807,
+  "updated": 1793367243254,
   "items": [
     {
       "id": "ss-skillet",
@@ -75,16 +75,6 @@
       "keep": true
     },
     {
-      "id": "saute-pan",
-      "name": "Sauté pan with lid",
-      "cat": "cookware",
-      "status": "want",
-      "role": "deep",
-      "material": "stainless",
-      "size": "28cm",
-      "notes": "Deep and straight-sided, for tossing pasta and sauces one-handed. Budget under S$100."
-    },
-    {
       "id": "cs-wok",
       "name": "Carbon steel wok",
       "cat": "cookware",
@@ -148,42 +138,13 @@
     },
     {
       "id": "mercer-chef",
-      "name": "Chef's knife (non-veg)",
+      "name": "Chef's knife",
       "cat": "knives",
       "status": "owned",
       "role": "knife",
       "material": "stamped soft steel",
       "brand": "Mercer",
       "notes": "X30Cr13 steel"
-    },
-    {
-      "id": "veg-knife",
-      "name": "Veg knife",
-      "cat": "knives",
-      "status": "check",
-      "role": "knife",
-      "notes": "You keep separate veg and non-veg knives. Which one is the veg knife?"
-    },
-    {
-      "id": "gyuto-210",
-      "name": "Gyuto, 210mm",
-      "cat": "knives",
-      "status": "want",
-      "role": "knife",
-      "material": "Japanese (VG10)",
-      "size": "210mm",
-      "notes": "Veg knife. Going straight to Japanese. 210mm fits the 46cm wedge board. Keep the Mercer for meat and bones; whetstone only, never the pull-through."
-    },
-    {
-      "id": "victorinox",
-      "name": "Chef's knife, 8\"",
-      "cat": "knives",
-      "status": "want",
-      "role": "knife",
-      "material": "Victorinox / forged German",
-      "brand": "Victorinox",
-      "model": "Fibrox",
-      "notes": "Noted as the next chef's knife"
     },
     {
       "id": "ikea-chopper",
@@ -327,10 +288,10 @@
     },
     {
       "id": "thermometer",
-      "name": "Instant-read thermometer",
+      "name": "Infrared thermometer",
       "cat": "measuring",
       "status": "owned",
-      "role": "thermometer"
+      "notes": "Surface temperature only: tawa, pan, oil. Can't read inside meat or fish."
     },
     {
       "id": "spoons",

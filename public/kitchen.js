@@ -27,7 +27,7 @@ const ROLES = {
   chopper:     { name: "Chopper (pull-string or electric)", cat: "prep" },
   mixie:       { name: "Mixie (mixer-grinder)", cat: "appliances" },
   trivet:      { name: "Trivet and steel bowl (pot-in-pot)", cat: "specialty" },
-  knife:       { name: "Chef's knife", cat: "knives", ladder: ["stamped soft steel", "Victorinox / forged German", "Japanese (VG10)", "carbon steel"], enough: 1, keepAll: true, every: true },
+  knife:       { name: "Chef's knife", cat: "knives", ladder: ["stamped soft steel", "Japanese (VG10)", "carbon steel"], enough: 1, keepAll: true, every: true },
   board:       { name: "Cutting board", cat: "knives", ladder: ["plastic", "wood", "end-grain"], enough: 0, keepAll: true, every: true },
   sharpener:   { name: "Sharpener", cat: "knives", ladder: ["pull-through", "whetstone"], enough: 1 },
   mortar:      { name: "Mortar and pestle", cat: "prep" },
@@ -35,7 +35,7 @@ const ROLES = {
   colander:    { name: "Colander", cat: "prep" },
   grater:      { name: "Microplane or fine grater", cat: "prep" },
   scale:       { name: "Digital scale", cat: "measuring", every: true },
-  thermometer: { name: "Instant-read thermometer", cat: "measuring" },
+  thermometer: { name: "Instant-read probe thermometer", cat: "measuring" },
 };
 const MATERIALS = [...new Set(Object.values(ROLES).flatMap(r => r.ladder || []).concat(["cast iron", "enamelled cast iron", "hard-anodised", "copper", "plastic", "silicone", "glass", "wood"]))];
 
@@ -62,7 +62,7 @@ function recipeNeeds(r) {
 const LINKED = new Set(["pan", "deep", "wok", "pot", "sauce", "tawa", "pc", "steam", "ip", "af", ...Object.keys(TOOL_RE), ...Object.keys(ROLES).filter(r => ROLES[r].every)]);
 const tierOf = it => { const L = ROLES[it.role]?.ladder; if (!L || !it.material) return -1; return L.findIndex(m => m.toLowerCase() === String(it.material).toLowerCase()); };
 
-/* items: [{ id, name, cat, role, material, status: owned|check|want, condition: good|worn|replace }]
+/* items: [{ id, name, cat, role, material, status: owned|check|want|no (no = you don't have it; kept so it can be undone), condition: good|worn|replace }]
    recipes: the recipe list. Returns everything the Kitchen screen shows. */
 function analyse(items, recipes) {
   const owned = items.filter(i => (i.status || "owned") === "owned");
@@ -178,7 +178,7 @@ const CATALOG = [
   { id: "boning", name: "Honesuki or boning knife (150mm)", cat: "knives", match: /boning|honesuki/i,
     signal: f => f.chickenParts || f.debone || f.boneIn ? Math.min(1, (f.chickenParts + f.debone + f.skinTrim) / 2) : 0, strong: 0.3, some: 0.15,
     why: n => `${n} recipes use chicken breasts, thighs or legs you could cut from a whole chicken, or debone and skin yourself`,
-    note: "Buy whole chickens and break them down: breasts for one recipe, legs for another, and the carcass for stock instead of a Knorr cube. A honesuki (Japanese poultry knife) is built for this; a Western boning knife works too. Don't use your VG10 gyuto on bones." },
+    note: "Buy whole chickens and break them down: breasts for one recipe, legs for another, and the carcass for stock instead of a Knorr cube. A honesuki (Japanese poultry knife) is built for this; a Western boning knife works too. Keep your chef's knife off bones." },
   { id: "poultry-shears", name: "Poultry shears", cat: "knives", match: /shears|scissors/i,
     signal: f => f.chickenParts || f.boneIn ? 1 : 0, strong: 0.35, some: 0.15,
     why: n => `${n} recipes use chicken parts or bone-in chicken`, note: "Cuts out the backbone and through joints and ribs in seconds. Pairs with a boning knife if you start buying whole chickens." },
@@ -241,7 +241,7 @@ function suggest(items, recipes, freq = {}, dismissed = []) {
   const W = F.reduce((a, x) => a + x.w, 0) || 1;
   const out = [];
   for (const c of CATALOG) {
-    if (dismissed.includes(c.id) || items.some(i => i.suggest === c.id || c.match.test(i.name)) || c.has?.(items)) continue;
+    if (dismissed.includes(c.id) || items.some(i => i.status !== "no" && (i.suggest === c.id || c.match.test(i.name))) || c.has?.(items)) continue;
     let score = 0, n = 0, made = 0, regular = 0;
     for (const x of F) { const sg = c.signal(x.f, items); if (sg > 0) { score += sg * x.w; n++; if (x.made) made++; if (x.regular) regular++; } }
     if (!n) continue;

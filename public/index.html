@@ -788,9 +788,15 @@ async function pushRecipe(r){
   if (!res.ok) throw new SaveError("Couldn't save to GitHub. Try again in a moment");
 }
 async function pushFile(path, text, message){
-  const cur = await gh(`/contents/${path}?ref=main`, { allow404: true });
-  const sha = cur.status === 404 ? null : cur.ok ? (await cur.json()).sha : (() => { throw new SaveError("Couldn't reach GitHub. Try again in a moment"); })();
-  const res = await gh(`/contents/${path}`, { method: "PUT", body: JSON.stringify({ message, content: b64(text), branch: "main", ...(sha ? { sha } : {}) }) });
+  // no-store: a cached answer has an old sha, and quick saves in a row would then be rejected
+  let res;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const cur = await gh(`/contents/${path}?ref=main`, { allow404: true, cache: "no-store" });
+    const sha = cur.status === 404 ? null : cur.ok ? (await cur.json()).sha : (() => { throw new SaveError("Couldn't reach GitHub. Try again in a moment"); })();
+    res = await gh(`/contents/${path}`, { method: "PUT", body: JSON.stringify({ message, content: b64(text), branch: "main", ...(sha ? { sha } : {}) }) });
+    if (res.status !== 409 && res.status !== 422) break;
+    await new Promise(r => setTimeout(r, 800));
+  }
   if (res.status === 409 || res.status === 422) throw new SaveError("It changed somewhere else at the same moment. Try again");
   if (!res.ok) throw new SaveError("Couldn't save to GitHub. Try again in a moment");
 }
@@ -1386,7 +1392,7 @@ function viewSession(){
 
 /* ---------- kitchen: what you own vs what the recipes need ---------- */
 S.kitchen = { items: [], updated: 0 }; S.kEdit = null; S.kConfirmDel = false; S.kAllCheck = false; S.kSync = "";
-const COND = { good: "Good", worn: "Worn", replace: "Needs replacing" }, STATUS = { owned: "Have it", check: "Not sure", want: "Want it" };
+const COND = { good: "Good", worn: "Worn", replace: "Needs replacing" }, STATUS = { owned: "Have it", check: "Not sure", want: "Want it", no: "Don't have it" };
 async function loadKitchen(){
   let remote = null;
   try { const res = await fetch("./kitchen.json", { cache: "no-cache" }); if (res.ok) remote = await res.json(); } catch {}
@@ -1425,7 +1431,7 @@ function viewKitchen(){
              : S.kSync === "failed" ? `<p class="notice">Couldn't save to the family cookbook. Changes are kept on this phone and will be sent with your next change.</p>` : "";
   const row = (title, sub, extra = "", act = "") => `<li class="krow">${act ? `<button class="kmain" ${act}>` : `<div class="kmain">`}<b>${title}</b>${sub ? `<span class="muted small">${sub}</span>` : ""}${act ? "</button>" : "</div>"}${extra}</li>`;
   const checks = S.kAllCheck ? A.check : A.check.slice(0, 6);
-  const byCat = Kitchen.CATS.map(([cat, name]) => [name, S.kitchen.items.filter(i => i.cat === cat && i.status !== "check").sort((a, b) => (a.status === "want") - (b.status === "want") || a.name.localeCompare(b.name))]).filter(([, l]) => l.length);
+  const byCat = Kitchen.CATS.map(([cat, name]) => [name, S.kitchen.items.filter(i => i.cat === cat && i.status !== "check" && i.status !== "no").sort((a, b) => (a.status === "want") - (b.status === "want") || a.name.localeCompare(b.name))]).filter(([, l]) => l.length);
   return `<header class="top"><div class="wrap">
     <div class="row between"><h1>Kitchen</h1><button class="btn primary" data-act="kAdd">${ICON.plus} Add</button></div>
   </div></header>
@@ -1436,7 +1442,7 @@ function viewKitchen(){
         [b.n ? `Needed by ${plural(b.n, "recipe")}` : "No recipe needs it yet", b.upgradeOf?.length ? `upgrade from your ${esc(b.upgradeOf.join(", ").toLowerCase())}${b.skips?.length ? `, skipping ${esc(b.skips.join(" and "))}` : ""}` : "", b.wanted ? "on your wish list" : ""].filter(Boolean).join(" · ") + (b.wanted?.notes ? `<br>${esc(b.wanted.notes)}` : "") + (b.recipes.length && b.recipes.length < S.recipes.length ? recipeList(b.recipes) : ""),
         "", b.wanted ? `data-act="kOpen" data-id="${esc(b.wanted.id)}"` : "")).join("")}</ul></section>` : ""}
     ${sugHtml()}
-    ${A.upgrade.length ? `<section class="block"><h2>Upgrade</h2><ul class="klist">${A.upgrade.map(u => row(esc(u.item.name), `${esc(u.from)} → <b>${esc(u.to)}</b>${u.skipTo.length ? `, or skip straight to ${u.skipTo.map(esc).join(" or ")}` : ""} · used by ${plural(u.n, "recipe")}<br><span class="small">Set the material on a wish-list item to whichever step you're going for.</span>`, "", `data-act="kOpen" data-id="${esc(u.item.id)}"`)).join("")}</ul></section>` : ""}
+    ${A.upgrade.length ? `<section class="block"><h2>Upgrade</h2><ul class="klist">${A.upgrade.map(u => row(esc(u.item.name), `${esc(u.from)} → <b>${esc(u.to)}</b>${u.skipTo.length ? `, or skip straight to ${u.skipTo.map(esc).join(" or ")}` : ""} · used by ${plural(u.n, "recipe")}`, "", `data-act="kOpen" data-id="${esc(u.item.id)}"`)).join("")}</ul></section>` : ""}
     ${A.replace.length ? `<section class="block"><h2>Replace</h2><ul class="klist">${A.replace.map(x => row(esc(x.item.name), esc(x.why), "", `data-act="kOpen" data-id="${esc(x.item.id)}"`)).join("")}</ul></section>` : ""}
     ${A.cut.length ? `<section class="block"><h2>Cut or rethink</h2><ul class="klist">${A.cut.map(c => row(esc(c.item.name), esc(c.why), `<button class="btn ghost sm" data-act="kKeep" data-id="${esc(c.item.id)}">Keep</button>`, `data-act="kOpen" data-id="${esc(c.item.id)}"`)).join("")}</ul></section>` : ""}
     ${A.check.length ? `<section class="block"><h2>Do you have these?</h2><p class="muted small" style="margin:4px 0 8px">The ones your recipes need most come first.</p><ul class="klist">${checks.map(c => row(esc(c.item.name), c.n ? `Needed by ${plural(c.n, "recipe")}` : "",
@@ -1445,12 +1451,23 @@ function viewKitchen(){
     <section class="block"><h2>What you have</h2>
       ${byCat.map(([name, list]) => `<h3 class="kcat">${esc(name)}</h3><ul class="klist">${list.map(i => {
         const n = A.uses(i), meta = [i.material, i.size, [i.brand, i.model].filter(Boolean).join(" ")].filter(Boolean).join(" · ");
-        const tag = i.status === "want" ? `<span class="pill want">want</span>` : i.condition && i.condition !== "good" ? `<span class="pill worn">${esc(COND[i.condition].toLowerCase())}</span>` : n != null && Kitchen.LINKED.has(i.role) ? `<span class="pill ${n ? "" : "zero"}">${n ? plural(n, "recipe") : "unused"}</span>` : "";
+        const tag = i.status === "want" ? `<span class="pill want">want</span>` : i.condition && i.condition !== "good" ? `<span class="pill worn">${esc(COND[i.condition].toLowerCase())}</span>` : n != null && Kitchen.LINKED.has(i.role) ? `<span class="pill ${n || i.keep ? "" : "zero"}">${n ? plural(n, "recipe") : i.keep ? "kept" : "unused"}</span>` : "";
         return row(`${esc(i.name)}${i.qty > 1 ? ` ×${i.qty}` : ""}`, esc(meta), tag, `data-act="kOpen" data-id="${esc(i.id)}"`);
       }).join("")}</ul>`).join("")}
     </section>
+    ${hiddenHtml()}
     <p class="muted small" style="margin-top:18px">Recipes count towards a piece of gear through its kind (skillet, wok, Instant Pot…). Tap anything to edit it. Advice gets sharper as more recipes go in.</p>
   </main>`;
+}
+function hiddenHtml(){
+  const row = (title, sub, extra = "", act = "") => `<li class="krow">${act ? `<button class="kmain" ${act}>` : `<div class="kmain">`}<b>${title}</b>${sub ? `<span class="muted small">${sub}</span>` : ""}${act ? "</button>" : "</div>"}${extra}</li>`;
+  const no = S.kitchen.items.filter(i => i.status === "no").sort((a, b) => a.name.localeCompare(b.name));
+  const dis = (S.kitchen.dismissed || []).map(id => Kitchen.CATALOG.find(c => c.id === id)).filter(Boolean);
+  if (!no.length && !dis.length) return "";
+  return `<details class="later hidden-list"><summary>Hidden · ${no.length + dis.length}</summary>
+    ${no.length ? `<h3 class="kcat">You said you don't have</h3><ul class="klist">${no.map(i => row(esc(i.name), "", `<span class="yn"><button class="btn ghost sm" data-act="kSet" data-v="owned" data-id="${esc(i.id)}">Have it</button><button class="btn ghost sm" data-act="kSet" data-v="want" data-id="${esc(i.id)}">Want</button></span>`, `data-act="kOpen" data-id="${esc(i.id)}"`)).join("")}</ul>` : ""}
+    ${dis.length ? `<h3 class="kcat">Suggestions you turned down</h3><ul class="klist">${dis.map(c => row(esc(c.name), "", `<button class="btn ghost sm" data-act="kUnhide" data-id="${esc(c.id)}">Suggest again</button>`)).join("")}</ul>` : ""}
+  </details>`;
 }
 function sugHtml(){
   const all = Kitchen.suggest(S.kitchen.items, S.recipes, madeLog(), S.kitchen.dismissed || []);
@@ -1658,12 +1675,17 @@ document.addEventListener("click", async e => {
     case "kDelNo": S.kConfirmDel = false; S._force = true; render(); break;
     case "kDelYes": S.kitchen.items = S.kitchen.items.filter(i => i.id !== S.kEdit.id); S.kEdit = null; saveKitchen("Removed"); S._force = true; render(); break;
     case "kYes": case "kWant": kItem(b.dataset.id).status = a === "kYes" ? "owned" : "want"; saveKitchen(a === "kYes" ? "Marked as yours" : "Added to your wish list"); S._force = true; render(); break;
-    case "kNo": S.kitchen.items = S.kitchen.items.filter(i => i.id !== b.dataset.id); saveKitchen("Removed"); S._force = true; render(); break;
+    case "kNo": kItem(b.dataset.id).status = "no"; saveKitchen("Moved to Hidden at the bottom"); S._force = true; render(); break;
+    case "kSet": kItem(b.dataset.id).status = b.dataset.v; saveKitchen(b.dataset.v === "owned" ? "Marked as yours" : b.dataset.v === "want" ? "Added to your wish list" : "Moved back to Do you have these?"); S._force = true; render(); break;
+    case "kUnhide": S.kitchen.dismissed = (S.kitchen.dismissed || []).filter(x => x !== b.dataset.id); saveKitchen("It can be suggested again"); S._force = true; render(); break;
     case "kKeep": kItem(b.dataset.id).keep = true; saveKitchen("Kept"); S._force = true; render(); break;
     case "kSug": {
       const c = Kitchen.CATALOG.find(x => x.id === b.dataset.id), v = b.dataset.v;
       if (v === "no") { S.kitchen.dismissed = [...new Set([...(S.kitchen.dismissed || []), c.id])]; saveKitchen("Won't suggest it again"); }
-      else {
+      else if (S.kitchen.items.some(i => i.status === "no" && (i.suggest === c.id || c.match.test(i.name)))) {
+        S.kitchen.items.find(i => i.status === "no" && (i.suggest === c.id || c.match.test(i.name))).status = v;
+        saveKitchen(v === "want" ? "Added to your wish list" : "Added to what you have");
+      } else {
         let id = c.id, n = 2; while (kItem(id)) id = c.id + "-" + n++;
         S.kitchen.items.push(Object.fromEntries(Object.entries({ id, name: c.name, cat: c.cat, status: v, role: c.role, material: c.material, suggest: c.id }).filter(([, x]) => x != null)));
         saveKitchen(v === "want" ? "Added to your wish list" : "Added to what you have");
