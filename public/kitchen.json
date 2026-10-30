@@ -1,5 +1,5 @@
 {
-  "updated": 1793366691703,
+  "updated": 1793366700439,
   "items": [
     {
       "id": "ss-skillet",
@@ -144,7 +144,7 @@
       "id": "kettle",
       "name": "Electric kettle",
       "cat": "appliances",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "mercer-chef",
