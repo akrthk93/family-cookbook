@@ -100,6 +100,7 @@ The app reads the recipes (each step's `on`, plus words like "strain", "zest", "
 - **Cut or rethink**: gear no recipe uses, or replaced by something better you own (tap **Keep** to silence it)
 - **Do you have these?**: items to confirm, the ones recipes need most first
 - **Suggested for you**: gear you don't have that your recipes point to (nakiri, petty knife, honing rod, sauté pan, Dutch oven, spare Instant Pot pot, salad spinner, mandoline…), with the reason. Recipes you cook often count more: each "Made it" or finished cook is logged on that phone, and recipes in the weekly plan count extra. **Want** adds it to the wish list, **Have it** to your gear, **Not for me** hides it for good (saved as `dismissed` in `kitchen.json`).
+  - Meat: recipes using chicken breasts, thighs or legs (or boneless/skinless cuts you could do yourself) point to a honesuki or boning knife and poultry shears for breaking down whole chickens; bone-in curry-cut pieces point to a cleaver. Skin and fat trimming counts towards a petty knife.
   - Choppers you own (a pull-string chopper, or a hand blender with a chopper bowl) take over chopped, diced and minced veg and garlic, so those count much less towards a nakiri, a bench scraper or a garlic press. Thin slices, rounds and julienne still need a knife.
 
 The list lives in `public/kitchen.json`. The app saves changes there the same way it saves recipes, so everyone sees the same list.

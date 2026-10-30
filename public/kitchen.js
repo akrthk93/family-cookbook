@@ -153,6 +153,13 @@ function features(r) {
     af: steps.some(s => s.on === "af"),
     spices: ings.filter(n => /powder|seeds|garam masala|turmeric/.test(n)).length,
     boneIn: /bone-in|off the bones|whole chicken|joint/.test(text + " " + ings.join(" ")),
+    // raw chicken parts you could cut from a whole bird (not mince, cooked, stock or luncheon meat)
+    chickenParts: ings.filter(n => /chicken/.test(n) && /breast|thigh|leg|drumstick|wing/.test(n) && !/mince|minced|ground|cooked|stock|broth|\bcube\b|knorr|luncheon/.test(n)).length,
+    // work a smaller blade does on meat: taking bones out, skin off, trimming fat
+    debone: ings.filter(n => /chicken|mutton|lamb/.test(n) && /boneless/.test(n) && /thigh|leg/.test(n)).length + ((text + " " + ings.join(" ")).match(/off the bones?|debone/g) || []).length,
+    skinTrim: ings.filter(n => /skin removed|skinless|skin (and .*)?trimmed|fat trimmed|trim(med)? .*fat|remove the skin/.test(n)).length + (text.match(/remove the skin|trim (off )?(the )?fat/g) || []).length,
+    // pieces with the bone still in, as in a curry-cut chicken or mutton curry
+    boneChop: /curry[- ]cut|bone-in .*(pieces|chunks)|(chicken|mutton|lamb) .*pieces, bone-in|chop .*through the bone/.test(text + " " + ings.join(" ")),
   };
 }
 /* The catalog. `match` = already in your list (any status) under a name like this; `signal` = how strongly a
@@ -163,14 +170,22 @@ const CATALOG = [
     why: (n, items) => ownChoppers(items).length ? `${n} recipes cut vegetables your choppers can't: thin slices, rounds, julienne` : `${n} recipes chop a lot of vegetables`,
     note: "Flat edge for push-cutting onions, beans and greens. Ideal as the dedicated veg knife." },
   { id: "petty", name: "Petty / utility knife (120–150mm)", cat: "knives", match: /petty|utility knife/i,
-    signal: f => Math.min(1, f.smallCuts / 3), strong: 0.35, some: 0.2,
+    signal: f => Math.min(1, (f.smallCuts + f.skinTrim) / 3), strong: 0.35, some: 0.2,
     why: n => `${n} recipes slice garlic, ginger or shallots, or slit chillies`, note: "Small precise work where a chef's knife is clumsy." },
   { id: "honing-rod", name: "Ceramic honing rod", cat: "knives", match: /honing|sharpening steel/i,
     signal: (f, items) => items.some(i => (i.status || "owned") === "owned" && i.role === "knife" && i.material === "stamped soft steel") ? 1 : 0, strong: 0.3, some: 0.15,
     why: () => `Your chef's knife is soft steel, and every recipe uses it`, noFreq: true, note: "A few strokes before cooking straightens a soft edge, so you need the whetstone far less often. Ceramic rather than grooved steel: it's also safe on a Japanese knife later." },
-  { id: "boning", name: "Boning knife", cat: "knives", match: /boning/i,
-    signal: f => f.boneIn ? 1 : 0, strong: 0.3, some: 0.1,
-    why: n => `${n} recipes work with bone-in meat`, note: "Only worth it if you start buying whole chickens or bone-in cuts to break down." },
+  { id: "boning", name: "Honesuki or boning knife (150mm)", cat: "knives", match: /boning|honesuki/i,
+    signal: f => f.chickenParts || f.debone || f.boneIn ? Math.min(1, (f.chickenParts + f.debone + f.skinTrim) / 2) : 0, strong: 0.3, some: 0.15,
+    why: n => `${n} recipes use chicken breasts, thighs or legs you could cut from a whole chicken, or debone and skin yourself`,
+    note: "Buy whole chickens and break them down: breasts for one recipe, legs for another, and the carcass for stock instead of a Knorr cube. A honesuki (Japanese poultry knife) is built for this; a Western boning knife works too. Don't use your VG10 gyuto on bones." },
+  { id: "poultry-shears", name: "Poultry shears", cat: "knives", match: /shears|scissors/i,
+    signal: f => f.chickenParts || f.boneIn ? 1 : 0, strong: 0.35, some: 0.15,
+    why: n => `${n} recipes use chicken parts or bone-in chicken`, note: "Cuts out the backbone and through joints and ribs in seconds. Pairs with a boning knife if you start buying whole chickens." },
+  { id: "cleaver", name: "Bone cleaver (Chinese style)", cat: "knives", match: /cleaver/i,
+    has: items => items.some(i => (i.status || "owned") !== "check" && i.cat === "knives" && /cleaver|chopper/i.test(i.name)),
+    signal: f => f.boneChop ? 1 : 0, strong: 0.2, some: 0.08,
+    why: n => `${n} recipes cook meat in bone-in pieces`, note: "A heavy cleaver chops through chicken and mutton bones for curry-cut pieces. Keeps your good knives off bones entirely." },
   { id: "dutch-oven", name: "Dutch oven (enamelled cast iron)", cat: "cookware", role: "pot", material: "enamelled cast iron", match: /dutch oven|casserole|enamel/i,
     signal: f => f.longSimmer && !f.ip ? 1 : 0, strong: 0.2, some: 0.07,
     why: n => `${n} recipes simmer on the stove for 20+ minutes`, note: "Heavy and even, so long simmers and batch bases don't catch. Works on gas without an oven." },
@@ -226,7 +241,7 @@ function suggest(items, recipes, freq = {}, dismissed = []) {
   const W = F.reduce((a, x) => a + x.w, 0) || 1;
   const out = [];
   for (const c of CATALOG) {
-    if (dismissed.includes(c.id) || items.some(i => i.suggest === c.id || c.match.test(i.name))) continue;
+    if (dismissed.includes(c.id) || items.some(i => i.suggest === c.id || c.match.test(i.name)) || c.has?.(items)) continue;
     let score = 0, n = 0, made = 0, regular = 0;
     for (const x of F) { const sg = c.signal(x.f, items); if (sg > 0) { score += sg * x.w; n++; if (x.made) made++; if (x.regular) regular++; } }
     if (!n) continue;
