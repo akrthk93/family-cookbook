@@ -1,5 +1,5 @@
 {
-  "updated": 1793358217708,
+  "updated": 1793358256939,
   "items": [
     {
       "id": "ss-skillet",
@@ -310,7 +310,7 @@
       "id": "scale",
       "name": "Digital kitchen scale",
       "cat": "measuring",
-      "status": "check",
+      "status": "owned",
       "role": "scale"
     },
     {
