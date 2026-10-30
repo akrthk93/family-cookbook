@@ -96,6 +96,7 @@ The Kitchen tab tracks equipment by category (stovetop cookware, appliances, kni
 The app reads the recipes (each step's `on`, plus words like "strain", "zest", "74°C") and shows:
 - **Buy**: kinds of gear recipes need that you don't own, plus your wish list, with how many recipes need each
 - **Upgrade**: heavily used gear (4+ recipes) still below the "worth getting to" step of its material path, e.g. nonstick → stainless → carbon steel for frying pans, nonstick → carbon steel for woks, stamped steel → Victorinox → Japanese for knives
+  - Steps can be skipped: put the step you're going for as the material on a wish-list item (e.g. a Japanese gyuto straight from stamped steel) and Buy shows it as an upgrade "skipping" the steps in between.
 - **Cut or rethink**: gear no recipe uses, or replaced by something better you own (tap **Keep** to silence it)
 - **Do you have these?**: items to confirm, the ones recipes need most first
 - **Suggested for you**: gear you don't have that your recipes point to (nakiri, petty knife, honing rod, sauté pan, Dutch oven, spare Instant Pot pot, salad spinner, mandoline…), with the reason. Recipes you cook often count more: each "Made it" or finished cook is logged on that phone, and recipes in the weekly plan count extra. **Want** adds it to the wish list, **Have it** to your gear, **Not for me** hides it for good (saved as `dismissed` in `kitchen.json`).

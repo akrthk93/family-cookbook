@@ -74,19 +74,25 @@ function analyse(items, recipes) {
   }
   const uses = it => it.role && roles[it.role] ? roles[it.role].recipes.length : null;
   const buy = [], upgrade = [], cut = [], replace = [];
+  /* steps on the ladder a wish-list item jumps over (going straight to Japanese from stamped steel is fine) */
+  const skipped = it => {
+    const L = ROLES[it.role]?.ladder, t = tierOf(it); if (!L || t < 0 || !roles[it.role]) return [];
+    const have = Math.max(-1, ...roles[it.role].owned.map(tierOf));
+    return have >= 0 ? L.slice(have + 1, t) : [];
+  };
   const unsure = role => items.some(i => i.status === "check" && i.role === role);
   for (const [role, x] of Object.entries(roles)) {
     if (!x.recipes.length || x.owned.length || unsure(role)) continue;   // "not sure" items are asked about first
     buy.push({ role, name: ROLES[role].name, n: x.recipes.length, recipes: x.recipes, wanted: items.find(i => i.status === "want" && i.role === role) || null });
   }
   for (const it of items.filter(i => i.status === "want" && !(i.role && roles[i.role] && !roles[i.role].owned.length && roles[i.role].recipes.length)))
-    buy.push({ role: it.role || null, name: it.name, n: uses(it) || 0, recipes: it.role ? roles[it.role]?.recipes || [] : [], wanted: it, upgradeOf: it.role ? roles[it.role]?.owned.filter(o => tierOf(o) >= 0 && tierOf(o) < tierOf(it)).map(o => o.name) : [] });
+    buy.push({ role: it.role || null, name: it.name, n: uses(it) || 0, recipes: it.role ? roles[it.role]?.recipes || [] : [], wanted: it, upgradeOf: it.role ? roles[it.role]?.owned.filter(o => tierOf(o) >= 0 && tierOf(o) < tierOf(it)).map(o => o.name) : [], skips: skipped(it) });
   for (const [role, x] of Object.entries(roles)) {
     const def = ROLES[role]; if (!def.ladder || !x.owned.length) continue;
     const best = x.owned.reduce((a, b) => tierOf(b) > tierOf(a) ? b : a);
     const t = tierOf(best);
     if (t >= 0 && t < def.enough && x.recipes.length >= 4 && !items.some(i => i.status === "want" && i.role === role && tierOf(i) > t))
-      upgrade.push({ item: best, from: def.ladder[t], to: def.ladder[t + 1], n: x.recipes.length });
+      upgrade.push({ item: best, from: def.ladder[t], to: def.ladder[t + 1], skipTo: def.ladder.slice(t + 2), n: x.recipes.length });
     if (!def.keepAll) for (const o of x.owned) if (o !== best && !o.keep && tierOf(o) >= 0 && tierOf(o) < t) cut.push({ item: o, why: `Replaced by your ${best.name.toLowerCase()}` });
   }
   for (const it of owned) {
@@ -103,6 +109,9 @@ function analyse(items, recipes) {
   const twoAtOnce = recipes.filter(r => new Set((r.steps || []).map(s => s.on).filter(v => ["pan", "deep", "wok", "pot", "sauce", "tawa"].includes(v))).size >= 2).length;
   if (twoAtOnce) insights.push(`${twoAtOnce} recipe${twoAtOnce > 1 ? "s" : ""} need two pans on the stove at once.`);
   if (roles.ip.recipes.length >= 3 && roles.pc.owned.length) insights.push(`${roles.ip.recipes.length} recipes use the Instant Pot, which takes one dish at a time when you cook several. Your pressure cooker is the second one.`);
+  const hard = items.some(i => i.role === "knife" && i.status !== "check" && /japanese|carbon/i.test(i.material || ""));
+  if (hard && items.some(i => i.role === "sharpener" && (i.status || "owned") === "owned" && /pull/i.test(i.material || i.name)))
+    insights.push("Keep the pull-through sharpener away from Japanese or carbon steel knives: it chips hard edges. Use the whetstone for those.");
   const check = items.filter(i => i.status === "check").map(i => ({ item: i, n: uses(i) || 0 })).sort((a, b) => b.n - a.n || a.item.name.localeCompare(b.item.name));
   return { roles, buy, upgrade, cut, replace, insights, uses, check };
 }
@@ -156,9 +165,9 @@ const CATALOG = [
   { id: "petty", name: "Petty / utility knife (120–150mm)", cat: "knives", match: /petty|utility knife/i,
     signal: f => Math.min(1, f.smallCuts / 3), strong: 0.35, some: 0.2,
     why: n => `${n} recipes slice garlic, ginger or shallots, or slit chillies`, note: "Small precise work where a chef's knife is clumsy." },
-  { id: "honing-rod", name: "Honing rod", cat: "knives", match: /honing|sharpening steel/i,
+  { id: "honing-rod", name: "Ceramic honing rod", cat: "knives", match: /honing|sharpening steel/i,
     signal: (f, items) => items.some(i => (i.status || "owned") === "owned" && i.role === "knife" && i.material === "stamped soft steel") ? 1 : 0, strong: 0.3, some: 0.15,
-    why: () => `Your chef's knife is soft steel, and every recipe uses it`, noFreq: true, note: "A few strokes before cooking straightens a soft edge, so you need the whetstone far less often." },
+    why: () => `Your chef's knife is soft steel, and every recipe uses it`, noFreq: true, note: "A few strokes before cooking straightens a soft edge, so you need the whetstone far less often. Ceramic rather than grooved steel: it's also safe on a Japanese knife later." },
   { id: "boning", name: "Boning knife", cat: "knives", match: /boning/i,
     signal: f => f.boneIn ? 1 : 0, strong: 0.3, some: 0.1,
     why: n => `${n} recipes work with bone-in meat`, note: "Only worth it if you start buying whole chickens or bone-in cuts to break down." },
