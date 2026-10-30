@@ -1,5 +1,5 @@
 {
-  "updated": 1793366654539,
+  "updated": 1793366691703,
   "items": [
     {
       "id": "ss-skillet",
@@ -329,7 +329,7 @@
       "id": "thermometer",
       "name": "Instant-read thermometer",
       "cat": "measuring",
-      "status": "check",
+      "status": "owned",
       "role": "thermometer"
     },
     {
