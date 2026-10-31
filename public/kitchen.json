@@ -1,5 +1,5 @@
 {
-  "updated": 1793367623976,
+  "updated": 1793411192166,
   "items": [
     {
       "id": "ss-skillet",
@@ -255,7 +255,7 @@
       "id": "spider",
       "name": "Spider or slotted spoon",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "whisk",
