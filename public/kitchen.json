@@ -1,5 +1,5 @@
 {
-  "updated": 1793411192166,
+  "updated": 1793411220091,
   "items": [
     {
       "id": "ss-skillet",
@@ -243,7 +243,7 @@
       "id": "wooden-spoon",
       "name": "Wooden spoon",
       "cat": "utensils",
-      "status": "check"
+      "status": "owned"
     },
     {
       "id": "ladle",
