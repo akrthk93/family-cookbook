@@ -1,4 +1,17 @@
 {
-  "updated": 0,
-  "items": []
+  "updated": 1793797905532,
+  "items": [
+    {
+      "id": "strawberries",
+      "name": "Strawberries",
+      "dim": "mass",
+      "entries": [
+        {
+          "per": 19.96,
+          "store": "Sheng Siong",
+          "date": 1793797905532
+        }
+      ]
+    }
+  ]
 }
