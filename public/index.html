@@ -324,6 +324,17 @@ body.locked{overflow:hidden}
 .krow.sug .yn{margin-left:auto}
 details.later{margin-top:12px}
 details.later summary{font-weight:700;color:var(--accent);cursor:pointer;padding:6px 0}
+.cmpitem{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:15px;margin:4px 0 8px}
+.cmpitem input{font-size:17px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:400}
+.book{padding:10px 14px;border-radius:12px;border:1px dashed var(--line);margin-bottom:12px;font-size:15px;line-height:1.45}
+.book .btn{min-height:40px}
+.pill.same{background:var(--sunk);color:var(--muted)}
+.krow.pb{flex-wrap:wrap}
+.pbent{margin-left:auto}
+.pbent summary{cursor:pointer;color:var(--accent);font-weight:700;padding:6px 4px}
+.pbent ul{list-style:none;margin:4px 0 0;padding:0}
+.pbent li{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:4px 0;font-size:14px}
+.krow.pb .pbent[open]{flex-basis:100%}
 </style>
 </head>
 <body>
@@ -587,7 +598,7 @@ async function load(){
     S.deleted = S.deleted.filter(e => Date.now() - e.at < 600000 && S.shared.some(r => r.id === e.id));
     lsSet("deleted", S.deleted);
   } catch { S.loadFailed = true; }
-  await loadKitchen();
+  await Promise.all([loadKitchen(), loadPrices()]);
   S.ready = true;
   if (S.session) { restoreSessionTimers(); S.sessionOpen = true; fillHands(); }
   const h = decodeURIComponent(location.hash.slice(1));
@@ -844,17 +855,22 @@ function resHtml(r, c){
   const [big, small, k] = PER[r.u.dim];
   const line = `<span class="per">${money(r.u.per)} / ${big}</span>${small ? `<span class="sub100">${money(r.u.per * k)} / ${small}</span>` : ""}`;
   if (r.u.dim !== c.dim) return line + `<span class="pill same">Can't compare: different unit</span>`;
-  if (c.ready < 2) return line;
+  if (c.ready < 2) return line + bookPill(r);
   const diff = (r.u.per / c.best - 1) * 100;
-  return line + (diff < 0.5 ? `<span class="pill best">Best value</span>` : `<span class="pill more">+${diff < 10 ? diff.toFixed(1) : Math.round(diff)}% more</span>`);
+  return line + bookPill(r) + (diff < 0.5 ? `<span class="pill best">Best value</span>` : `<span class="pill more">+${diff < 10 ? diff.toFixed(1) : Math.round(diff)}% more</span>`);
 }
 function sumHtml(c){
-  if (c.ready < 2) return [`Fill in at least two options to compare`, true];
+  if (c.ready < 2) {
+    const it = pItem(S.cmpItem), b = bestRow(c);
+    if (it && b && b.u.dim === it.dim) { const v = verdict(b.u.per, it); return [`<span><b>${v.tag}</b>: ${esc(v.text)} (usually ${money(bookStats(it).usual)}/${PER[it.dim][0]})</span>`, false]; }
+    return [`Fill in at least two options to compare`, true];
+  }
   const ranked = c.rows.map((r, i) => ({ ...r, i })).filter(r => r.u && r.u.dim === c.dim).sort((a, b) => a.u.per - b.u.per);
   const [a, b] = ranked, big = PER[c.dim][0];
   if (b.u.per / a.u.per - 1 < 0.005) return [`<span><b>${esc(optName(a.o, a.i))}</b> and <b>${esc(optName(b.o, b.i))}</b> cost the same per ${big}</span>`, false];
   const save = b.u.per - a.u.per;
-  return [`<span><b>${esc(optName(a.o, a.i))}</b> is cheapest, ${money(save)}/${big} less than ${esc(optName(b.o, b.i))}</span>`, false];
+  const it = pItem(S.cmpItem), v = it && a.u.dim === it.dim ? verdict(a.u.per, it) : null;
+  return [`<span><b>${esc(optName(a.o, a.i))}</b> is cheapest, ${money(save)}/${big} less than ${esc(optName(b.o, b.i))}${v ? `. ${v.tag}: ${esc(v.text.toLowerCase())}` : ""}</span>`, false];
 }
 /* Update results in place, so typing never re-renders the inputs. */
 function paintCompare(){
@@ -864,8 +880,82 @@ function paintCompare(){
     const card = document.getElementById("opt-" + r.o.id); if (card) card.classList.toggle("best", c.ready >= 2 && !!r.u && r.u.dim === c.dim && r.u.per / c.best - 1 < 0.005);
   });
   const sum = $("#cmpSum"); if (sum) { const [h, none] = sumHtml(c); sum.innerHTML = h; sum.classList.toggle("none", none); }
+  const bk = $("#bookCard"); if (bk) bk.innerHTML = bookHtml(c);
 }
 const saveCmp = () => lsSet("cmp", S.cmp);
+
+/* ---------- price book: what your staples usually cost, shared like the kitchen list ----------
+   prices.json: { updated, items: [{ id, name, dim: mass|vol|count, entries: [{ per, store, date }] }] } */
+S.prices = { items: [], updated: 0 }; S.pSync = ""; S.cmpItem = lsGet("cmpItem", "");
+async function loadPrices(){
+  let remote = null;
+  try { const res = await fetch("./prices.json", { cache: "no-cache" }); if (res.ok) remote = await res.json(); } catch {}
+  const local = lsGet("pricesLocal", null);
+  S.prices = local && (!remote || (local.updated || 0) > (remote.updated || 0)) ? local : (remote || local || { items: [], updated: 0 });
+  if (local && remote && (remote.updated || 0) >= (local.updated || 0)) lsSet("pricesLocal", null);
+  S.pSync = local && S.prices === local && !local.pushed ? "local" : "";
+}
+let pTimer = null;
+function savePrices(msg){
+  S.prices.updated = Date.now(); S.prices.pushed = false;
+  lsSet("pricesLocal", S.prices); S.pSync = "local";
+  if (msg) toast(msg);
+  if (!S.token) return;
+  clearTimeout(pTimer);
+  pTimer = setTimeout(async () => {
+    try {
+      const { pushed, ...data } = S.prices;
+      await pushFile("public/prices.json", JSON.stringify(data, null, 2) + "\n", "Update price book");
+      S.prices.pushed = true; lsSet("pricesLocal", S.prices); S.pSync = "";
+    } catch (err) { S.pSync = "failed"; toast(err instanceof SaveError ? err.message : "Couldn't save to GitHub. It's kept on this phone"); }
+  }, 1500);
+}
+const pKey = t => String(t || "").trim().toLowerCase().replace(/\s+/g, " ");
+const pItem = name => pKey(name) ? S.prices.items.find(i => pKey(i.name) === pKey(name)) : null;
+const median = a => { const x = [...a].sort((p, q) => p - q), m = x.length >> 1; return x.length % 2 ? x[m] : (x[m - 1] + x[m]) / 2; };
+const shortDate = t => new Date(t).toLocaleDateString("en-SG", { day: "numeric", month: "short" });
+/* "Usual" is the median of the last 6 months of prices (all of them if none are that recent), so one promo doesn't drag it down. */
+function bookStats(it){
+  const recent = it.entries.filter(e => e.date > Date.now() - 182 * 864e5), pool = recent.length ? recent : it.entries;
+  return { usual: median(pool.map(e => e.per)), low: it.entries.reduce((a, b) => b.per < a.per ? b : a), n: it.entries.length };
+}
+function verdict(per, it){
+  const st = bookStats(it), d = per / st.usual - 1, pct = Math.round(Math.abs(d) * 100), lowest = st.n > 1 && per <= st.low.per * 1.001;
+  if (d <= -0.15) return { cls: "best", tag: "Good deal", text: `${pct}% below your usual${lowest ? ", the lowest you've seen" : ""}` };
+  if (d <= -0.05) return { cls: "", tag: "A bit cheaper", text: `${pct}% below your usual` };
+  if (d < 0.05) return { cls: "same", tag: "Your usual price", text: "Not a real saving" };
+  return { cls: "more", tag: "Pricier than usual", text: `${pct}% above your usual` };
+}
+/* the option a save or a verdict is about: the cheapest of the comparable ones */
+const bestRow = c => c.rows.map((r, i) => ({ ...r, i })).filter(r => r.u && r.u.dim === c.dim).sort((a, b) => a.u.per - b.u.per)[0] || null;
+function bookHtml(c){
+  const name = S.cmpItem.trim(), it = pItem(name), big = d => PER[d][0], b = bestRow(c);
+  if (!name) return `<span class="muted small">Name what you're comparing to check it against your price book and save the best price.</span>`;
+  let h = "";
+  if (it) {
+    const st = bookStats(it);
+    h += `<div><b>${esc(it.name)}</b>: usually <b>${money(st.usual)}/${big(it.dim)}</b> · lowest ${money(st.low.per)} at ${esc(st.low.store || "?")}, ${shortDate(st.low.date)} · ${plural(st.n, "price")} saved</div>`;
+    if (b && b.u.dim !== it.dim) h += `<div class="muted small">Your saved prices are per ${big(it.dim)}; these are per ${big(b.u.dim)}.</div>`;
+  } else h += `<div class="muted small">New to your price book.</div>`;
+  if (b && (!it || b.u.dim === it.dim)) h += `<button class="btn ${it ? "ghost" : "primary"} sm" data-act="pbSave" style="margin-top:8px">Save ${esc(optName(b.o, b.i))}: ${money(b.u.per)}/${big(b.u.dim)}</button>`;
+  return h;
+}
+function bookPill(r){
+  const it = pItem(S.cmpItem); if (!it || !r.u || r.u.dim !== it.dim) return "";
+  const v = verdict(r.u.per, it);
+  return `<span class="pill ${v.cls}">${v.tag}</span><span class="sub100">${esc(v.text)}</span>`;
+}
+function viewBook(){
+  if (!S.prices.items.length) return "";
+  const items = [...S.prices.items].sort((a, b) => a.name.localeCompare(b.name));
+  return `<section class="block"><h2>Price book</h2>
+    <p class="muted small" style="margin:4px 0 8px">Tap an item to check prices against it. Shared with everyone who uses the cookbook.</p>
+    <ul class="klist">${items.map(it => { const st = bookStats(it), big = PER[it.dim][0];
+      return `<li class="krow pb"><button class="kmain" data-act="pbPick" data-id="${esc(it.id)}"><b>${esc(it.name)}</b><span class="muted small">usually ${money(st.usual)}/${big} · lowest ${money(st.low.per)} at ${esc(st.low.store || "?")}</span></button>
+        <details class="pbent"><summary>${st.n}</summary><ul>${it.entries.map((e, j) => ({ e, j })).sort((a, b) => b.e.date - a.e.date).map(({ e, j }) =>
+          `<li><span>${shortDate(e.date)} · ${esc(e.store || "?")}</span><b>${money(e.per)}/${big}</b><button class="mini" data-act="pbDel" data-id="${esc(it.id)}" data-j="${j}" aria-label="Remove this price">${ICON.trash}</button></li>`).join("")}</ul></details></li>`; }).join("")}</ul>
+  </section>`;
+}
 
 /* ---------- views ---------- */
 function allTags(){
@@ -1124,9 +1214,14 @@ function viewCompare(){
     <div class="row between"><h1>Compare</h1><button class="btn ghost" data-act="cmpReset" style="min-height:40px">Start over</button></div>
     <div class="cmp-sum ${none ? "none" : ""}" id="cmpSum" aria-live="polite">${sum}</div>
   </div></header>
-  <main class="wrap"><div class="opts">
+  <main class="wrap">
+  <label class="cmpitem">What are you comparing?<input id="cmpItem" value="${esc(S.cmpItem)}" list="pbNames" placeholder="e.g. chicken thigh, boneless" autocomplete="off" enterkeyhint="done"></label>
+  <datalist id="pbNames">${S.prices.items.map(i => `<option value="${esc(i.name)}">`).join("")}</datalist>
+  <div class="book" id="bookCard">${bookHtml(c)}</div>
+  ${S.pSync === "local" && !S.token ? `<p class="notice">Price book changes are saved on this phone only. <button class="linkbtn" data-act="settings">Set up saving</button> to share them.</p>` : S.pSync === "failed" ? `<p class="notice">Couldn't save the price book to the family cookbook. It's kept on this phone and goes with your next change.</p>` : ""}
+  <div class="opts">
     ${c.rows.map((r, i) => { const o = r.o; return `<div class="opt" id="opt-${o.id}">
-      <div class="top"><input id="n-${o.id}" data-cmp="${o.id}" data-k="name" value="${esc(o.name)}" placeholder="Option ${i + 1}" aria-label="Name for option ${i + 1}" autocomplete="off">
+      <div class="top"><input id="n-${o.id}" data-cmp="${o.id}" data-k="name" value="${esc(o.name)}" placeholder="Store or brand ${i + 1}" aria-label="Store or brand for option ${i + 1}" autocomplete="off">
         ${c.rows.length > 2 ? `<button class="mini" data-act="cmpDel" data-id="${o.id}" aria-label="Remove option ${i + 1}">${ICON.trash}</button>` : ""}</div>
       <div class="fields">
         <label class="money">Price<span>$</span><input id="p-${o.id}" data-cmp="${o.id}" data-k="price" value="${esc(o.price)}" inputmode="decimal" autocomplete="off" placeholder="0.00"></label>
@@ -1138,7 +1233,8 @@ function viewCompare(){
     </div>`; }).join("")}
   </div>
   <button class="btn" data-act="cmpAdd" style="margin-top:12px;width:100%">${ICON.plus} Add option</button>
-  <p class="equip" style="margin-top:14px">Packs is for multi-packs: 2 × 500g is size 500, packs 2. Prices are per kg for weight, per litre for liquids, per piece for counts.</p>
+  <p class="equip" style="margin-top:14px">Packs is for multi-packs: 2 × 500g is size 500, packs 2. Prices are per kg for weight, per litre for liquids, per piece for counts. Name options by store or brand: that's what the price book records.</p>
+  ${viewBook()}
   </main>`;
 }
 
@@ -1559,6 +1655,7 @@ const go = patch => { Object.assign(S, patch); S._force = true; S._lastView = nu
 document.addEventListener("input", e => {
   if (e.target.id === "haveQ") { const v = parseFloat(String(e.target.value).replace(",", ".")); const el = $("#havePrev"); if (el) el.innerHTML = havePreview(S.recipes.find(x => x.id === S.ingSheet.rid), S.ingSheet.key, v); return; }
   if (e.target.id === "q") { S.q = e.target.value; render(); return; }
+  if (e.target.id === "cmpItem") { S.cmpItem = e.target.value; lsSet("cmpItem", S.cmpItem); paintCompare(); return; }
   const id = e.target.dataset?.cmp; if (!id) return;
   const o = S.cmp.find(x => x.id === id); if (!o) return;
   o[e.target.dataset.k] = e.target.value; saveCmp(); paintCompare();
@@ -1667,7 +1764,23 @@ document.addEventListener("click", async e => {
       break;
     }
     case "cmpDel": S.cmp = S.cmp.filter(x => x.id !== b.dataset.id); saveCmp(); S._force = true; render(); break;
-    case "cmpReset": S.cmp = [newOpt(), newOpt()]; saveCmp(); S._force = true; render(); window.scrollTo(0, 0); break;
+    case "pbSave": {
+      const c = compareAll(), b = bestRow(c), name = S.cmpItem.trim(); if (!b || !name) break;
+      let it = pItem(name);
+      if (!it) { let id = slug(name) || "item", n = 2; while (S.prices.items.some(i => i.id === id)) id = slug(name) + "-" + n++; it = { id, name, dim: b.u.dim, entries: [] }; S.prices.items.push(it); }
+      const store = b.o.name.trim(), today = dayStart(Date.now());
+      it.entries = it.entries.filter(e => !(dayStart(e.date) === today && pKey(e.store) === pKey(store)));   // one price per store per day
+      it.entries.push({ per: +b.u.per.toFixed(4), store, date: Date.now() });
+      it.entries = it.entries.slice(-40);
+      savePrices("Saved to the price book"); S._force = true; render(); break;
+    }
+    case "pbPick": { const it = S.prices.items.find(i => i.id === b.dataset.id); S.cmpItem = it.name; lsSet("cmpItem", S.cmpItem); S._force = true; render(); window.scrollTo(0, 0); break; }
+    case "pbDel": {
+      const it = S.prices.items.find(i => i.id === b.dataset.id); it.entries.splice(+b.dataset.j, 1);
+      if (!it.entries.length) S.prices.items = S.prices.items.filter(i => i !== it);
+      savePrices("Removed"); S._force = true; render(); break;
+    }
+    case "cmpReset": S.cmpItem = ""; lsSet("cmpItem", ""); S.cmp = [newOpt(), newOpt()]; saveCmp(); S._force = true; render(); window.scrollTo(0, 0); break;
     case "kAdd": S.kEdit = { cat: "cookware", status: "owned" }; S.kConfirmDel = false; S._force = true; render(); break;
     case "kOpen": S.kEdit = { ...kItem(b.dataset.id) }; S.kConfirmDel = false; S._force = true; render(); break;
     case "kx": S.kEdit = null; S._force = true; render(); break;

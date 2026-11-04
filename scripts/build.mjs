@@ -68,6 +68,18 @@ try {
   });
 } catch (e) { errors.push(`public/kitchen.json: not valid JSON (${e.message})`); }
 
+// price book
+try {
+  const p = JSON.parse(readFileSync(join(root, "public/prices.json"), "utf8"));
+  if (!Array.isArray(p.items)) errors.push(`public/prices.json: needs an "items" list`);
+  else p.items.forEach((it, i) => {
+    const at = `public/prices.json item ${i + 1}${it.name ? ` (${it.name})` : ""}`;
+    if (!it.id || !it.name) errors.push(`${at}: needs "id" and "name"`);
+    if (!["mass", "vol", "count"].includes(it.dim)) errors.push(`${at}: "dim" must be mass, vol or count`);
+    if (!Array.isArray(it.entries) || !it.entries.every(e => typeof e.per === "number" && e.per > 0 && typeof e.date === "number")) errors.push(`${at}: each entry needs a price "per" unit and a "date"`);
+  });
+} catch (e) { errors.push(`public/prices.json: not valid JSON (${e.message})`); }
+
 if (errors.length) { console.error("Recipe problems:\n  " + errors.join("\n  ")); process.exit(1); }
 
 rmSync(dist, { recursive: true, force: true });

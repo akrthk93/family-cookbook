@@ -33,12 +33,12 @@ self.addEventListener("fetch", e => {
   }
   if (url.origin !== location.origin) return;
 
-  if (url.pathname.endsWith("/kitchen.json")) {
+  for (const f of ["kitchen.json", "prices.json"]) if (url.pathname.endsWith("/" + f)) {
     e.respondWith(
       fetch(req).then(res => {
-        if (res.ok) { const copy = res.clone(); caches.open(DATA).then(c => c.put("kitchen.json", copy)); }
+        if (res.ok) { const copy = res.clone(); caches.open(DATA).then(c => c.put(f, copy)); }
         return res;
-      }).catch(() => caches.open(DATA).then(c => c.match("kitchen.json")))
+      }).catch(() => caches.open(DATA).then(c => c.match(f)))
     );
     return;
   }

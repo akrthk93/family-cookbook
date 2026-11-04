@@ -110,6 +110,8 @@ The list lives in `public/kitchen.json`. The app saves changes there the same wa
 
 The Compare tab works out price per kg (per litre for liquids, per piece for counts) for options in the store, marks the cheapest, and shows how much more the others cost. Use Packs for multi-packs (2 × 500g is size 500, packs 2). The comparison is kept on the phone until you tap Start over.
 
+**Price book**: type what you're comparing ("chicken thigh, boneless") and name each option by store or brand. **Save** keeps the cheapest option's price per kg/L/piece with the store and date (one per store per day) in `public/prices.json`, shared like the kitchen list. Next time you type that item, the app shows your usual price (median of the last 6 months), the lowest you've seen, and marks each option: **Good deal** (15%+ below usual), **A bit cheaper** (5–15%), **Your usual price**, or **Pricier than usual**. A single option is enough to check a promo. Tap an item in the Price book list to load it; tap its count to see or remove saved prices.
+
 ## Send to Reminders (once per phone)
 
 Create a Shortcut named exactly **Add to Family List**: Split Text (Shortcut Input, by New Lines) → Repeat with Each → Add New Reminder (Repeat Item, list = family shopping list). The app's **Send to Reminders** button runs it.
