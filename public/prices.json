@@ -1,5 +1,5 @@
 {
-  "updated": 1793797905532,
+  "updated": 1793797941041,
   "items": [
     {
       "id": "strawberries",
@@ -10,6 +10,18 @@
           "per": 19.96,
           "store": "Sheng Siong",
           "date": 1793797905532
+        }
+      ]
+    },
+    {
+      "id": "cherries",
+      "name": "Cherries",
+      "dim": "mass",
+      "entries": [
+        {
+          "per": 27.96,
+          "store": "Sheng Siong Argentina",
+          "date": 1793797941041
         }
       ]
     }
