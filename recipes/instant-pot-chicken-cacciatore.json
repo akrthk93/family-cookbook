@@ -7,8 +7,11 @@
   "serves": 4,
   "equip": "Instant Pot",
   "tags": [
+    "Instant Pot",
+    "Italian",
     "Chicken",
-    "Instant Pot"
+    "Meal Prep",
+    "Kid Friendly"
   ],
   "groups": [
     {
@@ -165,5 +168,5 @@
   ],
   "source": "https://www.allrecipes.com/recipe/260109/instant-pot-chicken-cacciatore/",
   "no": "",
-  "updated": 1793888913837
+  "updated": 1793889618920
 }
