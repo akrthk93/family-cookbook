@@ -56,6 +56,10 @@ Saving from the app needs a one-time setup per phone (Settings → Saving recipe
   - `parts`: split a step whose timing comes in pieces, e.g. `[{"x": "Air fry 5 min.", "act": 1, "wait": 5}, {"x": "Shake, then air fry another 5 min.", "act": 0.5, "wait": 5}]`. Each part gets its own timer in Cook together; set the step's `x` to the parts' text joined with spaces. A part with `"until": "it beeps"` (or "it boils", "it's al dente") waits for you to confirm instead of a fixed time; `wait` is the estimate. A part with `act: 0` (a natural release) starts by itself.
 - The file name must match `id`. The build fails with a clear message if a recipe is malformed, so a bad file never takes the site down.
 
+## Finding recipes
+
+Search matches titles, tags and ingredients. Under it, the 8 most used tags are one tap away; **Filter** opens every tag grouped into Cuisine, Main ingredient, Dish, Cooked in and Plan, with how many recipes each would leave (0 means a dead end, so it's greyed out). Pick several: tags in the same group mean either (Indian or Thai), tags in different groups must all match (Indian and Chicken). Picked tags show in the top row; tap one to remove it. A new tag lands in Other until it's added to `TAG_GROUPS` in `public/index.html`.
+
 ## What to cook now
 
 The top of the Recipes screen suggests recipes for the current part of the week. The plan per weekday is set in Settings → Weekly plan (default: Sunday block on Sunday, dosa nights Tue/Thu, component nights Mon/Wed, weekend cooks Fri/Sat). Before 10am it shows breakfast; after 9:30pm it shows tomorrow's plan with a reminder of what to take out of the freezer. The chips under the suggestions show any other plan.
