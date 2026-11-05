@@ -1,0 +1,169 @@
+{
+  "id": "instant-pot-chicken-cacciatore",
+  "title": "Instant Pot Chicken Cacciatore",
+  "prep": "15 min",
+  "cook": "40 min",
+  "total": "1 hr",
+  "serves": 4,
+  "equip": "Instant Pot",
+  "tags": [
+    "Chicken",
+    "Instant Pot"
+  ],
+  "groups": [
+    {
+      "g": "Chicken",
+      "items": [
+        {
+          "q": 680,
+          "u": "g",
+          "n": "bone-in skin-on chicken thighs (4 thighs, about 170 g each)"
+        },
+        {
+          "q": 30,
+          "u": "ml",
+          "n": "olive oil"
+        }
+      ]
+    },
+    {
+      "g": "Vegetables",
+      "items": [
+        {
+          "q": 115,
+          "u": "g",
+          "n": "sliced fresh mushrooms"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "celery, chopped (3 stalks)",
+          "sub": "1 medium capsicum, chopped"
+        },
+        {
+          "q": 75,
+          "u": "g",
+          "n": "onion, chopped (about ½ onion)"
+        },
+        {
+          "q": 6,
+          "u": "g",
+          "n": "garlic, minced (2 cloves)"
+        }
+      ]
+    },
+    {
+      "g": "Sauce",
+      "items": [
+        {
+          "q": 400,
+          "u": "g",
+          "n": "canned stewed tomatoes",
+          "sub": "400 g canned chopped tomatoes"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "tomato paste"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "herbes de Provence",
+          "sub": "2 tsp Italian seasoning"
+        },
+        {
+          "q": 180,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "chicken bouillon cubes, crumbled (3 cubes)"
+        }
+      ]
+    },
+    {
+      "g": "Finish",
+      "items": [
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "red pepper flakes"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "ground black pepper"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Prep the chicken",
+      "x": "Rinse the thighs and pat completely dry with paper towels. Dry skin browns properly.",
+      "uses": []
+    },
+    {
+      "t": "Brown the chicken",
+      "x": "Heat the oil in the Instant Pot on Sauté. Add the thighs skin-side down and cook until browned, 6 min per side. Move to a plate and keep the drippings in the pot.",
+      "uses": [
+        "0.1"
+      ]
+    },
+    {
+      "t": "Soften the vegetables",
+      "x": "Add the mushrooms, celery and onion to the drippings. Cook and stir until soft, 5 min. Add the garlic and cook until fragrant, 2 min.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "t": "Build the sauce",
+      "x": "Return the chicken to the pot. Add the tomatoes and tomato paste, sprinkle over the herbes de Provence, then pour in the water and add the crumbled bouillon.",
+      "uses": [
+        "2.1",
+        "2.2",
+        "2.3"
+      ]
+    },
+    {
+      "t": "Pressure cook",
+      "x": "Lock the lid, seal the vent and cook on High Pressure for 11 min. Pressure takes 10 to 15 min to build first.",
+      "uses": []
+    },
+    {
+      "t": "Release",
+      "x": "Quick release, about 5 min. Open the lid away from you.",
+      "uses": []
+    },
+    {
+      "t": "Check and season",
+      "x": "Check the chicken is 74°C at the thickest part near the bone. Stir in the black pepper, and add the red pepper flakes only to the adults' portions.",
+      "uses": [
+        "3.0"
+      ]
+    },
+    {
+      "t": "Thicken (optional)",
+      "x": "For a thicker sauce, remove the chicken, set the pot to Sauté and boil the sauce until reduced and thickened, about 5 min.",
+      "uses": []
+    }
+  ],
+  "notes": [
+    "Serve over spaghetti, rice or as a stew.",
+    "Fridge: 3 days in airtight containers. Reheat in the microwave until steaming hot.",
+    "Freezer: portion with sauce, up to 2 months. Thaw overnight in the fridge.",
+    "Tomatoes are a bit sour: stir in 0.5 tsp sugar at the end if needed.",
+    "Bouillon is salty. Taste before adding any extra salt.",
+    "Chilli is only a pinch. Add it to adults' portions after plating the child's."
+  ],
+  "source": "https://www.allrecipes.com/recipe/260109/instant-pot-chicken-cacciatore/",
+  "no": "",
+  "updated": 1793888913837
+}
