@@ -1,0 +1,155 @@
+{
+  "id": "anda-bhuna-egg-bhuna",
+  "title": "Anda Bhuna (Egg Bhuna)",
+  "prep": "5 min",
+  "cook": "20 min",
+  "total": "25 min",
+  "serves": 2,
+  "equip": "Saucepan, small deep nonstick pan, gas stove",
+  "tags": [
+    "Indian",
+    "Eggs",
+    "Curry",
+    "Weeknight"
+  ],
+  "groups": [
+    {
+      "g": "Eggs",
+      "items": [
+        {
+          "q": 4,
+          "u": "",
+          "n": "large eggs, hard-boiled and peeled"
+        }
+      ]
+    },
+    {
+      "g": "Masala",
+      "items": [
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "oil"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "onion, sliced"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "garlic, minced"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "ginger, minced"
+        },
+        {
+          "q": 250,
+          "u": "g",
+          "n": "tomatoes, sliced",
+          "sub": "200 ml tomato passata"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "red chilli powder",
+          "sub": "0.75 tsp Kashmiri chilli powder (milder, redder)"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "cumin powder"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "coriander powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "turmeric powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "water"
+        }
+      ]
+    },
+    {
+      "g": "Garnish",
+      "items": [
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "fresh coriander, chopped"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Boil the eggs",
+      "x": "Cover the eggs with water in a saucepan, bring to a boil, then simmer 9 min. Cool in cold water for 5 min and peel. Skip this if you already have prepped boiled eggs.",
+      "uses": [
+        "0.0",
+        "1.10"
+      ]
+    },
+    {
+      "t": "Fry the aromatics",
+      "x": "Heat the oil in the pan on medium heat. Add the onion, garlic and ginger and sauté for 6 min until golden. Don't let the onion burn.",
+      "uses": [
+        "1.0",
+        "1.1",
+        "1.2",
+        "1.3"
+      ]
+    },
+    {
+      "t": "Cook the masala",
+      "x": "Add the tomatoes, all the spices, salt and the water. Turn the heat to high and cook for 6 min, stirring often.",
+      "uses": [
+        "1.4",
+        "1.9"
+      ]
+    },
+    {
+      "t": "Dry it down",
+      "x": "Keep stirring on high heat for 3 min until the masala dries out and gathers in the centre of the pan.",
+      "uses": []
+    },
+    {
+      "t": "Add the eggs",
+      "x": "Optionally make 4 shallow cuts in each egg. Add them to the pan and stir for 2 min until coated in masala.",
+      "uses": []
+    },
+    {
+      "t": "Garnish and serve",
+      "x": "Top with the coriander and serve straight away.",
+      "uses": [
+        "1.7"
+      ]
+    }
+  ],
+  "notes": [
+    "Total time excludes boiling the eggs (about 15 min with cooling) unless you've prepped them.",
+    "Spicy: plate the child's portion first, or use Kashmiri chilli powder for colour with little heat.",
+    "If the tomatoes taste too sour, add 0.25 tsp sugar while the masala cooks.",
+    "Serve with rice, parathas, toast or alongside a chicken curry.",
+    "Storage: fridge up to 2 days in an airtight box. Reheat on the stove or in the microwave with a splash of water. The eggs go rubbery if reheated for too long.",
+    "Meal prep: it makes 2 portions, so double it for 4 lunch portions. The masala keeps well, so you can add the eggs fresh."
+  ],
+  "source": "https://fatimacooks.net/anda-bhuna/",
+  "no": "",
+  "updated": 1794025203140
+}
