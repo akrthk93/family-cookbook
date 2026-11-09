@@ -1,0 +1,95 @@
+{
+  "id": "cheddar-pimento-spread",
+  "title": "Cheddar Pimento Spread",
+  "prep": "10 min",
+  "cook": "0 min",
+  "total": "10 min",
+  "serves": 4,
+  "equip": "None",
+  "tags": [
+    "Sandwiches",
+    "Cold"
+  ],
+  "groups": [
+    {
+      "g": "Filling",
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "cheddar, grated"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "parmesan, finely grated"
+        },
+        {
+          "q": 80,
+          "u": "g",
+          "n": "mayonnaise"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Dijon or any mustard"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "garlic powder",
+          "sub": "1 small garlic clove, grated"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "roasted capsicum or fresh red capsicum, finely diced"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "spring onion, sliced"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Grate",
+      "x": "Grate cheddar on the coarse side of a grater, parmesan on the fine side.",
+      "uses": [
+        "0.0",
+        "0.1"
+      ]
+    },
+    {
+      "t": "Mix",
+      "x": "Stir mayonnaise, mustard, garlic powder and pepper together, then fold in cheeses, capsicum and spring onion.",
+      "uses": [
+        "0.2",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7"
+      ]
+    },
+    {
+      "t": "Rest",
+      "x": "Chill 30 min so it firms up and flavours blend.",
+      "uses": []
+    }
+  ],
+  "notes": [
+    "Keeps 4 days chilled",
+    "Fills about 4 sandwiches",
+    "Adult chilli: stir in 1 tbsp chopped pickled jalapeño to your portion only"
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1794265795010
+}
