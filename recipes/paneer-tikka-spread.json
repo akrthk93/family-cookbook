@@ -1,0 +1,106 @@
+{
+  "id": "paneer-tikka-spread",
+  "title": "Paneer Tikka Spread",
+  "prep": "10 min",
+  "cook": "8 min",
+  "total": "18 min",
+  "serves": 4,
+  "equip": "1 nonstick pan",
+  "tags": [
+    "Sandwiches",
+    "Cold",
+    "Indian",
+    "Vegetarian",
+    "Quick"
+  ],
+  "groups": [
+    {
+      "g": "Filling",
+      "items": [
+        {
+          "q": 250,
+          "u": "g",
+          "n": "paneer, crumbled"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "oil"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "capsicum, finely diced"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "red onion, finely diced"
+        },
+        {
+          "q": 100,
+          "u": "g",
+          "n": "plain yogurt, hung or thick",
+          "sub": "mayonnaise"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "tandoori or tikka masala powder"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "chaat masala"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "mint chutney",
+          "sub": "coriander chutney"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Sear the veg",
+      "x": "Heat oil in the pan on medium-high. Cook capsicum and onion 3 min until just softened, then cool 5 min.",
+      "uses": [
+        "0.1",
+        "0.2",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Toast the paneer",
+      "x": "Add paneer and tandoori powder, cook 3 min until lightly golden. Cool fully.",
+      "uses": [
+        "0.0",
+        "0.5"
+      ]
+    },
+    {
+      "t": "Combine",
+      "x": "Fold in yogurt, chaat masala, chutney and salt. Chill 20 min.",
+      "uses": [
+        "0.4",
+        "0.6",
+        "0.8"
+      ]
+    }
+  ],
+  "notes": [
+    "Keeps 3 days chilled",
+    "Fills about 4 sandwiches or wraps",
+    "Adult chilli: add 0.5 tsp chilli powder to your portion only"
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1794265295050
+}
