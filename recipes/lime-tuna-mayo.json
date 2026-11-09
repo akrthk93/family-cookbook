@@ -1,0 +1,85 @@
+{
+  "id": "lime-tuna-mayo",
+  "title": "Lime Tuna Mayo",
+  "prep": "8 min",
+  "cook": "0 min",
+  "total": "8 min",
+  "serves": 4,
+  "equip": "None",
+  "tags": [
+    "Sandwiches",
+    "Cold",
+    "Southeast Asian",
+    "Quick",
+    "No Cook"
+  ],
+  "groups": [
+    {
+      "g": "Filling",
+      "items": [
+        {
+          "q": 3,
+          "u": "",
+          "n": "cans tuna in water or oil (about 450g drained)"
+        },
+        {
+          "q": 80,
+          "u": "g",
+          "n": "mayonnaise"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lime juice",
+          "sub": "lemon juice"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "spring onion, sliced"
+        },
+        {
+          "q": 10,
+          "u": "g",
+          "n": "coriander, chopped"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "sesame oil",
+          "sub": "skip"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Drain well",
+      "x": "Drain tuna thoroughly, pressing out liquid, or the filling turns watery.",
+      "uses": []
+    },
+    {
+      "t": "Mix",
+      "x": "Flake tuna, then stir in everything else. Taste and adjust lime.",
+      "uses": []
+    }
+  ],
+  "notes": [
+    "Keeps 2 days chilled; best eaten sooner",
+    "Fills about 4 sandwiches",
+    "Adult chilli: stir 1 tsp sambal oelek into your portion only"
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1794265254644
+}
