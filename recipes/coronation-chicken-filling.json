@@ -1,0 +1,102 @@
+{
+  "id": "coronation-chicken-filling",
+  "title": "Coronation Chicken Filling",
+  "prep": "10 min",
+  "cook": "25 min",
+  "total": "35 min",
+  "serves": 4,
+  "equip": "1 saucepan",
+  "tags": [
+    "Sandwiches",
+    "Cold# #Western# #Meal Prep"
+  ],
+  "groups": [
+    {
+      "g": "Chicken",
+      "items": [
+        {
+          "q": 500,
+          "u": "g",
+          "n": "chicken breast"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "salt"
+        }
+      ]
+    },
+    {
+      "g": "Dressing",
+      "items": [
+        {
+          "q": 100,
+          "u": "g",
+          "n": "mayonnaise"
+        },
+        {
+          "q": 80,
+          "u": "g",
+          "n": "plain yogurt",
+          "sub": "extra mayo"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "mild curry powder"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "mango chutney",
+          "sub": "1 tbsp honey + 1 tsp lemon juice"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "lemon juice"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "raisins, chopped",
+          "sub": "skip"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Poach the chicken",
+      "x": "Cover chicken with water, add salt, bring to a gentle simmer. Cook 12 min, then turn off heat, cover, and rest 10 min until no pink inside.",
+      "uses": [
+        "0.1"
+      ]
+    },
+    {
+      "t": "Cool and shred",
+      "x": "Drain, cool 10 min, then shred finely or chop into 1cm pieces.",
+      "uses": []
+    },
+    {
+      "t": "Mix",
+      "x": "Stir dressing ingredients together, fold in chicken and raisins. Chill 30 min before using.",
+      "uses": [
+        "1.5"
+      ]
+    }
+  ],
+  "notes": [
+    "Keeps 3 days in a sealed container in the fridge",
+    "Fills about 4 sandwiches or wraps",
+    "For adult chilli: add 0.5 tsp chilli powder to your portion only"
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1794265028941
+}
