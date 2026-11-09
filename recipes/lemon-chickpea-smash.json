@@ -1,0 +1,94 @@
+{
+  "id": "lemon-chickpea-smash",
+  "title": "Lemon Chickpea Smash",
+  "prep": "10 min",
+  "cook": "0 min",
+  "total": "10 min",
+  "serves": 4,
+  "equip": "Fork or hand blender chopper attachment",
+  "tags": [
+    "Sandwiches",
+    "Cold",
+    "Vegetarian",
+    "Quick",
+    "No Cook"
+  ],
+  "groups": [
+    {
+      "g": "Filling",
+      "items": [
+        {
+          "q": 2,
+          "u": "",
+          "n": "cans chickpeas (about 480g drained), rinsed"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "mayonnaise",
+          "sub": "plain yogurt"
+        },
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "lemon juice"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Dijon or any mustard"
+        },
+        {
+          "q": 40,
+          "u": "g",
+          "n": "celery or cucumber, finely diced",
+          "sub": "capsicum"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "spring onion, sliced"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "cumin powder"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Smash",
+      "x": "Mash chickpeas with a fork until about half are broken down. Use the chopper attachment in short pulses for speed.",
+      "uses": [
+        "0.0"
+      ]
+    },
+    {
+      "t": "Mix",
+      "x": "Stir in all remaining ingredients. Rest 10 min so flavours settle, then adjust salt and lemon.",
+      "uses": [
+        "0.7"
+      ]
+    }
+  ],
+  "notes": [
+    "Keeps 3 days chilled",
+    "Fills about 4 sandwiches",
+    "Adult chilli: add 0.5 tsp chilli flakes to your portion"
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1794265221680
+}
