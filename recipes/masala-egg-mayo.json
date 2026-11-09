@@ -1,0 +1,98 @@
+{
+  "id": "masala-egg-mayo",
+  "title": "Masala Egg Mayo",
+  "prep": "5 min",
+  "cook": "10 min",
+  "total": "15 min",
+  "serves": 4,
+  "equip": "1 saucepan",
+  "tags": [
+    "Sandwiches",
+    "Cold",
+    "Indian",
+    "Quick",
+    "Meal Prep"
+  ],
+  "groups": [
+    {
+      "g": "Filling",
+      "items": [
+        {
+          "q": 6,
+          "u": "",
+          "n": "large eggs"
+        },
+        {
+          "q": 70,
+          "u": "g",
+          "n": "mayonnaise"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Dijon or any mustard",
+          "sub": "skip"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "chaat masala"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "turmeric"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "red onion, finely diced"
+        },
+        {
+          "q": 10,
+          "u": "g",
+          "n": "coriander, chopped"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Boil the eggs",
+      "x": "Lower eggs into boiling water and cook 10 min. Cool in cold water 5 min, then peel.",
+      "uses": [
+        "0.0"
+      ]
+    },
+    {
+      "t": "Mash",
+      "x": "Mash eggs roughly with a fork, leaving some chunks.",
+      "uses": []
+    },
+    {
+      "t": "Mix",
+      "x": "Fold in all remaining ingredients. Taste and adjust salt.",
+      "uses": [
+        "0.7"
+      ]
+    }
+  ],
+  "notes": [
+    "Keeps 2 days chilled; don't freeze",
+    "Fills about 4 sandwiches",
+    "Adult chilli: add 1 finely chopped green chilli to your portion"
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1794265180607
+}
