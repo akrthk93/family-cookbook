@@ -1,5 +1,5 @@
 {
-  "updated": 1793797941041,
+  "updated": 1794277239699,
   "items": [
     {
       "id": "strawberries",
@@ -22,6 +22,18 @@
           "per": 27.96,
           "store": "Sheng Siong Argentina",
           "date": 1793797941041
+        }
+      ]
+    },
+    {
+      "id": "aluminium-foil",
+      "name": "Aluminium Foil",
+      "dim": "vol",
+      "entries": [
+        {
+          "per": 318.9655,
+          "store": "Glad 75sqft 23.2m",
+          "date": 1794277239699
         }
       ]
     }
