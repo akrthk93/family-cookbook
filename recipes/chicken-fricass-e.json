@@ -1,0 +1,208 @@
+{
+  "id": "chicken-fricass-e",
+  "title": "Chicken Fricassée",
+  "prep": "20 min",
+  "cook": "60 min",
+  "total": "80 min",
+  "serves": 4,
+  "equip": "1 large stainless steel pot or skillet with a lid (stockpot works), 1 plate",
+  "tags": [
+    "One pot",
+    "Western",
+    "Chicken",
+    "Meal prep",
+    "Kid-friendly",
+    "Weekend"
+  ],
+  "groups": [
+    {
+      "g": "Chicken",
+      "items": [
+        {
+          "q": 4,
+          "u": "",
+          "n": "chicken drumsticks (about 150 g each)"
+        },
+        {
+          "q": 4,
+          "u": "",
+          "n": "chicken thighs, skin-on and bone-in (about 250 g each)"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "black pepper"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "unsalted butter"
+        }
+      ]
+    },
+    {
+      "g": "Stew",
+      "items": [
+        {
+          "q": 300,
+          "u": "g",
+          "n": "white or button mushrooms, halved (quartered if large)"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "medium brown onions, sliced 0.6 cm thick"
+        },
+        {
+          "q": 2,
+          "u": "",
+          "n": "garlic cloves, finely minced"
+        },
+        {
+          "q": 1,
+          "u": "",
+          "n": "fresh bay leaf",
+          "sub": "dried bay leaf"
+        },
+        {
+          "q": 3,
+          "u": "",
+          "n": "thyme sprigs",
+          "sub": "0.5 tsp dried thyme"
+        },
+        {
+          "q": 30,
+          "u": "g",
+          "n": "plain flour"
+        },
+        {
+          "q": 125,
+          "u": "ml",
+          "n": "dry white wine",
+          "sub": "125 ml more chicken stock"
+        },
+        {
+          "q": 750,
+          "u": "ml",
+          "n": "low-sodium chicken stock"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    },
+    {
+      "g": "Finish",
+      "items": [
+        {
+          "q": 185,
+          "u": "ml",
+          "n": "Emborg Perfect Pasta cream",
+          "sub": "185 ml evaporated milk, or 120 g plain yogurt stirred in off the heat"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "chopped parsley",
+          "sub": "coriander leaves"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Season the chicken",
+      "x": "Pat the chicken dry with paper towels. Sprinkle with 1 tsp salt and 0.5 tsp pepper.",
+      "uses": [
+        "0.2",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Brown the thighs",
+      "x": "Melt the butter over medium-high heat in the pot. Add the thighs skin side down and cook 5 min until golden. Flip and cook 1 min, then move to a plate.",
+      "uses": []
+    },
+    {
+      "t": "Brown the drumsticks",
+      "x": "Brown the drumsticks in the same pot, about 2 min per side on 3 sides. Move to the plate. Work in batches if the pot is crowded.",
+      "uses": []
+    },
+    {
+      "t": "Sauté mushrooms and onion",
+      "x": "Add the mushrooms, onions, bay leaf and thyme to the pot. Cook 5 min until the mushrooms are lightly golden.",
+      "uses": [
+        "1.3"
+      ]
+    },
+    {
+      "t": "Garlic and flour",
+      "x": "Add the garlic and stir 30 sec. Add the flour and cook 1 min, stirring, to cook out the raw taste.",
+      "uses": [
+        "1.2",
+        "1.5"
+      ]
+    },
+    {
+      "t": "Add wine and stock",
+      "x": "Pour in the wine, stock, 0.25 tsp salt and 0.25 tsp pepper. Scrape the bottom of the pot well to lift the browned bits into the sauce.",
+      "uses": [
+        "1.6",
+        "1.8",
+        "1.9"
+      ]
+    },
+    {
+      "t": "Return the chicken",
+      "x": "Nestle the chicken back in, skin side up, so the skin stays out of the liquid.",
+      "uses": []
+    },
+    {
+      "t": "Simmer covered",
+      "x": "Bring to a simmer, then lower the heat so it bubbles steadily but gently. Cover and simmer 10 min.",
+      "uses": []
+    },
+    {
+      "t": "Simmer uncovered",
+      "x": "Remove the lid and simmer 20 min more to reduce the sauce. The chicken should reach 75°C inside.",
+      "uses": []
+    },
+    {
+      "t": "Add the cream",
+      "x": "Move the chicken to a plate. Stir the cream into the sauce and bring back to a simmer. Taste and add salt if needed.",
+      "uses": []
+    },
+    {
+      "t": "Serve",
+      "x": "Return the chicken to the sauce, take off the heat and sprinkle with parsley. Serve over rice, mashed potato or short pasta like penne.",
+      "uses": [
+        "2.1"
+      ]
+    }
+  ],
+  "notes": [
+    "Use skin-on, bone-in pieces. Boneless breast dries out. If you must, brown it, reduce the sauce uncovered 15 min, then simmer the breast covered 6 min until it hits 65°C. Boneless thigh is the same but cook to 75°C.",
+    "No wine: use extra chicken stock. Any dry white works. Avoid sweet or oaky ones.",
+    "The cream is worth keeping here. Use up the leftover Emborg in scrambled eggs, a pasta sauce or a mushroom soup within a few days.",
+    "Not spicy, so no child's portion needed.",
+    "Meal prep: 8 pieces of chicken makes 4 portions of 2 pieces each, with sauce. Pack with rice or mashed potato.",
+    "Storage: fridge up to 3 days in an airtight container. Cream sauces can split when frozen, so freeze only if you must.",
+    "Reheat gently on the stove with a splash of water or stock. Don't boil hard.",
+    "Fresh thyme and bay leaf are at FairPrice or Sheng Siong. Dried works fine."
+  ],
+  "source": "https://www.recipetineats.com/chicken-fricassee/",
+  "no": "",
+  "updated": 1794481442493
+}
