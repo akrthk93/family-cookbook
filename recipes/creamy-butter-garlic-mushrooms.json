@@ -1,0 +1,170 @@
+{
+  "id": "creamy-butter-garlic-mushrooms",
+  "title": "Creamy Butter Garlic Mushrooms",
+  "prep": "10 min",
+  "cook": "25 min",
+  "total": "35 min",
+  "serves": 2,
+  "equip": "1 stainless steel skillet or small deep nonstick pan, 1 small bowl",
+  "tags": [
+    "Indian",
+    "Mushroom",
+    "Side",
+    "Vegetarian",
+    "Weeknight"
+  ],
+  "groups": [
+    {
+      "g": "Base",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "mustard oil",
+          "sub": "any neutral oil"
+        },
+        {
+          "q": 150,
+          "u": "g",
+          "n": "red onion, finely chopped"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "butter"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "oil"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "garlic, finely chopped (about 4 cloves)"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "button mushrooms, sliced"
+        }
+      ]
+    },
+    {
+      "g": "Sauce",
+      "items": [
+        {
+          "q": 250,
+          "u": "ml",
+          "n": "Emborg Perfect Pasta cream (replaces Amul fresh cream + milk)"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "wheat flour (atta)"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "Kashmiri red chilli powder"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "black pepper, freshly ground"
+        },
+        {
+          "q": 0.75,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "garam masala"
+        }
+      ]
+    },
+    {
+      "g": "Finish",
+      "items": [
+        {
+          "q": 1,
+          "u": "tbsp",
+          "n": "coriander leaves, chopped"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Fry the onions",
+      "x": "Heat the mustard oil in the pan on medium until it just starts to smoke lightly. Add the onion and fry 6 min, stirring, until soft and light golden. Scoop onions into a bowl and set aside.",
+      "uses": [
+        "0.0",
+        "0.1",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Butter garlic",
+      "x": "In the same pan, add the butter and 1 tsp oil on medium-low. Add the garlic and cook 1 min until fragrant and pale golden. Don't let it brown.",
+      "uses": [
+        "0.2",
+        "0.4"
+      ]
+    },
+    {
+      "t": "Sear the mushrooms",
+      "x": "Turn the heat to medium-high and add the mushrooms. Cook 6 min, stirring now and then, until the water evaporates and they are lightly browned.",
+      "uses": []
+    },
+    {
+      "t": "Add the cream",
+      "x": "Pour in 100 ml of the Emborg and stir 2 min until it coats the mushrooms.",
+      "uses": []
+    },
+    {
+      "t": "Thicken",
+      "x": "Sprinkle in the wheat flour and stir 1 min so the raw flour taste cooks off. Return the fried onions to the pan.",
+      "uses": [
+        "1.1"
+      ]
+    },
+    {
+      "t": "Spice",
+      "x": "Add the Kashmiri chilli, pepper, salt and garam masala. Stir 30 sec.",
+      "uses": [
+        "1.2",
+        "1.3",
+        "1.4",
+        "1.5"
+      ]
+    },
+    {
+      "t": "Simmer",
+      "x": "Pour in the remaining 150 ml Emborg. Simmer on medium-low for 5-7 min, stirring, until thick and the colour turns orange-pink. If it gets too thick, loosen with 2 tbsp water.",
+      "uses": []
+    },
+    {
+      "t": "Garnish and serve",
+      "x": "Stir in the coriander and serve hot with roti, garlic bread or rice.",
+      "uses": [
+        "2.0"
+      ]
+    }
+  ],
+  "notes": [
+    "The video doesn't show amounts for garlic, mushrooms, cream or salt. These are estimates, so adjust the salt at the end.",
+    "Emborg is lighter than Amul fresh cream, so the sauce is a bit thinner. The flour step covers this, so don't skip it.",
+    "Improvement: salt the mushrooms only after they brown (step 6). Early salt makes them release water and steam instead of sear.",
+    "Improvement: don't crowd the pan. If you double the recipe, sear the mushrooms in two batches.",
+    "Improvement: finish with a squeeze of lemon (1 tsp) off the heat to cut the richness.",
+    "Spicy for a child. Plate the child's portion before adding the Kashmiri chilli and pepper (step 6).",
+    "Storage: 2 days in the fridge. Reheat gently on the stove with a splash of milk or water. Not great frozen, because the cream splits.",
+    "Leftover Emborg: use it in the pasta sauce or stir it into dal."
+  ],
+  "source": "https://www.instagram.com/sizzling.diary/",
+  "no": "",
+  "updated": 1794738707755
+}
