@@ -15,9 +15,9 @@
       "g": "Filling",
       "items": [
         {
-          "q": 3,
-          "u": "",
-          "n": "cans tuna in water or oil (about 450g drained)"
+          "q": 450,
+          "u": "g",
+          "n": "tuna, drained weight (canned in water or oil)"
         },
         {
           "q": 80,
@@ -51,8 +51,10 @@
   "steps": [
     {
       "t": "Drain well",
-      "x": "Drain tuna thoroughly, pressing out liquid, or the filling turns watery.",
-      "uses": []
+      "x": "Drain tuna thoroughly, pressing out liquid, then weigh out 450g. Excess liquid makes the filling watery.",
+      "uses": [
+        "0.0"
+      ]
     },
     {
       "t": "Rinse the onion",
@@ -78,5 +80,5 @@
   ],
   "source": null,
   "no": "",
-  "updated": 1795224029294
+  "updated": 1795224113189
 }
