@@ -1,0 +1,289 @@
+{
+  "id": "halal-cart-chicken-and-rice",
+  "title": "Halal Cart Chicken and Rice",
+  "prep": "15 min",
+  "cook": "35 min",
+  "total": "50 min",
+  "serves": 4,
+  "equip": "Instant Pot, stainless steel skillet with lid (or a plate/pot lid that fits), hand whisk or Philips whisk attachment",
+  "tags": [
+    "Instant Pot",
+    "American",
+    "Chicken",
+    "Rice",
+    "Meal prep",
+    "Kid-friendly"
+  ],
+  "groups": [
+    {
+      "g": "Chicken and marinade",
+      "items": [
+        {
+          "q": 600,
+          "u": "g",
+          "n": "boneless skinless chicken thighs"
+        },
+        {
+          "q": 10,
+          "u": "g",
+          "n": "kosher salt",
+          "sub": "7 g fine table salt"
+        },
+        {
+          "q": 5,
+          "u": "g",
+          "n": "ground cumin"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "ground coriander"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "ground black pepper"
+        },
+        {
+          "q": 2,
+          "u": "g",
+          "n": "dried oregano"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "onion powder"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "garlic powder"
+        },
+        {
+          "q": 25,
+          "u": "g",
+          "n": "plain yogurt (not Greek)",
+          "sub": "Marigold plain yogurt"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "lemon juice"
+        },
+        {
+          "q": 15,
+          "u": "ml",
+          "n": "olive oil"
+        },
+        {
+          "q": 2,
+          "u": "tbsp",
+          "n": "neutral oil, for searing"
+        }
+      ]
+    },
+    {
+      "g": "Rice",
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "basmati rice"
+        },
+        {
+          "q": 3,
+          "u": "tbsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 15,
+          "u": "g",
+          "n": "unsalted butter"
+        },
+        {
+          "q": 2,
+          "u": "g",
+          "n": "ground turmeric"
+        },
+        {
+          "q": 300,
+          "u": "ml",
+          "n": "water"
+        },
+        {
+          "q": 20,
+          "u": "g",
+          "n": "Knorr chicken cubes (2 cubes), crumbled",
+          "sub": "25 g Better Than Bouillon chicken"
+        },
+        {
+          "q": 5,
+          "u": "g",
+          "n": "onion powder"
+        },
+        {
+          "q": 5,
+          "u": "g",
+          "n": "garlic powder"
+        }
+      ]
+    },
+    {
+      "g": "White sauce",
+      "items": [
+        {
+          "q": 125,
+          "u": "g",
+          "n": "mayonnaise"
+        },
+        {
+          "q": 125,
+          "u": "g",
+          "n": "plain yogurt (not Greek)"
+        },
+        {
+          "q": 10,
+          "u": "g",
+          "n": "lemon juice"
+        },
+        {
+          "q": 3,
+          "u": "g",
+          "n": "kosher salt",
+          "sub": "2 g fine table salt"
+        },
+        {
+          "q": 5,
+          "u": "g",
+          "n": "garlic, minced (1 clove)"
+        }
+      ]
+    },
+    {
+      "g": "Red sauce",
+      "items": [
+        {
+          "q": 120,
+          "u": "g",
+          "n": "Sriracha"
+        },
+        {
+          "q": 60,
+          "u": "g",
+          "n": "Louisiana-style hot sauce",
+          "sub": "60 g Tabasco or extra Sriracha plus 1 tsp white vinegar"
+        }
+      ]
+    },
+    {
+      "g": "To serve",
+      "items": [
+        {
+          "q": 150,
+          "u": "g",
+          "n": "lettuce (little gem, romaine or iceberg), medium diced"
+        },
+        {
+          "q": 200,
+          "u": "g",
+          "n": "tomatoes (2 medium), small diced"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Marinate the chicken",
+      "x": "Whisk the 25 g yogurt, 15 g lemon juice, 15 ml olive oil, 10 g salt and all the chicken spices into a smooth paste. Toss the thighs until fully coated. Refrigerate 30 min if you have time. Otherwise it marinates while the rice cooks.",
+      "uses": [
+        "0.0",
+        "0.8",
+        "0.9",
+        "0.10"
+      ]
+    },
+    {
+      "t": "Rinse the rice",
+      "x": "Rinse the basmati in a colander until the water runs clear. Drain well, about 5 min, so the water ratio stays accurate.",
+      "uses": [
+        "1.0",
+        "1.4"
+      ]
+    },
+    {
+      "t": "Toast the rice",
+      "x": "Set the Instant Pot to Sauté (Normal). Add 3 tbsp oil and heat 2 min until shimmering. Add the rice and toast 4 min, stirring constantly, until most grains turn opaque and a few start to colour.",
+      "uses": [
+        "0.11"
+      ]
+    },
+    {
+      "t": "Add butter and turmeric",
+      "x": "Stir in the butter and turmeric for 1 min until the butter melts and the rice turns yellow.",
+      "uses": [
+        "1.3"
+      ]
+    },
+    {
+      "t": "Add liquid",
+      "x": "Add the water, crumbled Knorr cubes, 5 g onion powder and 5 g garlic powder. Stir until dissolved. Scrape the bottom well so no grains or spices stick (this prevents the Burn notice). Level the rice, then press Cancel.",
+      "uses": [
+        "0.6",
+        "0.7"
+      ]
+    },
+    {
+      "t": "Pressure cook the rice",
+      "x": "Lock the lid, set the valve to Sealing, and cook on High pressure for 4 min. Start the chicken (next steps) as soon as the lid is on. When the pot beeps, let it release naturally for 10 min, then quick release. Fluff with a fork and keep covered.",
+      "uses": []
+    },
+    {
+      "t": "Sear the chicken",
+      "x": "Heat the skillet over medium-high. Add 2 tbsp oil. Lay the thighs in smooth side down, press with a spatula, and sear undisturbed 5 min until deep golden. Flip and sear 2 min.",
+      "uses": [
+        "1.1"
+      ]
+    },
+    {
+      "t": "Finish the chicken",
+      "x": "Reduce to low, cover the skillet, and cook 8 min. Cut into the thickest thigh to check: no pink, juices clear (85°C if you use a probe).",
+      "uses": []
+    },
+    {
+      "t": "Make the sauces and veg",
+      "x": "While the chicken cooks, whisk the white sauce ingredients until smooth and pourable. Mix the Sriracha and hot sauce in a separate bowl. Dice the lettuce and tomatoes.",
+      "uses": [
+        "3.0",
+        "4.0",
+        "4.1"
+      ]
+    },
+    {
+      "t": "Rest and make the jus",
+      "x": "Move the chicken to a plate and rest 10 min. Add 30 ml water to the skillet, scrape up the browned bits and simmer 1 min. Fish out any burnt bits first.",
+      "uses": []
+    },
+    {
+      "t": "Chop and toss",
+      "x": "Dice the rested thighs into 2 cm chunks and toss through the pan jus. Pour any plate drippings over.",
+      "uses": []
+    },
+    {
+      "t": "Assemble",
+      "x": "Spoon rice into bowls. Top with chicken, lettuce and tomato, then drizzle with white sauce and red sauce.",
+      "uses": []
+    }
+  ],
+  "notes": [
+    "Oven finish swapped for a covered skillet. The chicken is juicier but less crusty than the original. For crisper edges, move the seared thighs to the air fryer at 200°C for 6 min instead of covering the pan.",
+    "Rice liquid is reduced from the original stovetop ratio to suit the Instant Pot. If you get a Burn notice, add 30 ml water next time and scrape the bottom harder.",
+    "Better Than Bouillon is hard to find in Singapore, so Knorr cubes are used. Check the rice for salt before serving and adjust the white sauce salt if needed.",
+    "Spicy: the red sauce is very hot. Keep it separate, and plate the child's portion first with white sauce only.",
+    "Meal prep (4 portions): store rice and chicken together in a Glasslock for 4 days in the fridge. Keep both sauces in separate small containers. Add lettuce and tomato fresh on the day.",
+    "Reheat: rice with 1 tbsp water, microwave 2 min. Chicken 1 min. Add sauces and veg after reheating.",
+    "Leftover white sauce keeps 4 days and works as a wrap or burrito sauce."
+  ],
+  "source": "Brian Lagerstrom, Halal Cart Chicken and Rice (adapted for Instant Pot + stovetop)",
+  "no": "",
+  "updated": 1795434870709
+}
