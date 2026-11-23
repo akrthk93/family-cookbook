@@ -1,13 +1,14 @@
 {
   "id": "halal-cart-chicken-and-rice",
-  "title": "Halal Cart Chicken and Rice",
+  "title": "Halal Cart Chicken and Rice, One Pot",
   "prep": "15 min",
-  "cook": "35 min",
-  "total": "50 min",
+  "cook": "40 min",
+  "total": "55 min",
   "serves": 4,
-  "equip": "Instant Pot, stainless steel skillet with lid (or a plate/pot lid that fits), hand whisk or Philips whisk attachment",
+  "equip": "Instant Pot, hand whisk or Philips whisk attachment",
   "tags": [
     "Instant Pot",
+    "One pot",
     "American",
     "Chicken",
     "Rice",
@@ -194,7 +195,7 @@
   "steps": [
     {
       "t": "Marinate the chicken",
-      "x": "Whisk the 25 g yogurt, 15 g lemon juice, 15 ml olive oil, 10 g salt and all the chicken spices into a smooth paste. Toss the thighs until fully coated. Refrigerate 30 min if you have time. Otherwise it marinates while the rice cooks.",
+      "x": "Whisk the 25 g yogurt, 15 g lemon juice, 15 ml olive oil, 10 g salt and all the chicken spices into a paste. Toss the thighs to coat. Marinate 30 min in the fridge if you have time, otherwise while you rinse the rice.",
       "uses": [
         "0.0",
         "0.8",
@@ -204,86 +205,53 @@
     },
     {
       "t": "Rinse the rice",
-      "x": "Rinse the basmati in a colander until the water runs clear. Drain well, about 5 min, so the water ratio stays accurate.",
+      "x": "Rinse the basmati until the water runs clear. Drain well for 5 min.",
       "uses": [
         "1.0",
         "1.4"
       ]
     },
     {
-      "t": "Toast the rice",
-      "x": "Set the Instant Pot to Sauté (Normal). Add 3 tbsp oil and heat 2 min until shimmering. Add the rice and toast 4 min, stirring constantly, until most grains turn opaque and a few start to colour.",
+      "t": "Sear the chicken in the pot",
+      "x": "Wipe off the thick excess marinade from the thighs and leave a thin coat. Set the Instant Pot to Sauté (More/High). Add 2 tbsp oil and heat 2 min. Sear the thighs smooth side down in 2 batches, 3 min per side, until golden. Move to a plate.",
       "uses": [
         "0.11"
       ]
     },
     {
-      "t": "Add butter and turmeric",
-      "x": "Stir in the butter and turmeric for 1 min until the butter melts and the rice turns yellow.",
-      "uses": [
-        "1.3"
-      ]
-    },
-    {
-      "t": "Add liquid",
-      "x": "Add the water, crumbled Knorr cubes, 5 g onion powder and 5 g garlic powder. Stir until dissolved. Scrape the bottom well so no grains or spices stick (this prevents the Burn notice). Level the rice, then press Cancel.",
-      "uses": [
-        "0.6",
-        "0.7"
-      ]
-    },
-    {
-      "t": "Pressure cook the rice",
-      "x": "Lock the lid, set the valve to Sealing, and cook on High pressure for 4 min. Start the chicken (next steps) as soon as the lid is on. When the pot beeps, let it release naturally for 10 min, then quick release. Fluff with a fork and keep covered.",
+      "t": "Clean the pot base",
+      "x": "Press Cancel. Scrape any burnt or blackened bits off the bottom with a wooden spoon and discard them. Keep the browned fond.",
       "uses": []
     },
     {
-      "t": "Sear the chicken",
-      "x": "Heat the skillet over medium-high. Add 2 tbsp oil. Lay the thighs in smooth side down, press with a spatula, and sear undisturbed 5 min until deep golden. Flip and sear 2 min.",
+      "t": "Toast the rice",
+      "x": "Set to Sauté (Normal). Add 3 tbsp oil, heat 1 min, then add the rice and toast 4 min, stirring constantly.",
       "uses": [
         "1.1"
       ]
     },
     {
-      "t": "Finish the chicken",
-      "x": "Reduce to low, cover the skillet, and cook 8 min. Cut into the thickest thigh to check: no pink, juices clear (85°C if you use a probe).",
-      "uses": []
-    },
-    {
-      "t": "Make the sauces and veg",
-      "x": "While the chicken cooks, whisk the white sauce ingredients until smooth and pourable. Mix the Sriracha and hot sauce in a separate bowl. Dice the lettuce and tomatoes.",
+      "t": "Butter, turmeric and liquid",
+      "x": "Stir in the butter and turmeric for 1 min. Add the water, crumbled Knorr cubes, 5 g onion powder and 5 g garlic powder. Stir and scrape the bottom completely clean, otherwise you get a Burn notice. Level the rice and press Cancel.",
       "uses": [
-        "3.0",
-        "4.0",
-        "4.1"
+        "0.6",
+        "0.7",
+        "1.3"
       ]
     },
     {
-      "t": "Rest and make the jus",
-      "x": "Move the chicken to a plate and rest 10 min. Add 30 ml water to the skillet, scrape up the browned bits and simmer 1 min. Fish out any burnt bits first.",
+      "t": "Chicken on top",
+      "x": "Lay the seared thighs on top of the rice in a single layer. Do not stir. Add the plate juices.",
       "uses": []
     },
     {
-      "t": "Chop and toss",
-      "x": "Dice the rested thighs into 2 cm chunks and toss through the pan jus. Pour any plate drippings over.",
-      "uses": []
-    },
-    {
-      "t": "Assemble",
-      "x": "Spoon rice into bowls. Top with chicken, lettuce and tomato, then drizzle with white sauce and red sauce.",
+      "t": "Pressure cook",
+      "x": "Lock the lid, set the valve to Sealing, and cook on High pressure for 5 min. Nat",
       "uses": []
     }
   ],
-  "notes": [
-    "Oven finish swapped for a covered skillet. The chicken is juicier but less crusty than the original. For crisper edges, move the seared thighs to the air fryer at 200°C for 6 min instead of covering the pan.",
-    "Rice liquid is reduced from the original stovetop ratio to suit the Instant Pot. If you get a Burn notice, add 30 ml water next time and scrape the bottom harder.",
-    "Better Than Bouillon is hard to find in Singapore, so Knorr cubes are used. Check the rice for salt before serving and adjust the white sauce salt if needed.",
-    "Spicy: the red sauce is very hot. Keep it separate, and plate the child's portion first with white sauce only.",
-    "Meal prep (4 portions): store rice and chicken together in a Glasslock for 4 days in the fridge. Keep both sauces in separate small containers. Add lettuce and tomato fresh on the day.",
-    "Reheat: rice with 1 tbsp water, microwave 2 min. Chicken 1 min. Add sauces and veg after reheating.",
-    "Leftover white sauce keeps 4 days and works as a wrap or burrito sauce."
-  ],
-  "source": "Brian Lagerstrom, Halal Cart Chicken and Rice (adapted for Instant Pot + stovetop)",
+  "notes": [],
+  "source": "Brian Lagerstrom, Halal Cart Chicken and Rice (adapted to a one-pot Instant Pot method)",
   "no": "",
-  "updated": 1795434870709
+  "updated": 1795436044406
 }
