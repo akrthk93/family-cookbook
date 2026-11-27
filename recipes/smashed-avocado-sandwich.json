@@ -1,0 +1,138 @@
+{
+  "id": "smashed-avocado-sandwich",
+  "title": "Smashed Avocado Sandwich",
+  "prep": "5 min",
+  "cook": "8 min",
+  "total": "13 min",
+  "serves": 2,
+  "equip": "1 stainless steel skillet (toast); 1 small deep nonstick pan (eggs, optional)",
+  "tags": [
+    "Sandwiches# #Quick# #Western# #Vegetarian"
+  ],
+  "groups": [
+    {
+      "g": "Smashed avocado",
+      "items": [
+        {
+          "q": 200,
+          "u": "g",
+          "n": "ripe avocado flesh (2 small avocados)"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "lemon juice",
+          "sub": "lime juice"
+        },
+        {
+          "q": 0.5,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 0.25,
+          "u": "tsp",
+          "n": "black pepper"
+        }
+      ]
+    },
+    {
+      "g": "Toast",
+      "items": [
+        {
+          "q": 4,
+          "u": "",
+          "n": "slices bread"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "butter",
+          "sub": "Everything Butter"
+        }
+      ]
+    },
+    {
+      "g": "Optional: fried egg",
+      "items": [
+        {
+          "q": 2,
+          "u": "",
+          "n": "large eggs"
+        },
+        {
+          "q": 1,
+          "u": "tsp",
+          "n": "neutral oil"
+        },
+        {
+          "q": 0.125,
+          "u": "tsp",
+          "n": "salt"
+        },
+        {
+          "q": 2,
+          "u": "tsp",
+          "n": "chilli crisp",
+          "sub": "chilli flakes"
+        }
+      ]
+    },
+    {
+      "g": "Optional: tomato",
+      "items": [
+        {
+          "q": 120,
+          "u": "g",
+          "n": "tomato, sliced",
+          "sub": "skip"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "t": "Mash the avocado",
+      "x": "Mash the avocado, lemon juice, salt, and pepper with a fork in a bowl until mostly smooth with a few small chunks. Do this first so the lemon protects the colour.",
+      "uses": [
+        "0.1",
+        "0.2",
+        "0.3"
+      ]
+    },
+    {
+      "t": "Toast the bread",
+      "x": "Heat the stainless steel skillet on medium. Spread the butter on one side of each slice and toast butter-side down for 90 seconds until golden. Flip and toast 60 seconds. Set aside.",
+      "uses": [
+        "1.0",
+        "1.1"
+      ]
+    },
+    {
+      "t": "Fry the eggs (optional)",
+      "x": "Heat the oil in the nonstick pan on medium. Crack in both eggs, sprinkle with salt, and cook 2 min for a runny yolk, or 3 min for a jammy one. Spoon the chilli crisp onto your own egg only.",
+      "uses": [
+        "2.0",
+        "2.1",
+        "2.2",
+        "2.3"
+      ]
+    },
+    {
+      "t": "Assemble",
+      "x": "Spread half the avocado on each of 2 slices. Add the tomato slices and egg if using, then close with the other slices. Cut in half and eat immediately.",
+      "uses": [
+        "3.0"
+      ]
+    }
+  ],
+  "notes": [
+    "For the family: keep the chilli crisp off the child's portion and assemble theirs first.",
+    "Make the avocado mash right before eating. It browns within about 30 min even with lemon.",
+    "Without the egg, it takes about 8 min total.",
+    "Slightly stale bread works best, because it holds up to the mash without going soggy."
+  ],
+  "source": null,
+  "no": "",
+  "updated": 1795742574580
+}
